@@ -11,6 +11,9 @@
   color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box}
+*{-webkit-tap-highlight-color:transparent}
+canvas,svg,button,.stage,.rc,.pc,.slot,.czone,.hposter,.ticker,.coach{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+canvas:focus,svg:focus,.stage:focus{outline:none}
 [hidden]{display:none!important}
 html,body{height:100%}
 body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:17px;margin:0}
@@ -117,10 +120,12 @@ button.big{font-size:17px;padding:12px 22px}
  .sqfoot{position:sticky;bottom:0;padding:10px 16px}}
 button.mini{font-size:12px;padding:6px 9px}
 header .hdr{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+#mus{flex:none;font-family:var(--body);font-size:16px;padding:4px 10px}header .hdr[hidden]+#mus{margin-left:auto}
 .ctop{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .chip{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:5px 10px;font-size:15px;color:var(--muted);font-variant-numeric:tabular-nums}
 .chip b{color:var(--text);font-weight:700}.chip i{font-style:normal;color:#8fd19e;font-size:13px}.chip.warn{border-color:var(--yuyu);color:#f0b3bc}
 .stars{color:var(--gold)!important;letter-spacing:1px}
+.clbl.long{font-size:17px}
 .speed{display:flex;border:1px solid var(--line);border-radius:5px;overflow:hidden}
 .speed button{background:var(--panel);color:var(--text);border-radius:0;padding:7px 11px;font-size:13px}
 .speed button.on{background:var(--gold);color:var(--ink)}
@@ -157,7 +162,7 @@ header .hdr{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
 .rt1{font-family:var(--display);font-size:14px;fill:#fff;text-anchor:middle}.rt2{font-family:var(--body);font-weight:700;font-size:14px;fill:#ffe9a8;text-anchor:middle}
 .sabs{display:grid;gap:6px}.sab{display:grid;gap:2px;border-left:3px solid var(--line);padding-left:8px}.sab.on{border-left-color:#8fd19e}.sab.on b{color:#8fd19e}.sab .muted{font-size:14px}
 .card.poster{background:var(--paper);color:var(--ink);border:6px double var(--yuyu)}
-.card.poster .muted{color:#5b5644}.card.poster .opt{border-top:1px dashed #b9ae8c;padding-top:8px}
+.card.poster .muted{color:#5b5644}.card.poster .tutq{background:rgba(176,42,62,.08);border:1px dashed #b02a3e;border-radius:8px;padding:8px 10px;line-height:1.35}.card.poster .opt{border-top:1px dashed #b9ae8c;padding-top:8px}
 .card.poster button.alt{color:var(--ink);border-color:var(--ink)}
 .poster-in{display:grid;gap:12px}
 
@@ -279,6 +284,111 @@ button.alt:not(:disabled):hover{box-shadow:none;border-color:var(--paper)}
 .dstats span:nth-child(1) b{color:#8fd19e}.dstats span:nth-child(2) b{color:var(--gold)}.dstats span:nth-child(3) b{color:var(--blue)}
 .dpw{background:#1e221d;border-radius:8px;padding:8px 10px;border-left-width:4px}
 .sqfoot{background:linear-gradient(180deg,#1a1e19,#121512)}
+
+/* ===== Móvil ===== */
+.ctop:empty{display:none}
+.card .qx{position:sticky;top:0;justify-self:end;margin-bottom:-44px;z-index:2;width:40px;background:#1c201b;font-size:16px}
+.pinfo summary{cursor:pointer;color:var(--muted);font-size:14px;font-weight:700;list-style:none}.pinfo summary::-webkit-details-marker{display:none}
+.pinfo summary::before{content:"ℹ️ "}.pinfo[open] summary{color:var(--text)}.pinfo p{margin-top:6px!important}
+.zup{display:none}
+@media (max-width:760px){
+  button{min-height:40px}button.mini{min-height:34px}
+  .clbl{font-size:27px;stroke-width:5px}.clbl.long{font-size:21px}
+  .cnum{font-size:28px}.cthreat{font-size:24px}
+  .zhead .zico{display:none}.zhead h2,.zhead .eyebrow{padding-right:84px}
+  .zup{display:inline-block;position:absolute;right:10px;top:10px;z-index:2;font-family:var(--body);font-weight:700;font-size:13px;min-height:32px;padding:4px 10px;background:rgba(0,0,0,.35);color:#fff;border:1px solid rgba(255,255,255,.4);box-shadow:none}
+  body.inmis .wrap{padding:6px 8px 0;gap:6px;grid-template-columns:minmax(0,1fr)}
+  body.inmis header{flex-wrap:nowrap;align-items:center;gap:6px}
+  body.inmis header h1{display:none}
+  body.inmis header .sub{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
+  body.inmis header .hdr{margin-left:0;flex:none;flex-wrap:nowrap;gap:4px}
+  body.inmis #camctl button{padding:6px 9px;font-size:12px;min-height:36px}
+  body.inmis .layout{display:block;min-width:0}body.inmis #mis{min-width:0;max-width:100%}body.inmis .stage{width:100%}
+  body.inmis .stage{height:calc(58dvh - 50px);max-height:none;border-radius:10px}
+  body.inmis #mis .panel{position:fixed;left:0;right:0;bottom:0;z-index:5;height:42dvh;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;background:linear-gradient(180deg,rgba(35,40,34,.98),#171a17);border-top:2px solid #3f463b;border-radius:16px 16px 0 0;padding:8px 10px calc(10px + env(safe-area-inset-bottom));gap:6px;align-content:start;box-shadow:0 -10px 30px rgba(0,0,0,.55)}
+  body.inmis .roster{gap:4px}body.inmis .rc{padding:4px 6px;gap:1px}body.inmis .rc .nm{font-size:14px}body.inmis .rc .cl{font-size:12px}
+  body.inmis #act{padding:8px 10px;gap:6px;border-radius:10px}body.inmis #act h2{font-size:17px}body.inmis #act p{font-size:15px}
+  body.inmis #act .wline{display:none}
+  body.inmis #act .btns{gap:6px}body.inmis #act button{padding:8px 11px;font-size:13px;flex:1 1 auto}
+  .qres .res .ri{display:none}.qres .res{padding:4px 8px}
+  body.inmis .legend{display:none}
+  body.inmis .log{font-size:13px;max-height:3.9em;overflow:hidden}
+  body.inmis .banner{font-size:26px}
+}
+
+/* ===== Tutorial ===== */
+.coach{position:fixed;left:50%;transform:translateX(-50%);top:64px;z-index:7;width:min(560px,calc(100% - 16px));background:linear-gradient(180deg,rgba(42,48,41,.97),rgba(28,32,27,.97));border:2px solid var(--gold);border-radius:14px;padding:10px 12px;display:grid;gap:8px;box-shadow:0 12px 30px rgba(0,0,0,.55);animation:cardin .25s ease-out}
+.coach .tline{display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:start}
+.coach canvas{width:44px!important;height:44px!important;border-radius:50%;border:2px solid var(--c,#555);background:#1c201b;object-fit:cover;object-position:top}
+.coach b{font-family:var(--display);font-weight:400;font-size:14px;color:var(--c);display:block;letter-spacing:.03em}
+.coach p{margin:0;font-size:16px;line-height:1.3}
+.coach .tfoot{display:flex;align-items:center;gap:8px;justify-content:space-between}
+.coach .tstep{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.08em}
+.coach .tfoot button{padding:7px 14px;font-size:13px}.coach .tbtns{display:flex;gap:6px}.coach.min .tline{display:none}
+.coach .twait{font-size:13px;color:var(--gold);font-weight:700}
+.coach.min .tline{display:none}
+.tutend .tline{display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:start;background:#151815;border-radius:10px;padding:8px 10px}
+.tutend canvas{width:44px!important;height:44px!important;border-radius:50%;border:2px solid var(--c,#555);object-fit:cover;object-position:top}
+.tutend b{font-family:var(--display);font-weight:400;font-size:14px;color:var(--c);display:block}
+@media (min-width:761px){.coach{top:auto;bottom:16px;left:max(16px,calc(50% - 584px));transform:none}}
+@media (max-width:760px){.coach{top:52px;padding:8px 10px;gap:6px}.coach p{font-size:14px}.coach canvas{width:36px!important;height:36px!important}.coach .tline{grid-template-columns:36px 1fr;gap:8px}}
+
+/* ===== Pantalla de inicio ===== */
+body.inhome header{display:none}
+#home{position:relative;padding-bottom:56px}
+.hgrid{display:grid;grid-template-columns:minmax(260px,400px) minmax(0,1fr);gap:22px 28px;align-items:center}
+.hposter{position:relative;aspect-ratio:3/4;border-radius:14px;overflow:hidden;border:6px solid #e9e2cc;box-shadow:0 20px 50px rgba(0,0,0,.6),0 0 0 2px #6e1424;background:#6e1424;display:grid;place-items:center}
+.rays{position:absolute;inset:-40%;background:repeating-conic-gradient(from 0deg at 50% 45%,#b02a3e 0 10deg,#7a1424 10deg 20deg);animation:spin 80s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hframe{position:relative;margin-top:-18%;border-radius:50%;padding:8px;background:radial-gradient(circle,#f4d35e,#b8862a);box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.hframe canvas{display:block;border-radius:50%;background:#2a1a1c}
+.hbanner{position:absolute;bottom:7%;left:6%;right:6%;text-align:center;font-family:var(--display);font-size:clamp(18px,3.2vw,28px);line-height:1.05;color:#f4d35e;background:#1a0a0e;padding:10px 8px;border:3px solid #f4d35e;box-shadow:0 6px 0 rgba(0,0,0,.4);letter-spacing:.02em}
+.spray{position:absolute;top:8%;right:4%;transform:rotate(-14deg);font-family:var(--display);font-size:clamp(26px,5vw,44px);line-height:.9;color:#3fd06a;text-shadow:0 0 6px rgba(63,208,106,.6),2px 2px 0 #0d3a1a;opacity:.92;filter:url(#rough)}
+.stamp{position:absolute;top:44%;left:-4%;transform:rotate(-22deg);font-family:var(--display);font-size:clamp(14px,2.2vw,20px);color:#fff;border:3px solid #fff;padding:2px 10px;border-radius:6px;opacity:.75;letter-spacing:.12em}
+.hmain{display:grid;gap:14px}
+.htitle{font-family:var(--display);font-size:clamp(40px,7vw,78px);line-height:.92;margin:0;background:linear-gradient(180deg,#fff2b8,#f4d35e 55%,#d79a2b);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 0 #6e1424) drop-shadow(0 10px 16px rgba(0,0,0,.5))}
+.htag{margin:0;font-size:19px;line-height:1.35;max-width:52ch;color:var(--text)}
+.hmenu{display:grid;gap:10px;max-width:440px}
+.hmenu button{font-size:16px;padding:13px 16px;text-align:left}
+.hmenu button.big{font-size:20px;padding:16px 18px}
+.hmenu button small{display:block;font-family:var(--body);font-size:14px;font-weight:600;opacity:.85;letter-spacing:0}
+.hrow{display:grid;grid-template-columns:1fr 1fr auto;gap:10px}.hrow button{text-align:center;font-size:14px}
+.hpaper{grid-column:1/-1;background:#efe7d0;color:#232220;border-radius:6px;box-shadow:0 18px 40px rgba(0,0,0,.5);padding:0 18px 18px;position:relative;background-image:repeating-linear-gradient(0deg,rgba(0,0,0,.025) 0 1px,transparent 1px 3px)}
+.ptabs{display:flex;gap:6px;transform:translateY(-50%);margin-bottom:-6px}
+.ptab{font-family:var(--display);font-size:13px;background:#cfc4a6;color:#3a3628;border:2px solid #232220;box-shadow:none;padding:8px 12px}.ptab.on{background:#232220;color:#f4d35e}
+.mast{border-top:4px double #232220;border-bottom:4px double #232220;padding:6px 0;margin-bottom:12px;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 14px}
+.mast b{font-family:"Times New Roman",Georgia,serif;font-size:clamp(28px,5vw,44px);font-weight:900;letter-spacing:.02em;line-height:1}
+.mast span{font-size:14px;font-style:italic;color:#5b5644;text-transform:capitalize}
+.pcols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px 18px}
+.pcols article{border-top:1px solid #b9ae8c;padding-top:8px}
+.pcols h3,.pcols h4{font-family:"Times New Roman",Georgia,serif;font-weight:900;margin:0 0 4px;line-height:1.1}
+.pcols h3{font-size:clamp(24px,3.4vw,34px)}.pcols h4{font-size:19px}
+.pcols p{margin:0;font-size:15px;line-height:1.35;color:#3a3628}
+.plead{grid-column:1/3;border-top:0!important;padding-top:0!important}
+.bole{grid-row:span 2;background:#6e1424;color:#f6e6c8;padding:12px;border-radius:4px;border:3px double #f4d35e}
+.bole .bhd{font-family:var(--display);font-size:13px;letter-spacing:.08em;color:#f4d35e;border-bottom:1px solid rgba(244,211,94,.5);padding-bottom:6px;margin-bottom:6px}
+.bole h4{color:#fff;font-size:21px}.bole p{color:#f0d8b8}.bnum{font-size:12px!important;letter-spacing:.1em;text-transform:uppercase}.bsign{margin-top:8px!important;font-style:italic;text-align:right}
+.patch{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.pitem{display:grid;grid-template-columns:40px 1fr;gap:10px;align-items:start;background:#e2d8bb;border-radius:8px;padding:10px}
+.pitem>span{font-size:28px;line-height:1}.pitem b{font-size:17px}.pitem p{margin:2px 0 0;font-size:14px;color:#3a3628}
+.ticker{position:fixed;left:0;right:0;bottom:0;z-index:4;display:flex;align-items:center;background:#1a0a0e;border-top:3px solid #f4d35e;height:40px;overflow:hidden}
+.tlabel{flex:none;font-family:var(--display);font-size:13px;color:#1a0a0e;background:#f4d35e;height:100%;display:grid;place-items:center;padding:0 12px;letter-spacing:.06em}
+.tmove{overflow:hidden;flex:1}.ttrack{display:inline-flex;gap:40px;white-space:nowrap;padding-left:20px;animation:tick 70s linear infinite;color:#f6e6c8;font-weight:600;font-size:15px}
+@keyframes tick{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.rays,.ttrack{animation:none}}
+body:not(.inhome) .ticker{display:none}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px}
+.gcard{display:grid;grid-template-columns:64px 1fr;gap:10px;align-items:start;background:linear-gradient(180deg,color-mix(in srgb,var(--tint) 25%,#1c201b),#1c201b 70%);border:1px solid #3a4036;border-radius:12px;padding:10px}
+.gcard canvas{width:64px!important;height:auto!important;border-radius:50%;border:3px solid var(--tint)}
+.gcard b{font-family:var(--display);font-weight:400;font-size:17px}.gcard .pcrole{display:block}
+.gst{margin:4px 0 0!important;font-size:14px;color:var(--muted)}.gpw{margin:2px 0 0!important;font-size:14px;line-height:1.3}.gpw b{font-family:var(--body);font-weight:700;font-size:14px;color:#9ec5ff}.gpw em{font-style:normal;color:var(--muted);font-size:12px}
+ol.how{margin:0;padding-left:22px;display:grid;gap:8px;line-height:1.35}
+@media (max-width:760px){
+  .hgrid{grid-template-columns:1fr;gap:16px}.hposter{max-width:340px;width:100%;justify-self:center}
+  .hmain{text-align:center;justify-items:center}.hmenu{width:100%}.hmenu button{text-align:center}
+  .pcols{grid-template-columns:1fr}.plead{grid-column:auto}.bole{grid-row:auto}
+  .hpaper{padding:0 12px 14px}.ptab{font-size:11px;padding:7px 8px}
+}
 </style>
 
 <div class="wrap">
@@ -286,7 +396,9 @@ button.alt:not(:disabled):hover{box-shadow:none;border-color:var(--paper)}
     <h1>La Reconquista de Orcasitas</h1>
     <span class="sub" id="sub"></span>
     <span class="hdr" id="camctl" hidden><button class="alt mini" id="rotl" aria-label="Girar la cámara a la izquierda">⟲ Girar</button><button class="alt mini" id="rotr" aria-label="Girar la cámara a la derecha">Girar ⟳</button><button class="alt mini" id="retreat">Retirarse</button></span>
+    <button class="alt mini" id="mus" aria-label="Silenciar música">🔊</button>
   </header>
+  <section id="home" hidden></section>
   <section id="camp">
     <div class="ctop" id="ctop"></div>
     <div class="camp">
@@ -304,7 +416,7 @@ button.alt:not(:disabled):hover{box-shadow:none;border-color:var(--paper)}
         <div class="box" id="cinfo"></div>
         <div class="box"><h2 class="bt"><i>🧢</i>Escuadrón<em id="csqn"></em></h2><div id="csquad" class="slist"></div></div>
         <div class="box"><h2 class="bt"><i>🏠</i>Cuartel</h2><div id="cupg" class="slist"></div></div>
-        <div class="box"><h2 class="bt"><i>📓</i>Diario de la resistencia</h2><div id="clog" class="clog"></div><div class="btns"><button class="alt mini" id="cnew">Nueva campaña</button></div></div>
+        <div class="box"><h2 class="bt"><i>📓</i>Diario de la resistencia</h2><div id="clog" class="clog"></div><div class="btns"><button class="alt mini" id="chome">🏠 Inicio</button><button class="alt mini" id="ctut">🎓 Tutorial</button><button class="alt mini" id="cnew">Nueva campaña</button></div></div>
       </div>
     </div>
   </section>
@@ -325,6 +437,8 @@ button.alt:not(:disabled):hover{box-shadow:none;border-color:var(--paper)}
   </div>
   </section>
 </div>
+<svg width="0" height="0" style="position:absolute"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3"/></filter></svg>
+<div class="coach" id="coach" hidden></div>
 <div class="modal" id="modal" hidden><div class="card" id="card"></div></div>
 
 <script>
@@ -804,20 +918,20 @@ let DRINK_TILES=[[11,9],[6,8],[14,2]];
 
 /* ================= ESCUADRÓN Y PODERES ================= */
 const ROSTER=[
- {id:'adri',name:'Adri',role:'Liante',hp:6,aim:68,mob:6,weapon:{name:'Latas',verb:'Tirar lata',min:2,max:3,range:6,fx:'lata'},powers:['tinder','manguera','jambus']},
- {id:'pedo',name:'Pedorreta',role:'Infiltrado',hp:6,aim:75,mob:7,weapon:{name:'Collejón',verb:'Dar un collejón',min:3,max:4,melee:true},powers:['pedo','carnet']},
- {id:'rob',name:'Roberto',role:'Árbitro',hp:7,aim:68,mob:5,weapon:{name:'Balón',verb:'Balonazo',min:3,max:4,range:7,fx:'balon'},powers:['panal','amarilla','roja']},
- {id:'dani',name:'Daniel',role:'Pesado',hp:7,aim:62,mob:4,weapon:{name:'Móvil',verb:'Lanzar el móvil',min:2,max:3,range:6,fx:'movil'},powers:['sermon','fotos','partida']},
- {id:'jose',name:'Jose',role:'Apoyo',hp:6,aim:66,mob:5,weapon:{name:'Vaper',verb:'Lanzar el vaper',min:2,max:3,range:6,fx:'vaper'},powers:['nube','parientofobia','lona']},
- {id:'puma',name:'Puma',role:'Anestesista',hp:6,aim:76,mob:5,weapon:{name:'Dardos',verb:'Lanzar dardo',min:2,max:3,range:9,fx:'dardo'},powers:['siesta'],sleepy:true},
- {id:'serio',name:'Serio',role:'DJ',hp:5,aim:64,mob:6,weapon:{name:'Vinilos',verb:'Lanzar vinilo',min:2,max:3,range:7,fx:'vinilo'},powers:['tecno','bajo']},
- {id:'maetin',name:'Maetin',role:'Tenista',ally:true,hp:7,aim:70,mob:5,weapon:{name:'Mancuerna',verb:'Lanzar mancuerna',min:3,max:4,range:5,fx:'mancuerna'},powers:['tiafoe']},
- {id:'safu',name:'Safu',role:'Compadre',ally:true,hp:6,aim:66,mob:6,weapon:{name:'Botellín',verb:'Lanzar botellín',min:2,max:3,range:6,fx:'lata'},powers:['compadreo','putologia']},
- {id:'loko',name:'Loko',role:'Tanque',hp:9,aim:60,mob:4,weapon:{name:'Empujón',verb:'Empujar',min:3,max:4,melee:true},powers:['bronca','furgo']}
+ {id:'adri',name:'Adri',role:'Liante',hp:7,aim:68,mob:6,weapon:{name:'Latas',verb:'Tirar lata',min:2,max:3,range:6,fx:'lata'},powers:['tinder','escandalo','jambus']},
+ {id:'pedo',name:'Pedorreta',role:'Infiltrado',hp:7,aim:75,mob:7,weapon:{name:'Collejón',verb:'Dar un collejón',min:3,max:4,melee:true},powers:['pedo','carnet']},
+ {id:'rob',name:'Roberto',role:'Árbitro',hp:8,aim:68,mob:5,weapon:{name:'Balón',verb:'Balonazo',min:3,max:4,range:7,fx:'balon'},powers:['panal','amarilla','roja']},
+ {id:'dani',name:'Daniel',role:'Pesado',hp:8,aim:62,mob:4,weapon:{name:'Móvil',verb:'Lanzar el móvil',min:2,max:3,range:6,fx:'movil'},powers:['sermon','fotos','partida']},
+ {id:'jose',name:'Jose',role:'Apoyo',hp:7,aim:66,mob:5,weapon:{name:'Vaper',verb:'Lanzar el vaper',min:2,max:3,range:6,fx:'vaper'},powers:['nube','parientofobia','lona']},
+ {id:'puma',name:'Puma',role:'Anestesista',hp:7,aim:76,mob:5,weapon:{name:'Dardos',verb:'Lanzar dardo',min:2,max:3,range:9,fx:'dardo'},powers:['siesta'],sleepy:true},
+ {id:'serio',name:'Serio',role:'DJ',hp:6,aim:64,mob:6,weapon:{name:'Vinilos',verb:'Lanzar vinilo',min:2,max:3,range:7,fx:'vinilo'},powers:['tecno','bajo']},
+ {id:'maetin',name:'Maetin',role:'Tenista',ally:true,hp:8,aim:70,mob:5,weapon:{name:'Mancuerna',verb:'Lanzar mancuerna',min:3,max:4,range:5,fx:'mancuerna'},powers:['tiafoe']},
+ {id:'safu',name:'Safu',role:'Compadre',ally:true,hp:7,aim:66,mob:6,weapon:{name:'Botellín',verb:'Lanzar botellín',min:2,max:3,range:6,fx:'lata'},powers:['compadreo','putologia']},
+ {id:'loko',name:'Loko',role:'Tanque',hp:10,aim:60,mob:4,weapon:{name:'Empujón',verb:'Empujar',min:3,max:4,melee:true},powers:['bronca','furgo']}
 ];
 const POWERS={
  tinder:{name:'Chicas de Tinder',kind:'point',range:7,radius:3,cd:3,desc:'Toca una casilla: aparecen las chicas y los esbirros a 3 casillas van hacia ellas sin atacar.'},
- manguera:{name:'Manguera',kind:'line',len:5,cd:2,desc:'Toca hacia dónde apuntar: chorro de 5 casillas, 2-3 de daño a todos y los empuja.'},
+ escandalo:{name:'Escándalo público',kind:'self',radius:3,cd:3,desc:'Adri se vuelve loco y la lía: grita, vacila y se encara. Al esbirro más cercano le cae 2-3 de daño y lo aparta de un empujón; los demás a 3 casillas se quedan flipando y apuntan mucho peor un turno.'},
  pedo:{name:'Pedo nuclear',kind:'self',radius:2,cd:3,desc:'Los esbirros a 2 casillas quedan inconscientes un turno. No falla.'},
  carnet:{name:'Carnet militar',kind:'free',uses:1,desc:'Gratis, un uso: hasta tu próximo turno los esbirros no le hacen ni caso.'},
  panal:{name:'Pañal usado',kind:'point',range:7,radius:1,cd:3,desc:'Toca una casilla: 2-3 de daño en 3x3 y náuseas (apuntan peor) un turno.'},
@@ -844,6 +958,7 @@ const PHRASES={
  sermon:['Pues como te iba diciendo…','Y otra cosa te digo…','Escúchame, que esto es importante.','Y eso no es todo…'],
  parientofobia:['¿Novia? ¿Para qué?','Luego te lías y ya no sales.','Tú estás mejor solo, hazme caso.','Primero son cañas y luego IKEA.'],
  fotos:['Foto: sábanas.jpg','Vídeo random (3:47)','Foto: mi comida.jpg','Audio (5:12)'],
+ escandalo:['¿QUÉ MIRAS? ¿QUÉ MIRAS?','¡ESTO ES UN ATROPELLO!','Espera, que me ato los cordones…','¡GRABA, GRABA ESTO!','¿Tú de qué vas, chaval?','¡SUJETADME QUE ME LO COMO!'],
  bronca:['¡¿PERO TÚ QUÉ HACES?!','¡AQUÍ, A MÍ!','¡VEN SI TIENES VALOR!'],
  tinder:['¡Holaaa!','¿Nos conocemos?','¡Match!']
 };
@@ -870,19 +985,19 @@ const YU_OBJ=["%%%%%%%%%%%%%%%%%%", "%.EE..UU%.%U....U%", "%.......%E%..XX..%", 
 const RF_GROUND=["gggggggggggggggggg", "gggggggggggggggggg", "mmmmmmmmmmmmmmmmmm", "vvvvvvvvvvvvvvvvvv", "vvvvvvvvvvvvvvvvvv", "vvvvvvvvvvvvvvvvvv", "vvvvvvvvvvvvvvvvvv", "mmmmmmmmmmmmmmmmmm", "mmmmmmmmmmmmmmmmmm", "ppppppmmmmmmgggggg", "ppppppmmmmmmgggggg", "ppppppmmmmmmgggggg", "aaaaaaaaaaaaaaaaaa", "pppppppppppppppppp", "zzzzzzzzzzzzzzzzzz", "zzzzzzzzzzzzzzzzzz"];
 const RF_OBJ=[".T......T.......T.", "....T.......T.....", "....K..L..K....L..", "..................", "..OOOOOOOO........", "..................", "..................", "..................", "..L..K..11..K.....", "BBBBBB.....1....T.", "BBBBBBFF.FF..T....", "BBBBBB.........T..", "..C...........C...", "D......L..........", ".C..............C.", "....C........C...."];
 const PK_FOES=[
- {name:'Sargento de Yuyu',boss:true,hp:8,aim:65,mob:4,c:5,r:5,pod:'C',look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:1,r:5,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:3,r:10,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:7,r:4,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:6,r:11,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:11,r:3,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:12,r:5,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}}
+ {name:'Sargento de Yuyu',boss:true,hp:8,aim:60,mob:4,c:5,r:5,pod:'C',look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:1,r:5,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:3,r:10,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:7,r:4,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:6,r:11,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:11,r:3,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:12,r:5,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}}
 ];
 const PK_NPCS=[{id:'n0',name:'Maetin',look:'maetin',c:3,r:3,face:1,paddle:true},{id:'n1',name:'Colega',look:'deca1',c:2,r:7,face:-1,paddle:true},{id:'n2',name:'Colega',look:'deca2',c:4,r:7,face:-1,paddle:true}];
 const COURT={c:3,r:5};
 let FOES=PK_FOES,NPCS=PK_NPCS,MISSION={id:'pickleball',title:'Liberar el Pickleball'};
 const VISION=6;
-const ST_LABEL={stun:['K.O.','#cfd3d8'],asleep:['ZZZ','#9ec5ff'],noAttack:['AMARILLA','#f4d35e'],nausea:['NÁUSEAS','#b5e07a'],distracted:['MÓVIL','#9ec5ff'],half:['DUDAS','#e7b3ff'],dizzy:['MAREO','#ff9ad5'],taunt:['BRONCA','#ff8a5c'],lured:['TINDER','#ff7aa8'],ligue:['LIGANDO','#ff7aa8'],chapa:['CHAPA','#f4d35e'],can:['¡LATAZO!','#e8f04a'],safu:['SAFU','#ff7aa8'],watch:['PARTIDO','#e8f04a']};
+const ST_LABEL={flip:['FLIPANDO','#ff9ad5'],stun:['K.O.','#cfd3d8'],asleep:['ZZZ','#9ec5ff'],noAttack:['AMARILLA','#f4d35e'],nausea:['NÁUSEAS','#b5e07a'],distracted:['MÓVIL','#9ec5ff'],half:['DUDAS','#e7b3ff'],dizzy:['MAREO','#ff9ad5'],taunt:['BRONCA','#ff8a5c'],lured:['TINDER','#ff7aa8'],ligue:['LIGANDO','#ff7aa8'],chapa:['CHAPA','#f4d35e'],can:['¡LATAZO!','#e8f04a'],safu:['SAFU','#ff7aa8'],watch:['PARTIDO','#e8f04a']};
 
 let U=[],S={},FX=[],PICK=[];
 const $=id=>document.getElementById(id);
@@ -911,6 +1026,7 @@ function newGame(ids){
   if(MISSION.onStart)setTimeout(()=>MISSION.onStart(),900);
 }
 function log(m){S.log.unshift(m);S.log=S.log.slice(0,5)}
+function TE(ev,d){if(MISSION&&MISSION.tut&&typeof tutEvent==='function')tutEvent(ev,d)}
 
 /* ================= GEOMETRÍA ================= */
 function los(a,b){
@@ -966,7 +1082,7 @@ function hitChance(att,tgt,from=att,{mods=0,ignoreCover=false}={}){
   const d=dist(from,tgt);
   if(d<=3)ch+=10;else if(d>7)ch-=Math.round((d-7)*6);
   if(att.side==='y'){const st=att.st;
-    if(st.watch)ch-=35;if(st.nausea)ch-=20;if(MISSION.dark)ch-=15;if(st.distracted)ch-=30;if(st.dizzy)ch-=40;if(st.taunt)ch-=15;
+    if(st.watch)ch-=35;if(st.nausea)ch-=20;if(MISSION.dark)ch-=15;if(st.distracted)ch-=30;if(st.flip)ch-=30;if(st.dizzy)ch-=40;if(st.taunt)ch-=15;
     if(inCloud(tgt.c,tgt.r)||lineCloud(from,tgt))ch-=40;}
   return clamp(ch,5,95);
 }
@@ -981,11 +1097,11 @@ async function attack(att,tgt,opts={}){
   const melee=opts.melee??att.weapon.melee;
   const chance=opts.chance??hitChance(att,tgt,att,opts);
   const fl=!melee&&flanked(tgt,att);
-  const hit=rnd(1,100)<=chance,crit=hit&&rnd(1,100)<=(fl?40+(att.side==='p'?(UPG.crit||0):0):melee?15:10);
+  const hit=rnd(1,100)<=chance,crit=hit&&rnd(1,100)<=(fl?(att.side==='p'?40+(UPG.crit||0):25):melee?15:10);
   faceTo(att,tgt);
   if(melee)await lunge(att,tgt);else await projectile(att,tgt,opts.fx||att.weapon.fx,hit);
   const label=opts.label??att.weapon.name.toLowerCase();
-  if(hit){const dmg=rnd(att.weapon.min,att.weapon.max)+(crit?2:0);
+  if(hit){const dmg=rnd(att.weapon.min,att.weapon.max)+(crit?(att.side==='y'?1:2):0);
     log(`${att.name}: ${label} a ${tgt.name}. ${crit?'¡Crítico! ':''}${dmg} de daño.`);hurt(tgt,dmg,{crit});}
   else{floatText(tgt,'Fallo','#a9c8e6');log(`${att.name} falla (${chance}%).`);if(tgt.side==='y')wake(tgt.pod,tgt)}
   render();await sleep(600);checkEnd();
@@ -1000,10 +1116,12 @@ function faceTo(a,b){a.face=Math.sign(sx(b.c,b.r)-sx(a.c,a.r))||a.face}
 /* ================= ACTIVACIÓN ================= */
 function wake(pod,u){if(MISSION.noComms&&u){if(!u.active&&u.alive){u.active=true;sleepingPods.add(u)}return}if(!pod)return;U.filter(u=>u.side==='y'&&u.pod===pod&&!u.active&&u.alive).forEach(u=>{u.active=true;sleepingPods.add(u)})}
 async function checkActivation(){
+  if(MISSION.noAutoWake)return;
   for(const e of alive('y')){if(e.active)continue;if(alive('p').some(p=>dist(p,e)<=(p.stealth?1.5:MISSION.dark?3:VISION)&&los(p,e)))wake(e.pod,e)}
   const list=[...sleepingPods].filter(u=>u.alive);sleepingPods.clear();
   if(!list.length)return;
   log('¡Os han visto! Los esbirros corren a cubrirse.');banner('¡Contacto!','y');render();await sleep(700);
+  if(MISSION.noScramble)return;
   for(const e of list){
     if(e.st.stun||e.st.asleep||e.st.safu||e.st.watch||e.st.chapa||e.st.ligue)continue;
     const {d,prev}=bfs(e,3);let best=null;
@@ -1147,10 +1265,13 @@ async function firePower(){
       banner('¡Chicas de Tinder!','p');await sleep(500);
       alive('y').filter(e=>cheb(e,{c:tc,r:tr})<=P.radius).forEach(e=>{e.st.lured=1;wake(e.pod,e);bubble(e,'😍',1400)});
       log('Adri convoca a las chicas de Tinder. Los esbirros cercanos se olvidan de pelear.');}
-    if(pid==='manguera'){FX.push({kind:'water',cells,from:{c:u.c,r:u.r},t0:performance.now(),dur:900});await sleep(500);
-      const dc=Math.sign(tc-u.c),dr=Math.sign(tr-u.r);
-      for(const e of hitList){hurt(e,rnd(2,3),{label:'manguera'});if(e.alive){const nc=e.c+dc,nr=e.r+dr;if(walkT(nc,nr)&&!unitAt(nc,nr)){await tween(e,nc,nr,140);e.c=nc;e.r=nr}}}
-      log(`¡Manguerazo! ${hitList.length} esbirro${hitList.length===1?'':'s'} empapado${hitList.length===1?'':'s'}.`);}
+    if(pid==='escandalo'){banner('¡ESCÁNDALO PÚBLICO!','p');const ph=[...PHRASES.escandalo].sort(()=>Math.random()-.5);
+      bubble(u,ph[0],1300);await sleep(700);bubble(u,ph[1],1300);
+      const near=[...hitList].sort((a,b)=>dist(u,a)-dist(u,b))[0];
+      hitList.forEach(e=>{wake(e.pod,e);if(e!==near){e.st.flip=1;bubble(e,pickOne(['😳','🤨','😬','📱']),1500)}});
+      await sleep(600);if(near){faceTo(u,near);bubble(u,ph[2],1400);hurt(near,rnd(2,3),{label:'encarada'});
+        if(near.alive){const dc=Math.sign(near.c-u.c),dr=Math.sign(near.r-u.r),nc=near.c+dc,nr=near.r+dr;if((dc||dr)&&walkT(nc,nr)&&!unitAt(nc,nr)){await tween(near,nc,nr,140);near.c=nc;near.r=nr}}}
+      log(`Adri monta un escándalo público: se encara con ${near?near.name:'nadie'} y ${hitList.length-1} esbirro${hitList.length-1===1?'':'s'} se queda${hitList.length-1===1?'':'n'} flipando.`);}
     if(pid==='pedo'){banner('¡PEDO NUCLEAR!','p');FX.push({kind:'cloud',c:u.c,r:u.r,t0:performance.now(),dur:1400});await sleep(700);
       hitList.forEach(e=>{e.st.stun=1;wake(e.pod,e);floatText(e,'K.O.','#b5e07a')});log(`¡Pedo nuclear! ${hitList.length} esbirro${hitList.length===1?'':'s'} inconsciente${hitList.length===1?'':'s'}.`);}
     if(pid==='panal'){await projectile(u,{c:tc,r:tr},'panal',true);FX.push({kind:'splat',c:tc,r:tr,t0:performance.now(),dur:900});
@@ -1203,7 +1324,7 @@ async function firePower(){
       log(`Dani organiza un partido con Maetin. ${hitList.length} esbirro${hitList.length===1?'':'s'} se quedan embobados mirando.`);}
     if(pid==='furgo'){banner('¡PI-PIIII!','p');FX.push({kind:'van',cells,t0:performance.now(),dur:1100});await sleep(900);
       hitList.forEach(e=>hurt(e,rnd(4,5),{label:'furgoneta'}));log(`¡Atropello con la furgoneta del súper! ${hitList.length} esbirro${hitList.length===1?'':'s'} arrollado${hitList.length===1?'':'s'}.`);}
-    render();await sleep(500);checkEnd();await checkActivation();
+    render();await sleep(500);TE('power',{pid,u});checkEnd();await checkActivation();
   });
 }
 
@@ -1220,7 +1341,7 @@ function onCell(c,r){
   const {d,prev}=bfs(sel,sel.mob*sel.ap);const k=c+','+r;
   if(d[k]===undefined||d[k]===0)return;
   const cost=d[k]<=sel.mob?1:2;
-  run(async()=>{S.preview=null;sel.ap-=cost;await moveUnit(sel,pathTo(prev,sel.c+','+sel.r,k));await checkActivation()});
+  run(async()=>{S.preview=null;sel.ap-=cost;await moveUnit(sel,pathTo(prev,sel.c+','+sel.r,k));TE('move',sel);await checkActivation()});
 }
 let flashMsg=null;function flash(m){flashMsg=m}
 async function run(fn){S.busy=true;render();await fn();S.busy=false;afterAction()}
@@ -1228,15 +1349,15 @@ function afterAction(){
   if(S.over)return;
   if(!S.sel||!S.sel.alive||S.sel.ap<=0){const nx=alive('p').find(u=>u.ap>0);if(nx)S.sel=nx}
   render();
-  if(!alive('p').some(u=>u.ap>0))setTimeout(()=>{if(!S.busy&&S.side==='p'&&!S.over&&!S.mode)endTurn()},600);
+  if(!alive('p').some(u=>u.ap>0)&&!MISSION.tut)setTimeout(()=>{if(!S.busy&&S.side==='p'&&!S.over&&!S.mode)endTurn()},600);
 }
-function doAttack(){const sel=S.sel,t=S.preview;S.preview=null;run(async()=>{sel.ap=0;sel.ow=false;await attack(sel,t);await checkActivation()})}
+function doAttack(){const sel=S.sel,t=S.preview;S.preview=null;run(async()=>{sel.ap=0;sel.ow=false;await attack(sel,t);TE('attack',sel);await checkActivation()})}
 function doOverwatch(){const sel=S.sel;sel.ap=0;sel.ow=true;log(`${sel.name} se queda vigilando.`);afterAction()}
 
 /* ================= TURNO DE YUYU ================= */
 async function endTurn(){
   if(S.side!=='p'||S.over)return;
-  S.side='y';S.sel=null;S.preview=null;S.mode=null;S.busy=true;render();
+  S.side='y';S.sel=null;S.preview=null;S.mode=null;S.busy=true;render();TE('endturn');musTension(true);
   banner('Turno de Yuyu','y');await sleep(1000);
   for(const e of alive('y').filter(e=>e.active)){
     if(S.over)break;if(!e.alive)continue;
@@ -1254,7 +1375,7 @@ async function endTurn(){
   alive('p').forEach(u=>{u.ap=2;u.ow=false;u.carnet=false;u.dozing=false;if(u.stealth)u.stealth--;for(const k in u.cds)if(u.cds[k]>0)u.cds[k]--;
     if(u.sleepy!==null){u.sleepy++;if(u.sleepy>=4){u.sleepy=0;u.ap=0;u.dozing=true;floatText(u,'ZZZ','#9ec5ff');log('Puma se ha quedado frito y pierde el turno. ¡Buscad bebidas energéticas!')}}});
   S.sel=alive('p').find(u=>u.ap>0)||alive('p')[0];
-  banner('Turno '+S.turn,'p');render();
+  banner('Turno '+S.turn,'p');render();TE('turn');musTension(false);
   if(MISSION.faliyo&&!S.faliyoDone){const f=U.find(n=>n.id==='faliyo');if(f)bubble(f,pickOne(['¡Estamos bricolandooo!','¡COLEGA RUBIOOOO!','¡Maetin, vente pa la plaza!','¡Mira qué bici, chaval!']),2000)}
   if(!alive('p').some(u=>u.ap>0))setTimeout(endTurn,900);
 }
@@ -1299,7 +1420,7 @@ function checkEnd(){
 }
 
 /* ================= DIBUJO ISOMÉTRICO ================= */
-const cv=$('cv'),ctx=cv.getContext('2d');
+const cv=$('cv');let ctx=cv.getContext('2d');
 let TW=48,TH=24,OX=0,OY=0,CW=0,CH=0,reachCache=null;
 let ROT=0;
 const VW=()=>ROT%2?H:W,VH=()=>ROT%2?W:H;
@@ -1310,7 +1431,7 @@ const depth=(c,r)=>{const v=rot(c,r);return v.x+v.y};
 function layout(){
   const w=Math.min($('stage').clientWidth,860);
   TW=Math.max(Math.floor(w/((W+H)/2)),50);TH=TW/2;
-  CW=(W+H)*TW/2;OY=TW*1.6;CH=(W+H)*TH/2+OY+TH*.6;OX=VH()*TW/2;
+  CW=(W+H)*TW/2;OY=TW*1.6;CH=(W+H)*TH/2+OY+TH*1.2;OX=VH()*TW/2;
   const dpr=window.devicePixelRatio||1;
   cv.style.width=CW+'px';cv.style.height=CH+'px';cv.width=Math.round(CW*dpr);cv.height=Math.round(CH*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);
 }
@@ -1324,7 +1445,12 @@ function box(c,r,h,col,{inset=0,top=null,alpha=1,ix=null,iy=null}={}){
   const hp=h*UP(),up=p=>({x:p.x,y:p.y-hp});ctx.globalAlpha=alpha;
   const P=[a,b,d,e];let i=0;P.forEach((p,k)=>{if(p.y>P[i].y)i=k});
   const f1=[P[(i+3)%4],P[i]],f2=[P[i],P[(i+1)%4]];const L=f1[0].x<f2[1].x?f1:f2,Rf=L===f1?f2:f1;
-  poly([L[0],L[1],up(L[1]),up(L[0])],shade(col,.72));poly([Rf[0],Rf[1],up(Rf[1]),up(Rf[0])],shade(col,.88));poly([up(a),up(b),up(d),up(e)],top||col);ctx.globalAlpha=1;
+  if(HD()&&col[0]==='#'){const fg=(F,lo,hi)=>{const yb=Math.max(F[0].y,F[1].y),g=ctx.createLinearGradient(0,yb,0,yb-hp-TH*.3);g.addColorStop(0,shade(col,lo));g.addColorStop(1,shade(col,hi));return g};
+    poly([L[0],L[1],up(L[1]),up(L[0])],fg(L,.58,.8));poly([Rf[0],Rf[1],up(Rf[1]),up(Rf[0])],fg(Rf,.74,.97));
+    const tc=top||col;let tf=tc;if(tc[0]==='#'){const A=up(P[(i+2)%4]),B=up(P[i]);tf=ctx.createLinearGradient(A.x,A.y,B.x,B.y);tf.addColorStop(0,shade(tc,1.1));tf.addColorStop(1,shade(tc,.95))}
+    poly([up(a),up(b),up(d),up(e)],tf);ctx.lineWidth=1;ctx.strokeStyle='rgba(255,255,255,.22)';ctx.beginPath();ctx.moveTo(up(L[0]).x,up(L[0]).y);ctx.lineTo(up(P[i]).x,up(P[i]).y);ctx.lineTo(up(Rf[1]).x,up(Rf[1]).y);ctx.stroke();
+    ctx.strokeStyle='rgba(0,0,0,.18)';ctx.beginPath();ctx.moveTo(P[i].x,P[i].y);ctx.lineTo(up(P[i]).x,up(P[i]).y);ctx.stroke()}
+  else{poly([L[0],L[1],up(L[1]),up(L[0])],shade(col,.72));poly([Rf[0],Rf[1],up(Rf[1]),up(Rf[0])],shade(col,.88));poly([up(a),up(b),up(d),up(e)],top||col)}ctx.globalAlpha=1;
   return {a:up(a),b:up(b),d:up(d),e:up(e),faces:[L,Rf],hp};
 }
 function windows(t,rows,col,h0,step,wh,t0=.28,t1=.72){t.faces.forEach(([p,q],fi)=>{for(let k=0;k<rows;k++){const y0=UP()*(h0+k*step),y1=y0+UP()*wh;
@@ -1332,7 +1458,7 @@ function windows(t,rows,col,h0,step,wh,t0=.28,t1=.72){t.faces.forEach(([p,q],fi)
   ctx.fillStyle=fi?col:shade(col,.85);ctx.beginPath();ctx.moveTo(A.x,A.y-y0);ctx.lineTo(B.x,B.y-y0);ctx.lineTo(B.x,B.y-y1);ctx.lineTo(A.x,A.y-y1);ctx.closePath();ctx.fill()}})}
 function roundRect(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()}
 function ground(){
-  for(let r=0;r<H;r++)for(let c=0;c<W;c++)poly(diamond(c,r),GCOL[GROUND[r][c]][(c+r)%2]);
+  if(HD())groundHD();else for(let r=0;r<H;r++)for(let c=0;c<W;c++)poly(diamond(c,r),GCOL[GROUND[r][c]][(c+r)%2]);
   if(MISSION.decor){MISSION.decor();return}
   if(MISSION.id!=='pickleball')return;
   ctx.lineWidth=Math.max(1,TW/28);
@@ -1371,12 +1497,14 @@ function overlays(now){
   S.drinks.forEach(d=>{const p=iso(d.c+.5,d.r+.5);const b=Math.sin(now/300)*2;
     ctx.fillStyle='rgba(0,0,0,.25)';ctx.beginPath();ctx.ellipse(p.x,p.y,TW*.1,TH*.1,0,0,7);ctx.fill();
     ctx.fillStyle='#1d4fa8';roundRect(p.x-TW*.06,p.y-TW*.3+b,TW*.12,TW*.24,2);ctx.fill();ctx.fillStyle='#f4d35e';ctx.fillRect(p.x-TW*.06,p.y-TW*.22+b,TW*.12,TW*.05);ctx.fillStyle='#cfd3d8';ctx.fillRect(p.x-TW*.05,p.y-TW*.32+b,TW*.1,TW*.03)});
+  if(MISSION.tutMark){const [mc,mr]=MISSION.tutMark,k=.5+.5*Math.sin(now/220);poly(diamond(mc,mr,.04),`rgba(244,211,94,${.25+.3*k})`,'#f4d35e');const p=iso(mc+.5,mr+.5);ctx.font=`bold ${Math.max(14,TW*.36)}px sans-serif`;ctx.textAlign='center';ctx.fillText('⬇',p.x,p.y-TW*.5-k*TW*.15)}
   if(sel&&S.side==='p'&&sel.alive){const p=iso(sel.x+.5,sel.y+.5);ctx.beginPath();ctx.ellipse(p.x,p.y,TW*.34,TH*.34,0,0,Math.PI*2);ctx.strokeStyle='#f4d35e';ctx.lineWidth=2.5;ctx.stroke();ctx.lineWidth=1}
 }
 function behind(c,r){const o=rot(c+.5,r+.5);return U.some(u=>{if(!u.alive)return false;const v=rot(u.c+.5,u.r+.5),dx=o.x-v.x,dy=o.y-v.y;return dx>=0&&dy>=0&&dx+dy>0&&dx<=1&&dy<=1})}
 function behindTall(c,r){const o=rot(c+.5,r+.5);const t=(cc,rr)=>{const v=rot(cc+.5,rr+.5),dx=o.x-v.x,dy=o.y-v.y;return dx>=0&&dy>=0&&dx+dy>0&&dx+dy<=4};return U.some(u=>u.alive&&t(u.c,u.r))||(S.mode&&S.mode.tile&&t(S.mode.tile[0],S.mode.tile[1]))}
 function drawObj(o,c,r){
   const fade='JQIBO'.includes(o)?(behindTall(c,r)?.3:1):behind(c,r)?.5:1;
+  if(HD()&&drawObjHD(o,c,r,fade))return;
   if(o==='B'){box(c,r,1.35,'#9aa0a6',{top:'#7b8187',alpha:fade})}
   else if(o==='R'){const t=box(c,r,1.25,'#e6dccb',{alpha:fade,top:'#c4553f'});ctx.globalAlpha=fade;const rh=UP()*.45;
     const m1={x:(t.b.x+t.d.x)/2,y:(t.b.y+t.d.y)/2-rh},m2={x:(t.a.x+t.e.x)/2,y:(t.a.y+t.e.y)/2-rh};
@@ -1422,6 +1550,196 @@ function drawObj(o,c,r){
   else if(o==='W'){box(c,r,.75,'#9a9a94',{ix:.02,iy:.3,top:'#b4b4ae'})}
   else if(o==='K'){box(c,r,.22,'#8d6b3d',{ix:.18,iy:.32,top:'#a57f4a'});box(c,r,.45,'#7a5a32',{ix:.18,iy:.62})}
 }
+/* ================= MODO HD (gráficos mejorados por mapa) ================= */
+const HD=()=>!!(MISSION&&MISSION.hd!==false);
+const INDOOR=()=>!GROUND.some(row=>/[ga]/.test(row));
+const hh=(c,r,i=0)=>{const x=Math.sin(c*127.1+r*311.7+i*74.7)*43758.5453;return x-Math.floor(x)};
+function hexMix(a,b,t){const A=parseInt(a.slice(1),16),B=parseInt(b.slice(1),16);const m=(s)=>Math.round(((A>>s)&255)*(1-t)+((B>>s)&255)*t);return `rgb(${m(16)},${m(8)},${m(0)})`}
+function hullPts(P){P=P.slice().sort((a,b)=>a.x-b.x||a.y-b.y);const cr=(o,a,b)=>(a.x-o.x)*(b.y-o.y)-(a.y-o.y)*(b.x-o.x);const lo=[],up=[];
+  for(const p of P){while(lo.length>=2&&cr(lo[lo.length-2],lo[lo.length-1],p)<=0)lo.pop();lo.push(p)}
+  for(let i=P.length-1;i>=0;i--){const p=P[i];while(up.length>=2&&cr(up[up.length-2],up[up.length-1],p)<=0)up.pop();up.push(p)}
+  return lo.slice(0,-1).concat(up.slice(0,-1))}
+const SUN=()=>({x:UP()*.62,y:UP()*.2});
+const gCache={cv:document.createElement('canvas'),key:''};
+function slab(){
+  const P=[iso(0,0),iso(W,0),iso(W,H),iso(0,H)];let i=0;P.forEach((p,k)=>{if(p.y>P[i].y)i=k});
+  const D=TH*.75,dn=p=>({x:p.x,y:p.y+D});
+  [[P[(i+3)%4],P[i]],[P[i],P[(i+1)%4]]].forEach(([a,b],k)=>{
+    const g=ctx.createLinearGradient(0,Math.min(a.y,b.y),0,Math.max(a.y,b.y)+D);g.addColorStop(0,k?'#7a5a3a':'#5e4430');g.addColorStop(1,k?'#4a3624':'#3a2a1c');
+    poly([a,b,dn(b),dn(a)],g);
+    ctx.strokeStyle='rgba(0,0,0,.25)';ctx.lineWidth=1;
+    for(let s=1;s<4;s++){ctx.beginPath();ctx.moveTo(a.x,a.y+D*s/4+((s*7)%3));ctx.lineTo(b.x,b.y+D*s/4);ctx.stroke()}
+    poly([a,b,{x:b.x,y:b.y+D*.18},{x:a.x,y:a.y+D*.18}],k?'#5f8a3c':'#4d7432')});
+}
+const GKIND=t=>t==='g'?'grass':'kqr'.includes(t)?'court':t==='p'?'pave':t==='m'?'tile':'az'.includes(t)?'asph':'cy'.includes(t)?'carpet':t==='f'?'wood':t==='v'?'gravel':t==='w'?'water':'dirt';
+function tileHD(c,r){
+  const t=GROUND[r][c],[c0,c1]=GCOL[t]||['#888888','#808080'],K=GKIND(t);
+  poly(diamond(c,r),hexMix(c0,c1,hh(c,r)));
+  const at=(u,v)=>iso(c+u,r+v);
+  if(K==='grass'){
+    for(let i=0;i<3;i++){const p=at(.2+hh(c,r,i)*.6,.2+hh(c,r,i+9)*.6);ctx.fillStyle=i%2?'rgba(255,255,200,.07)':'rgba(0,40,0,.08)';ctx.beginPath();ctx.ellipse(p.x,p.y,TW*.2,TH*.18,0,0,7);ctx.fill()}
+    ctx.lineWidth=Math.max(1,TW/60);
+    for(let i=0;i<16;i++){const u=hh(c,r,i*3+1),v=hh(c,r,i*3+2),p=at(.05+u*.9,.05+v*.9),l=TW*(.05+hh(c,r,i*3+3)*.06);
+      ctx.strokeStyle=i%3?'rgba(40,80,25,.55)':'rgba(170,210,110,.55)';ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p.x+(u-.5)*TW*.05,p.y-l);ctx.stroke()}
+    if(hh(c,r,77)<.18){for(let i=0;i<3;i++){const p=at(.2+hh(c,r,80+i)*.6,.2+hh(c,r,90+i)*.6);ctx.fillStyle=['#fff6d8','#f4d35e','#f7a8c8'][i];ctx.beginPath();ctx.arc(p.x,p.y-1,Math.max(1,TW*.022),0,7);ctx.fill()}}
+  }else if(K==='pave'){
+    ctx.strokeStyle='rgba(60,55,45,.22)';ctx.lineWidth=1;
+    [[0,.5,1,.5],[.5,0,.5,1]].forEach(([a,b,cc,d])=>{const p=at(a,b),q=at(cc,d);ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke()});
+    for(let i=0;i<4;i++){const u=(i%2)*.5,v=(i>>1)*.5;if(hh(c,r,i+40)<.35)poly([at(u+.03,v+.03),at(u+.47,v+.03),at(u+.47,v+.47),at(u+.03,v+.47)],'rgba(255,255,255,.06)')}
+  }else if(K==='asph'){
+    for(let i=0;i<22;i++){const p=at(hh(c,r,i),hh(c,r,i+30));ctx.fillStyle=i%2?'rgba(255,255,255,.07)':'rgba(0,0,0,.12)';ctx.fillRect(p.x,p.y,1.4,1.4)}
+    if(hh(c,r,55)<.08){const p=at(.5,.5);ctx.fillStyle='rgba(0,0,0,.13)';ctx.beginPath();ctx.ellipse(p.x,p.y,TW*.18,TH*.1,.3,0,7);ctx.fill()}
+  }else if(K==='tile'){
+    ctx.strokeStyle='rgba(90,80,60,.25)';ctx.lineWidth=1;[[0,.5,1,.5],[.5,0,.5,1]].forEach(([a,b,cc,d])=>{const p=at(a,b),q=at(cc,d);ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke()});
+    const a=at(.1,.1),b=at(.6,.6);const gg=ctx.createLinearGradient(a.x,a.y,b.x,b.y);gg.addColorStop(0,'rgba(255,255,255,.18)');gg.addColorStop(1,'rgba(255,255,255,0)');poly([at(.03,.03),at(.47,.03),at(.47,.47),at(.03,.47)],gg);
+  }else if(K==='carpet'){
+    for(let i=0;i<26;i++){const p=at(hh(c,r,i),hh(c,r,i+60));ctx.fillStyle=i%2?'rgba(255,200,200,.08)':'rgba(0,0,0,.12)';ctx.fillRect(p.x,p.y,1.2,1.2)}
+    if(c%4===1||r%4===1){ctx.strokeStyle='rgba(244,211,94,.25)';ctx.lineWidth=1;const p=at(c%4===1?.5:0,r%4===1?.5:0),q=at(c%4===1?.5:1,r%4===1?.5:1);if(c%4===1&&r%4!==1){const A=at(.5,0),B=at(.5,1);ctx.beginPath();ctx.moveTo(A.x,A.y);ctx.lineTo(B.x,B.y);ctx.stroke()}else if(r%4===1&&c%4!==1){const A=at(0,.5),B=at(1,.5);ctx.beginPath();ctx.moveTo(A.x,A.y);ctx.lineTo(B.x,B.y);ctx.stroke()}}
+  }else if(K==='wood'){
+    ctx.strokeStyle='rgba(60,35,15,.35)';ctx.lineWidth=1;for(let i=1;i<4;i++){const p=at(0,i/4),q=at(1,i/4);ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke()}
+    for(let i=0;i<4;i++){const u=hh(c,r,i+5);const p=at(u,i/4),q=at(u,(i+1)/4);ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();const k=at(hh(c,r,i+15),i/4+.12);ctx.fillStyle='rgba(60,35,15,.25)';ctx.beginPath();ctx.ellipse(k.x,k.y,TW*.04,TH*.02,0,0,7);ctx.fill()}
+  }else if(K==='gravel'){
+    for(let i=0;i<30;i++){const p=at(hh(c,r,i),hh(c,r,i+70));ctx.fillStyle=['rgba(160,150,135,.6)','rgba(40,35,30,.4)','rgba(110,100,90,.6)'][i%3];ctx.beginPath();ctx.arc(p.x,p.y,Math.max(.9,TW*.018),0,7);ctx.fill()}
+  }else if(K==='water'){
+    const a=at(0,0),b=at(1,1);const gg=ctx.createLinearGradient(a.x,a.y,b.x,b.y);gg.addColorStop(0,'rgba(170,220,255,.35)');gg.addColorStop(1,'rgba(10,40,90,.25)');poly(diamond(c,r),gg);
+    ctx.strokeStyle='rgba(255,255,255,.4)';ctx.lineWidth=1;for(let i=0;i<2;i++){const p=at(.2+hh(c,r,i)*.5,.2+hh(c,r,i+4)*.6);ctx.beginPath();ctx.moveTo(p.x-TW*.08,p.y);ctx.quadraticCurveTo(p.x,p.y-TH*.08,p.x+TW*.08,p.y);ctx.stroke()}
+  }else if(K==='court'){
+    const a=at(0,0),b=at(1,1);const g=ctx.createLinearGradient(a.x,a.y,b.x,b.y);g.addColorStop(0,'rgba(255,255,255,.08)');g.addColorStop(1,'rgba(0,0,0,.06)');poly(diamond(c,r),g);
+  }else{
+    for(let i=0;i<18;i++){const p=at(hh(c,r,i),hh(c,r,i+50));ctx.fillStyle=i%3?'rgba(70,45,20,.2)':'rgba(255,240,210,.22)';ctx.beginPath();ctx.arc(p.x,p.y,Math.max(.8,TW*.012),0,7);ctx.fill()}
+    if(hh(c,r,66)<.3){const p=at(.3+hh(c,r,67)*.4,.3+hh(c,r,68)*.4);ctx.fillStyle='#9a8a74';ctx.beginPath();ctx.ellipse(p.x,p.y,TW*.04,TH*.035,0,0,7);ctx.fill();ctx.fillStyle='rgba(255,255,255,.35)';ctx.beginPath();ctx.ellipse(p.x-1,p.y-1,TW*.015,TH*.012,0,0,7);ctx.fill()}
+  }
+  // bordes con las casillas vecinas
+  const g0=GKIND(t);
+  [[0,-1,[0,0],[1,0]],[1,0,[1,0],[1,1]],[0,1,[1,1],[0,1]],[-1,0,[0,1],[0,0]]].forEach(([dc,dr,A,B])=>{
+    const nc=c+dc,nr=r+dr;if(nc<0||nr<0||nc>=W||nr>=H)return;const n=GKIND(GROUND[nr][nc]);if(n===g0)return;
+    const pA=at(...A),pB=at(...B),inn=(p,k)=>{const m=at(.5,.5);return {x:p.x+(m.x-p.x)*k,y:p.y+(m.y-p.y)*k}};
+    if(g0==='grass'){ctx.strokeStyle='rgba(30,60,20,.45)';ctx.lineWidth=Math.max(1.5,TW/30);ctx.beginPath();ctx.moveTo(pA.x,pA.y);ctx.lineTo(pB.x,pB.y);ctx.stroke()}
+    if(g0==='pave'&&(n==='asph'||n==='grass'||n==='dirt')){poly([pA,pB,inn(pB,.12),inn(pA,.12)],'rgba(240,236,224,.55)');ctx.strokeStyle='rgba(0,0,0,.25)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(pA.x,pA.y);ctx.lineTo(pB.x,pB.y);ctx.stroke()}
+    if(g0==='asph'&&n==='pave'){poly([pA,pB,inn(pB,.1),inn(pA,.1)],'rgba(0,0,0,.18)')}
+    if(g0==='court'){ctx.strokeStyle='rgba(255,255,255,.5)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(pA.x,pA.y);ctx.lineTo(pB.x,pB.y);ctx.stroke()}
+  });
+  ctx.lineWidth=1;
+}
+function groundHD(){
+  const dpr=window.devicePixelRatio||1,key=[ROT,TW,W,H,MISSION.id,cv.width,cv.height].join('|');
+  if(gCache.key!==key){gCache.key=key;const oc=gCache.cv;oc.width=cv.width;oc.height=cv.height;const o=oc.getContext('2d');o.setTransform(dpr,0,0,dpr,0,0);
+    const saved=ctx;ctx=o;slab();for(let r=0;r<H;r++)for(let c=0;c<W;c++)tileHD(c,r);ctx=saved}
+  ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.drawImage(gCache.cv,0,0);ctx.restore();
+}
+const SH_H={B:1.35,R:1.25,I:1.8,J:2.9,Q:2.3,O:1.3,'1':1.12,'%':.6,U:.9,H:.5,X:.45,V:.62,W:.75,K:.4,C:.6,D:.66,P:.4,G:.85,E:.36,S:1.1,M:.5,Y:1};
+function shadowPass(now){
+  const S0=SUN();if(INDOOR()){S0.x*=.35;S0.y*=.35}ctx.save();poly([iso(0,0),iso(W,0),iso(W,H),iso(0,H)]);ctx.clip();ctx.fillStyle='rgba(20,30,10,.24)';
+  for(let r=0;r<H;r++)for(let c=0;c<W;c++){const o=OBJ[r][c];if(o==='.')continue;
+    if(o==='T'){const p=iso(c+.5,r+.5),h=1.4;ctx.beginPath();ctx.ellipse(p.x+S0.x*h,p.y+S0.y*h,TW*.42,TH*.38,0,0,7);ctx.fill();
+      ctx.beginPath();ctx.moveTo(p.x-TW*.04,p.y);ctx.lineTo(p.x+S0.x*h,p.y+S0.y*h-TH*.1);ctx.lineTo(p.x+TW*.04,p.y);ctx.fill();continue}
+    if(o==='L'){const p=iso(c+.5,r+.5);ctx.strokeStyle='rgba(20,30,10,.22)';ctx.lineWidth=Math.max(2,TW*.04);ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p.x+S0.x*1.9,p.y+S0.y*1.9);ctx.stroke();ctx.lineWidth=1;continue}
+    const h=SH_H[o];if(!h)continue;const ins=o==='C'?.12:o==='K'?.2:o==='H'?.06:.04;
+    const base=[iso(c+ins,r+ins),iso(c+1-ins,r+ins),iso(c+1-ins,r+1-ins),iso(c+ins,r+1-ins)];
+    const pts=hullPts(base.concat(base.map(p=>({x:p.x+S0.x*h,y:p.y+S0.y*h}))));poly(pts,'rgba(20,30,10,.24)')}
+  U.filter(u=>u.alive&&!u.hidden).forEach(u=>{const p=iso(u.x+.5,u.y+.5);ctx.fillStyle='rgba(20,30,10,.22)';ctx.beginPath();ctx.ellipse(p.x+S0.x*.55,p.y+S0.y*.55,TW*.16,TH*.13,-.25,0,7);ctx.fill()});
+  ctx.restore();
+}
+function atmosphere(now){
+  const P=[iso(0,0),iso(W,0),iso(W,H),iso(0,H)];const xs=P.map(p=>p.x),ys=P.map(p=>p.y);const x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys);
+  ctx.save();ctx.globalCompositeOperation='source-atop';
+  // sombras de nubes que pasan
+  if(!INDOOR())for(let i=0;i<3;i++){const sp=(now/38000+i*.37)%1.4-.2;const x=x0+(x1-x0)*sp,y=y0+(y1-y0)*(.25+i*.27);const R=TW*(3.2+i*.8);
+    const g=ctx.createRadialGradient(x,y,R*.1,x,y,R);g.addColorStop(0,'rgba(10,20,40,.13)');g.addColorStop(1,'rgba(10,20,40,0)');ctx.fillStyle=g;ctx.beginPath();ctx.ellipse(x,y,R,R*.55,0,0,7);ctx.fill()}
+  // luz cálida de tarde y viñeta
+  const g=ctx.createLinearGradient(x0,y0,x1,y1);g.addColorStop(0,'rgba(255,214,140,.13)');g.addColorStop(.5,'rgba(255,214,140,0)');g.addColorStop(1,'rgba(40,30,80,.12)');ctx.fillStyle=g;ctx.fillRect(x0,y0-TW*3,x1-x0,y1-y0+TW*4);
+  ctx.restore();
+}
+/* palomas que picotean y salen volando */
+function pigeons(now){
+  if(MISSION.pigeons===undefined){MISSION.pigeons=[];if(!INDOOR()){const fr=[];for(let r=0;r<H;r++)for(let c=0;c<W;c++)if('pe'.includes(GROUND[r][c])&&OBJ[r][c]==='.')fr.push([c,r]);
+    for(let i=0;i<3&&fr.length;i++){const k=Math.floor(hh(i,W*H)*fr.length);const [c,r]=fr.splice(k,1)[0];MISSION.pigeons.push({c,r})}}}
+  if(!MISSION.pigeons.length)return;
+  MISSION.pigeons.forEach((pg,i)=>{const near=U.some(u=>u.alive&&Math.abs(u.x-pg.c)+Math.abs(u.y-pg.r)<2);
+    if(near&&!pg.fly)pg.fly=now;const p=iso(pg.c+.5+Math.sin(now/2600+i)*.15,pg.r+.5+Math.cos(now/3100+i)*.15);let y=p.y,x=p.x,k=0;
+    if(pg.fly){k=(now-pg.fly)/1600;if(k>1){if(!near){pg.fly=null}return}x+=k*TW*2;y-=k*TW*3}
+    const s=TW/48,peck=!pg.fly&&Math.sin(now/260+i*2)>.6;ctx.fillStyle='rgba(0,0,0,.2)';if(!pg.fly){ctx.beginPath();ctx.ellipse(p.x,p.y+1,4*s,1.6*s,0,0,7);ctx.fill()}
+    ctx.fillStyle='#8a8f9a';ctx.beginPath();ctx.ellipse(x,y-3*s,4.5*s,2.8*s,0,0,7);ctx.fill();
+    if(pg.fly){const w=Math.sin(now/60)*4*s;ctx.fillStyle='#a3a8b2';ctx.beginPath();ctx.moveTo(x-1*s,y-4*s);ctx.lineTo(x-6*s,y-6*s-w);ctx.lineTo(x+1*s,y-3*s);ctx.fill()}
+    ctx.fillStyle='#5e6470';ctx.beginPath();ctx.arc(x+3.6*s,y-(peck?3:6)*s,2*s,0,7);ctx.fill();ctx.fillStyle='#3f8a7a';ctx.fillRect(x+2.4*s,y-(peck?2.4:4.6)*s,1.6*s,1*s);
+    ctx.fillStyle='#e0a050';ctx.fillRect(x+5.2*s,y-(peck?2.8:5.8)*s,1.4*s,.8*s)});
+}
+/* objetos HD */
+function treeHD(c,r,fade,now){
+  const p=iso(c+.5,r+.5),v=hh(c,r,5),sway=Math.sin(now/1500+v*9)*TW*.012;ctx.globalAlpha=fade;
+  if(v<.28){ // pino
+    const tg=ctx.createLinearGradient(p.x-TW*.05,0,p.x+TW*.05,0);tg.addColorStop(0,'#7a5434');tg.addColorStop(1,'#4a3020');ctx.fillStyle=tg;ctx.fillRect(p.x-TW*.045,p.y-UP()*.6,TW*.09,UP()*.6);
+    [[.95,.42,'#2f5e33','#244a28'],[1.35,.34,'#3a6e3c','#2c5830'],[1.7,.24,'#457c45','#356637']].forEach(([y,w,a,b],k)=>{const top=p.y-UP()*(y+.55),bot=p.y-UP()*(y-.2),x=p.x+sway*(k+1);
+      ctx.fillStyle=b;ctx.beginPath();ctx.moveTo(x,top);ctx.lineTo(x+TW*w,bot);ctx.lineTo(x-TW*w,bot);ctx.closePath();ctx.fill();
+      ctx.fillStyle=a;ctx.beginPath();ctx.moveTo(x,top);ctx.lineTo(x-TW*w,bot);ctx.lineTo(x-TW*w*.1,bot-TW*.03);ctx.closePath();ctx.fill()});
+    ctx.globalAlpha=1;return}
+  const tg=ctx.createLinearGradient(p.x-TW*.06,0,p.x+TW*.06,0);tg.addColorStop(0,'#8a6440');tg.addColorStop(1,'#4e3420');ctx.fillStyle=tg;
+  ctx.beginPath();ctx.moveTo(p.x-TW*.07,p.y);ctx.lineTo(p.x-TW*.035,p.y-UP()*1.0);ctx.lineTo(p.x+TW*.035,p.y-UP()*1.0);ctx.lineTo(p.x+TW*.07,p.y);ctx.closePath();ctx.fill();
+  ctx.strokeStyle='#5a3e26';ctx.lineWidth=Math.max(1.5,TW*.03);ctx.beginPath();ctx.moveTo(p.x,p.y-UP()*.75);ctx.lineTo(p.x+TW*.16,p.y-UP()*1.1);ctx.moveTo(p.x,p.y-UP()*.85);ctx.lineTo(p.x-TW*.14,p.y-UP()*1.15);ctx.stroke();ctx.lineWidth=1;
+  const cx=p.x+sway,cy=p.y-UP()*1.45,hue=v>.7?['#3a6a2c','#4f8a3a','#6aa84a','#8cc65e']:['#35652f','#477f3a','#5c9a47','#7fbb5a'];
+  const blobs=[[0,.1,.4,0],[-.24,.02,.26,0],[.25,.05,.27,0],[-.12,-.18,.28,1],[.14,-.16,.28,1],[0,-.32,.24,1],[-.2,-.1,.2,2],[.06,-.3,.18,2],[-.08,-.38,.12,3],[-.26,-.04,.1,3]];
+  blobs.forEach(([dx,dy,rr,l])=>{ctx.fillStyle=hue[l];ctx.beginPath();ctx.arc(cx+dx*TW,cy+dy*TW,rr*TW,0,7);ctx.fill()});
+  ctx.fillStyle='rgba(20,40,10,.25)';ctx.beginPath();ctx.ellipse(cx+TW*.08,cy+TW*.2,TW*.32,TW*.12,0,0,7);ctx.fill();
+  for(let i=0;i<10;i++){ctx.fillStyle=i%2?'rgba(190,230,140,.6)':'rgba(30,60,20,.35)';ctx.beginPath();ctx.arc(cx+(hh(c,r,i+20)-.55)*TW*.6,cy+(hh(c,r,i+40)-.6)*TW*.55,TW*.025,0,7);ctx.fill()}
+  ctx.globalAlpha=1;
+}
+function hedgeHD(c,r,fade){
+  const t=box(c,r,.42,'#2f6428',{inset:.06,top:'#3e7a34',alpha:fade});ctx.globalAlpha=fade;
+  const pts=[t.a,t.b,t.d,t.e];for(let i=0;i<9;i++){const u=(i%3+.5)/3,v=(Math.floor(i/3)+.5)/3;const p=iso(c+.06+u*.88,r+.06+v*.88);p.y-=t.hp;
+    ctx.fillStyle=i%2?'#4a8a3c':'#3f7e34';ctx.beginPath();ctx.arc(p.x,p.y-TW*.03,TW*.13,0,7);ctx.fill();ctx.fillStyle='rgba(170,220,120,.45)';ctx.beginPath();ctx.arc(p.x-TW*.04,p.y-TW*.08,TW*.05,0,7);ctx.fill()}
+  ctx.globalAlpha=1;
+}
+function benchHD(c,r){
+  const P=(u,v,h)=>{const p=iso(c+u,r+v);return {x:p.x,y:p.y-UP()*h}};
+  ctx.fillStyle='#2a2d34';[[.18,.35],[.82,.35],[.18,.65],[.82,.65]].forEach(([u,v])=>{const a=P(u,v,0),b=P(u,v,.28);ctx.fillRect(a.x-1.2,b.y,2.4,a.y-b.y)});
+  [[.32,.62]].forEach(()=>{});
+  for(let i=0;i<3;i++){const v0=.36+i*.1,v1=v0+.08;poly([P(.15,v0,.3),P(.85,v0,.3),P(.85,v1,.3),P(.15,v1,.3)],i%2?'#c48c50':'#b07a40');poly([P(.15,v1,.3),P(.85,v1,.3),P(.85,v1,.26),P(.15,v1,.26)],'#7a5028')}
+  [[.3,.42],[.46,.58]].forEach(([h0,h1],k)=>{poly([P(.15,.33,h0),P(.85,.33,h0),P(.85,.33,h1),P(.15,.33,h1)],k?'#c48c50':'#a8743e')});
+  ctx.fillStyle='#2a2d34';[[.18],[.82]].forEach(([u])=>{const a=P(u,.33,.28),b=P(u,.33,.62);ctx.fillRect(a.x-1,b.y,2,a.y-b.y)});
+}
+function lampHD(c,r,now){
+  const p=iso(c+.5,r+.5),hgt=UP()*1.95;const g=ctx.createLinearGradient(p.x-2,0,p.x+2,0);g.addColorStop(0,'#5a5e66');g.addColorStop(1,'#26282d');
+  ctx.fillStyle=g;ctx.fillRect(p.x-Math.max(1.5,TW*.025),p.y-hgt,Math.max(3,TW*.05),hgt);ctx.fillStyle='#26282d';ctx.fillRect(p.x-TW*.05,p.y-UP()*.12,TW*.1,UP()*.12);
+  ctx.strokeStyle='#33363c';ctx.lineWidth=Math.max(2,TW*.035);ctx.beginPath();ctx.moveTo(p.x,p.y-hgt);ctx.quadraticCurveTo(p.x+TW*.05,p.y-hgt-UP()*.15,p.x+TW*.18,p.y-hgt+UP()*.02);ctx.stroke();ctx.lineWidth=1;
+  const lx=p.x+TW*.19,ly=p.y-hgt+UP()*.08;ctx.fillStyle='#2a2d34';ctx.beginPath();ctx.ellipse(lx,ly-2,TW*.09,TW*.04,0,Math.PI,0);ctx.fill();
+  ctx.fillStyle='#fff3c4';ctx.beginPath();ctx.ellipse(lx,ly,TW*.07,TW*.025,0,0,7);ctx.fill();
+  const gl=ctx.createRadialGradient(lx,ly,1,lx,ly,TW*.5);gl.addColorStop(0,'rgba(255,240,180,.35)');gl.addColorStop(1,'rgba(255,240,180,0)');ctx.fillStyle=gl;ctx.beginPath();ctx.arc(lx,ly,TW*.5,0,7);ctx.fill();
+}
+function fountainHD(c,r,now){
+  // se dibuja una sola vez por grupo, en la casilla más cercana a la cámara
+  const cl=[];const seen=new Set();const st=[[c,r]];while(st.length){const [a,b]=st.pop();const k=a+','+b;if(seen.has(k)||OBJ[b]?.[a]!=='A')continue;seen.add(k);cl.push([a,b]);st.push([a+1,b],[a-1,b],[a,b+1],[a,b-1])}
+  const best=cl.reduce((m,q)=>depth(q[0]+.5,q[1]+.5)>depth(m[0]+.5,m[1]+.5)?q:m,cl[0]);if(best[0]!==c||best[1]!==r)return;
+  const mc=cl.reduce((s,q)=>s+q[0],0)/cl.length+.5,mr=cl.reduce((s,q)=>s+q[1],0)/cl.length+.5,R=Math.sqrt(cl.length)*.5,ce=iso(mc,mr);
+  const rx=TW*R*.95,ry=TH*R*.95,rim=UP()*.22;
+  ctx.fillStyle='#8e877a';ctx.beginPath();ctx.ellipse(ce.x,ce.y,rx,ry,0,0,Math.PI);ctx.lineTo(ce.x-rx,ce.y-rim);ctx.ellipse(ce.x,ce.y-rim,rx,ry,0,Math.PI,0,true);ctx.closePath();ctx.fill();
+  ctx.fillStyle='#d8d0bc';ctx.beginPath();ctx.ellipse(ce.x,ce.y-rim,rx,ry,0,0,7);ctx.fill();
+  const wg=ctx.createRadialGradient(ce.x-rx*.3,ce.y-rim-ry*.3,2,ce.x,ce.y-rim,rx);wg.addColorStop(0,'#8fd0f4');wg.addColorStop(1,'#2f6f9e');ctx.fillStyle=wg;ctx.beginPath();ctx.ellipse(ce.x,ce.y-rim,rx*.86,ry*.84,0,0,7);ctx.fill();
+  ctx.save();ctx.beginPath();ctx.ellipse(ce.x,ce.y-rim,rx*.86,ry*.84,0,0,7);ctx.clip();
+  for(let i=0;i<3;i++){const k=((now/1800)+i/3)%1;ctx.strokeStyle=`rgba(255,255,255,${.45*(1-k)})`;ctx.lineWidth=1.5;ctx.beginPath();ctx.ellipse(ce.x,ce.y-rim,rx*.15+rx*.7*k,ry*.15+ry*.7*k,0,0,7);ctx.stroke()}
+  for(let i=0;i<6;i++){const a=hh(i,3)*7+now/4000;ctx.fillStyle='rgba(255,255,255,.55)';ctx.fillRect(ce.x+Math.cos(a)*rx*.6,ce.y-rim+Math.sin(a)*ry*.6,3,1)}
+  ctx.restore();ctx.lineWidth=1;
+  ctx.fillStyle='#c9c1ac';ctx.beginPath();ctx.ellipse(ce.x,ce.y-rim,TW*.12,TH*.12,0,0,7);ctx.fill();ctx.fillRect(ce.x-TW*.04,ce.y-rim-UP()*.45,TW*.08,UP()*.45);
+  ctx.fillStyle='#d8d0bc';ctx.beginPath();ctx.ellipse(ce.x,ce.y-rim-UP()*.45,TW*.16,TH*.12,0,0,7);ctx.fill();
+  for(let i=0;i<14;i++){const k=((now/900)+i/14)%1,a=i/14*Math.PI*2;const x=ce.x+Math.cos(a)*TW*.35*k,y=ce.y-rim-UP()*.5-Math.sin(k*Math.PI)*UP()*.55+Math.sin(a)*TH*.3*k;
+    ctx.fillStyle=`rgba(220,240,255,${.85*(1-k)})`;ctx.beginPath();ctx.arc(x,y,Math.max(1,TW*.025),0,7);ctx.fill()}
+}
+function pondHD(c,r,now){
+  const wg=ctx.createLinearGradient(iso(c,r).x,iso(c,r).y,iso(c+1,r+1).x,iso(c+1,r+1).y);wg.addColorStop(0,'#6fb6e6');wg.addColorStop(1,'#2f6f9e');poly(diamond(c,r),wg);
+  const p=iso(c+.5,r+.5),k=((now/2000)+hh(c,r))%1;ctx.strokeStyle=`rgba(255,255,255,${.5*(1-k)})`;ctx.lineWidth=1.2;ctx.beginPath();ctx.ellipse(p.x,p.y,TW*(.08+k*.3),TH*(.08+k*.3),0,0,7);ctx.stroke();
+  [[0,-1,[0,0],[1,0]],[1,0,[1,0],[1,1]],[0,1,[1,1],[0,1]],[-1,0,[0,1],[0,0]]].forEach(([dc,dr,A,B])=>{if(OBJ[r+dr]?.[c+dc]==='A')return;const a=iso(c+A[0],r+A[1]),b=iso(c+B[0],r+B[1]);ctx.strokeStyle='#cfc6b0';ctx.lineWidth=Math.max(2,TW*.06);ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()});ctx.lineWidth=1;
+}
+function drawObjHD(o,c,r,fade){
+  const now=performance.now();
+  if(o==='T'){treeHD(c,r,fade,now);return true}
+  if(o==='H'){hedgeHD(c,r,fade);return true}
+  if(o==='K'){benchHD(c,r);return true}
+  if(o==='L'){lampHD(c,r,now);return true}
+  if(o==='A'){if(MISSION.id==='pradolongo'){fountainHD(c,r,now);return true}pondHD(c,r,now);return true}
+  if(o==='B'){const t=box(c,r,1.3,'#b8b2a4',{top:'#8a8478',alpha:fade,inset:.02});ctx.globalAlpha=fade;windows(t,1,'#5a6a74',.35,0,.5,.18,.82);windows(t,1,'#c4553f',1.12,0,.1,0,1);ctx.globalAlpha=1;return true}
+  if(o==='D'){box(c,r,.62,'#2f6b3a',{ix:.14,iy:.2,top:'#3b7f47'});const t=box(c,r,.68,'#245530',{ix:.12,iy:.18,top:'#2c6439'});ctx.fillStyle='#f4f4f4';const p=iso(c+.5,r+.5);ctx.fillRect(p.x-TW*.05,p.y-UP()*.4,TW*.1,UP()*.08);return true}
+  return false;
+}
+
 function drawUnit(u,now,alpha=1,sink=0){
   let ux=u.x,uy=u.y;
   if(u.lunge){const k=Math.sin(Math.min(1,(now-u.lunge.t0)/260)*Math.PI);ux+=u.lunge.dx*k;uy+=u.lunge.dy*k}
@@ -1561,12 +1879,13 @@ function drawDark(){const W2=cv.width,H2=cv.height,dpr=window.devicePixelRatio||
   d.globalCompositeOperation='source-over';ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.drawImage(darkCv,0,0);ctx.restore();ctx.setTransform(dpr,0,0,dpr,0,0)}
 function draw(now){
   if(VIEW!=='mis'||!S.clouds){requestAnimationFrame(draw);return}
-  ctx.clearRect(0,0,CW,CH);ground();overlays(now);
+  ctx.clearRect(0,0,CW,CH);ground();if(HD()){pigeons(now);shadowPass(now)}overlays(now);
   const items=[];
   for(let r=0;r<H;r++)for(let c=0;c<W;c++){const o=OBJ[r][c];if(o!=='.')items.push({d:depth(c+.5,r+.5),c:sx(c,r),draw:()=>drawObj(o,c,r)})}
   U.filter(u=>u.alive).forEach(u=>items.push({d:depth(u.x+.5,u.y+.5)+.02,c:sx(u.x,u.y),draw:()=>drawUnit(u,now)}));
   FX.filter(f=>f.kind==='die').forEach(f=>{const k=(now-f.t0)/f.dur;items.push({d:depth(f.u.x+.5,f.u.y+.5)+.02,c:sx(f.u.x,f.u.y),draw:()=>drawUnit(f.u,now,Math.max(0,1-k),k*6)})});
   items.sort((a,b)=>a.d-b.d||a.c-b.c).forEach(i=>i.draw());
+  if(HD())atmosphere(now);
   if(MISSION.over)MISSION.over(now);
   if(MISSION.dark)drawDark();
   // nubes de vaper por encima
@@ -1581,6 +1900,7 @@ function draw(now){
   drawFX(now);requestAnimationFrame(draw);
 }
 cv.addEventListener('click',e=>{
+  {const co=$('coach');if(co&&!co.hidden&&$('tmin')&&!co.classList.contains('min')){co.classList.add('min');$('tmin').textContent='Ver'}}
   const rect=cv.getBoundingClientRect();const x=e.clientX-rect.left,y=e.clientY-rect.top;
   const hits=U.filter(u=>u.alive&&u._hit&&Math.abs(x-u._hit.x)<=u._hit.w&&y>=u._hit.y1&&y<=u._hit.y2).sort((a,b)=>depth(b.x,b.y)-depth(a.x,a.y));
   if(hits.length){onCell(hits[0].c,hits[0].r);return}
@@ -1623,13 +1943,13 @@ function render(){
     const pbtn=sel.powers.map(pid=>{const P=POWERS[pid];const cd=sel.cds[pid]||0;const lbl=P.uses?`${P.name} (${sel.uses[pid]})`:cd?`${P.name} (${cd})`:P.name;
       return `<button class="blue" data-p="${pid}" ${canPower(sel,pid)&&!S.busy?'':'disabled'} title="${P.desc}">${lbl}</button>`}).join('');
     A.innerHTML=`<h2>${sel.name} <span class="muted" style="font-family:var(--body)">· ${sel.role}</span></h2>
-      <p class="muted">${sel.weapon.name}: ${sel.weapon.min}-${sel.weapon.max} de daño${sel.weapon.melee?', cuerpo a cuerpo':`, alcance ${sel.weapon.range}`}. Movimiento ${sel.mob}.${sel.sleepy!==null?` Sueño ${sel.sleepy}/4: al llegar a 4 se duerme un turno; las latas azules del mapa lo espabilan.`:''}</p>
+      <p class="muted wline">${sel.weapon.name}: ${sel.weapon.min}-${sel.weapon.max} de daño${sel.weapon.melee?', cuerpo a cuerpo':`, alcance ${sel.weapon.range}`}. Movimiento ${sel.mob}.${sel.sleepy!==null?` Sueño ${sel.sleepy}/4: al llegar a 4 se duerme un turno; las latas azules del mapa lo espabilan.`:''}</p>
       <p>${hint}</p>
       <div class="btns">${pbtn}</div>
       ${(MISSION.objs||[]).filter(o=>!S.sab[o.k]&&cheb(sel,o)<=1).map(o=>`<div class="btns"><button class="red" data-sab="${o.k}" ${sel.ap>0&&!S.busy?'':'disabled'}>${o.btn}</button></div>`).join('')}
       ${(()=>{const jm=MISSION.juanma&&!S.juanmaDone&&U.find(n=>n.id==='juanma');if(!jm)return '';const ok=sel.ap>0&&!S.busy&&dist(sel,jm)<=6&&los(sel,jm);return `<div class="btns"><button class="blue" id="cjm" ${ok?'':'disabled'}>Llamar a Juanma</button></div>${ok?'':'<p class="muted">Acércate a 6 casillas de Juanma (sin entrar en su zona) para llamarle.</p>'}`})()}
       <div class="btns">${sel.weapon.melee?'':`<button class="alt" id="ow" ${sel.ap>0&&!S.busy?'':'disabled'}>Vigilancia</button>`}<button id="end" ${S.busy?'disabled':''}>Fin del turno</button></div>
-      <p class="muted">${sel.powers.map(pid=>`<b>${POWERS[pid].name}:</b> ${POWERS[pid].desc}`).join('<br>')}</p>`;
+      <details class="pinfo"><summary>Qué hace cada poder</summary><p class="muted">${sel.powers.map(pid=>`<b>${POWERS[pid].name}:</b> ${POWERS[pid].desc}`).join('<br>')}</p></details>`;
     A.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>startPower(b.dataset.p));
     if($('cjm'))$('cjm').onclick=callJuanma;
     A.querySelectorAll('[data-sab]').forEach(b=>b.onclick=()=>doSabotage(b.dataset.sab));
@@ -1640,12 +1960,148 @@ function render(){
 function openModal(html,wide,extra){$('card').className='card'+(wide?' wide':'')+(extra?' '+extra:'');$('card').innerHTML=html;$('modal').hidden=false;const b=$('card').querySelector('button:not([disabled])');if(b)b.focus()}
 function closeModal(){$('modal').hidden=true}
 
+/* ================= MÚSICA (generada con Web Audio) ================= */
+const MUS={ctx:null,on:true,cur:null,want:null,bus:null,t:0,step:0,timer:null,mel:{},arpI:0};
+try{MUS.on=localStorage.getItem('orc_music')!=='0'}catch(e){}
+const SCALES={major:[0,2,4,5,7,9,11],minor:[0,2,3,5,7,8,10],dorian:[0,2,3,5,7,9,10],harm:[0,2,3,5,7,8,11],phryg:[0,1,3,5,7,8,10],mixo:[0,2,4,5,7,9,10]};
+const TRACKS={
+ inicio:{bpm:76,sw:0,key:50,sc:'harm',prog:[0,3,4,0,5,3,4,4],dr:{k:'x.......x.......',s:'............xxxx',sv:.1},
+  bass:{p:'x.......x.......',w:'triangle',cut:600,v:.36,len:6},pad:{w:'sawtooth',cut:1100,v:.05},lead:{w:'sawtooth',v:.065,d:.35,o:1,cut:1800,brass:true,seed:61,send:.25}},
+ mapa:{bpm:84,sw:.2,key:57,sc:'dorian',prog:[0,3,5,4],dr:{k:'x.....x...x.....',s:'....x.......x...',h:'x.o.x.o.x.o.x.oo'},
+  bass:{p:'x.....x.x.....5.',w:'triangle',cut:600,v:.32},pad:{w:'sine',cut:1800,v:.05,sev:true,ep:true},lead:{w:'sine',v:.07,d:.28,o:1,cut:2400,send:.35,seed:11}},
+ tutorial:{bpm:92,sw:0,key:62,sc:'minor',prog:[0,5,2,6],dr:{k:'x...x...x...x...',s:'...x..x....x..x.',h:'..o.....o.o.....'},
+  bass:{p:'x..x...x..x.x...',w:'sine',cut:400,v:.42},pad:{w:'triangle',cut:1500,v:.045},arp:{p:'x.x.x.x.x.x.x.x.',w:'triangle',v:.035,o:1,cut:2500},lead:{w:'square',v:.045,d:.45,o:1,cut:1800,send:.3,seed:7}},
+ parque:{bpm:100,sw:.08,key:60,sc:'major',prog:[0,4,5,3],dr:{k:'x.......x.......',s:'....o.......o...',h:'o.o.o.o.o.o.o.o.'},
+  bass:{p:'x.....5.x...5...',w:'triangle',cut:700,v:.3},arp:{p:'x.xx.xx.x.xx.xx.',w:'triangle',v:.05,o:0,cut:2600,pluck:true},lead:{w:'sine',v:.06,d:.35,o:2,cut:4000,send:.3,seed:3}},
+ hospital:{bpm:70,sw:0,key:52,sc:'harm',prog:[0,0,5,4],dr:{k:'x..x............'},beep:'x...............',
+  bass:{p:'x...............',w:'sine',cut:300,v:.3,len:12},pad:{w:'sawtooth',cut:650,v:.05},lead:{w:'sine',v:.05,d:.18,o:2,cut:3000,send:.5,seed:21}},
+ pickle:{bpm:124,sw:0,key:65,sc:'major',prog:[0,3,4,0],dr:{k:'x...x...x...x...',s:'....x.......x...',h:'..x...x...x...x.'},pock:'......x.......x.',
+  bass:{p:'x.8.x.8.x.8.x.8.',w:'square',cut:700,v:.2},arp:{p:'xxxxxxxxxxxxxxxx',w:'square',v:.025,o:1,cut:3000,pluck:true},lead:{w:'square',v:.045,d:.55,o:1,cut:2600,seed:5}},
+ torres:{bpm:140,sw:0,key:55,sc:'phryg',prog:[0,0,5,1],dr:{k:'x......x..x.....',s:'........x.......',h:'x.x.x.xxx.x.x.xx'},
+  bass:{p:'x......x..x.....',w:'sine',cut:900,v:.34,len:5,glide:true},pad:{w:'sawtooth',cut:500,v:.04},lead:{w:'sine',v:.06,d:.3,o:2,cut:5000,send:.3,seed:13,bell:true}},
+ yuyu:{bpm:112,sw:.12,key:57,sc:'harm',prog:[0,0,3,4],dr:{h:'x.o.x.o.x.o.x.o.',r:'....x.......x...'},
+  bass:{p:'x.x.x.x.x.x.x.x.',w:'triangle',cut:800,v:.3,walk:true,len:.7},lead:{w:'triangle',v:.06,d:.3,o:1,cut:2200,send:.25,seed:31,stacc:true}},
+ tango:{bpm:116,sw:0,key:57,sc:'harm',prog:[0,0,4,4,3,3,4,0],dr:{s:'x..x..x.........'},stab:{p:'x...x...x...x...',w:'sawtooth',cut:1400,v:.065},
+  bass:{p:'x..x..x.x.......',w:'sawtooth',cut:500,v:.36},lead:{w:'sawtooth',v:.075,d:.5,o:1,cut:1600,vib:true,legato:true,seed:17}},
+ barritas:{bpm:92,sw:.15,key:54,sc:'minor',prog:[0,0,5,4],dr:{k:'x.......x.x.....',s:'....x.......x...',h:'x.x.x.x.x.x.x.x.'},stab:{p:'x.........x.....',w:'sawtooth',cut:1100,v:.035},
+  bass:{p:'x.....x...x.....',w:'sawtooth',cut:350,v:.32},lead:{w:'square',v:.035,d:.3,o:1,cut:1500,seed:23}},
+ techno:{bpm:128,sw:0,key:50,sc:'minor',prog:[0,0,0,5],dr:{k:'x...x...x...x...',c:'....x.......x...',h:'ooxoooxoooxoooxo'},
+  bass:{p:'..x...x...x...x.',w:'sawtooth',cut:450,v:.3},arp:{p:'xxxxxxxxxxxxxxxx',w:'sawtooth',v:.035,o:0,cut:900,acid:true},pad:{w:'sawtooth',cut:700,v:.025}},
+ mitin:{bpm:108,sw:0,key:58,sc:'major',prog:[0,3,4,0],dr:{k:'x.......x.......',s:'x.xxx.x.x.xxx.x.',sv:.12},
+  bass:{p:'x...5...x...5...',w:'triangle',cut:800,v:.32},lead:{w:'sawtooth',v:.05,d:.6,o:1,cut:2000,seed:41,brass:true},pad:{w:'square',cut:900,v:.025}},
+ deca:{bpm:118,sw:.1,key:52,sc:'dorian',prog:[0,3,0,4],dr:{k:'x...x...x...x...',s:'....x.......x...',h:'xoxoxoxoxoxoxoxo'},
+  bass:{p:'x..x.x..x.xx..x.',w:'square',cut:850,v:.22},lead:{w:'square',v:.04,d:.45,o:1,cut:2400,seed:9},arp:{p:'..x...x...x...x.',w:'triangle',v:.04,o:1,cut:2000,pluck:true}},
+ final:{bpm:150,sw:0,key:50,sc:'harm',prog:[0,5,3,4],dr:{k:'x..x..x.x..x..x.',s:'....x.......x...',h:'x.x.x.x.x.x.x.x.'},
+  bass:{p:'x.x.x.x.x.x.x.x.',w:'sawtooth',cut:600,v:.25},pad:{w:'sawtooth',cut:1400,v:.05},lead:{w:'sawtooth',v:.05,d:.55,o:1,cut:2400,send:.2,seed:51},arp:{p:'xxxxxxxxxxxxxxxx',w:'square',v:.02,o:2,cut:2500,pluck:true}}
+};
+const ZONE_TRACK={1:'parque',2:'hospital',3:'pickle',4:'torres',5:'yuyu',6:'tango',7:'barritas',8:'techno',9:'mitin',10:'deca'};
+function musInit(){
+  if(MUS.ctx)return true;const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return false;
+  try{const c=new AC();MUS.ctx=c;
+    MUS.master=c.createGain();MUS.master.gain.value=MUS.on?.3:0;
+    const comp=c.createDynamicsCompressor();comp.threshold.value=-16;comp.ratio.value=4;
+    MUS.filt=c.createBiquadFilter();MUS.filt.type='lowpass';MUS.filt.frequency.value=18000;
+    MUS.filt.connect(comp);comp.connect(MUS.master);MUS.master.connect(c.destination);
+    const nb=c.createBuffer(1,c.sampleRate,c.sampleRate),d=nb.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;MUS.noise=nb;
+    MUS.dl=c.createDelay(1);MUS.dl.delayTime.value=.33;MUS.fb=c.createGain();MUS.fb.gain.value=.3;const lp=c.createBiquadFilter();lp.frequency.value=2500;
+    MUS.dl.connect(lp);lp.connect(MUS.fb);MUS.fb.connect(MUS.dl);const dout=c.createGain();dout.gain.value=.5;lp.connect(dout);dout.connect(MUS.filt);
+    return true}catch(e){return false}
+}
+const mtof=m=>440*Math.pow(2,(m-69)/12);
+function degSemi(sc,d){const s=SCALES[sc],o=Math.floor(d/7);return s[((d%7)+7)%7]+12*o}
+function tone(f,t,d,o){
+  const c=MUS.ctx,g=c.createGain(),fl=c.createBiquadFilter();fl.type='lowpass';fl.frequency.value=o.cut||3000;fl.Q.value=o.q||.7;
+  const r=o.r||.08,end=t+d+r+.05,v=o.vol||.1,a=o.a||.005;
+  (o.det?[-o.det,o.det]:[0]).forEach(dt=>{const os=c.createOscillator();os.type=o.w||'sine';os.frequency.setValueAtTime(o.from||f,t);if(o.from)os.frequency.exponentialRampToValueAtTime(f,t+.07);os.detune.value=dt;
+    if(o.vib){const l=c.createOscillator(),lg=c.createGain();l.frequency.value=5.2;lg.gain.value=f*.01;l.connect(lg);lg.connect(os.frequency);l.start(t);l.stop(end)}
+    os.connect(fl);os.start(t);os.stop(end)});
+  if(o.harm){const os=c.createOscillator();os.type='sine';os.frequency.value=f*2;const hg=c.createGain();hg.gain.value=.35;os.connect(hg);hg.connect(fl);os.start(t);os.stop(end)}
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+a);
+  if(o.pluck){g.gain.exponentialRampToValueAtTime(Math.max(.0001,v*.12),t+Math.max(a+.01,Math.min(d,.35)))}else g.gain.setValueAtTime(v,t+Math.max(a,d));
+  g.gain.exponentialRampToValueAtTime(.0001,t+d+r);
+  if(o.env){fl.frequency.setValueAtTime(Math.min(16000,(o.cut||3000)*o.env),t);fl.frequency.exponentialRampToValueAtTime(o.cut||3000,t+(o.envT||.18))}
+  fl.connect(g);g.connect(o.dest||MUS.bus);if(o.send){const s=c.createGain();s.gain.value=o.send;g.connect(s);s.connect(MUS.dl)}
+}
+function noise(t,dur,type,freq,v,q,dest){const c=MUS.ctx,s=c.createBufferSource();s.buffer=MUS.noise;const f=c.createBiquadFilter();f.type=type;f.frequency.value=freq;f.Q.value=q||.8;const g=c.createGain();
+  g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+dur);s.connect(f);f.connect(g);g.connect(dest||MUS.bus);s.start(t,Math.random()*.5);s.stop(t+dur+.02)}
+function kick(t,v){const c=MUS.ctx,o=c.createOscillator(),g=c.createGain();o.frequency.setValueAtTime(150,t);o.frequency.exponentialRampToValueAtTime(42,t+.12);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+.34);o.connect(g);g.connect(MUS.bus);o.start(t);o.stop(t+.36)}
+function snare(t,v){noise(t,.17,'bandpass',1900,v);tone(185,t,.02,{w:'triangle',vol:v*.6,r:.06})}
+function hat(t,v){noise(t,.045,'highpass',7500,v)}
+function clap(t,v){for(let i=0;i<3;i++)noise(t+i*.011,i<2?.03:.16,'bandpass',1300,v)}
+function rim(t,v){tone(900,t,.01,{w:'triangle',vol:v,r:.03});noise(t,.02,'highpass',3000,v*.5)}
+function genMelody(T){
+  const L=T.prog.length*16,rng=mulberry(T.lead.seed||1),dens=T.lead.d||.4,mot=[];
+  for(let i=0;i<32;i++){const p=dens*(i%8===0?1.5:i%4===0?1.1:i%2===0?.7:.3);mot.push(rng()<p)}
+  const out=new Array(L).fill(null);let prev=7;
+  for(let i=0;i<L;i++){const seg=Math.floor(i/32),j=i%32;let hit=mot[j];if(seg===Math.floor(L/32)-1&&j>=24)hit=j===24;
+    if(!hit)continue;const ch=T.prog[Math.floor(i/16)%T.prog.length];
+    let deg;if(i%8===0){const cands=[];for(let k=-1;k<4;k++)cands.push(ch+k*2);deg=cands.filter(x=>x>=2&&x<=12).sort((a,b)=>Math.abs(a-prev)-Math.abs(b-prev))[0]}
+    else{deg=prev+[-1,1,-2,2,1,-1,0,3][Math.floor(rng()*8)];if(deg<2)deg+=2;if(deg>12)deg-=3}
+    let len=1;while(i+len<L&&len<6&&!mot[(j+len)%32])len++;out[i]={deg,len};prev=deg}
+  return out;
+}
+function playStep(T,step,t,sd){
+  const L=T.prog.length*16,i=step%L,s=i%16,bar=Math.floor(i/16),ch=T.prog[bar],loop=Math.floor(step/L),D=T.dr||{},sc=T.sc,key=T.key;
+  const at=(pat,k)=>pat&&pat[s]!=='.'&&pat[s]!==undefined?(pat[s]==='o'?.55:1):0;
+  let x;if((x=at(D.k)))kick(t,.85*x);if((x=at(D.s)))snare(t,(D.sv||.3)*x);if((x=at(D.h)))hat(t,.07*x);if((x=at(D.c)))clap(t,.25*x);if((x=at(D.r)))rim(t,.12*x);
+  if((x=at(T.pock)))tone(1400,t,.02,{w:'sine',vol:.12,r:.05});
+  if((x=at(T.beep))&&bar%2===0)tone(1046,t,.09,{w:'sine',vol:.05,r:.02,send:.3});
+  const note=(deg,oct)=>mtof(key+12*oct+degSemi(sc,deg));
+  if(T.bass&&(x=at(T.bass.p))){const B=T.bass,c=B.p[s];let deg=ch;if(c==='5')deg=ch+4;if(c==='8')deg=ch+7;if(B.walk)deg=ch+[0,2,4,5,4,2,0,-1][(s/2)%8|0];
+    tone(note(deg,-2),t,sd*(B.len||1.6),{w:B.w,vol:B.v*x,cut:B.cut,r:.06,from:B.glide&&s>0?note(deg,-1):0,env:1.8})}
+  if(T.pad&&s===0){const P=T.pad;[0,2,4].concat(P.sev?[6]:[]).forEach(k=>tone(note(ch+k,0),t,sd*15,{w:P.w,vol:P.v,cut:P.cut,a:P.ep?.01:.25,r:.4,det:P.ep?0:6,harm:P.ep,pluck:P.ep}))}
+  if(T.stab&&(x=at(T.stab.p))){[0,2,4].forEach(k=>tone(note(ch+k,0),t,sd*.6,{w:T.stab.w,vol:T.stab.v*x,cut:T.stab.cut,r:.05,env:2}))}
+  if(T.arp&&(x=at(T.arp.p))){const A=T.arp,seq=[0,2,4,7,4,2];const deg=ch+seq[MUS.arpI++%seq.length];
+    const cut=A.acid?A.cut*(1+2.5*(.5+.5*Math.sin((step%64)/64*Math.PI*2))):A.cut;tone(note(deg,A.o),t,sd*.8,{w:A.w,vol:A.v*x,cut,q:A.acid?8:.7,r:.05,pluck:A.pluck,env:A.acid?3:0})}
+  if(T.lead&&loop%4!==3){if(!MUS.mel[T.name])MUS.mel[T.name]=genMelody(T);const n=MUS.mel[T.name][i];
+    if(n){const Ld=T.lead,f=note(n.deg,Ld.o);const dur=sd*(Ld.stacc?.5:Ld.legato?n.len:Math.min(n.len,3)*.85);
+      tone(f,t,dur,{w:Ld.w,vol:Ld.v,cut:Ld.cut,r:Ld.brass?.08:.12,a:Ld.brass||Ld.legato?.03:.006,vib:Ld.vib,send:Ld.send,env:Ld.brass?2.2:0,pluck:Ld.bell});
+      if(Ld.bell)tone(f*2,t,dur,{w:'sine',vol:Ld.v*.3,cut:6000,r:.2,pluck:true})}}
+}
+function musTick(){
+  const c=MUS.ctx;if(!c||!MUS.cur)return;const T=TRACKS[MUS.cur],base=60/T.bpm/4;
+  while(MUS.t<c.currentTime+.15){const sd=base*(MUS.step%2===0?1+T.sw:1-T.sw);playStep(T,MUS.step,MUS.t,base);MUS.t+=sd;MUS.step++}
+}
+function musPlay(name){
+  MUS.want=name;if(!MUS.ctx||MUS.ctx.state!=='running')return;
+  if(MUS.cur===name&&MUS.bus)return;const c=MUS.ctx;
+  if(MUS.bus){const old=MUS.bus;old.gain.setTargetAtTime(0,c.currentTime,.25);setTimeout(()=>old.disconnect(),1500)}
+  musTension(false);MUS.cur=name;if(!name){MUS.bus=null;return}
+  TRACKS[name].name=name;MUS.bus=c.createGain();MUS.bus.gain.setValueAtTime(0,c.currentTime);MUS.bus.gain.linearRampToValueAtTime(1,c.currentTime+.8);MUS.bus.connect(MUS.filt);
+  MUS.t=c.currentTime+.1;MUS.step=0;MUS.arpI=0;
+  if(!MUS.timer)MUS.timer=setInterval(musTick,30);
+}
+function musTension(on){if(!MUS.ctx)return;const f=MUS.filt.frequency,t=MUS.ctx.currentTime;f.cancelScheduledValues(t);f.setValueAtTime(f.value,t);f.exponentialRampToValueAtTime(on?950:18000,t+.6)}
+const JINGLES={
+ victoria:{key:60,sc:'major',n:[[0,0,.12],[2,.12,.12],[4,.24,.12],[7,.36,.5],[4,.9,.12],[7,1.02,.9]],ch:[0,2,4,7],chT:1.02},
+ derrota:{key:57,sc:'minor',n:[[4,0,.35],[3,.4,.35],[2,.8,.35],[1,1.2,.35],[0,1.6,1.1]],ch:[0,2,4],chT:1.6},
+ decreto:{key:58,sc:'major',n:[[0,0,.1],[0,.12,.1],[0,.24,.1],[4,.36,.45],[3,.85,.1],[4,.97,.1],[7,1.09,.8]],ch:[0,2,4],chT:1.09,roll:true}
+};
+function musJingle(name,thenTrack){
+  const c=MUS.ctx;if(!c||c.state!=='running'||!MUS.on){MUS.want=thenTrack||MUS.want;return}
+  const J=JINGLES[name];const t0=c.currentTime+.05;
+  const keep=MUS.cur;musPlay(null);MUS.want=thenTrack!==undefined?thenTrack:keep;
+  const bus=c.createGain();bus.gain.value=1;bus.connect(MUS.filt);const prevBus=MUS.bus;MUS.bus=bus;
+  const nt=d=>mtof(J.key+12+degSemi(J.sc,d));
+  J.n.forEach(([d,t,len])=>tone(nt(d),t0+t,len,{w:'sawtooth',vol:.11,cut:2200,a:.02,r:.15,env:2,send:.3}));
+  J.ch.forEach(d=>tone(mtof(J.key+degSemi(J.sc,d)),t0+J.chT,1.4,{w:'triangle',vol:.09,cut:2000,a:.05,r:.6}));
+  kick(t0+J.chT,.7);if(J.roll)for(let i=0;i<10;i++)snare(t0+i*.035,.06+i*.012);
+  MUS.bus=prevBus;
+  const back=MUS.want;setTimeout(()=>{if(MUS.want===back&&back)musPlay(back)},(J.chT+1.6)*1000);
+}
+function musDuck(){}
+function musUnlock(){if(!musInit())return;if(MUS.ctx.state!=='running')MUS.ctx.resume().then(()=>{if(MUS.want&&!MUS.cur)musPlay(MUS.want)});else if(MUS.want&&!MUS.cur)musPlay(MUS.want)}
+['pointerdown','keydown','touchstart'].forEach(ev=>document.addEventListener(ev,musUnlock,{passive:true}));
+function musToggle(){MUS.on=!MUS.on;try{localStorage.setItem('orc_music',MUS.on?'1':'0')}catch(e){}
+  if(musInit()){const g=MUS.master.gain,t=MUS.ctx.currentTime;g.cancelScheduledValues(t);g.setTargetAtTime(MUS.on?.3:0,t,.1)}
+  const b=$('mus');if(b){b.textContent=MUS.on?'🔊':'🔇';b.setAttribute('aria-label',MUS.on?'Silenciar música':'Activar música')}}
+
 /* ================= CAMPAÑA: MAPA GENERAL ================= */
 let VIEW='camp',UPG={hp:0,aim:0,mob:0,cd:0},C=null,PICK_START=null;
 const SAVE_KEY='reconquista_orcasitas_v1';
 const ZONES=[
  {n:1,name:'Parque de Pradolongo',p:"60,40 510,40 495,130 75,138",c:[285,90],bonus:'+2 vecinos al día.'},
- {n:2,name:'Hospital 12 de Octubre',p:"535,40 770,40 770,220 610,215 520,135",c:[650,125],bonus:'Los heridos salen del hospital en 2 días en vez de 5.'},
+ {n:2,name:'Hospital 12 de Octubre',p:"535,40 770,40 770,220 610,215 520,135",c:[650,125],bonus:'Los heridos vuelven del hospital un turno antes.'},
  {n:3,name:'Pickleball',p:"30,172 172,170 178,425 30,432",c:[102,300],bonus:'+2 euros al día. Maetin y sus colegas echan una mano.'},
  {n:4,name:'Las Torres de Orcasitas',p:"190,170 372,170 366,300 194,302",c:[282,235],bonus:'+1 de defensa en todas tus zonas y ves venir los ataques con más antelación.'},
  {n:5,name:'Casa de Yuyu',p:"194,316 366,316 360,430 190,432",c:[278,372],bonus:'La casa del dictador. No se conquista: se sabotea para debilitarle antes del asalto final en la estación.'},
@@ -1718,9 +2174,9 @@ function newCampaign(start){
   const rng=mulberry(Date.now()%100000);
   const zones={};
   ZONES.forEach(z=>{zones[z.n]={own:'y',g:3+Math.floor(rng()*4),def:0}});
-  zones[5].g=10;zones[start]={own:'p',g:0,def:4};
+  zones[5].g=6;zones[start]={own:'p',g:0,def:4};
   ADJ[start].forEach(n=>{if(n!==5)zones[n].g=3});
-  C={day:1,speed:0,sab:{},allies:[],res:{v:6,e:15,m:4},moral:3,zones,hosp:{},upg:{...UPG_DEF},xp:{},threats:[],nextThreat:4,nextDecree:5,stopV:0,log:[],start,missions:0,won:false,lost:false};
+  C={day:1,speed:0,sab:{},allies:[],res:{v:6,e:15,m:4},moral:3,zones,hosp:{},upg:{...UPG_DEF},xp:{},threats:[],nextThreat:3,nextDecree:5,stopV:0,log:[],start,missions:0,won:false,lost:false};
   clog(`La resistencia se reúne en ${ZN[start].name}.`);
   save();
 }
@@ -1734,7 +2190,7 @@ function endCampTurn(){
   const inc=income();C.res.v+=inc.v;C.res.e+=inc.e;C.res.m+=inc.m;
   rep.push(`💰 Ingresos: +${inc.v} vecinos, +${inc.e} €, +${inc.m} de material.`);
   if(C.stopV>0)C.stopV--;
-  if(C.day%2===0){ZONES.forEach(z=>{const s=C.zones[z.n];if(s.own==='y'&&z.n!==5&&s.g<8)s.g++});rep.push('🔴 Yuyu manda un esbirro más a cada una de sus zonas.')}
+  if(C.day%3===0){ZONES.forEach(z=>{const s=C.zones[z.n];if(s.own==='y'&&z.n!==5&&s.g<7)s.g++});rep.push('🔴 Yuyu manda un esbirro más a cada una de sus zonas.')}
   const due=C.threats.filter(t=>t.day<=C.day);C.threats=C.threats.filter(t=>t.day>C.day);
   for(const t of due){const r=resolveThreat(t);if(r)rep.push(r)}
   if(C.lost){save();renderCamp();
@@ -1742,7 +2198,7 @@ function endCampTurn(){
       <div class="btns"><button id="nc">Nueva campaña</button></div>`);$('nc').onclick=()=>{closeModal();startFlow()};return}
   if(C.day>=C.nextThreat){
     C.nextThreat=C.day+3+Math.floor(Math.random()*2);
-    const cand=ownedList().filter(n=>ADJ[n].some(a=>!has(a)&&a!==5)&&!C.threats.some(t=>t.z===n));
+    const cand=ownedList().filter(n=>n!==C.start&&ADJ[n].some(a=>!has(a)&&a!==5)&&!C.threats.some(t=>t.z===n));
     if(cand.length){
       const z=cand[Math.floor(Math.random()*cand.length)];
       const near=Math.max(3,...ADJ[z].filter(a=>!has(a)&&a!==5).map(a=>C.zones[a].g));
@@ -1770,14 +2226,14 @@ function resolveThreat(t){
   return `❌ <b>Yuyu recupera ${ZN[t.z].name}</b> (defensa ${d} contra fuerza ${t.str}). La moral baja.`;
 }
 function showCampDecree(){
-  const d=CAMP_DECREES[Math.floor(Math.random()*CAMP_DECREES.length)];pauseCamp();
+  const d=CAMP_DECREES[Math.floor(Math.random()*CAMP_DECREES.length)];pauseCamp();musJingle('decreto');
   openModal(`<div class="poster-in"><div class="eyebrow" style="color:#b02a3e">DECRETO DEL EXCELENTÍSIMO YUYU · TURNO ${C.day}</div>
     <h3 style="color:#6e1424">${d.t}</h3>
     <p class="opt"><b>Si obedeces:</b> ${d.o} La moral baja 1.</p>
-    <p class="opt"><b>Si te rebelas:</b> la moral sube 1, pero Yuyu manda 2 esbirros más a cada zona que hace frontera contigo y adelanta su próximo ataque.</p>
+    <p class="opt"><b>Si te rebelas:</b> la moral sube 1, pero Yuyu manda 1 esbirro más a cada zona que hace frontera contigo y adelanta su próximo ataque.</p>
     <div class="btns"><button class="alt" id="dob">Obedecer</button><button class="red" id="dre">Rebelarse</button></div></div>`,false,'poster');
   $('dob').onclick=()=>{d.f();C.moral=Math.max(0,C.moral-1);['v','e','m'].forEach(k=>C.res[k]=Math.max(0,C.res[k]));clog(`Obedecéis el decreto: ${d.t.toLowerCase()}.`);closeModal();save();renderCamp()};
-  $('dre').onclick=()=>{C.moral=Math.min(6,C.moral+1);ZONES.forEach(z=>{const s=C.zones[z.n];if(s.own==='y'&&z.n!==5&&ADJ[z.n].some(has))s.g=Math.min(9,s.g+2)});
+  $('dre').onclick=()=>{C.moral=Math.min(6,C.moral+1);ZONES.forEach(z=>{const s=C.zones[z.n];if(s.own==='y'&&z.n!==5&&ADJ[z.n].some(has))s.g=Math.min(8,s.g+1)});
     C.nextThreat=Math.min(C.nextThreat,C.day+1);clog(`¡Rebelión contra el decreto "${d.t}"!`);closeModal();save();renderCamp()};
 }
 
@@ -1790,7 +2246,7 @@ function buyUpgrade(id){const U2=UPGRADES.find(u=>u.id===id);const l=C.upg[id]||
 function healNow(id){if(C.res.e<6)return;C.res.e-=6;delete C.hosp[id];clog(`${ROSTER.find(r=>r.id===id).name} sale del hospital antes de tiempo.`);save();renderCamp()}
 function openCuartel(){
   const res=`<div class="qres">${resChip('👥','Vecinos',C.res.v,null,'#8fd19e')}${resChip('💶','Euros',C.res.e,null,'#f4d35e')}${resChip('🧱','Material',C.res.m,null,'#f08a3c')}</div>`;
-  openModal(`<div class="eyebrow">CUARTEL DE LA RESISTENCIA</div><h3>Mejoras</h3>${res}
+  openModal(`<button class="alt mini qx" id="qx" aria-label="Cerrar">✕</button><div class="eyebrow">CUARTEL DE LA RESISTENCIA</div><h3>Mejoras</h3>${res}
     <div class="qgrid">${BRANCHES.map(B=>`<section class="qcol ${B.id}"><div class="qband"><span>${B.ico}</span><div><h4>${B.name}</h4></div></div><p class="muted">${B.desc}</p>
       ${UPGRADES.filter(u=>u.br===B.id).map(U2=>{const l=C.upg[U2.id]||0,max=l>=U2.max,lock=U2.need&&!has(U2.need),c=max?null:U2.cost(l),afford=c&&C.res.e>=c.e&&C.res.m>=c.m;
         return `<div class="qcard${max?' done':''}${lock?' lock':''}"><span class="uico">${UICO[U2.id]}</span><div class="qhd"><b>${U2.name}</b><span class="pips">${Array.from({length:U2.max},(_,k)=>`<i class="${k<l?'on':''}"></i>`).join('')}</span></div>
@@ -1798,7 +2254,7 @@ function openCuartel(){
           ${max?'':lock?`<p class="qlock">🔒 Necesitas liberar ${ZN[U2.need].name}</p>`:`<button class="${afford?'':'alt'}" data-u="${U2.id}" ${afford?'':'disabled'}>Comprar · 💶 ${c.e} · 🧱 ${c.m}</button>`}</div>`}).join('')}</section>`).join('')}</div>
     <div class="btns"><button class="alt" id="qclose">Cerrar</button></div>`,true);
   $('card').querySelectorAll('[data-u]').forEach(b=>b.onclick=()=>buyUpgrade(b.dataset.u));
-  $('qclose').onclick=()=>{closeModal();renderCamp()};
+  $('qclose').onclick=$('qx').onclick=()=>{closeModal();renderCamp()};
 }
 
 /* ---------- pintar el mapa general ---------- */
@@ -1806,7 +2262,7 @@ const UICO={hp:'🩹',mob:'👟',hosp:'🥪',aim:'🎯',crit:'🗡️',cd:'⚡',
 const ZICO={1:'🌳',2:'🏥',3:'🏓',4:'🏢',5:'👑',6:'🥩',7:'🍺',8:'💩',9:'📣',10:'🚲'};
 function resChip(ic,lbl,v,plus,ac){return `<span class="res" style="--ac:${ac}"><span class="ri">${ic}</span><div><small>${lbl}</small><b>${v}${plus!=null?`<i>+${plus}</i>`:''}</b></div></span>`}
 function canBuyAny(){return UPGRADES.some(u=>{const l=C.upg[u.id]||0;if(l>=u.max||(u.need&&!has(u.need)))return false;const c=u.cost(l);return C.res.e>=c.e&&C.res.m>=c.m})}
-function zhead(cls,eb,name,ico){return `<div class="zhead ${cls}"><div class="eyebrow">${eb}</div><h2>${name}</h2>${ico?`<span class="zico">${ico}</span>`:''}</div>`}
+function zhead(cls,eb,name,ico){return `<div class="zhead ${cls}"><div class="eyebrow">${eb}</div><h2>${name}</h2>${ico?`<span class="zico">${ico}</span>`:''}<button class="zup" onclick="toMap()">▲ Mapa</button></div>`}
 function call(cls,ico,ttl,txt){return `<div class="call ${cls}"><span>${ico}</span><div><b>${ttl}</b>${txt}</div></div>`}
 const NSV='http://www.w3.org/2000/svg';
 function renderCamp(){
@@ -1833,7 +2289,7 @@ function renderCamp(){
     if(!own){const h=poly.cloneNode();h.setAttribute('class','hatch');h.setAttribute('fill','url(#hatch)');h.removeAttribute('tabindex');h.removeAttribute('aria-label');g.appendChild(h)}
     const t=(cls,x,y,txt)=>{const e=document.createElementNS(NSV,'text');e.setAttribute('class',cls);e.setAttribute('x',x);e.setAttribute('y',y);e.textContent=txt;g.appendChild(e);return e};
     const words=z.name.split(' '),half=Math.ceil(words.length/2);
-    [words.slice(0,half).join(' '),words.slice(half).join(' ')].forEach((w,i)=>{if(w){const e=t('clbl',z.c[0],z.c[1]+32+i*21,w);if(w.length>11)e.style.fontSize='17px'}});
+    [words.slice(0,half).join(' '),words.slice(half).join(' ')].forEach((w,i)=>{if(w){const e=t('clbl',z.c[0],z.c[1]+32+i*21,w);if(w.length>11)e.classList.add('long')}});
     const b=document.createElementNS(NSV,'circle');b.setAttribute('cx',z.c[0]);b.setAttribute('cy',z.c[1]-6);b.setAttribute('r',21);b.setAttribute('class',own?'cb own':'cb');g.appendChild(b);
     t('cnum',z.c[0],z.c[1]+2,own?defenseOf(z.n):s.g);
     if(z.n===5)t('cicon',z.c[0],z.c[1]-34,'👑');
@@ -1842,7 +2298,7 @@ function renderCamp(){
   });
   {const ok=PICK_START===null&&canFinal();const gg=document.createElementNS(NSV,'g');gg.setAttribute('class','rmark'+(C.sel==='renfe'?' sel':'')+(ok?' att':''));gg.setAttribute('tabindex','0');gg.setAttribute('aria-label','Estación de Orcasitas');
     gg.innerHTML=`<rect x="528" y="6" width="262" height="56" rx="8"/><text x="659" y="30" class="rt1">🚆 ESTACIÓN DE ORCASITAS</text><text x="659" y="51" class="rt2">${ok?'¡Asalto final disponible!':`Asalto final: ${ownedList().length}/${FINAL_NEED} zonas`}</text>`;
-    gg.addEventListener('click',()=>{if(PICK_START===null){C.sel='renfe';renderCamp()}});gg.addEventListener('keydown',e=>{if(e.key==='Enter'&&PICK_START===null){C.sel='renfe';renderCamp()}});g.appendChild(gg)}
+    gg.addEventListener('click',()=>{if(PICK_START===null){C.sel='renfe';renderCamp();toPanel()}});gg.addEventListener('keydown',e=>{if(e.key==='Enter'&&PICK_START===null){C.sel='renfe';renderCamp()}});g.appendChild(gg)}
   // panel de la zona
   const P=$('cinfo');
   if(PICK_START!==null){
@@ -1867,7 +2323,7 @@ function renderCamp(){
     let html=zhead(own?'own':C.sel===5?'boss':'ene',own?'✔ ZONA LIBERADA':C.sel===5?'GUARIDA DEL DICTADOR':'OCUPADA POR YUYU',z.name,ZICO[C.sel])+'<div class="zbody">';
     if(own){html+=`<div class="tiles"><div class="tile g"><small>Defensa</small><b>🛡️ ${defenseOf(C.sel)}</b></div>${threat?`<div class="tile r"><small>Ataque de Yuyu</small><b>⚔️ ${threat.str}</b></div><div class="tile r"><small>Llega en</small><b>${threat.day-C.day} t.</b></div>`:''}</div>
       ${threat?call('r','⚠️','¡Contraataque!',`Yuyu ataca en ${threat.day-C.day} turno${threat.day-C.day===1?'':'s'} con fuerza ${threat.str}. ${defenseOf(C.sel)>=threat.str?'Ahora mismo aguantaríais.':'Ahora mismo la perderíais: refuérzala.'}`):''}
-      ${call('g','🎁','Ventaja',z.bonus)}${FIN[C.sel]?call('b','🚆','En el asalto final',FIN[C.sel]):''}
+      ${C.sel===C.start?call('b','⚑','Vuestro cuartel','Aquí está la base de la resistencia: Yuyu no se atreve a atacarla.'):''}${call('g','🎁','Ventaja',z.bonus)}${FIN[C.sel]?call('b','🚆','En el asalto final',FIN[C.sel]):''}
       ${has(4)||C.upg.barr?'<p class="muted">La defensa incluye los extras de las Torres y las barricadas.</p>':''}
       <div class="btns"><button id="creinf" ${C.res.v>=reinforceCost()&&s.def<12?'':'disabled'}>🧱 Reforzar +2 · ${reinforceCost()} vecinos</button></div>`}
     else if(C.sel===5){
@@ -1906,9 +2362,12 @@ function renderCamp(){
   $('cqb2').onclick=openCuartel;
   $('clog').innerHTML=C.log.map(l=>`<div><span>T${l.d}</span> ${l.t}</div>`).join('');
 }
+const isMob=()=>matchMedia('(max-width:900px)').matches;
+function toPanel(){if(isMob()){const y=$('cinfo').getBoundingClientRect().top+scrollY-8;window.scrollTo({top:y,behavior:RM?'auto':'smooth'})}}
+function toMap(){window.scrollTo({top:0,behavior:RM?'auto':'smooth'})}
 function selZone(n){
-  if(PICK_START!==null){if(n!==5){PICK_START=n;renderCamp()}return}
-  C.sel=n;renderCamp();
+  if(PICK_START!==null){if(n!==5){PICK_START=n;renderCamp();toPanel()}return}
+  C.sel=n;renderCamp();toPanel();
 }
 
 /* ---------- misiones de cada zona ---------- */
@@ -1952,23 +2411,23 @@ function genMission(n){
     const gar=C?C.zones[n].g:4;const foes=[];const used=new Set();
     const take=(pref)=>{const list=cand.filter(([c,r])=>!used.has(c+','+r)&&pref(c,r));const pk=list.length?list[ri(list.length)]:cand.find(([c,r])=>!used.has(c+','+r));used.add(pk.join(','));return pk};
     const pod=c=>c<5?'A':c<9?'B':'C';
-    if(T.boss){const [c,r]=take((c,r)=>r>=3&&r<=5&&c>=5&&c<=8);foes.push({name:'Yuyu',boss:true,hp:14,aim:70,mob:4,c,r,pod:pod(c),look:LOOKS.yuyu,weapon:{name:'Decretazos',min:3,max:5,range:8,fx:'petardo'}});
-      for(let i=0;i<2;i++){const [c2,r2]=take((c,r)=>r<=6);foes.push({name:'Sargento de Yuyu',boss:true,hp:8,aim:65,mob:4,c:c2,r:r2,pod:pod(c2),look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}})}
-      for(let i=0;i<5;i++){const [c2,r2]=take(()=>true);foes.push({name:'Esbirro',hp:4,aim:62,mob:5,c:c2,r:r2,pod:pod(c2),look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}})}}
-    else{let k=clamp(gar,3,8);if(k>=5){const [c,r]=take((c,r)=>r<=3);foes.push({name:'Sargento de Yuyu',boss:true,hp:8,aim:65,mob:4,c,r,pod:pod(c),look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}});k--}
-      for(let i=0;i<k;i++){const [c,r]=take(()=>true);foes.push({name:'Esbirro',hp:4,aim:60,mob:5,c,r,pod:pod(c),look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}})}}
+    if(T.boss){const [c,r]=take((c,r)=>r>=3&&r<=5&&c>=5&&c<=8);foes.push({name:'Yuyu',boss:true,hp:14,aim:65,mob:4,c,r,pod:pod(c),look:LOOKS.yuyu,weapon:{name:'Decretazos',min:3,max:5,range:8,fx:'petardo'}});
+      for(let i=0;i<2;i++){const [c2,r2]=take((c,r)=>r<=6);foes.push({name:'Sargento de Yuyu',boss:true,hp:8,aim:60,mob:4,c:c2,r:r2,pod:pod(c2),look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}})}
+      for(let i=0;i<5;i++){const [c2,r2]=take(()=>true);foes.push({name:'Esbirro',hp:4,aim:57,mob:5,c:c2,r:r2,pod:pod(c2),look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}})}}
+    else{let k=clamp(gar,3,8);if(k>=5){const [c,r]=take((c,r)=>r<=3);foes.push({name:'Sargento de Yuyu',boss:true,hp:8,aim:60,mob:4,c,r,pod:pod(c),look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}});k--}
+      for(let i=0;i<k;i++){const [c,r]=take(()=>true);foes.push({name:'Esbirro',hp:4,aim:55,mob:5,c,r,pod:pod(c),look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}})}}
     const drinks=[];for(let i=0;i<3;i++){let d,tries=0;do{d=[ri(w),8+ri(4)]}while((t2(...d)!=='.'||!seen.has(d.join(',')))&&tries++<50);drinks.push(d)}
     return {id:'z'+n,zone:n,title:T.title,intro:T.intro,log:T.intro,W:w,H:h,GROUND:GROUND2,OBJ:OBJ2,SPAWN:spawn,DRINK_TILES:drinks,FOES:foes,NPCS:[]};
   }
 }
 const PR_FOES=()=>[
- {name:'Sargento de Yuyu',boss:true,hp:8,aim:65,mob:4,c:9,r:3,pod:'A',look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:6,r:1,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:9,r:7,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:8,r:9,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:2,r:7,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:5,r:11,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:14,r:7,pod:'D',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}}
+ {name:'Sargento de Yuyu',boss:true,hp:8,aim:60,mob:4,c:9,r:3,pod:'A',look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:6,r:1,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:9,r:7,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:8,r:9,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:2,r:7,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:5,r:11,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:14,r:7,pod:'D',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}}
 ];
 function pradoDecor(){
   ctx.lineWidth=Math.max(1,TW/28);
@@ -1980,14 +2439,14 @@ function pradoDecor(){
   ctx.fillStyle='rgba(255,255,255,.7)';const k=(performance.now()/600)%1;ctx.beginPath();ctx.ellipse(f.x,f.y-TW*.3-k*TW*.2,TW*.06,TW*.12,0,0,7);ctx.fill();
 }
 const NB_FOES=()=>[
- {name:'Sargento de Yuyu',boss:true,hp:8,aim:65,mob:4,c:12,r:10,pod:'B',look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:11,r:10,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:5,r:6,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:9,r:4,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:3,r:9,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:13,r:4,pod:'D',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:8,r:8,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:16,r:11,pod:'D',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}}
+ {name:'Sargento de Yuyu',boss:true,hp:8,aim:60,mob:4,c:12,r:10,pod:'B',look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:11,r:10,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:5,r:6,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:9,r:4,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:3,r:9,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:13,r:4,pod:'D',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:8,r:8,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:16,r:11,pod:'D',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}}
 ];
 function barrDecor(){
   // carril bici y avenida
@@ -2001,13 +2460,13 @@ function barrDecor(){
   ctx.fillStyle='#c8c2b0';[[12.5,7.7],[13.3,7.5]].forEach(([c,r])=>{const p=iso(c,r);ctx.fillRect(p.x-2,p.y-6,4,6)});
 }
 const TO_FOES=()=>[
- {name:'Sargento de Yuyu',boss:true,hp:8,aim:65,mob:4,c:8,r:5,pod:'A',look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:5,r:9,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:11,r:12,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:7,r:3,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:2,r:8,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:15,r:6,pod:'D',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:14,r:11,pod:'D',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}}
+ {name:'Sargento de Yuyu',boss:true,hp:8,aim:60,mob:4,c:8,r:5,pod:'A',look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:5,r:9,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:11,r:12,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:7,r:3,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:2,r:8,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:15,r:6,pod:'D',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:14,r:11,pod:'D',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}}
 ];
 function torresDecor(){
   ctx.strokeStyle='rgba(255,255,255,.5)';ctx.lineWidth=1;ctx.setLineDash([TW*.18,TW*.18]);
@@ -2022,12 +2481,12 @@ function torresDecor(){
   ctx.fillStyle='rgba(57,255,138,.18)';ctx.beginPath();ctx.ellipse(p.x,p.y-2*s,18*s,5*s,0,0,7);ctx.fill();
 }
 const PZ_FOES=()=>[
- {name:'Sargento de Yuyu',boss:true,hp:8,aim:65,mob:4,c:6,r:8,pod:'A',look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:2,r:8,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:8,r:6,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:15,r:6,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:5,r:2,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:11,r:3,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}}
+ {name:'Sargento de Yuyu',boss:true,hp:8,aim:60,mob:4,c:6,r:8,pod:'A',look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:2,r:8,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:8,r:6,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:15,r:6,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:5,r:2,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:11,r:3,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}}
 ];
 const VEC_SHIRTS=['#2f6fb3','#e0a020','#7b4bb0','#2e8a4a','#d9822b','#c0c4ca'],VEC_HAIR=['short','curly','slick','long','receding','long'],VEC_SKIN=[['#e8bda2','#cb9a7c'],['#c9946a','#ab774f'],['#f0cdb4','#d6ab90'],['#b98260','#9c6a4a'],['#e3b896','#c8987a'],['#f0c8a8','#d6a888']];
 const vecino=i=>({skin:VEC_SKIN[i][0],skinShade:VEC_SKIN[i][1],hair:['#2a201a','#6a4426','#1b1411','#b8b4ad','#3a2a20','#c9a24a'][i],hairHi:'#555',hairStyle:VEC_HAIR[i],brows:'#2a201a',iris:'#3a2414',beard:'none',stache:'rgba(0,0,0,0)',mouth:i%2?'open':'shout',torso:'tee',shirt:VEC_SHIRTS[i],legs:'long',pants:['#2b3a55','#3a3a3a','#4a3a2a','#2d3142','#1c1c1f','#5a4a6a'][i],shoes:'#f2f2f2',shoesAccent:'#999'});
@@ -2050,11 +2509,11 @@ async function mitinTurn(){
     const dmg=rnd(1,2);log(`La gente del mitin acribilla a ${e.name}: ${dmg} de daño.`);hurt(e,dmg);render();await sleep(250);
   }
   // Yuyu manda refuerzos para reventar el mitin
-  const waves=[[1,[[6,1],[7,1],[8,1]]],[3,[[16,7],[17,7],[16,9]]]];
-  for(const [t,pts] of waves){
-    if(S.turn===t&&S.wave<(t===1?1:2)){
+  const waves=[[2,[[6,1],[8,1]]]];
+  for(const [i,[t,pts]] of waves.entries()){
+    if(S.turn>=t&&S.wave===i){
       S.wave++;banner('¡Yuyu manda refuerzos!','y');await sleep(700);
-      pts.forEach(pt=>spawnFoe({name:'Esbirro',hp:4,aim:60,mob:5,pod:'W'+S.wave,look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},pt));
+      pts.forEach(pt=>spawnFoe({name:'Esbirro',hp:4,aim:55,mob:5,pod:'W'+S.wave,look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},pt));
       log('Yuyu manda más esbirros para reventar el mitin de Félix López.');render();await sleep(600);
     }
   }
@@ -2071,13 +2530,13 @@ function pzDecor(){
   ctx.fillStyle='#b02a3e';ctx.font=`bold ${Math.max(9,TW*.2)}px "Bowlby One SC",Impact,sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('¡CUBOS SÍ, YUYU NO!',0,0);ctx.restore();
 }
 const CA_FOES=()=>[
- {name:'Sargento de Yuyu',boss:true,hp:8,aim:65,mob:4,c:2,r:9,pod:'A',look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:1,r:8,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:3,r:11,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:8,r:5,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:10,r:5,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:4,r:1,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:15,r:6,pod:'D',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}}
+ {name:'Sargento de Yuyu',boss:true,hp:8,aim:60,mob:4,c:2,r:9,pod:'A',look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:1,r:8,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:3,r:11,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:8,r:5,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:10,r:5,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:4,r:1,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:15,r:6,pod:'D',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}}
 ];
 const FRIDGE=[1,10];
 async function pozoWave(){
@@ -2126,13 +2585,13 @@ function casaDecor(){
     ctx.fillStyle='#8fd19e';ctx.font=`bold ${Math.max(11,TW*.22)}px sans-serif`;ctx.textAlign='center';ctx.fillText('+2 ❤',p.x,p.y-TW*.7+b)}
 }
 const HO_FOES=()=>[
- {name:'Sargento de Yuyu',boss:true,hp:8,aim:65,mob:4,c:12,r:6,pod:'A',look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:9,r:6,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:13,r:4,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:12,r:11,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:5,r:4,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:3,r:8,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:16,r:10,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}}
+ {name:'Sargento de Yuyu',boss:true,hp:8,aim:60,mob:4,c:12,r:6,pod:'A',look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:9,r:6,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:13,r:4,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:12,r:11,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:5,r:4,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:3,r:8,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:16,r:10,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}}
 ];
 const JUANMA_SAYS=['¿Tú sabes lo que pesa este perro? Sesenta kilos, chaval.','Pues yo en mis tiempos…','Mira, te voy a contar una cosa…','¿Sabes cuánto me costó la ITV?','Esto antes no era así, ¿eh?','Mi cuñado tiene uno igual, pero más grande.'];
 async function juanmaStep(u){
@@ -2164,13 +2623,13 @@ function hospDecor(){
   if(!S.juanmaDone){const jm=U.find(n=>n.id==='juanma');if(jm){ctx.setLineDash([6,5]);ctx.strokeStyle='rgba(244,211,94,.7)';ctx.lineWidth=2;poly([iso(jm.c-2,jm.r-2),iso(jm.c+3,jm.r-2),iso(jm.c+3,jm.r+3),iso(jm.c-2,jm.r+3)],null,'rgba(244,211,94,.7)');ctx.setLineDash([]);ctx.lineWidth=1}}
 }
 const PG_FOES=()=>[
- {name:'Sargento de Yuyu',boss:true,hp:8,aim:65,mob:4,c:3,r:10,pod:'A',look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:2,r:12,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:6,r:11,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:4,r:4,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:10,r:4,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:14,r:5,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:12,r:10,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}}
+ {name:'Sargento de Yuyu',boss:true,hp:8,aim:60,mob:4,c:3,r:10,pod:'A',look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:2,r:12,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:6,r:11,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:4,r:4,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:10,r:4,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:14,r:5,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:12,r:10,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}}
 ];
 function parrDecor(){
   ctx.strokeStyle='rgba(255,255,255,.5)';ctx.lineWidth=1;ctx.setLineDash([TW*.18,TW*.18]);
@@ -2184,13 +2643,13 @@ function parrOver(now){
   ctx.fillStyle='#2a1a10';roundRect(-TW*.95,-TW*.16,TW*1.9,TW*.32,4);ctx.fill();ctx.fillStyle='#f4d35e';ctx.font=`bold ${Math.max(8,TW*.17)}px "Bowlby One SC",Impact,sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('PARRILLA GAUCHA',0,1);ctx.restore();
 }
 const DC_FOES=()=>[
- {name:'Sargento de Yuyu',boss:true,hp:8,aim:65,mob:4,c:8,r:3,pod:'A',look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:6,r:7,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:14,r:4,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:15,r:11,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:6,r:10,pod:'D',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:10,r:6,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
- {name:'Esbirro',hp:4,aim:60,mob:5,c:2,r:7,pod:'D',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}}
+ {name:'Sargento de Yuyu',boss:true,hp:8,aim:60,mob:4,c:8,r:3,pod:'A',look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:6,r:7,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:14,r:4,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:15,r:11,pod:'C',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:6,r:10,pod:'D',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:10,r:6,pod:'B',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},
+ {name:'Esbirro',hp:4,aim:55,mob:5,c:2,r:7,pod:'D',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}}
 ];
 const DANILO_SAYS=['¿Tú vienes mucho por el Decathlon?','Qué brazos, ¿no?','¿Me ayudas a elegir unas zapatillas?','Oye, ¿y tú de qué signo eres?','Esa camiseta roja te queda genial.'];
 async function decaStep(u){
@@ -2252,14 +2711,14 @@ function yuyuDecor(){
 }
 function yuyuMission(kind){
   const sab=C.sab||{};const M=(x)=>({...x,look:x.boss?(x.name==='Yuyu'?LOOKS.yuyu:SARGE):MINION});
-  const E=(c,r,pod)=>M({name:'Esbirro',hp:4,aim:62,mob:5,c,r,pod,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}});
-  const SG=(c,r,pod)=>M({name:'Sargento de Yuyu',boss:true,hp:8,aim:65,mob:4,c,r,pod,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}});
+  const E=(c,r,pod)=>M({name:'Esbirro',hp:4,aim:57,mob:5,c,r,pod,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}});
+  const SG=(c,r,pod)=>M({name:'Sargento de Yuyu',boss:true,hp:8,aim:60,mob:4,c,r,pod,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}});
   const base={zone:5,W:18,H:16,GROUND:YU_GROUND,OBJ:YU_OBJ,SPAWN:[[7,14],[8,14],[9,14],[10,14]],DRINK_TILES:[[2,9],[14,9],[6,4]],decor:yuyuDecor};
   if(kind==='raid')return {...base,id:'yuyuraid',raid:true,objs:YU_OBJS.filter(o=>!sab[o.k]),title:'Incursión en la Casa de Yuyu',
     log:'El escuadrón se cuela por la puerta de la Casa de Yuyu. Hay guardias por todas partes.',
     intro:'Os coláis en la casa del dictador para debilitarlo antes del asalto final. Está más vigilada que nunca. Hay tres sabotajes posibles, marcados en amarillo: el cuadro eléctrico de la cocina (apagón por Cortilandia), el buzón de la entrada (lluvia de cartas de moroso) y el móvil de Yuyu en la mesilla del dormitorio (llamada a Irene). Pon a alguien al lado y pulsa el botón. Lo que sabotees se queda hecho aunque te retires. Si lo haces todo, salís corriendo con la misión cumplida.',
-    FOES:[SG(13,4,'A'),SG(8,7,'B'),E(3,3,'C'),E(6,3,'C'),E(12,2,'A'),E(15,12,'D'),E(2,12,'E'),E(14,7,'B'),E(9,10,'F')],NPCS:[]};
-  let foes=[M({name:'Yuyu',boss:true,hp:sab.irene?10:14,aim:70,mob:4,c:14,r:3,pod:'A',weapon:{name:'Decretazos',min:3,max:5,range:8,fx:'petardo'}}),SG(8,7,'B'),SG(13,7,'B'),E(3,3,'C'),E(15,12,'D'),E(2,12,'E'),E(14,5,'A'),E(6,10,'F')];
+    FOES:[SG(13,4,'A'),E(3,3,'C'),E(12,2,'A'),E(15,12,'D'),E(14,7,'B'),E(9,10,'F')],NPCS:[]};
+  let foes=[M({name:'Yuyu',boss:true,hp:sab.irene?10:14,aim:65,mob:4,c:14,r:3,pod:'A',weapon:{name:'Decretazos',min:3,max:5,range:8,fx:'petardo'}}),SG(8,7,'B'),SG(13,7,'B'),E(3,3,'C'),E(15,12,'D'),E(2,12,'E'),E(14,5,'A'),E(6,10,'F')];
   if(sab.cartas)foes=foes.slice(0,6);
   const extra=[sab.luz?'La casa está a oscuras: solo veis lo que tenéis cerca, y los esbirros también.':'',sab.cartas?'Con el buzón petado, los esbirros no se avisan entre ellos y han venido 2 menos.':'',sab.irene?'Irene ha vuelto de Cullera y está en el despacho echándole la bronca a Yuyu.':''].filter(Boolean).join(' ');
   return {...base,id:'yuyufinal',title:'Asalto final: la Casa de Yuyu',dark:!!sab.luz,noComms:!!sab.cartas,irene:!!sab.irene,objs:[],
@@ -2279,6 +2738,9 @@ async function renfeStart(){
   msgs.forEach(m=>log(m));if(msgs.length)banner('¡El barrio está con vosotros!','p');render();checkEnd();
 }
 async function renfeEnemyEnd(){
+  if(S.turn===3&&!S.megafonia&&!MISSION.noComms){S.megafonia=true;banner('¡Yuyu llama a su guardia!','y');await sleep(700);
+    [[2,1],[16,1]].forEach(pt=>spawnFoe({name:'Esbirro',hp:4,aim:57,mob:5,pod:'G',look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}},pt));
+    log('Yuyu llama a su guardia por la megafonía de la estación: llegan 2 esbirros más.');render();await sleep(500)}
   if(has(6)&&S.turn===2){alive('p').forEach(u=>{const h=Math.min(3,u.max-u.hp);u.hp+=h;floatText(u,'+'+h,'#8fd19e')});log('Llegan los bocatas de la Parrilla Gaucha: todo el escuadrón se cura.');render();await sleep(600)}
   if(has(9))await crowdTomatoes();
 }
@@ -2304,10 +2766,10 @@ function renfeOver(now){
   ctx.fillStyle='#c4202c';roundRect(-TW*1.3,-TW*.17,TW*2.6,TW*.34,4);ctx.fill();ctx.fillStyle='#fff';ctx.font=`bold ${Math.max(8,TW*.19)}px "Bowlby One SC",Impact,sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('CERCANÍAS · ORCASITAS',0,1);ctx.restore();
 }
 function renfeMission(){
-  const sab=C.sab||{};const SG=(c,r,pod)=>({name:'Sargento de Yuyu',boss:true,hp:8,aim:65,mob:4,c,r,pod,look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}});
-  const E=(c,r,pod)=>({name:'Esbirro',hp:4,aim:62,mob:5,c,r,pod,look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}});
-  let foes=[{name:'Yuyu',boss:true,hp:sab.irene?10:14,aim:70,mob:4,c:13,r:2,pod:'A',look:LOOKS.yuyu,weapon:{name:'Decretazos',min:3,max:5,range:8,fx:'petardo'}},
-    SG(6,2,'A'),SG(14,7,'B'),E(2,2,'A'),E(11,5,'B'),E(3,7,'C'),E(9,7,'C'),E(13,10,'D'),E(5,13,'E')];
+  const sab=C.sab||{};const SG=(c,r,pod)=>({name:'Sargento de Yuyu',boss:true,hp:8,aim:60,mob:4,c,r,pod,look:SARGE,weapon:{name:'Petardos',min:3,max:4,range:7,fx:'petardo'}});
+  const E=(c,r,pod)=>({name:'Esbirro',hp:4,aim:57,mob:5,c,r,pod,look:MINION,weapon:{name:'Tirachinas',min:2,max:3,range:7,fx:'piedra'}});
+  let foes=[{name:'Yuyu',boss:true,hp:sab.irene?13:18,aim:65,mob:4,c:13,r:2,pod:'A',look:LOOKS.yuyu,weapon:{name:'Decretazos',min:3,max:5,range:8,fx:'petardo'}},
+    SG(6,2,'A'),SG(14,7,'B'),SG(3,5,'C'),E(2,2,'A'),E(11,5,'B'),E(3,7,'C'),E(9,7,'C'),E(13,10,'D'),E(5,9,'E'),E(16,4,'A'),E(8,4,'B')];
   let cut=(sab.cartas?2:0)+(has(7)?2:0);while(cut-->0){let k=-1;foes.forEach((f,i)=>{if(!f.boss)k=i});if(k<0)break;foes.splice(k,1)}
   const npcs=[];
   if(sab.irene)npcs.push({id:'irene',name:'Irene',look:'irene',c:16,r:2,face:-1});
@@ -2318,7 +2780,7 @@ function renfeMission(){
   return {id:'renfe',zone:'renfe',title:'Asalto final: Estación de Orcasitas',W:18,H:16,GROUND:RF_GROUND,OBJ:RF_OBJ,SPAWN:[[8,15],[9,15],[10,15],[11,15]],DRINK_TILES:[[1,13],[12,11],[16,3]],
     decor:renfeDecor,over:renfeOver,onStart:renfeStart,onEnemyEnd:renfeEnemyEnd,dark:!!sab.luz,noComms:!!sab.cartas,irene:!!sab.irene,objs:[],
     log:'Empieza el asalto final. Yuyu espera en el andén con su guardia, junto al Cercanías.',
-    intro:'Yuyu se ha atrincherado en la estación de Renfe de Orcasitas para escapar en el Cercanías. Está en el andén del fondo, al otro lado de las vías, con dos sargentos y sus esbirros. Cruzad el vestíbulo, pasad los tornos y las vías, y acabad con él. Si cae, Orcasitas es libre. '+extra,
+    intro:'Yuyu se ha atrincherado en la estación de Renfe de Orcasitas para escapar en el Cercanías. Está en el andén del fondo, al otro lado de las vías, con tres sargentos y sus esbirros. Cruzad el vestíbulo, pasad los tornos y las vías, y acabad con él. Si cae, Orcasitas es libre. '+extra,
     FOES:foes,NPCS:npcs};
 }
 function missionFor(n,kind){
@@ -2343,7 +2805,7 @@ function missionFor(n,kind){
     log:'El escuadrón entra por la calle Unidad. Los esbirros vigilan los Jardines de Orcasitas.',
     intro:'Los esbirros han okupado la casa de Jotechno, junto a los Jardines de Orcasitas y el Centro de Mayores. En el cruce de caminos hay una lona azul que tapa el pozo de mierda: si llevas a Jose, puede tirar de ella cuando haya esbirros encima. En el parque infantil está la nevera de Jotechno con las croquetas de su madre: quien llegue gana +2 de vida máxima, pero el sargento la vigila de cerca.',
     W:18,H:16,GROUND:CA_GROUND,OBJ:CA_OBJ,SPAWN:[[8,14],[9,14],[10,14],[11,14]],DRINK_TILES:[[12,11],[4,5],[14,2]],FOES:CA_FOES(),NPCS:[]};
-  if(n===9)return {id:'pedorretazone',zone:9,title:'Liberar Pedorretazone',decor:pzDecor,onEnemyEnd:mitinTurn,pending:()=>S.wave<2,
+  if(n===9)return {id:'pedorretazone',zone:9,title:'Liberar Pedorretazone',decor:pzDecor,onEnemyEnd:mitinTurn,pending:()=>S.wave<1,
     log:'Félix López da un mitin en la Plaza de la Asociación. Los esbirros de Yuyu rodean la plaza.',
     intro:'En la Plaza de la Asociación, junto al Centro Cultural de la Meseta, Félix López está dando un mitin sobre los cubos de basura y las cosas que hace Yuyu. A Yuyu no le gusta nada y manda esbirros para reventarlo, y seguirá mandando más durante la misión. La gente del mitin está con vosotros: los esbirros que se acerquen a la multitud se llevarán una lluvia de tomates.',
     W:18,H:16,GROUND:PZ_GROUND,OBJ:PZ_OBJ,SPAWN:[[5,15],[6,15],[7,15],[8,15]],DRINK_TILES:[[3,13],[9,12],[16,11]],FOES:PZ_FOES(),
@@ -2359,31 +2821,54 @@ function missionFor(n,kind){
     intro:'Yuyu ha puesto a sus esbirros a entrenar en las barritas, entre los bloques de pisos junto a la Avenida de los Poblados. En un sillón abandonado en la calle están Wilson y Harold, a su rollo y con sus latas. Si llegas a su lado, les tiran latas de cerveza a los esbirros, y dos de ellos acabarán llevándoselos detenidos: dos esbirros menos para vosotros.',
     W:18,H:16,GROUND:NB_GROUND,OBJ:NB_OBJ,SPAWN:[[5,15],[6,15],[7,15],[8,15]],DRINK_TILES:[[2,12],[8,6],[14,10]],FOES:NB_FOES(),
     NPCS:[{id:'wilson',name:'Wilson',look:'wilson',c:12,r:7,face:1},{id:'harold',name:'Harold',look:'harold',c:13,r:7,face:-1}]};
-  if(n===1)return {id:'pradolongo',zone:1,title:'Liberar el Parque de Pradolongo',safu:!(C.allies||[]).includes('safu'),decor:pradoDecor,
+  if(n===1)return {id:'pradolongo',zone:1,title:'Liberar el Parque de Pradolongo',hd:true,pigeons:[{c:5,r:4},{c:6,r:4},{c:12,r:12},{c:3,r:11}],safu:!(C.allies||[]).includes('safu'),decor:pradoDecor,
     log:'El escuadrón cruza la Avenida de los Poblados. En el parque, los esbirros vigilan la fuente, las pistas y el jardín.',
     intro:'Los esbirros de Yuyu han tomado el Parque de Pradolongo: la fuente circular, las pistas azules y el jardín de setos. En un banco de la zona de tierra está Safu dándose el lote con su ligue, a lo suyo. Si llegas a su lado, montará un numerito tan exagerado que los esbirros no podrán dejar de mirar, y os dejarán pasar.',
     W:18,H:16,GROUND:PR_GROUND,OBJ:PR_OBJ,SPAWN:[[6,15],[7,15],[8,15],[9,15]],DRINK_TILES:[[3,10],[13,6],[7,4]],FOES:PR_FOES(),
     NPCS:(C.allies||[]).includes('safu')?[{id:'chica',name:'Su ligue',look:'chica',c:14,r:4,face:-1}]:[{id:'safu',name:'Safu',look:'safu',c:13,r:4,face:1},{id:'chica',name:'Su ligue',look:'chica',c:14,r:4,face:-1}]};
   if(n===3)return {id:'pickleball',zone:3,title:'Liberar el Pickleball',log:'El escuadrón llega al final de la calle Gainza. Los esbirros de Yuyu vigilan la pista.',
-    intro:'Yuyu ha requisado la pista de pickleball del final de la calle Gainza. Maetin y dos colegas suyos del Decathlon siguen jugando dentro como si nada, pero un sargento y seis esbirros vigilan la pista. Si llevas a Dani, puede liarles con una partida de pickleball para que bajen la guardia.',
+    intro:'Yuyu ha requisado la pista de pickleball del final de la calle Gainza. Maetin y dos colegas suyos del Decathlon siguen jugando dentro como si nada, pero los esbirros de Yuyu, con su sargento, vigilan la pista. Si llevas a Dani, puede liarles con una partida de pickleball para que bajen la guardia.',
     W:18,H:16,GROUND:PK_GROUND,OBJ:PK_OBJ,SPAWN:[[11,15],[12,15],[13,15],[14,15]],DRINK_TILES:[[11,9],[6,8],[14,2]],FOES:PK_FOES,NPCS:(C.allies||[]).includes('maetin')?PK_NPCS.filter(n=>n.id!=='n0'):PK_NPCS};
   return genMission(n);
 }
 function loadMission(m){MISSION=m;W=m.W;H=m.H;GROUND=m.GROUND;OBJ=[...m.OBJ];SPAWN=m.SPAWN;DRINK_TILES=m.DRINK_TILES;FOES=m.FOES;NPCS=m.NPCS}
-function show(v){VIEW=v;$('camp').hidden=v!=='camp';$('mis').hidden=v!=='mis';$('camctl').hidden=v!=='mis'}
+function show(v){VIEW=v;if(v==='camp')musPlay('mapa');if(v==='home')musPlay('inicio');document.body.classList.toggle('inhome',v==='home');$('home').hidden=v!=='home';if(v!=='mis'&&$('coach'))$('coach').hidden=true;document.body.classList.toggle('inmis',v==='mis');window.scrollTo(0,0);$('camp').hidden=v!=='camp';$('mis').hidden=v!=='mis';$('camctl').hidden=v!=='mis'}
 function turnCam(d){ROT=(ROT+d+4)%4;layout();lastSel=null;render()}
 $('rotl').onclick=()=>turnCam(-1);$('rotr').onclick=()=>turnCam(1);
 document.addEventListener('keydown',e=>{if(VIEW!=='mis'||!$('modal').hidden)return;if(e.key==='q'||e.key==='Q')turnCam(-1);if(e.key==='e'||e.key==='E')turnCam(1)});
+/* el número de esbirros de la misión es la guarnición que se ve en el mapa */
+function scaleFoes(m,g){
+  if(!m.FOES||m.raid)return m;
+  const boss=m.FOES.find(f=>f.boss),regs=m.FOES.filter(f=>!f.boss);const total=Math.max(2,g);const useBoss=boss&&total>=5;const need=total-(useBoss?1:0);
+  const pods={};regs.forEach(f=>{(pods[f.pod]=pods[f.pod]||[]).push(f)});const keys=Object.keys(pods);const out=[];let i=0;
+  while(out.length<Math.min(need,regs.length)){const k=keys[i++%keys.length];if(pods[k].length)out.push(pods[k].shift())}
+  const taken=new Set([...m.FOES,...(m.NPCS||[])].map(f=>f.c+','+f.r).concat((m.SPAWN||[]).map(s=>s.join(','))));
+  let extra=need-out.length,tries=0;
+  while(extra>0&&tries++<400){const b=regs[Math.floor(Math.random()*regs.length)];const c=b.c+Math.floor(Math.random()*5)-2,r=b.r+Math.floor(Math.random()*5)-2;
+    if(c<0||r<0||c>=m.W||r>=m.H||m.OBJ[r][c]!=='.'||taken.has(c+','+r)||r>=m.H-3)continue;taken.add(c+','+r);out.push({...b,c,r});extra--}
+  m.FOES=(useBoss?[boss]:[]).concat(out);return m;
+}
+/* ningún esbirro empieza a menos de 7 casillas del escuadrón: así nadie te ve en el primer turno */
+function safeStart(m,minD=7){
+  const sp=m.SPAWN||[];if(!sp.length)return m;const dS=(c,r)=>Math.min(...sp.map(s=>Math.hypot(s[0]-c,s[1]-r)));
+  const taken=new Set([...m.FOES,...(m.NPCS||[])].map(f=>f.c+','+f.r));
+  m.FOES.forEach(f=>{if(dS(f.c,f.r)>=minD)return;let best=null;
+    for(let r=0;r<m.H;r++)for(let c=0;c<m.W;c++){if(m.OBJ[r][c]!=='.'||taken.has(c+','+r)||dS(c,r)<minD)continue;const d=Math.hypot(c-f.c,r-f.r);if(!best||d<best.d)best={c,r,d}}
+    if(best){taken.delete(f.c+','+f.r);f.c=best.c;f.r=best.r;taken.add(best.c+','+best.r)}});
+  return m;
+}
 function launchMission(n,ids,kind){
-  const m=missionFor(n,kind);loadMission(m);
+  const m=missionFor(n,kind);if(typeof n==='number'&&n!==5&&kind!=='raid'&&!m.FOES_FIXED)scaleFoes(m,C.zones[n].g);safeStart(m);loadMission(m);
   UPG={hp:C.upg.hp+(n==='renfe'&&has(2)?2:0),aim:C.upg.aim*5+(has(7)?5:0)+(n==='renfe'&&has(8)?10:0),mob:C.upg.mob,cd:C.upg.cd,crit:(C.upg.crit||0)*20,ranks:Object.fromEntries(ROSTER.map(r=>[r.id,rankOf(r.id)]))};
   const al=(C.allies||[]).filter(a=>!C.hosp[a]);ids=[...ids,...al];
-  C.cur={z:n,ids,kind};show('mis');layout();newGame(ids);
+  C.cur={z:n,ids,kind};show('mis');musPlay(n==='renfe'?'final':kind==='raid'?'yuyu':ZONE_TRACK[n]||'mapa');layout();newGame(ids);
   window.scrollTo({top:0});
 }
 function endMission(won,retreat){
+  musJingle(won&&!retreat?'victoria':'derrota',null);
+  if(MISSION.tut){tutEnd(won&&!retreat);return}
   const n=C.cur.z,ids=C.cur.ids,z=ZN[n]||{name:'la estación'};
-  const ko=(retreat?U.filter(u=>u.side==='p'&&u.alive).map(u=>u.id).concat(U.filter(u=>u.side==='p'&&!u.alive&&!u.gone).map(u=>u.id)):U.filter(u=>u.side==='p'&&!u.alive&&!u.gone).map(u=>u.id)).filter(id=>ROSTER.some(r=>r.id===id));
+  const ko=(U.filter(u=>u.side==='p'&&!u.alive&&!u.gone).map(u=>u.id)).filter(id=>ROSTER.some(r=>r.id===id));
   const days=hospTurns();ko.forEach(id=>C.hosp[id]=days);
   C.xp=C.xp||{};const ups=[];
   ids.filter(id=>ROSTER.some(r=>r.id===id)).forEach(id=>{const before=rankOf(id);C.xp[id]=(C.xp[id]||0)+(won?2:1)+(ko.includes(id)?0:1);const after=rankOf(id);if(after>before)ups.push(`${ROSTER.find(r=>r.id===id).name} sube a <b>${RANKS[after][0]}</b> (+1 de vida y +5 de puntería).`)});
@@ -2423,7 +2908,7 @@ function endMission(won,retreat){
       <p>Recompensa: +${rew.v} vecinos, +${rew.e} euros, +${rew.m} de material y +1 de moral.</p><p class="muted">Ventaja nueva: ${z.bonus}</p>
       ${ko.length?`<p class="muted">Al hospital ${days} turno${days===1?'':'s'}: ${ko.map(id=>ROSTER.find(r=>r.id===id).name).join(', ')}.</p>`:'<p class="muted">Sin bajas.</p>'}${newAlly?`<p><b>${ROSTER.find(r=>r.id===newAlly).name} se une al grupo:</b> a partir de ahora viene siempre con el escuadrón, además de los 4 que elijas.</p>`:''}`;
   }else{
-    C.zones[n].g=Math.min(9,C.zones[n].g+1);C.moral=Math.max(0,C.moral-1);clog(`${retreat?'Retirada':'Derrota'} en ${z.name}.`);
+    C.zones[n].g=Math.min(8,C.zones[n].g+1);C.moral=Math.max(0,C.moral-1);clog(`${retreat?'Retirada':'Derrota'} en ${z.name}.`);
     html=`<div class="eyebrow" style="color:#f07a8c">${retreat?'RETIRADA':'MISIÓN FALLIDA'}</div><h3>${z.name} sigue en manos de Yuyu</h3>
       <p>La moral baja 1 y Yuyu refuerza la zona.</p><p class="muted">Al hospital ${days} turno${days===1?'':'s'}: ${ko.map(id=>ROSTER.find(r=>r.id===id).name).join(', ')}.</p>`;
   }
@@ -2433,7 +2918,7 @@ function endMission(won,retreat){
 }
 function askRetreat(){
   if(S.over||S.busy)return;
-  openModal(`<h3>¿Retirarse?</h3><p>El escuadrón vuelve al cuartel, pero todos acaban en el hospital y la moral baja.</p>
+  openModal(`<h3>¿Retirarse?</h3><p>El escuadrón vuelve al cuartel. Los que hayan caído se quedan en el hospital, la zona sigue en manos de Yuyu y la moral baja 1.</p>
     <div class="btns"><button class="red" id="ry">Retirarse</button><button class="alt" id="rn">Seguir luchando</button></div>`);
   $('ry').onclick=()=>{closeModal();S.over=true;endMission(false,true)};$('rn').onclick=closeModal;
 }
@@ -2481,27 +2966,187 @@ function chooseSquad(n,kind){
 }
 const MISSION_TITLE=n=>n==='renfe'?'Asalto final: Estación de Orcasitas':n===3?'Liberar el Pickleball':n===5?'Incursión en la Casa de Yuyu':THEMES[n].title;
 
+/* ---------- tutorial: la academia de ligoteo de Safu ---------- */
+const TUT_GROUND=["gggggggggggg","gggggggggggg","ggggeeeegggg","ggggeggegggg","ggggeggegggg","eeeeeeeeeeee","gggggggggggg","gggggggggggg","pppppppppppp","pppppppppppp"];
+const TUT_OBJ=["T....T....T.","..........L.","............","T..........T","............","............","...H..B.....","T.........K.","..L......L..","............"];
+const TUT_FOES=()=>[
+ {name:'Esbirro ligón',hp:3,aim:28,mob:4,c:2,r:2,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:1,max:1,range:7,fx:'piedra'}},
+ {name:'Esbirro ligón',hp:3,aim:28,mob:4,c:9,r:2,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:1,max:1,range:7,fx:'piedra'}},
+ {name:'Esbirro ligón',hp:3,aim:28,mob:4,c:7,r:4,pod:'A',look:MINION,weapon:{name:'Tirachinas',min:1,max:1,range:7,fx:'piedra'}}];
+const TSP={safu:{n:'Safu',c:'#ff9ad5'},adri:{n:'Adri (Gorrón)',c:'#9ec5ff'}};
+const TUT_STEPS=[
+ {l:[['safu','¡Bienvenido a la academia de Safu! Hoy aprendes a zurrar a los esbirros de Yuyu… y de paso, a ligar como los profesionales.'],['adri','Rapidito, Safu, que tengo tres citas esta tarde y una me acaba de escribir «¿dónde estás, guapo?».']]},
+ {l:[['safu','Esto va por turnos. Cada uno tiene 2 acciones: los puntitos azules de su ficha. Moverse gasta 1; atacar o usar un poder gasta todo lo que te quede.'],['adri','Como en una cita: te acercas con estilo y la rematas. Aunque yo nunca necesito la segunda acción.']]},
+ {mark:[3,7],wait:'Mueve a Adri a la casilla marcada',until:(e,d)=>e==='move'&&d.id==='adri',
+  l:[['safu','Adri ya está elegido: lleva el aro amarillo. Toca la casilla que brilla, detrás del seto. Las azules son andando; las amarillas, corriendo (gastas las dos acciones).'],['adri','Detrás del seto, como cuando me escondo de la del martes porque ha aparecido la del jueves.']]},
+ {l:[['safu','Eso es cobertura. Los escuditos del suelo te lo chivan: medio escudo es cobertura baja y escudo entero, cobertura alta. Detrás de algo te aciertan mucho menos.'],['adri','A mí no me acierta nadie… salvo Cupido. Ese no falla una conmigo.']]},
+ {mark:[6,7],wait:'Lleva a Safu a la casilla marcada',until:(e,d)=>e==='move'&&d.id==='safu',
+  l:[['safu','Ahora yo. Toca mi ficha abajo, o a mí en el mapa, y llévame detrás de la caseta, a la casilla marcada.'],['adri','Ponte con buena luz, Safu, que este mes te veo flojito.'],['safu','¿Flojito? Tengo el móvil que no para de vibrar, chaval.']],
+  after:()=>{MISSION.noAutoWake=false;wake('A');checkActivation().then(()=>render())}},
+ {wait:'Ataca a un esbirro con Adri',until:e=>e==='attack',
+  l:[['adri','¡Esbirros de Yuyu! Mira cómo miran el móvil… seguro que alguno es el ex de alguna de mis matches.'],['safu','Toca a Adri y luego a un esbirro: el número amarillo es la probabilidad de acertar. Después pulsa «Tirar lata».']]},
+ {l:[['safu','Si pillas a uno por un lado donde no le tapa nada, sale «FLANCO»: aciertas más y puedes hacer crítico. Como en el bar: nunca se entra de frente.'],['adri','Yo entro por el lateral: sonrisa, una frase y número apuntado. Flanco y crítico, siempre.']]},
+ {wait:'Usa Compadreo con Safu',until:e=>e==='power',
+  l:[['safu','Mira y aprende. Mi poder es Compadreo: me camelo a un esbirro y se pasa a nuestro bando. Elígeme, pulsa el botón azul «Compadreo» y toca al esbirro que tengo cerca.'],['adri','Eso lo hago yo con las camareras y me sale el chupito gratis.'],['safu','Ya, pero yo lo hago con un esbirro de Yuyu. Nivel experto.']]},
+ {wait:'Pulsa «Fin del turno»',until:e=>e==='endturn',
+  l:[['safu','Cuando no te queden acciones, pulsa «Fin del turno». «Vigilancia» deja a alguien atento: si un esbirro se mueve a la vista, le dispara.'],['adri','Vigilancia es lo que hacen mis ex con mis historias de Instagram.']]},
+ {wait:'Turno de los esbirros…',until:e=>e==='turn',
+  l:[['adri','Vienen a por nosotros. Normal, somos el centro de atención.'],['safu','Tranquilo, apuntan fatal. Ni con un superlike le darían a algo.']]},
+ {last:true,l:[['safu','Las barritas de encima son la vida: si llega a cero, ese personaje se va al hospital unos turnos. Ahora, acaba con ellos.'],['adri','Prueba mis Chicas de Tinder: vienen todas por mí y los esbirros se van detrás de ellas. O mi Escándalo público, que cuando la lío, la lío.']]}
+];
+let TUT=null,TUTBACK=null;
+function tutMission(){return {id:'tutorial',tut:true,title:'Tutorial: academia de ligoteo',noAutoWake:true,noScramble:true,
+  log:'Safu y Adri quedan en el parque para una clase muy especial.',W:12,H:10,GROUND:TUT_GROUND,OBJ:TUT_OBJ,SPAWN:[[3,9],[6,9]],DRINK_TILES:[],FOES:TUT_FOES(),NPCS:[]}}
+function startTutorial(){
+  closeModal();TUT={i:0,back:VIEW};const m=tutMission();loadMission(m);
+  UPG={hp:0,aim:0,mob:0,cd:0,crit:0,ranks:{}};show('mis');musPlay('tutorial');layout();newGame(['adri','safu']);window.scrollTo({top:0});
+  tutShow();
+}
+function tutShow(){
+  const st=TUT_STEPS[TUT.i],el=$('coach');if(!st){el.hidden=true;return}
+  MISSION.tutMark=st.mark||null;el.hidden=false;el.classList.remove('min');
+  el.innerHTML=st.l.map(([w,t])=>`<div class="tline" style="--c:${TSP[w].c}"><canvas data-w="${w}"></canvas><div><b>${TSP[w].n}</b><p>${t}</p></div></div>`).join('')+
+    `<div class="tfoot"><span class="tstep">${st.wait?`<span class="twait">👉 ${st.wait}</span>`:`PASO ${TUT.i+1} DE ${TUT_STEPS.length}`}</span><span class="tbtns"><button class="alt" id="tskip">Saltar</button>${st.wait?'<button class="alt" id="tmin">Ocultar</button>':`<button id="tnext">${st.last?'¡A por ellos!':'Siguiente ▶'}</button>`}</span></div>`;
+  el.querySelectorAll('canvas[data-w]').forEach(cv=>portrait(cv,LOOKS[cv.dataset.w]));
+  if($('tnext'))$('tnext').onclick=()=>{if(st.last){el.hidden=true;MISSION.tutMark=null;TUT.i=TUT_STEPS.length;return}tutAdvance(TUT.i)};
+  $('tskip').onclick=tutSkip;
+  if($('tmin'))$('tmin').onclick=()=>{el.classList.toggle('min');$('tmin').textContent=el.classList.contains('min')?'Ver':'Ocultar'};
+}
+function tutSkip(){
+  if(!TUT)return;$('coach').hidden=true;MISSION.tutMark=null;S.over=true;TUTBACK=TUT.back;TUT=null;
+  try{localStorage.setItem('reconquista_tut','1')}catch(e){}
+  closeModal();if(TUTBACK==='home'||!C){showHome();return}show('camp');renderCamp();
+}
+function tutAdvance(i){const st=TUT_STEPS[i];TUT.i=i+1;if(st&&st.after)st.after();tutShow()}
+function tutEvent(ev,d){
+  if(!TUT)return;
+  for(let i=TUT.i;i<TUT_STEPS.length;i++){const st=TUT_STEPS[i];if(st.until&&st.until(ev,d)){for(let k=TUT.i;k<i;k++)if(TUT_STEPS[k].after)TUT_STEPS[k].after();TUT.i=i;tutAdvance(i);return}}
+}
+function tutEnd(won){
+  $('coach').hidden=true;const back=TUT.back;TUT=null;MISSION.tutMark=null;
+  const line=(w,t)=>`<div class="tline" style="--c:${TSP[w].c}"><canvas data-w="${w}"></canvas><div><b>${TSP[w].n}</b><p>${t}</p></div></div>`;
+  const exit=()=>{closeModal();if(back==='home'||!C){showHome();return}show('camp');renderCamp();if(PICK_START!==null)window.scrollTo({top:0})};
+  if(!won){openModal(`<div class="tutend"><div class="eyebrow" style="color:#f07a8c">CALABAZAS</div><h3>Hasta los esbirros te han dado calabazas</h3>
+    ${line('safu','Calabazas. Tranquilo, a Adri también le pasó una vez… en 2014.')}${line('adri','Aquello fue un empate técnico. ¿Otra cita?')}<div class="btns"><button id="trep">Repetir el tutorial</button><button class="alt" id="tout">Salir</button></div></div>`);
+    $('trep').onclick=startTutorial;$('tout').onclick=exit;$('card').querySelectorAll('canvas[data-w]').forEach(cv=>portrait(cv,LOOKS[cv.dataset.w]));return}
+  openModal(`<div class="tutend" style="display:grid;gap:10px"><div class="eyebrow">TUTORIAL SUPERADO</div><h3>¡Primera cita superada!</h3>
+    ${line('safu','Ahora, el mapa de Orcasitas. Las zonas rojas son de Yuyu: puedes atacar las que tocan con las tuyas, las del borde dorado.')}
+    ${line('adri','Cada turno ganas vecinos, euros y material. En el Cuartel compras mejoras: botiquín, puntería, zapatillas… Yo ya vengo mejorado de serie.')}
+    ${line('safu','Yuyu contraataca tus zonas: refuérzalas con vecinos. Y a veces saca decretos absurdos: obedeces o te rebelas.')}
+    ${line('adri','Con 5 zonas se desbloquea el asalto final en la estación de Renfe, y cada zona liberada da una ventaja para esa batalla. Como mis citas: a la quinta, la definitiva.')}
+    ${line('safu','Y cuando liberes Pradolongo, me uno al grupo para siempre. Con mi ligue, si me deja.')}
+    <div class="btns"><button class="red" id="tgo">¡A reconquistar Orcasitas!</button></div></div>`,true);
+  $('card').querySelectorAll('canvas[data-w]').forEach(cv=>portrait(cv,LOOKS[cv.dataset.w]));
+  try{localStorage.setItem('reconquista_tut','1')}catch(e){}
+  $('tgo').onclick=exit;
+}
+
+/* ---------- pantalla de inicio ---------- */
+const NEWS_POOL=[
+ ['Yuyu prohíbe el chándal los domingos','«Es por la imagen del barrio», asegura el Líder desde su balcón.'],
+ ['Cierran las pistas de pickleball: solo puede jugar el Líder','Los vecinos de la calle Gainza denuncian que Yuyu pierde y vuelve a sacar.'],
+ ['El Cercanías ya no para en Orcasitas','Fuentes de la estación aseguran que Yuyu lo tiene «reservado por si acaso».'],
+ ['Irene, desde Cullera: «Yo de lo de dictador no sabía nada»','Fuentes cercanas aseguran que ya ha mirado los horarios de vuelta.'],
+ ['La Parrilla Gaucha, obligada a servir solo el menú favorito del Líder','Jambus, en patinete y con la pierna mala, reparte los pedidos igualmente.'],
+ ['Un rubio en bici, visto por Las Torres','La guardia de Yuyu busca a un tal Maetin. El Faliyo dice que no conoce a ningún «colega rubio».'],
+ ['Félix López convoca un mitin por los contenedores','Pedorretazone se llena de vecinos con tomates. Yuyu manda esbirros.'],
+ ['Adri desmiente tener tres citas al día','«Son cuatro», puntualiza el conocido ligón del barrio.'],
+ ['Se busca a un tal Jotechno por tener un pozo sin licencia','Los vecinos piden que, por favor, le ponga una lona.'],
+ ['Wilson y Harold siguen en su sofá de Nuevas Barritas','«Aquí estamos bien», declaran a este periódico, lata en mano.'],
+ ['Juanma le echa una chapa de 40 minutos a un esbirro','El esbirro, según testigos, acabó pidiendo la baja.'],
+ ['Safu, visto en un banco de Pradolongo','Este periódico no puede publicar lo que estaba haciendo.'],
+ ['Pedorreta, detenido por «atentado contra el aire»','Fue puesto en libertad al enseñar un carnet militar.'],
+ ['Danilo, del Decathlon, liga con dos esbirros a la vez','Los esbirros han pedido el traslado al Hospital 12 de Octubre.']
+];
+const PATCH=[['🎓','Tutorial opcional','Safu y Adri te enseñan a jugar en una cita rápida.'],['🎵','Música para todo','Un tema para cada zona, el menú, el tutorial y la batalla final.'],
+ ['🌳','Gráficos nuevos','Suelos con textura, sombras, árboles, fuentes y palomas en todos los mapas.'],['⚖️','Dificultad equilibrada','Probada en cientos de partidas: ya no es un infierno.'],
+ ['📱','Hecho para el móvil','En las misiones, el mapa arriba y los botones siempre a mano.'],['😤','Nuevo poder de Adri','Escándalo público: la lía, vacila y se encara.']];
+function hasSave(){const s=load();return s&&!s.won&&!s.lost?s:null}
+function newsFor(s){
+  const R=mulberry(Math.floor(Date.now()/3600000)),pick=a=>a.splice(Math.floor(R()*a.length),1)[0];const pool=NEWS_POOL.slice();const items=[];
+  if(s){const own=Object.entries(s.zones).filter(([,z])=>z.own==='p').map(([n])=>+n);const st=ZN[s.start];
+    if(own.length>=FINAL_NEED)items.push(['PÁNICO EN EL ANDÉN: la resistencia puede asaltar la estación',`Con ${own.length} zonas liberadas, Yuyu ha pedido que le guarden un asiento en el Cercanías.`]);
+    else if(own.length>1)items.push([`La resistencia ya controla ${own.length} zonas de Orcasitas`,`Desde su cuartel en ${st?st.name:'el barrio'}, la resistencia avanza turno a turno. Yuyu, según su entorno, «está nervioso».`]);
+    else items.push([`La resistencia se atrinchera en ${st?st.name:'el barrio'}`,'Fuentes del barrio hablan de un grupo de vecinos dispuestos a todo. Yuyu se ríe… de momento.']);
+    (s.threats||[]).slice(0,1).forEach(t=>items.push([`Yuyu prepara un ataque contra ${ZN[t.z].name}`,`Llega en ${Math.max(0,t.day-s.day)} turno(s) con fuerza ${t.str}. Se recomienda reforzar.`]));
+    const sab=s.sab||{};if(Object.keys(sab).length)items.push(['Sabotaje en la Casa de Yuyu',Object.keys(sab).map(k=>SABS[k].name).join(', ')+'. El Líder no ha querido hacer declaraciones.']);
+    (s.log||[]).slice(0,2).forEach(l=>items.push([l.t.replace(/\.$/,''),`Turno ${l.d}. Información de la resistencia.`]));}
+  while(items.length<5)items.push(pick(pool));
+  return items.slice(0,5);
+}
+function homeTab(t){$('hnews').hidden=t!=='eco';$('hpatch').hidden=t!=='nov';$('tabEco').classList.toggle('on',t==='eco');$('tabNov').classList.toggle('on',t==='nov')}
+function renderHome(){
+  const s=hasSave(),news=newsFor(s),R=mulberry(Math.floor(Date.now()/86400000));
+  const fecha=new Date().toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  const dec=CAMP_DECREES[Math.floor(R()*CAMP_DECREES.length)];
+  const own=s?Object.values(s.zones).filter(z=>z.own==='p').length:0;
+  $('home').innerHTML=`<div class="hgrid">
+    <div class="hposter"><div class="rays"></div><div class="hframe"><canvas id="yuyuBig"></canvas></div>
+      <div class="hbanner">EL LÍDER SUPREMO<br>OS VIGILA</div><div class="spray">¡ABAJO<br>YUYU!</div><div class="stamp">RESISTENCIA</div></div>
+    <div class="hmain"><div class="eyebrow">DADDYS GAMES PRESENTA</div><h1 class="htitle">La Reconquista<br>de Orcasitas</h1>
+      <p class="htag">Yuyu se ha hecho con el barrio. Monta la resistencia con tu escuadrón, libera Orcasitas zona a zona y échale de la estación de Renfe.</p>
+      <div class="hmenu">
+        ${s?`<button class="red big" id="hcont">▶ Continuar<small>Turno ${s.day} · ${own} zona${own===1?'':'s'} liberada${own===1?'':'s'}</small></button>`:''}
+        <button class="${s?'alt':'red big'}" id="hnew">${s?'Nueva campaña':'▶ Empezar la campaña'}</button>
+        <button class="alt" id="htut">🎓 Tutorial con Safu y Gorrón</button>
+        <div class="hrow"><button class="alt" id="hsq">🧢 Conoce al escuadrón</button><button class="alt" id="hhow">📖 Cómo se juega</button><button class="alt" id="hmus">${MUS.on?'🔊':'🔇'}</button></div>
+      </div></div>
+    <section class="hpaper"><div class="ptabs"><button class="ptab on" id="tabEco">📰 El Eco del Barrio</button><button class="ptab" id="tabNov">🆕 Novedades del juego</button></div>
+      <div id="hnews"><div class="mast"><b>EL ECO DEL BARRIO</b><span>${fecha} · Edición de Orcasitas · ${s?'Gratis':'Censurado por Yuyu'}</span></div>
+        <div class="pcols"><article class="plead"><h3>${news[0][0]}</h3><p>${news[0][1]}</p></article>
+          <aside class="bole"><div class="bhd">BOLETÍN OFICIAL DE YUYU</div><p class="bnum">Decreto nº ${100+Math.floor(R()*800)}</p><h4>${dec.t}</h4><p>${dec.o}</p><p class="bsign">— El Excelentísimo Yuyu</p></aside>
+          ${news.slice(1).map(n=>`<article><h4>${n[0]}</h4><p>${n[1]}</p></article>`).join('')}</div></div>
+      <div id="hpatch" hidden><div class="mast"><b>NOVEDADES</b><span>Lo último en La Reconquista de Orcasitas</span></div><div class="patch">${PATCH.map(([i,t,d])=>`<div class="pitem"><span>${i}</span><div><b>${t}</b><p>${d}</p></div></div>`).join('')}</div></div>
+    </section></div>
+    <div class="ticker"><span class="tlabel">ÚLTIMA HORA</span><div class="tmove"><div class="ttrack">${[...news,...NEWS_POOL.slice(0,4)].map(n=>`<span>● ${n[0]}</span>`).join('')}${[...news,...NEWS_POOL.slice(0,4)].map(n=>`<span>● ${n[0]}</span>`).join('')}</div></div></div>`;
+  bigPortrait($('yuyuBig'),LOOKS.yuyu,1.55);
+  $('tabEco').onclick=()=>homeTab('eco');$('tabNov').onclick=()=>homeTab('nov');
+  if($('hcont'))$('hcont').onclick=()=>{C=load();C.allies=C.allies||[];C.xp=C.xp||{};C.upg={...UPG_DEF,...(C.upg||{})};C.cur=null;PICK_START=null;show('camp');renderCamp()};
+  let arm=false;$('hnew').onclick=()=>{if(s&&!arm){arm=true;$('hnew').textContent='¿Seguro? Se borra la partida guardada';setTimeout(()=>{arm=false;if($('hnew'))$('hnew').textContent='Nueva campaña'},3500);return}startFlow()};
+  $('htut').onclick=startTutorial;$('hsq').onclick=showSquadGallery;$('hhow').onclick=showHowTo;$('hmus').onclick=()=>{musToggle();$('hmus').textContent=MUS.on?'🔊':'🔇'};
+}
+function bigPortrait(cv,L,k){const d=window.devicePixelRatio||1;try{Object.defineProperty(window,'devicePixelRatio',{value:d*k,configurable:true})}catch(e){}
+  portrait(cv,L);try{delete window.devicePixelRatio}catch(e){}cv.style.width=Math.round(150*k)+'px';cv.style.height=Math.round(170*k)+'px'}
+function showHome(){C=null;show('home');renderHome()}
+function showSquadGallery(){
+  const allyTxt={maetin:'Se une al liberar el Pickleball.',safu:'Se une al liberar Pradolongo.'};
+  openModal(`<button class="alt mini qx" id="gx" aria-label="Cerrar">✕</button><div class="eyebrow">LA RESISTENCIA</div><h3>Conoce al escuadrón</h3>
+    <div class="gal">${ROSTER.map(R=>`<div class="gcard" style="--tint:${LOOKS[R.id].shirt}"><canvas data-g="${R.id}"></canvas><div><b>${R.name}</b><span class="pcrole">${R.role}${R.ally?' · '+allyTxt[R.id]:''}</span>
+      <p class="gst">❤️ ${R.hp} · 🎯 ${R.aim} · 👟 ${R.mob} · ${R.weapon.name}</p><p class="gpw">${R.powers.map(p=>`<b>${POWERS[p].name}</b>${POWERS[p].missionZone?' <em>(solo en su zona)</em>':''}`).join(' · ')}</p></div></div>`).join('')}</div>
+    <div class="btns"><button id="gok">Cerrar</button></div>`,true);
+  $('card').querySelectorAll('canvas[data-g]').forEach(cv=>portrait(cv,LOOKS[cv.dataset.g]));$('gok').onclick=$('gx').onclick=closeModal;
+}
+function showHowTo(){
+  openModal(`<button class="alt mini qx" id="hx" aria-label="Cerrar">✕</button><div class="eyebrow">CÓMO SE JUEGA</div><h3>La reconquista en 6 pasos</h3>
+    <ol class="how"><li><b>Elige tu cuartel.</b> Cada zona da una ventaja distinta. Yuyu nunca ataca tu cuartel.</li>
+      <li><b>Ataca zonas vecinas.</b> El número del mapa son los esbirros que hay: cuanto más esperes, más manda Yuyu.</li>
+      <li><b>Combate por turnos.</b> Cada personaje tiene 2 acciones. Ponte a cubierto (escuditos), flanquea y usa los poderes.</li>
+      <li><b>Mejora en el Cuartel.</b> Con euros y material compras botiquines, puntería, zapatillas… Y el escuadrón sube de rango con la experiencia.</li>
+      <li><b>Defiende el barrio.</b> Yuyu contraataca tus zonas: refuérzalas con vecinos. Sus decretos los puedes obedecer o desafiar.</li>
+      <li><b>Asalto final.</b> Con 5 zonas se abre la estación de Renfe. Cada zona liberada y cada sabotaje en la Casa de Yuyu te ayuda.</li></ol>
+    <div class="btns"><button id="hok">Entendido</button><button class="alt" id="htut2">🎓 Mejor, el tutorial</button></div>`);
+  $('hok').onclick=$('hx').onclick=closeModal;$('htut2').onclick=()=>{closeModal();startTutorial()};
+}
+
 /* ---------- arranque ---------- */
 function startFlow(){
   try{localStorage.removeItem(SAVE_KEY)}catch(e){}
-  C={day:1,speed:0,res:{v:0,e:0,m:0},moral:3,zones:Object.fromEntries(ZONES.map(z=>[z.n,{own:'y',g:z.n===5?10:4,def:0}])),hosp:{},upg:{...UPG_DEF},xp:{},threats:[],log:[],stopV:0};
+  C={day:1,speed:0,res:{v:0,e:0,m:0},moral:3,zones:Object.fromEntries(ZONES.map(z=>[z.n,{own:'y',g:z.n===5?6:4,def:0}])),hosp:{},upg:{...UPG_DEF},xp:{},threats:[],log:[],stopV:0};
   PICK_START=0;show('camp');renderCamp();
   openModal(`<div class="poster-in"><div class="eyebrow" style="color:#b02a3e">ÚLTIMA HORA DESDE ORCASITAS</div>
     <h3 style="color:#6e1424">Yuyu se ha hecho con el barrio</h3>
     <p>Ha tomado las Torres, el Decathlon, el Pickleball y hasta la Parrilla Gaucha. Desde su casa dicta decretos absurdos y sus esbirros vigilan cada calle.</p>
     <p>La resistencia se organiza: elige dónde montar el cuartel, libera el barrio zona a zona, mejora al escuadrón y aguanta los contraataques. Cuando controléis 5 zonas, podréis asaltar la estación de Renfe de Orcasitas, donde Yuyu se ha atrincherado. Cada zona liberada os dará una ventaja en esa batalla final, y saboteando su casa le dejaréis más débil.</p>
-    <div class="btns"><button class="red" id="st">Elegir el cuartel</button></div></div>`,false,'poster');
-  $('st').onclick=closeModal;
+    <div class="opt tutq"><b>¿Primera vez?</b> Safu y Adri te enseñan a jugar en una cita rápida de 3 minutos. Es opcional: puedes hacerlo cuando quieras desde el botón «Tutorial» del Diario.</div>
+    <div class="btns"><button class="red" id="st">Empezar la campaña</button><button class="alt" id="stt">🎓 Hacer el tutorial</button></div></div>`,false,'poster');
+  $('st').onclick=closeModal;$('stt').onclick=startTutorial;
 }
 let resetArm=false;
 $('cnew').onclick=()=>{if(!resetArm){resetArm=true;$('cnew').textContent='¿Seguro? Pulsa otra vez';setTimeout(()=>{resetArm=false;$('cnew').textContent='Nueva campaña'},3000);return}resetArm=false;$('cnew').textContent='Nueva campaña';startFlow()};
-$('retreat').onclick=askRetreat;
+$('retreat').onclick=askRetreat;$('chome').onclick=()=>{if(C)save();showHome()};$('mus').onclick=musToggle;$('mus').textContent=MUS.on?'🔊':'🔇';$('ctut').onclick=startTutorial;
 layout();window.addEventListener('resize',()=>{if(VIEW==='mis')layout()});
 requestAnimationFrame(draw);
-C=load();
-if(C){C.allies=C.allies||[];C.xp=C.xp||{};C.upg={...UPG_DEF,...(C.upg||{})};for(const k in C.hosp)C.hosp[k]=Math.min(C.hosp[k],2)}
-if(C&&!C.won&&!C.lost){C.speed=0;C.cur=null;PICK_START=null;show('camp');renderCamp();clog('Partida cargada.');renderCamp()}
-else startFlow();
+showHome();
 
 </script>
 

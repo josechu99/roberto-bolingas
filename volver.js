@@ -37,7 +37,24 @@
       c.style.cssText = 'font-family:var(--display);font-size:12px;letter-spacing:.03em;padding:6px 9px;border:1px solid var(--muted);border-radius:4px;color:var(--text);text-decoration:none';
       cnew.parentNode.appendChild(c);
     }
+    // Orcasitas: también en la pantalla de inicio, debajo del menú
+    var hmenu = document.querySelector('#home .hmenu');
+    if (hmenu && !document.getElementById('dg-home-oh')) {
+      var d = document.createElement('a');
+      d.id = 'dg-home-oh';
+      d.href = HOME;
+      d.textContent = '🕹️ Volver a Daddys Games';
+      d.style.cssText = 'justify-self:' + (matchMedia('(max-width:760px)').matches ? 'center' : 'start') + ';margin-bottom:14px;font-family:var(--body);font-weight:700;font-size:15px;color:var(--muted);text-decoration:underline;text-underline-offset:3px;padding:4px 2px';
+      hmenu.appendChild(d);
+    }
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', add);
-  else add();
+  function start() {
+    add();
+    // Algunos menús se vuelven a dibujar (p. ej. al volver al inicio): reponer el botón si desaparece
+    var t = null;
+    new MutationObserver(function () { if (!t) t = setTimeout(function () { t = null; add(); }, 50); })
+      .observe(document.body, { childList: true, subtree: true });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+  else start();
 })();
