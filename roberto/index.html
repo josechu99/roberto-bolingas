@@ -11,7 +11,9 @@
   color-scheme:dark;
 }
 html,body{height:100%}
-body{background:var(--cave);color:var(--milk);font-family:var(--f-body);font-size:22px;line-height:1.15;overflow:hidden;-webkit-tap-highlight-color:transparent}
+body{background:var(--cave);color:var(--milk);font-family:var(--f-body);font-size:22px;line-height:1.15;overflow:hidden;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+canvas,button,img{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-user-drag:none}
+input,textarea{-webkit-user-select:text;user-select:text}
 #app{height:100%;max-width:480px;margin:0 auto;display:flex;flex-direction:column;position:relative;padding-inline:16px;box-sizing:border-box}
 .cave-top{position:absolute;left:0;right:0;top:0;height:34px;background:var(--stone);clip-path:polygon(0 0,100% 0,100% 40%,95% 100%,90% 35%,83% 80%,76% 30%,70% 100%,63% 40%,55% 75%,48% 30%,41% 100%,35% 35%,28% 70%,21% 30%,14% 95%,8% 40%,3% 70%,0 35%);pointer-events:none}
 .screen{flex:1;display:flex;flex-direction:column;gap:12px;padding-block:44px calc(32px + env(safe-area-inset-bottom,0px));min-height:0;overflow-y:auto;overscroll-behavior:contain}
@@ -67,7 +69,8 @@ ul.how{margin:0;padding-left:20px;display:grid;gap:4px}
 .pill{font-family:var(--f-pix);font-size:8px;background:var(--bad);color:#2a0705;padding:4px 6px;border-radius:3px}
 #l2-msg,#key-msg{min-height:48px}
 .bal{position:relative;height:22px;background:var(--stone2);border-radius:4px}
-.bal::before{content:"";position:absolute;left:35%;right:35%;top:0;bottom:0;background:#3f5a46}
+.bal{background:linear-gradient(90deg,#7a2630 0 15%,var(--stone2) 15% 85%,#7a2630 85%)}.bal::before{content:"";position:absolute;left:35%;right:35%;top:0;bottom:0;background:#3f5a46}
+.balbtn{padding:22px 4px;touch-action:none}.balbtn.on{background:var(--amber);color:#1a1206}
 .bal i{position:absolute;top:2px;bottom:2px;width:10px;margin-left:-5px;background:var(--amber);border-radius:2px}
 .mute{position:absolute;top:6px;right:16px;z-index:5;font-family:var(--f-pix);font-size:8px;background:var(--stone2);color:var(--milk);padding:7px 8px;border-radius:4px}
 .logo{font-size:18px;color:var(--amber);line-height:1.7;text-align:center}
@@ -105,7 +108,7 @@ ul.how{margin:0;padding-left:20px;display:grid;gap:4px}
 .rh-tile canvas{width:100%;max-width:104px;height:auto;aspect-ratio:88/66;background:#2a1f33;border-radius:6px}
 .cardbtn{opacity:.55;transform:scale(.94);transition:transform .1s}
 .cardbtn.on{opacity:1;transform:scale(1);outline:3px solid var(--milk);outline-offset:2px}.con{color:var(--bad)}.vs{font-size:16px}
-.gmsg{min-height:3.6em;margin:0;font-size:19px;line-height:1.2;flex:none}
+.gmsg{height:69px;margin:0;font-size:19px;line-height:1.2;flex:none;overflow:hidden;display:flex;align-items:flex-start}
 .pad{position:relative;height:64px;background:var(--stone2);border-radius:10px;touch-action:none;user-select:none;-webkit-user-select:none;flex:none;overflow:hidden;box-shadow:inset 0 0 0 2px #4b3a5c}
 .pad-lbl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-pix);font-size:8px;color:var(--dim);pointer-events:none}
 .pad i{position:absolute;top:8px;bottom:8px;width:30px;margin-left:-15px;left:50%;background:var(--amber);border-radius:6px;box-shadow:0 3px 0 #9c6a10;pointer-events:none}
@@ -281,7 +284,7 @@ ul.how{margin:0;padding-left:20px;display:grid;gap:4px}
 
   <section class="screen" id="s-mines" hidden>
     <div class="hud"><span class="clock" id="ms-title">Seto</span><div class="meter" aria-label="Apretón"><i id="ms-bar" style="background:#8a5226"></i></div><span class="muted" id="ms-time" style="font-size:9px">0.0 s</span></div>
-    <p id="ms-msg" class="gmsg" style="min-height:4.8em"></p>
+    <p id="ms-msg" class="gmsg" style="height:92px"></p>
     <canvas id="c-mines" width="200" height="300" style="width:min(100%,calc(46vh*200/300));align-self:center;border-radius:6px;touch-action:none;flex:none"></canvas>
     <div class="ctl-row" style="grid-template-columns:1fr 1fr;height:auto"><button class="btn ghost" id="ms-mode">Modo: mirar</button><span class="muted" id="ms-flags" style="align-self:center;text-align:center;font-family:var(--f-pix);font-size:9px"></span></div>
     <div class="row"><button class="btn" id="ms-again" hidden>Otra vez</button><button class="btn ghost" id="ms-back">Extras</button></div>
@@ -307,7 +310,7 @@ ul.how{margin:0;padding-left:20px;display:grid;gap:4px}
 
   <section class="screen" id="s-ref" hidden>
     <div class="hud"><span class="clock" id="rf-score">0 pts</span><div class="meter" aria-label="Tiempo"><i id="rf-bar" style="background:#5fd38d"></i></div><span id="rf-lives"></span></div>
-    <p id="rf-msg" class="gmsg" style="min-height:4.8em"></p>
+    <p id="rf-msg" class="gmsg" style="height:92px"></p>
     <canvas id="c-ref" width="200" height="240" style="width:min(100%,calc(44vh*200/240));align-self:center;border-radius:6px;touch-action:none;flex:none"></canvas>
     <div class="ctl-row" id="rf-cards" style="grid-template-columns:1fr 1fr"><button class="btn cardbtn" id="rf-amarilla" style="background:#ffd23a;color:#3a2a00;box-shadow:0 4px 0 #b8940a">Amarilla</button><button class="btn cardbtn" id="rf-roja" style="background:#e3262f;color:#fff;box-shadow:0 4px 0 #8a1218">Roja</button></div>
     <div class="row"><button class="btn" id="rf-again" hidden>Otra vez</button><button class="btn ghost" id="rf-back">Extras</button></div>
@@ -320,7 +323,7 @@ ul.how{margin:0;padding-left:20px;display:grid;gap:4px}
   </section>
 
   <section class="screen" id="s-l5" hidden>
-    <div class="hud"><span class="clock">Pádel</span><span id="l5-score" style="font-family:var(--f-pix);font-size:8px;text-align:center;line-height:1.6"></span><span></span></div>
+    <div class="hud"><span class="clock">Pádel</span><span id="l5-score" style="font-family:var(--f-pix);font-size:8px;text-align:center;line-height:1.6;height:3.2em;overflow:hidden;display:flex;align-items:center;justify-content:center"></span><span></span></div>
     <p id="l5-msg" class="gmsg"></p>
     <canvas id="c-l5" width="200" height="280" style="width:min(100%,calc(40vh*200/280));align-self:center;border-radius:6px;touch-action:none;cursor:grab;flex:none"></canvas>
     <div class="specials" style="grid-template-columns:repeat(3,1fr)"><button class="sp" id="l5-tarjeta"></button><button class="sp" id="l5-gafas"></button><button class="sp" id="l5-fd"></button></div>
@@ -705,6 +708,10 @@ function renderL2Hud(){
   $('l2-lives').innerHTML=hearts(L2.lives);$('l2-drunk').innerHTML=Array.from({length:6},(_,i)=>`<b class="${i<L2.drunk?'on':''}"></b>`).join('');
   $('l2-zone').textContent=STOPS[L2.zone][0];$('l2-card').innerHTML=L2.card?'<span class="pill">Tarjeta roja lista</span>':'';
 }
+(()=>{const fit=el=>{el.style.fontSize='';let f=parseFloat(getComputedStyle(el).fontSize);while(el.scrollHeight>el.clientHeight+1&&f>11){f-=1;el.style.fontSize=f+'px'}};
+  document.querySelectorAll('.gmsg').forEach(el=>{new MutationObserver(()=>fit(el)).observe(el,{childList:true,characterData:true,subtree:true})})})();
+document.addEventListener('contextmenu',e=>{if(!e.target.closest('input,textarea'))e.preventDefault()});
+document.addEventListener('selectstart',e=>{if(!e.target.closest||!e.target.closest('input,textarea'))e.preventDefault()});
 function flash(m,t=130){L2.msg=m;L2.msgT=t}
 const prog=()=>Math.min(1,L2.dist/L2.total);
 const SIDE=()=>Math.random()<.5?28+Math.random()*30:136+Math.random()*28;
@@ -732,12 +739,17 @@ function stepL2(dt){
   let sp=1.6+1.1*P;if(L2.boost>0)sp+=1.4;if(L2.slow>0)sp*=.4;if(L2.stun>0)sp*=.25;
   L2.dist+=sp*dt;
   ['inv','slow','boost','stun','msgT','invert'].forEach(k=>L2[k]=Math.max(0,L2[k]-dt));
-  if(L2.drunk>=3){L2.nextInv-=dt;if(L2.nextInv<=0){L2.invert=150;L2.nextInv=480+Math.random()*300;flash('¡Controles al revés! Roberto va hacia el lado contrario.',150)}}
-  L2.th.push(L2.tx);while(L2.th.length>L2.drunk*4+1)L2.th.shift();
-  let t=L2.th[0];if(L2.invert>0)t=W2-t;
-  if(L2.stun<=0){const d=t-L2.x;L2.x+=Math.sign(d)*Math.min(Math.abs(d),2.6*dt)}
-  L2.x+=Math.sin(L2.f/28)*L2.drunk*.35*dt;
-  if(L2.drunk>=5){L2.hic-=dt;if(L2.hic<=0){L2.x+=(Math.random()<.5?-1:1)*16;L2.hic=200+Math.random()*200;flash('(hic) Bandazo.',50)}}
+  if(L2.drunk>=3){
+    if(!L2.warnInv&&L2.invert<=0){L2.nextInv-=dt;if(L2.nextInv<=0){L2.warnInv=90;flash('Roberto se marea... ¡en nada los controles van al revés!',90)}}
+    if(L2.warnInv>0){L2.warnInv-=dt;if(L2.warnInv<=0){L2.warnInv=0;L2.invert=180;L2.invA=L2.tx;L2.invX=L2.x;L2.nextInv=520+Math.random()*240;flash('¡Controles al revés! Desliza hacia el lado contrario.',180)}}
+    if(L2.invert>0&&L2.invert<=dt+.01)flash('Se le pasa el mareo. Controles normales.',70);
+  }
+  L2.th.push(L2.tx);while(L2.th.length>L2.drunk*2+1)L2.th.shift();
+  let t=L2.th[0];if(L2.invert>0)t=Math.max(30,Math.min(170,L2.invX-(t-L2.invA)));
+  if(L2.stun<=0){const d=t-L2.x;L2.x+=Math.sign(d)*Math.min(Math.abs(d),3.2*dt)}
+  L2.x+=Math.sin(L2.f/40)*L2.drunk*.16*dt;
+  if(L2.drunk>=5){L2.hic-=dt;if(L2.hic<=60&&!L2.hicDir){L2.hicDir=Math.random()<.5?-1:1;flash(L2.hicDir<0?'(hic)... ¡se va a ir a la izquierda!':'(hic)... ¡se va a ir a la derecha!',60)}
+    if(L2.hic<=0){L2.x+=L2.hicDir*12;L2.hicDir=0;L2.hic=240+Math.random()*160}}
   L2.x=Math.max(30,Math.min(170,L2.x));
   L2.gh.push(L2.x);if(L2.gh.length>18)L2.gh.shift();
   L2.spawn-=dt*sp/1.6;
@@ -836,8 +848,12 @@ function drawL2(){
   ents.push([PY,()=>{if(L2.inv>0&&Math.floor(L2.f/4)%2)return;x.save();x.translate(Math.round(L2.x-10),PY-30+(Math.floor(L2.f/6)%2));drawMap(x,1,ROB_BACK,RP,0,0);x.restore()}]);
   ents.sort((p,q)=>p[0]-q[0]).forEach(e=>e[1]());
   x.restore();
-  if(L2.invert>0){x.fillStyle='rgba(255,90,79,.12)';x.fillRect(0,0,W2,H2)}
   if(L2.drunk>=4){x.globalAlpha=.18;x.drawImage(c,4,0);x.globalAlpha=1}
+  if(L2.invert>0){x.fillStyle='rgba(255,90,79,.12)';x.fillRect(0,0,W2,H2)}
+  {const pill=(txt,col,frac)=>{x.font='bold 11px VT323, monospace';const w=x.measureText(txt).width+12;x.fillStyle='rgba(16,10,22,.85)';x.fillRect(W2/2-w/2,6,w,16);x.fillStyle=col;x.fillText(txt,W2/2-w/2+6,18);if(frac!=null){x.fillRect(W2/2-w/2,22,w*frac,2)}};
+   if(L2.invert>0)pill('⇄ CONTROLES AL REVÉS','#ff6b6b',L2.invert/180);
+   else if(L2.warnInv>0&&Math.floor(L2.warnInv/8)%2)pill('MAREO EN '+Math.ceil(L2.warnInv/30)+'...','#ffc247');
+   if(L2.hicDir){x.fillStyle='#ffc247';x.font='bold 14px VT323, monospace';x.fillText(L2.hicDir<0?'◀ hic':'hic ▶',L2.x+(L2.hicDir<0?-30:6),PY-36)}}
 }
 
 /* Búho */
@@ -879,12 +895,18 @@ const BUS=[
         else{tries--;b.disabled=true;b.style.opacity=.35;busSay(`Ahí solo hay: ${junk[i]}.`);if(!tries)busLife('El conductor se harta y le echa una bronca delante de todo el búho. Paga en efectivo, sin cambio.',nextBus)}};u.append(b)});
   },
   function frenazo(){
-    busSay('¡Frenazo! Roberto va de pie y borracho. Mantén el equilibrio 7 segundos o acabará encima de alguien.');
-    const u=$('bus-ui');u.innerHTML='<div class="bal"><i id="bal-m" style="left:50%"></i></div><div class="row"><button class="btn ghost" id="bal-l">Izquierda</button><button class="btn ghost" id="bal-r">Derecha</button></div><p class="muted" id="bal-t"></p>';
-    let m=0,v=.02,push=0,t=0;const hold=(id,d)=>{const b=$(id);b.onpointerdown=e=>{e.preventDefault();push=d};b.onpointerup=b.onpointerleave=b.onpointercancel=()=>push=0};
+    busSay('¡Frenazo! Roberto va de pie y borracho. Mantén pulsado el lado contrario al que se cae para que la marca no llegue a lo rojo. Aguanta 7 segundos.');
+    const u=$('bus-ui');u.innerHTML='<div class="bal"><i id="bal-m" style="left:50%"></i></div><p class="muted" id="bal-w" style="margin:0;height:1.2em;text-align:center;color:var(--amber)"></p><div class="row"><button class="btn ghost balbtn" id="bal-l">◀ Izquierda</button><button class="btn ghost balbtn" id="bal-r">Derecha ▶</button></div><p class="muted" id="bal-t" style="margin:0"></p>';
+    let m=0,v=0,push=0,t=0,last=performance.now();const dr=L2.drunk||0,A=.0006+.0001*dr,p1=Math.random()*6,p2=Math.random()*6;
+    const kicks=[2300+Math.random()*700,4700+Math.random()*700].map(k=>({k,d:Math.random()<.5?-1:1}));
+    const hold=(id,d)=>{const b=$(id);b.onpointerdown=e=>{e.preventDefault();try{b.setPointerCapture(e.pointerId)}catch(_){}push=d;b.classList.add('on')};b.onpointerup=b.onpointercancel=b.onlostpointercapture=()=>{if(push===d)push=0;b.classList.remove('on')}};
     hold('bal-l',-1);hold('bal-r',1);
-    const iv=setInterval(()=>{if(PAUSED)return;t+=16;v+=(Math.random()-.5)*(.012+L2.drunk*.006)+push*.0035;if(t%1500<16)v+=(Math.random()<.5?-1:1)*.02;v*=.97;m+=v;B.tilt=m*.14;
-      $('bal-m').style.left=(50+m*50)+'%';$('bal-t').textContent=`Aguanta: ${Math.max(0,(7000-t)/1000).toFixed(1)} s`;
+    const iv=setInterval(()=>{const now=performance.now();if(PAUSED){last=now;return}let steps=Math.min(6,Math.round((now-last)/16));last+=steps*16;
+      while(steps-->0){t+=16;
+        const ramp=Math.min(1,t/1800);v+=ramp*(A*(Math.sin(t/700+p1)+.6*Math.sin(t/310+p2))+(Math.random()-.5)*.0006*(1+dr*.3))+m*.0006+push*.003;
+        kicks.forEach(k=>{if(!k.w&&t>=k.k-700){k.w=1;$('bal-w').textContent=k.d<0?'¡Curva! Se va a ir a la izquierda...':'¡Curva! Se va a ir a la derecha...'}if(!k.done&&t>=k.k){k.done=1;v+=k.d*.016;setTimeout(()=>{const w=$('bal-w');if(w)w.textContent=''},500)}});
+        v*=.93;m+=v;if(Math.abs(m)>=1)break}
+      B.tilt=m*.14;$('bal-m').style.left=(50+Math.max(-1,Math.min(1,m))*50)+'%';$('bal-m').style.background=Math.abs(m)>.7?'#ff5a4f':'';$('bal-t').textContent=`Aguanta: ${Math.max(0,(7000-t)/1000).toFixed(1)} s`;
       if(Math.abs(m)>=1){clearInterval(iv);B.tilt=0;busLife('Roberto acaba sentado encima de una señora con un carrito de la compra.',nextBus)}
       else if(t>=7000){clearInterval(iv);B.tilt=0;busSay('Agarrado a la barra como un campeón. Ni se ha despeinado el tupé.');busNext(nextBus)}},16);timers.push(iv);
   },
@@ -1969,8 +1991,10 @@ function drawMap(ctx,s,rows,pal,ox,oy){
 function setSprites(v){SPR=v;try{localStorage.setItem('rb_sprites',v)}catch(e){}SPR_CACHE.clear();const b=$('b-spr');if(b)b.textContent='Sprites: '+(v==='new'?'nuevos':'viejos');if(!$('s-ward').hidden)renderWard()}
 
 /* ===== NOVEDADES ===== */
-const VERSION='2.4';
+const VERSION='2.6';
 const CHANGELOG=[
+ {v:'2.6',d:'12 de octubre de 2026',t:'Frenazo del búho, ahora sí se puede',items:['El equilibrio en el autobús nocturno se ha rehecho: antes, yendo borracho, el bamboleo era tan fuerte y tan aleatorio que era imposible aguantar.','Ahora el autobús se balancea de forma más suave y tus botones tienen fuerza de sobra para corregirlo. Ir borracho lo complica, pero se puede.','Las curvas fuertes avisan antes y dicen hacia qué lado te vas a ir.','Botones más grandes que se iluminan al pulsar, zonas rojas en la barra y la marca se pone roja cuando estás a punto de caerte.']},
+ {v:'2.5',d:'12 de octubre de 2026',t:'Controles más finos',items:['Nivel 2: ir muy borracho sigue siendo difícil, pero ya no es aleatorio. Roberto responde antes al dedo y se tambalea menos.','Antes de que los controles se den la vuelta sale un aviso con cuenta atrás, y mientras van al revés hay un cartel arriba con lo que les queda.','Con los controles al revés, Roberto ya no salta al otro lado de la calle: simplemente se mueve al contrario de como deslizas.','Los bandazos del hipo avisan antes y te dicen hacia qué lado van.','Nivel 5 y resto de minijuegos: los mensajes de arriba ya no empujan la pista ni los botones. Si el texto es largo, se hace más pequeño.','Al mantener pulsado ya no sale el menú de copiar texto ni se selecciona nada.']},
  {v:'2.4',d:'12 de octubre de 2026',t:'El árbitro, mejor explicado',items:['Antes de jugar al árbitro del Chapandaz sale una pantalla que explica cómo se juega, paso a paso.','Se ven animados todos los casos agrupados: a quién se le saca roja, a quién amarilla y a quién no hay que tocar.','Cuenta atrás de 3, 2, 1 antes de que empiece el partido, para que no corra el tiempo mientras te colocas.']},
  {v:'2.3',d:'12 de octubre de 2026',t:'Extra: el árbitro del Chapandaz',items:['Segundo extra: Roberto vigila la pista del Chapandaz y saca tarjetas como hacía de verdad.','Roja a los que se besan, a los babosos que no dejan en paz a una chica y a las peleas. Amarilla a los pesados, los borrachos, el de las gafas de sol, el de los selfies con flash y a Mimoun con su chapa del Madrid.','Cuidado con los que no hacen nada: gente bailando, pidiendo en la barra, amigas charlando, parejas bailando sin besarse o Pedorreta tranquilo. Si les sacas tarjeta, pierdes credibilidad.','Partido de 60 segundos que se va acelerando, rachas, récord y rangos: de árbitro de patio de colegio a árbitro de Champions.','Dos logros nuevos: Colegiado y Árbitro de Champions.']},
  {v:'2.2',d:'12 de octubre de 2026',t:'El seto, más claro',items:['Al tocar un número del seto se iluminan las 8 casillas que cuenta, diagonales incluidas, para que se vea de dónde salen las miradas.','Si ya has puesto tantas banderas como dice el número, al tocarlo se abren solas las casillas que faltan alrededor.','Instrucciones más claras al empezar.']},
