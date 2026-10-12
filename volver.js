@@ -26,6 +26,17 @@
       b.style.cssText = 'color:#fffaf0;font:800 13px Nunito,system-ui,sans-serif;text-decoration:underline;text-underline-offset:3px;padding:6px 10px';
       icons.parentNode.insertBefore(b, icons.nextSibling);
     }
+    // Orcasitas: botón junto a "Nueva campaña", en el mapa general (no durante las misiones)
+    var cnew = document.getElementById('cnew');
+    if (cnew && !document.getElementById('dg-home-o')) {
+      var c = document.createElement('a');
+      c.id = 'dg-home-o';
+      c.href = HOME;
+      c.className = 'alt mini';
+      c.textContent = '🕹️ Daddys Games';
+      c.style.cssText = 'font-family:var(--display);font-size:12px;letter-spacing:.03em;padding:6px 9px;border:1px solid var(--muted);border-radius:4px;color:var(--text);text-decoration:none';
+      cnew.parentNode.appendChild(c);
+    }
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', add);
   else add();
