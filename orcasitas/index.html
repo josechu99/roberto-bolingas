@@ -389,6 +389,16 @@ ol.how{margin:0;padding-left:22px;display:grid;gap:8px;line-height:1.35}
   .pcols{grid-template-columns:1fr}.plead{grid-column:auto}.bole{grid-row:auto}
   .hpaper{padding:0 12px 14px}.ptab{font-size:11px;padding:7px 8px}
 }
+
+/* ===== Humor: comunicado y epílogo ===== */
+.rep li.k-tv{--ac:#c4202c;background:linear-gradient(90deg,#2a1418,#151815)!important}
+.epi{display:grid;gap:6px;max-height:44vh;overflow:auto;padding-right:4px}
+.epl{display:grid;grid-template-columns:40px 1fr;gap:10px;align-items:center;background:#151815;border-radius:10px;padding:6px 10px}
+.epl canvas{width:40px!important;height:40px!important;border-radius:50%;border:2px solid var(--sh,#b02a3e);object-fit:cover;object-position:top}
+.epl p{margin:0;font-size:15px;line-height:1.3}.epl.yu{background:#2a1418}
+.estats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px}
+.estats div{background:linear-gradient(180deg,#2e2a18,#1f1c10);border:1px solid #6a5a24;border-radius:10px;padding:8px;text-align:center;display:grid}
+.estats b{font-family:var(--display);font-weight:400;font-size:22px;color:var(--gold)}.estats span{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
 </style>
 
 <div class="wrap">
@@ -954,6 +964,23 @@ const POWERS={
  putologia:{name:'Manual de la putología',kind:'self',radius:5,uses:1,desc:'Un uso: Safu alecciona a los 3 esbirros normales más cercanos (5 casillas). Se quedan escuchándole toda la misión: los 4 desaparecen del combate.'},
  furgo:{name:'Atropello con furgoneta',kind:'van',uses:1,desc:'Un uso: toca una casilla y la furgoneta del súper cruza esa fila o columna entera, 4-5 de daño.'}
 };
+/* frases de cada uno (humor) */
+const BARKS={
+ adri:{sel:['Rápido, que he quedado.','¿Me ves bien de pelo?','Esto para mí es un martes.','Tengo 14 notificaciones, voy.'],hit:['¡Lata y match!','Directo al corazón, como siempre.'],crit:['¡Superlike!','Ni la del jueves me miró así.'],miss:['Me ha distraído una notificación.','Era una finta.'],kill:['Otro que no aguanta mi mirada.','Siguiente cita.'],ko:['Decidle a la del jueves que la quiero…','Cancelad mis citas de hoy…']},
+ pedo:{sel:['Huele a victoria… o a mí.','Carnet militar en mano.','Infiltrándome, no miréis.'],hit:['¡Collejón reglamentario!','¡Toma collejón!'],crit:['¡Collejón de manual!'],miss:['Se me ha escapado… el golpe, digo.'],kill:['A dormir, campeón.','Ni ha olido venir el golpe.'],ko:['Me retiro… con honores militares.']},
+ rob:{sel:['¡Juego limpio, señores!','Tengo el silbato caliente.','Aquí mando yo, que soy el árbitro.'],hit:['¡Balonazo y al VAR!','¡Penalti claro!'],crit:['¡Golazo por la escuadra!'],miss:['Fuera de juego, por poco.','Ha rebotado en el larguero.'],kill:['Tarjeta roja directa.','A la ducha.'],ko:['¡Esto es una agresión al colegiado!']},
+ dani:{sel:['Ahora os cuento una cosa…','Espera, que te mando un audio.','Escuchadme un segundo.'],hit:['¡Móvil al careto!','Te llamo luego, ¡pum!'],crit:['¡Con funda y todo!'],miss:['Era el móvil nuevo…','Mierda, 3% de batería.'],kill:['Y eso que no he empezado a hablar.'],ko:['Dejadme terminar la historia, por lo menos…']},
+ jose:{sel:['¿Pongo un temazo?','Vapeo y pienso.','Que alguien me vigile el pozo.'],hit:['Sabor mango, cortesía de la casa.','¡Vaperazo!'],crit:['¡Nube y golpe!'],miss:['Se me ha empañado la vista.'],kill:['Bajo cero de BPM.'],ko:['Cuidadme el pozo…']},
+ puma:{sel:['Cinco minutitos más…','¿Ya es mi turno?','Estoy despierto, estoy despierto.'],hit:['Dulces sueños.','Ni lo ha notado.'],crit:['Anestesia total.'],miss:['Me he dormido apuntando.'],kill:['Que descanse.'],ko:['Por fin una siesta…']},
+ serio:{sel:['Que suene la música.','Pinchando en directo desde Orcasitas.','¿Alguna petición?'],hit:['¡Vinilo de colección!','¡Scratch!'],crit:['¡DROP!'],miss:['Se me ha rayado el disco.'],kill:['Fin de la sesión para ti.'],ko:['Se acabó la fiesta…']},
+ loko:{sel:['¿A quién empujo?','Apartad, que voy.','Hoy vengo con ganas.'],hit:['¡EMPUJÓN!','¡Para atrás!'],crit:['¡Al suelo!'],miss:['Estaba calentando.'],kill:['Siguiente.','Ni lo he despeinado.'],ko:['Ni lo he sentido… bueno, un poco.']},
+ maetin:{sel:['Rubio y en forma.','¿Alguien para un pickle?','Que corra el aire.'],hit:['¡Ace!','¡Mancuerna de 5 kilos!'],crit:['¡Juego, set y partido!'],miss:['Red.','Fuera, por un pelo.'],kill:['Punto para mí.'],ko:['Pedid la revisión de la jugada…']},
+ safu:{sel:['Compadre, ¿qué pasa?','Vengo de una cita, no os rayéis.','Rapidito, que me esperan.'],hit:['¡Botellín directo!','Sin rencores, compadre.'],crit:['¡Así se hace, compadre!'],miss:['Me ha mirado la del banco y me he desconcentrado.'],kill:['Descansa, compadre.'],ko:['Decidle a mi ligue que vuelvo…']},
+ y:{contact:['¡Alto en nombre del Líder!','¡La resistencia!','¡Avisad a Yuyu!','¡Pero si son los del barrio!'],hurt:['¡Ay! ¡Me chivo a Yuyu!','¡Esto no lo cubre el sueldo!','¡Que tengo hijos!','¡Sin la cara, sin la cara!'],die:['Dimito…','Yo solo venía por el bocata…','Decidle a Yuyu que lo dejo.','Me vuelvo con mi madre.'],
+   boss:['¡Por el Excelentísimo!','¡Firmes!'],yuyu:['¡Esto es un golpe de Estado!','¡Irene, ayúdame!','¡Exijo hablar con mi abogado!','¡Soy el Líder Supremo!']}
+};
+function bark(u,kind,p=.4){if(!u||Math.random()>p)return;let pool;if(u.side==='y'){const B=BARKS.y;pool=u.name==='Yuyu'&&kind!=='contact'?B.yuyu:u.boss&&kind==='contact'?B.boss:B[kind]}else pool=(BARKS[u.id]||{})[kind];
+  if(pool&&pool.length)bubble(u,pickOne(pool),1700)}
 const PHRASES={
  sermon:['Pues como te iba diciendo…','Y otra cosa te digo…','Escúchame, que esto es importante.','Y eso no es todo…'],
  parientofobia:['¿Novia? ¿Para qué?','Luego te lías y ya no sales.','Tú estás mejor solo, hazme caso.','Primero son cañas y luego IKEA.'],
@@ -1023,7 +1050,7 @@ function newGame(ids){
   S={turn:1,side:'p',sel:U[0],mode:null,preview:null,busy:false,over:false,log:[],clouds:[],lure:null,drinks:ids.includes('puma')?DRINK_TILES.map(([c,r])=>({c,r})):[],squad:ids,match:0,wave:0,lona:true,fridge:true,sab:{}};
   log(MISSION.log||'El escuadrón llega a la zona.');
   lastSel=null;render();
-  if(MISSION.onStart)setTimeout(()=>MISSION.onStart(),900);
+  if(MISSION.onStart)setTimeout(async()=>{S.busy=true;render();try{await MISSION.onStart()}finally{S.busy=false;afterAction()}},900);
 }
 function log(m){S.log.unshift(m);S.log=S.log.slice(0,5)}
 function TE(ev,d){if(MISSION&&MISSION.tut&&typeof tutEvent==='function')tutEvent(ev,d)}
@@ -1088,7 +1115,7 @@ function hitChance(att,tgt,from=att,{mods=0,ignoreCover=false}={}){
 }
 function flanked(tgt,from){if(tgt.st&&(tgt.st.watch||tgt.st.safu||tgt.st.chapa||tgt.st.ligue))return true;return cellCover(tgt.c,tgt.r)>0&&coverAgainst(tgt,from)===0}
 function hurt(tgt,dmg,{crit=false,label=''}={}){
-  tgt.hp-=dmg;tgt.hurt=performance.now();
+  tgt.hp-=dmg;tgt.hurt=performance.now();if(tgt.side==='y'&&tgt.hp>0&&Math.random()<.25)bark(tgt,'hurt',1);
   floatText(tgt,(crit?'¡CRÍTICO! ':'')+'-'+dmg,crit?'#f4d35e':'#ffffff');
   if(tgt.side==='y'){delete tgt.st.asleep;delete tgt.st.stun;wake(tgt.pod,tgt)}
   if(tgt.hp<=0)kill(tgt,label);
@@ -1099,15 +1126,17 @@ async function attack(att,tgt,opts={}){
   const fl=!melee&&flanked(tgt,att);
   const hit=rnd(1,100)<=chance,crit=hit&&rnd(1,100)<=(fl?(att.side==='p'?40+(UPG.crit||0):25):melee?15:10);
   faceTo(att,tgt);
+  if(!melee)sfx('throw');
   if(melee)await lunge(att,tgt);else await projectile(att,tgt,opts.fx||att.weapon.fx,hit);
   const label=opts.label??att.weapon.name.toLowerCase();
   if(hit){const dmg=rnd(att.weapon.min,att.weapon.max)+(crit?(att.side==='y'?1:2):0);
-    log(`${att.name}: ${label} a ${tgt.name}. ${crit?'¡Crítico! ':''}${dmg} de daño.`);hurt(tgt,dmg,{crit});}
-  else{floatText(tgt,'Fallo','#a9c8e6');log(`${att.name} falla (${chance}%).`);if(tgt.side==='y')wake(tgt.pod,tgt)}
+    log(`${att.name}: ${label} a ${tgt.name}. ${crit?'¡Crítico! ':''}${dmg} de daño.`);sfx(crit?'crit':melee?'punch':'hit');hurt(tgt,dmg,{crit});
+    if(att.side==='p'){if(!tgt.alive)bark(att,'kill',.5);else bark(att,crit?'crit':'hit',crit?.7:.3)}else if(tgt.alive)bark(tgt,'hurt',.15)}
+  else{sfx('miss');if(att.side==='p')bark(att,'miss',.35);floatText(tgt,'Fallo','#a9c8e6');log(`${att.name} falla (${chance}%).`);if(tgt.side==='y')wake(tgt.pod,tgt)}
   render();await sleep(600);checkEnd();
 }
 function kill(u,how){
-  u.alive=false;u.hp=0;
+  u.alive=false;u.hp=0;sfx(u.side==='y'?'down':'ko');if(u.side==='y')bark(u,'die',.45);else if(u.side==='p')bark(u,'ko',1);
   FX.push({kind:'die',u:{...u},t0:performance.now(),dur:700});
   log(u.side==='y'?(how==='roja'?`¡${u.name} expulsado!`:`${u.name} cae.`):`${u.name} cae herido y se lo llevan al hospital.`);
 }
@@ -1120,7 +1149,7 @@ async function checkActivation(){
   for(const e of alive('y')){if(e.active)continue;if(alive('p').some(p=>dist(p,e)<=(p.stealth?1.5:MISSION.dark?3:VISION)&&los(p,e)))wake(e.pod,e)}
   const list=[...sleepingPods].filter(u=>u.alive);sleepingPods.clear();
   if(!list.length)return;
-  log('¡Os han visto! Los esbirros corren a cubrirse.');banner('¡Contacto!','y');render();await sleep(700);
+  log('¡Os han visto! Los esbirros corren a cubrirse.');banner('¡Contacto!','y');sfx('alarm');bark(list[0],'contact',1);render();await sleep(700);
   if(MISSION.noScramble)return;
   for(const e of list){
     if(e.st.stun||e.st.asleep||e.st.safu||e.st.watch||e.st.chapa||e.st.ligue)continue;
@@ -1137,7 +1166,7 @@ function tween(u,c,r,ms,hop){
 }
 async function moveUnit(u,path){
   for(const [c,r] of path){
-    const jump=tile(c,r)==='h';await tween(u,c,r,jump?230:150,jump);u.c=c;u.r=r;
+    const jump=tile(c,r)==='h';sfx(jump?'hop':'step');await tween(u,c,r,jump?230:150,jump);u.c=c;u.r=r;
     if(u.side==='p'&&u.sleepy!==null){const i=S.drinks.findIndex(d=>d.c===c&&d.r===r);if(i>=0){S.drinks.splice(i,1);u.sleepy=0;floatText(u,'¡Bebida energética!','#9ec5ff');log('Puma se toma una bebida energética y se espabila.')}}
     if(u.side==='p'&&MISSION.id==='pickleball'&&!S.maetinIn){const mt=U.find(n=>n.id==='n0'&&n.alive);if(mt&&cheb(u,mt)<=1){S.maetinIn=true;bubble(mt,'¡Ya era hora! Suelto la pala y cojo la mancuerna',1900);await sleep(900);await joinSquad(mt,'maetin');return}}
     if(u.side==='p'&&MISSION.onStep){if(await MISSION.onStep(u)==='stop')return}
@@ -1249,7 +1278,7 @@ function validPick(u,pid,c,r){
 }
 function startPower(pid){
   const u=S.sel,P=POWERS[pid];S.preview=null;
-  if(P.kind==='free'){u.carnet=true;u.uses[pid]--;bubble(u,'¡Carnet militar!');log('Pedorreta enseña el carnet militar. Los esbirros no le van a decir nada.');render();return}
+  if(P.kind==='free'){sfx('carnet');u.carnet=true;u.uses[pid]--;bubble(u,'¡Carnet militar!');log('Pedorreta enseña el carnet militar. Los esbirros no le van a decir nada.');render();return}
   if(P.kind==='self'){S.mode={pid,tile:[u.c,u.r]};render();return}
   S.mode={pid,tile:null};render();
 }
@@ -1258,7 +1287,7 @@ async function firePower(){
   const u=S.sel,{pid,tile:[tc,tr]}=S.mode,P=POWERS[pid];
   const cells=affected(u,pid,tc,tr);S.mode=null;
   await run(async()=>{
-    u.ap=0;u.ow=false;if(P.cd)u.cds[pid]=Math.max(1,P.cd-UPG.cd);if(P.uses)u.uses[pid]--;
+    u.ap=0;u.ow=false;if(P.cd)u.cds[pid]=Math.max(1,P.cd-UPG.cd);if(P.uses)u.uses[pid]--;sfx(pid);
     faceTo(u,{c:tc,r:tr});
     const hitList=pid==='partida'||pid==='lona'||pid==='putologia'?powerTargets(u,pid):enemiesIn(cells);
     if(pid==='tinder'){S.lure={c:tc,r:tr};FX.push({kind:'girls',c:tc,r:tr,t0:performance.now(),dur:1e9});
@@ -1334,7 +1363,7 @@ function onCell(c,r){
   const u=unitAt(c,r),sel=S.sel;
   if(S.mode){if(validPick(sel,S.mode.pid,c,r)){S.mode.tile=[c,r]}render();return}
   if(u&&u.side==='n'){flash(`${u.name} está jugando al pickleball${S.match?' a tope':''}. No le molestes.`);render();return}
-  if(u&&u.side==='p'){S.sel=u;S.preview=null;render();return}
+  if(u&&u.side==='p'){if(S.sel!==u)bark(u,'sel',.35);S.sel=u;S.preview=null;render();return}
   if(!sel||!sel.alive||sel.ap<=0)return;
   if(u&&u.side==='y'){S.preview=canHit(sel,u)?u:null;
     if(!S.preview)flash(sel.weapon.melee?`${sel.name} tiene que estar pegado al esbirro.`:`${sel.name} no tiene a tiro a ese esbirro.`);render();return}
@@ -1348,7 +1377,7 @@ async function run(fn){S.busy=true;render();await fn();S.busy=false;afterAction(
 function afterAction(){
   if(S.over)return;
   if(!S.sel||!S.sel.alive||S.sel.ap<=0){const nx=alive('p').find(u=>u.ap>0);if(nx)S.sel=nx}
-  render();
+  render();if(typeof saveMission==='function')saveMission();
   if(!alive('p').some(u=>u.ap>0)&&!MISSION.tut)setTimeout(()=>{if(!S.busy&&S.side==='p'&&!S.over&&!S.mode)endTurn()},600);
 }
 function doAttack(){const sel=S.sel,t=S.preview;S.preview=null;run(async()=>{sel.ap=0;sel.ow=false;await attack(sel,t);TE('attack',sel);await checkActivation()})}
@@ -1358,7 +1387,7 @@ function doOverwatch(){const sel=S.sel;sel.ap=0;sel.ow=true;log(`${sel.name} se 
 async function endTurn(){
   if(S.side!=='p'||S.over)return;
   S.side='y';S.sel=null;S.preview=null;S.mode=null;S.busy=true;render();TE('endturn');musTension(true);
-  banner('Turno de Yuyu','y');await sleep(1000);
+  banner('Turno de Yuyu','y');sfx('enemyturn');await sleep(1000);
   for(const e of alive('y').filter(e=>e.active)){
     if(S.over)break;if(!e.alive)continue;
     await enemyAct(e);await sleep(220);
@@ -1375,7 +1404,7 @@ async function endTurn(){
   alive('p').forEach(u=>{u.ap=2;u.ow=false;u.carnet=false;u.dozing=false;if(u.stealth)u.stealth--;for(const k in u.cds)if(u.cds[k]>0)u.cds[k]--;
     if(u.sleepy!==null){u.sleepy++;if(u.sleepy>=4){u.sleepy=0;u.ap=0;u.dozing=true;floatText(u,'ZZZ','#9ec5ff');log('Puma se ha quedado frito y pierde el turno. ¡Buscad bebidas energéticas!')}}});
   S.sel=alive('p').find(u=>u.ap>0)||alive('p')[0];
-  banner('Turno '+S.turn,'p');render();TE('turn');musTension(false);
+  banner('Turno '+S.turn,'p');sfx('yourturn');render();TE('turn');musTension(false);if(typeof saveMission==='function')saveMission();
   if(MISSION.faliyo&&!S.faliyoDone){const f=U.find(n=>n.id==='faliyo');if(f)bubble(f,pickOne(['¡Estamos bricolandooo!','¡COLEGA RUBIOOOO!','¡Maetin, vente pa la plaza!','¡Mira qué bici, chaval!']),2000)}
   if(!alive('p').some(u=>u.ap>0))setTimeout(endTurn,900);
 }
@@ -1920,7 +1949,7 @@ function render(){
     <span class="nm">${u.name}</span><span class="cl">${u.alive?`${u.hp}/${u.max} vida${u.stealth?' · oculto':''}`:'Hospital'}</span>
     ${u.sleepy!==null&&u.alive?`<span class="bar" title="Sueño"><i style="width:${u.sleepy*25}%"></i></span>`:''}
     <span class="ap">${u.alive?`<i class="${u.ap>0?'on':''}"></i><i class="${u.ap>1?'on':''}"></i>`:''}</span></button>`).join('');
-  $('roster').querySelectorAll('.rc').forEach(b=>b.onclick=()=>{if(S.busy||S.side!=='p')return;S.sel=U.find(u=>u.id===b.dataset.id);S.preview=null;S.mode=null;render()});
+  $('roster').querySelectorAll('.rc').forEach(b=>b.onclick=()=>{if(S.busy||S.side!=='p')return;{const nu=U.find(u=>u.id===b.dataset.id);if(nu&&nu!==S.sel)bark(nu,'sel',.35)}S.sel=U.find(u=>u.id===b.dataset.id);S.preview=null;S.mode=null;render()});
   const A=$('act');
   if(S.side!=='p'){A.innerHTML=`<h2>Turno de Yuyu</h2><p class="muted">Los esbirros se mueven…</p>`}
   else if(!sel){A.innerHTML='<h2>Sin escuadrón</h2>'}
@@ -2096,6 +2125,62 @@ function musToggle(){MUS.on=!MUS.on;try{localStorage.setItem('orc_music',MUS.on?
   if(musInit()){const g=MUS.master.gain,t=MUS.ctx.currentTime;g.cancelScheduledValues(t);g.setTargetAtTime(MUS.on?.3:0,t,.1)}
   const b=$('mus');if(b){b.textContent=MUS.on?'🔊':'🔇';b.setAttribute('aria-label',MUS.on?'Silenciar música':'Activar música')}}
 
+/* ================= EFECTOS DE SONIDO (generados) ================= */
+function sfxOK(){return MUS.ctx&&MUS.ctx.state==='running'&&MUS.on}
+function sfxBus(){if(!MUS.sfx){MUS.sfx=MUS.ctx.createGain();MUS.sfx.gain.value=1.4;MUS.sfx.connect(MUS.master)}return MUS.sfx}
+function sweep(t,dur,type,f0,f1,v,q){const c=MUS.ctx,s=c.createBufferSource();s.buffer=MUS.noise;const f=c.createBiquadFilter();f.type=type;f.Q.value=q||1;
+  f.frequency.setValueAtTime(f0,t);f.frequency.exponentialRampToValueAtTime(f1,t+dur);const g=c.createGain();g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+  s.connect(f);f.connect(g);g.connect(sfxBus());s.start(t,Math.random()*.5);s.stop(t+dur+.02)}
+function blip(t,f0,f1,dur,w,v,o={}){const c=MUS.ctx,os=c.createOscillator(),g=c.createGain();os.type=w||'sine';os.frequency.setValueAtTime(f0,t);if(f1!==f0)os.frequency.exponentialRampToValueAtTime(f1,t+dur);
+  if(o.lfo){const l=c.createOscillator(),lg=c.createGain();l.frequency.value=o.lfo;lg.gain.value=o.depth||f0*.1;l.connect(lg);lg.connect(os.frequency);l.start(t);l.stop(t+dur+.05)}
+  let node=os;if(o.cut){const fl=c.createBiquadFilter();fl.frequency.value=o.cut;fl.Q.value=o.q||1;os.connect(fl);node=fl}
+  g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+(o.a||.005));g.gain.setValueAtTime(v,t+Math.max(o.a||.005,dur*(o.hold||.3)));g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+  node.connect(g);g.connect(sfxBus());os.start(t);os.stop(t+dur+.05)}
+const SFX={
+ click:t=>blip(t,1300,1100,.04,'triangle',.05),
+ step:t=>sweep(t,.05,'bandpass',500,300,.16,2),
+ hop:t=>blip(t,300,600,.12,'triangle',.05),
+ throw:t=>sweep(t,.18,'bandpass',700,2400,.22,2),
+ hit:t=>{blip(t,140,55,.16,'sine',.45);sweep(t,.06,'bandpass',1500,900,.18)},
+ crit:t=>{SFX.hit(t);blip(t+.05,1568,1568,.35,'sine',.09,{hold:.1});blip(t+.12,2349,2349,.4,'sine',.07,{hold:.1})},
+ miss:t=>sweep(t,.22,'highpass',2500,6000,.1),
+ punch:t=>{sweep(t,.09,'lowpass',900,300,.4);blip(t,110,50,.14,'sine',.5)},
+ down:t=>{blip(t,320,70,.35,'sawtooth',.08,{cut:900});blip(t+.25,90,45,.2,'sine',.35)},
+ ko:t=>{blip(t,440,150,.6,'triangle',.09,{hold:.2});blip(t+.1,330,110,.6,'triangle',.06,{hold:.2})},
+ alarm:t=>{for(let i=0;i<2;i++){blip(t+i*.32,880,880,.15,'square',.08,{cut:2500});blip(t+i*.32+.16,660,660,.15,'square',.08,{cut:2500})}},
+ enemyturn:t=>{blip(t,70,40,.5,'sine',.5);blip(t,147,147,.5,'sawtooth',.05,{cut:900});blip(t,175,175,.5,'sawtooth',.04,{cut:900})},
+ yourturn:t=>{[523,659,784].forEach((f,i)=>blip(t+i*.07,f,f,.25,'triangle',.11,{hold:.2}))},
+ pedo:t=>{blip(t,95,70,.8,'sawtooth',.22,{lfo:23,depth:30,cut:420,q:4,hold:.6});sweep(t,.7,'lowpass',500,150,.15)},
+ tinder:t=>{[1319,1568,2093,2637].forEach((f,i)=>blip(t+i*.08,f,f,.5,'sine',.1,{hold:.05}))},
+ escandalo:t=>{for(let i=0;i<5;i++)blip(t+i*.03,200+i*23,170+i*20,.7,'sawtooth',.06,{lfo:6,depth:12,cut:1200});sweep(t,.5,'bandpass',900,1300,.15,3)},
+ amarilla:t=>blip(t,2900,2900,.55,'sine',.13,{lfo:32,depth:160,hold:.8}),
+ roja:t=>{blip(t,2900,2900,.3,'sine',.13,{lfo:32,depth:160,hold:.8});blip(t+.38,2900,2900,.6,'sine',.13,{lfo:32,depth:160,hold:.8})},
+ sermon:t=>{for(let i=0;i<7;i++){const f=170+Math.random()*90;blip(t+i*.11,f,f*.92,.1,'sawtooth',.1,{cut:900,q:3})}},
+ fotos:t=>{sweep(t,.03,'highpass',3000,5000,.25);sweep(t+.08,.04,'highpass',3000,5000,.2)},
+ nube:t=>sweep(t,1,'highpass',3500,5000,.08),
+ panal:t=>{sweep(t,.25,'lowpass',700,200,.35);blip(t,320,110,.25,'sine',.15)},
+ siesta:t=>{SFX.throw(t);blip(t+.3,320,170,1.1,'sine',.11,{lfo:5,depth:15,hold:.5})},
+ tecno:t=>{for(let i=0;i<4;i++)blip(t+i*.23,130,45,.18,'sine',.5);blip(t,220,220,.9,'sawtooth',.04,{cut:1500})},
+ bajo:t=>blip(t,140,38,1.1,'sine',.5,{hold:.4}),
+ bronca:t=>{blip(t,160,140,.6,'sawtooth',.1,{lfo:9,depth:18,cut:800,q:3});sweep(t,.5,'bandpass',800,600,.12,4)},
+ tiafoe:t=>{blip(t,1400,1300,.04,'sine',.2);blip(t+.25,1300,1250,.04,'sine',.15);blip(t+.45,1250,1200,.04,'sine',.1)},
+ partida:t=>{for(let i=0;i<4;i++)blip(t+i*.22,1400-i*40,1350-i*40,.04,'sine',.15)},
+ compadreo:t=>{blip(t,1100,2300,.25,'sine',.11,{hold:.6});blip(t+.3,2300,1400,.35,'sine',.11,{hold:.5})},
+ putologia:t=>{SFX.compadreo(t);SFX.sermon(t+.7)},
+ parientofobia:t=>SFX.sermon(t),
+ furgo:t=>{blip(t,392,392,.35,'square',.06,{cut:2000});blip(t,494,494,.35,'square',.05,{cut:2000});blip(t+.45,392,392,.5,'square',.06,{cut:2000});blip(t+.45,494,494,.5,'square',.05,{cut:2000});sweep(t,1.2,'lowpass',300,120,.25)},
+ jambus:t=>{blip(t,2100,2100,.25,'sine',.13,{hold:.05});blip(t+.18,2100,2100,.35,'sine',.13,{hold:.05})},
+ bici:t=>SFX.jambus(t),
+ lona:t=>{sweep(t,.4,'bandpass',600,2500,.15,1);sweep(t+.45,.6,'lowpass',1500,300,.35);blip(t+.5,240,90,.4,'sine',.2)},
+ carnet:t=>{blip(t,660,660,.1,'square',.08,{cut:2000});blip(t+.1,880,880,.25,'square',.08,{cut:2000})},
+ buy:t=>{blip(t,1760,1760,.3,'sine',.07,{hold:.05});for(let i=0;i<5;i++)sweep(t+.05+i*.05,.04,'highpass',4000,6000,.08)},
+ build:t=>{for(let i=0;i<2;i++){blip(t+i*.18,180,90,.1,'sine',.35);sweep(t+i*.18,.06,'bandpass',2000,1200,.12)}},
+ page:t=>sweep(t,.25,'bandpass',2500,1200,.08,1),
+ win:t=>{},
+};
+function sfx(name){if(!sfxOK())return;const f=SFX[name]||SFX.tinder;try{f(MUS.ctx.currentTime+.01)}catch(e){}}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('button');if(b&&!b.disabled)sfx('click')},true);
+
 /* ================= CAMPAÑA: MAPA GENERAL ================= */
 let VIEW='camp',UPG={hp:0,aim:0,mob:0,cd:0},C=null,PICK_START=null;
 const SAVE_KEY='reconquista_orcasitas_v1';
@@ -2187,7 +2272,7 @@ function newCampaign(start){
 function pauseCamp(){}
 function endCampTurn(){
   if(!C||C.won||C.lost)return;
-  const rep=[];C.day++;
+  const rep=[];C.day++;sfx('page');
   for(const id in C.hosp){C.hosp[id]--;if(C.hosp[id]<=0){delete C.hosp[id];rep.push(`🩹 ${ROSTER.find(r=>r.id===id).name} sale del hospital.`)}}
   const inc=income();C.res.v+=inc.v;C.res.e+=inc.e;C.res.m+=inc.m;
   rep.push(`💰 Ingresos: +${inc.v} vecinos, +${inc.e} €, +${inc.m} de material.`);
@@ -2211,19 +2296,36 @@ function endCampTurn(){
       rep.push(`⚠️ <b>Yuyu prepara un ataque contra ${ZN[z].name}</b>: llega en ${warn} turnos con fuerza ${str}. Ahora tiene defensa ${defenseOf(z)}: refuérzala.`);
     }
   }
+  rep.push('📺 <b>Comunicado oficial de Yuyu:</b> «'+yuyuSays()+'»');
   const decree=C.day>=C.nextDecree;if(decree)C.nextDecree=C.day+4+Math.floor(Math.random()*2);
   save();renderCamp();
-  const KIND={'💰':'inc','🩹':'hos','🔴':'yu','⚠️':'warn','🛡️':'ok','❌':'bad'};
+  const KIND={'💰':'inc','🩹':'hos','🔴':'yu','⚠️':'warn','🛡️':'ok','❌':'bad','📺':'tv'};
   openModal(`<div class="rephd"><span class="tbig">${C.day}</span><div><div class="eyebrow">NUEVO TURNO</div><h3>Así está el barrio</h3></div></div><ul class="rep">${rep.map(r=>{const k=Object.keys(KIND).find(e=>r.startsWith(e));return `<li class="k-${k?KIND[k]:'x'}"><span>${k||'•'}</span><div>${k?r.slice(k.length).trim():r}</div></li>`}).join('')}</ul>
     <div class="btns"><button id="okT">${decree?'Ver el nuevo decreto de Yuyu':'Seguir'}</button></div>`);
   $('okT').onclick=()=>{closeModal();if(decree)showCampDecree();else renderCamp()};
+}
+const YUYU_TV={
+ lost:['La pérdida de {z} es una retirada estratégica.','{z} nunca nos gustó. Demasiado sol.','Lo de {z} es un bulo de la resistencia. Seguimos allí. Más o menos.','He cedido {z} por pena. Soy así de generoso.'],
+ won:['{z} vuelve a manos del pueblo. Es decir, a las mías.','Recuperado {z}. Era cuestión de tiempo, como todo lo mío.','{z} vuelve a ser nuestro. Esta noche, cañas gratis… para mí.'],
+ any:['El Líder ha dormido cuatro horas por vosotros. De nada.','Se recuerda que el chándal es solo para el Líder los domingos.','Hoy el Líder ha ganado al pickleball 11 a 0. Sin rival.','Irene no está en Cullera. Está… de viaje oficial.','El precio de las cañas sube por vuestro bien.','Prohibido hablar de la resistencia. Ni existe ni da miedo.','El Cercanías está reservado para emergencias del Líder. Por si acaso.','Quien vea a un rubio en bici, que avise. Es por su seguridad.','Felicitamos al Líder por su cumpleaños. Hoy no es, pero da igual.','Tranquilos todos. Todo bajo control. Muy bajo control.']};
+function yuyuSays(){let pool,z;if(C._lostNow){pool=YUYU_TV.won;z=C._lostNow}else if(C.lastWon){pool=YUYU_TV.lost;z=C.lastWon}else pool=YUYU_TV.any;
+  C._lostNow=null;C.lastWon=null;return pool[Math.floor(Math.random()*pool.length)].replace('{z}',z||'')}
+const EPILOGO={adri:'Abre una academia de ligoteo en Orcasitas. Lista de espera: dos años.',pedo:'Le devuelven el carnet militar. Lo usa para colarse en los conciertos.',rob:'Vuelve a pitar en el barrio. Su primera tarjeta, a Yuyu, por antideportivo.',
+ dani:'Sigue contando la historia de la reconquista. Va por el capítulo tres.',jose:'Por fin le pone una lona en condiciones al pozo. Casi.',puma:'Se echa la siesta más larga de la historia de Orcasitas.',serio:'Pincha en las fiestas de la liberación hasta las siete de la mañana.',
+ loko:'Le nombran portero de la Parrilla Gaucha. Nadie entra sin pagar.',maetin:'Gana el primer torneo libre de pickleball del barrio.',safu:'Vuelve a su banco de Pradolongo con su ligue. No le molestéis.'};
+function epilogueHtml(){
+  const team=ROSTER.filter(R=>!R.ally||(C.allies||[]).includes(R.id));
+  const best=team.map(R=>[R,(C.xp||{})[R.id]||0]).sort((a,b)=>b[1]-a[1])[0];
+  return `<div class="epi"><div class="eyebrow">EPÍLOGO</div>${team.map(R=>`<div class="epl" style="--sh:${LOOKS[R.id].shirt}"><canvas data-e="${R.id}"></canvas><p><b>${R.name}.</b> ${EPILOGO[R.id]}</p></div>`).join('')}
+    <div class="epl yu"><canvas data-e="yuyu"></canvas><p><b>Yuyu.</b> Irene se lo lleva de vuelta a Cullera. Dicen que ahora dicta decretos en la playa y nadie le hace caso.</p></div></div>
+    <div class="estats"><div><b>${C.day}</b><span>turnos</span></div><div><b>${C.missions}</b><span>misiones ganadas</span></div><div><b>${ownedList().length}</b><span>zonas liberadas</span></div><div><b>${Object.keys(C.sab||{}).length}</b><span>sabotajes</span></div><div><b>${best?best[0].name:'—'}</b><span>MVP del escuadrón</span></div></div>`;
 }
 function resolveThreat(t){
   if(!has(t.z))return '';
   const d=defenseOf(t.z),s=C.zones[t.z];
   if(d>=t.str){s.def=Math.max(0,s.def-Math.ceil(t.str/2));clog(`¡Los vecinos de ${ZN[t.z].name} aguantan el ataque de Yuyu!`);return `🛡️ Los vecinos de ${ZN[t.z].name} aguantan el ataque de Yuyu (defensa ${d} contra fuerza ${t.str}).`}
   s.own='y';s.g=Math.max(2,t.str-d);s.def=0;C.moral=Math.max(0,C.moral-1);C.threats=C.threats.filter(x=>x.z!==t.z);
-  clog(`Yuyu recupera ${ZN[t.z].name}.`);
+  clog(`Yuyu recupera ${ZN[t.z].name}.`);C._lostNow=ZN[t.z].name;
   if(!ownedList().length)C.lost=true;
   return `❌ <b>Yuyu recupera ${ZN[t.z].name}</b> (defensa ${d} contra fuerza ${t.str}). La moral baja.`;
 }
@@ -2241,10 +2343,10 @@ function showCampDecree(){
 
 /* ---------- acciones ---------- */
 function reinforceCost(){return has(8)?2:3}
-function reinforce(n){const c=reinforceCost();if(C.res.v<c||C.zones[n].def>=12)return;C.res.v-=c;C.zones[n].def+=2;clog(`Refuerzas ${ZN[n].name}: defensa ${defenseOf(n)}.`);save();renderCamp()}
+function reinforce(n){const c=reinforceCost();if(C.res.v<c||C.zones[n].def>=12)return;sfx('build');C.res.v-=c;C.zones[n].def+=2;clog(`Refuerzas ${ZN[n].name}: defensa ${defenseOf(n)}.`);save();renderCamp()}
 function buyUpgrade(id){const U2=UPGRADES.find(u=>u.id===id);const l=C.upg[id]||0;const c=U2.cost(l);
   if(l>=U2.max||C.res.e<c.e||C.res.m<c.m||(U2.need&&!has(U2.need)))return;
-  C.res.e-=c.e;C.res.m-=c.m;C.upg[id]=l+1;clog(`Mejora en el cuartel: ${U2.name} (${U2.lv[l]}).`);save();renderCamp();openCuartel()}
+  sfx('buy');C.res.e-=c.e;C.res.m-=c.m;C.upg[id]=l+1;clog(`Mejora en el cuartel: ${U2.name} (${U2.lv[l]}).`);save();renderCamp();openCuartel()}
 function healNow(id){if(C.res.e<6)return;C.res.e-=6;delete C.hosp[id];clog(`${ROSTER.find(r=>r.id===id).name} sale del hospital antes de tiempo.`);save();renderCamp()}
 function openCuartel(){
   const res=`<div class="qres">${resChip('👥','Vecinos',C.res.v,null,'#8fd19e')}${resChip('💶','Euros',C.res.e,null,'#f4d35e')}${resChip('🧱','Material',C.res.m,null,'#f08a3c')}</div>`;
@@ -2863,10 +2965,11 @@ function launchMission(n,ids,kind){
   const m=missionFor(n,kind);if(typeof n==='number'&&n!==5&&kind!=='raid'&&!m.FOES_FIXED)scaleFoes(m,C.zones[n].g);safeStart(m);loadMission(m);
   UPG={hp:C.upg.hp+(n==='renfe'&&has(2)?2:0),aim:C.upg.aim*5+(has(7)?5:0)+(n==='renfe'&&has(8)?10:0),mob:C.upg.mob,cd:C.upg.cd,crit:(C.upg.crit||0)*20,ranks:Object.fromEntries(ROSTER.map(r=>[r.id,rankOf(r.id)]))};
   const al=(C.allies||[]).filter(a=>!C.hosp[a]);ids=[...ids,...al];
-  C.cur={z:n,ids,kind};show('mis');musPlay(n==='renfe'?'final':kind==='raid'?'yuyu':ZONE_TRACK[n]||'mapa');layout();newGame(ids);
+  C.cur={z:n,ids,kind};clearMissionSave();show('mis');musPlay(n==='renfe'?'final':kind==='raid'?'yuyu':ZONE_TRACK[n]||'mapa');layout();newGame(ids);
   window.scrollTo({top:0});
 }
 function endMission(won,retreat){
+  clearMissionSave();
   musJingle(won&&!retreat?'victoria':'derrota',null);
   if(MISSION.tut){tutEnd(won&&!retreat);return}
   const n=C.cur.z,ids=C.cur.ids,z=ZN[n]||{name:'la estación'};
@@ -2880,7 +2983,8 @@ function endMission(won,retreat){
   if(n==='renfe'){
     if(won){C.won=true;C.cur=null;save();
       openModal(`<div class="eyebrow">VICTORIA</div><h3>¡Orcasitas es libre!</h3><p>Yuyu ha caído en el andén de la estación de Orcasitas, en el turno ${C.day}, sin llegar a subirse al Cercanías.${(C.sab||{}).irene?' Irene se lo lleva de la oreja de vuelta a Cullera.':''} Se acabaron los decretos: vuelven las cañas, el chándal y el pickleball para todos.</p>
-        <p class="muted">${C.missions} misiones ganadas · ${ownedList().length} zonas liberadas.</p><div class="btns"><button id="nc">Nueva campaña</button><button class="alt" id="bk">Ver el mapa</button></div>`);
+        ${epilogueHtml()}<div class="btns"><button id="nc">Nueva campaña</button><button class="alt" id="bk">Ver el mapa</button></div>`,true);
+      $('card').querySelectorAll('canvas[data-e]').forEach(cv=>portrait(cv,LOOKS[cv.dataset.e]));
       $('nc').onclick=()=>{closeModal();show('camp');startFlow()};$('bk').onclick=()=>{closeModal();show('camp');renderCamp()};return}
     C.moral=Math.max(0,C.moral-1);clog(`${retreat?'Retirada':'Derrota'} en la estación de Orcasitas.`);C.cur=null;save();
     openModal(`<div class="eyebrow" style="color:#f07a8c">${retreat?'RETIRADA':'ASALTO FALLIDO'}</div><h3>Yuyu sigue atrincherado en la estación</h3><p>La moral baja 1. Recuperaos, liberad más zonas o saboteadle la casa y volved a intentarlo.</p>
@@ -2900,7 +3004,7 @@ function endMission(won,retreat){
   if(won){
     const g=C.zones[n].g;const rew={v:2,e:6+g,m:2};
     C.zones[n]={own:'p',g:0,def:2};C.res.v+=rew.v;C.res.e+=rew.e;C.res.m+=rew.m;C.moral=Math.min(6,C.moral+1);C.missions++;
-    C.threats=C.threats.filter(t=>t.z!==n);clog(`¡${z.name} liberada!`);
+    C.threats=C.threats.filter(t=>t.z!==n);clog(`¡${z.name} liberada!`);C.lastWon=z.name;
     C.allies=C.allies||[];const newAlly=n===3&&!C.allies.includes('maetin')?'maetin':n===1&&!C.allies.includes('safu')?'safu':null;if(newAlly){C.allies.push(newAlly);clog(`${ROSTER.find(r=>r.id===newAlly).name} se une al grupo para siempre.`)}
     if(n===5){C.won=true;save();
       html=`<div class="eyebrow">VICTORIA</div><h3>¡Orcasitas es libre!</h3><p>Yuyu ha caído en el turno ${C.day}. Se acabaron los decretos: vuelven las cañas, el chándal y el pickleball para todos.</p>
@@ -3043,6 +3147,26 @@ function tutEnd(won){
   $('tgo').onclick=exit;
 }
 
+/* ---------- guardar y reanudar a mitad de misión ---------- */
+const MSAVE=SAVE_KEY+'_mision';
+function trackFor(n,kind){return n==='renfe'?'final':kind==='raid'?'yuyu':ZONE_TRACK[n]||'mapa'}
+function lookKey(l){for(const k in LOOKS)if(LOOKS[k]===l)return 'L:'+k;if(l===MINION)return 'MINION';if(l===SARGE)return 'SARGE';return l}
+function lookFrom(k){return typeof k!=='string'?k:k.startsWith('L:')?LOOKS[k.slice(2)]:k==='MINION'?MINION:k==='SARGE'?SARGE:k}
+function saveMission(){
+  try{if(!C||!C.cur||!MISSION||MISSION.tut||S.over||S.busy||S.side!=='p')return;
+    const units=U.map(u=>{const o={};for(const k in u){if(['_hit','lunge','hop','walking','hurt'].includes(k))continue;o[k]=u[k]}o.look=lookKey(u.look);o.x=u.c;o.y=u.r;return o});
+    const s={...S,sel:S.sel?S.sel.id:null,mode:null,preview:null,busy:false};
+    localStorage.setItem(MSAVE,JSON.stringify({v:1,cur:C.cur,day:C.day,title:MISSION.title,U:units,S:s,OBJ,ROT,UPG}))}catch(e){}
+}
+function clearMissionSave(){try{localStorage.removeItem(MSAVE)}catch(e){}}
+function missionSave(){try{const d=JSON.parse(localStorage.getItem(MSAVE)||'null');const c=load();if(d&&c&&c.day===d.day&&!c.won&&!c.lost)return d}catch(e){}return null}
+function resumeMission(d){
+  C=load();C.allies=C.allies||[];C.xp=C.xp||{};C.upg={...UPG_DEF,...(C.upg||{})};C.cur=d.cur;PICK_START=null;
+  const m=missionFor(d.cur.z,d.cur.kind);loadMission(m);OBJ=d.OBJ;UPG=d.UPG;ROT=d.ROT||0;
+  U=d.U.map(u=>({...u,look:lookFrom(u.look)}));FX=[];sleepingPods.clear();
+  S={...d.S,busy:false,mode:null,preview:null,over:false};S.sel=U.find(u=>u.id===d.S.sel&&u.alive&&u.side==='p')||alive('p').find(u=>u.ap>0)||alive('p')[0];
+  show('mis');musPlay(trackFor(d.cur.z,d.cur.kind));layout();lastSel=null;log('Misión reanudada. ¡Seguimos donde lo dejasteis!');render();
+}
 /* ---------- pantalla de inicio ---------- */
 const NEWS_POOL=[
  ['Yuyu prohíbe el chándal los domingos','«Es por la imagen del barrio», asegura el Líder desde su balcón.'],
@@ -3060,7 +3184,7 @@ const NEWS_POOL=[
  ['Pedorreta, detenido por «atentado contra el aire»','Fue puesto en libertad al enseñar un carnet militar.'],
  ['Danilo, del Decathlon, liga con dos esbirros a la vez','Los esbirros han pedido el traslado al Hospital 12 de Octubre.']
 ];
-const PATCH=[['🎓','Tutorial opcional','Safu y Adri te enseñan a jugar en una cita rápida.'],['🎵','Música para todo','Un tema para cada zona, el menú, el tutorial y la batalla final.'],
+const PATCH=[['🔊','Efectos de sonido','Latas, collejones, el pedo nuclear, el silbato de Roberto, la furgoneta…'],['💾','Guardado en mitad de misión','Si cierras el navegador, «Continuar» te devuelve justo donde estabas.'],['😂','Más humor','Cada uno tiene sus frases, Yuyu da comunicados oficiales y hay epílogo final.'],['🎓','Tutorial opcional','Safu y Adri te enseñan a jugar en una cita rápida.'],['🎵','Música para todo','Un tema para cada zona, el menú, el tutorial y la batalla final.'],
  ['🌳','Gráficos nuevos','Suelos con textura, sombras, árboles, fuentes y palomas en todos los mapas.'],['⚖️','Dificultad equilibrada','Probada en cientos de partidas: ya no es un infierno.'],
  ['📱','Hecho para el móvil','En las misiones, el mapa arriba y los botones siempre a mano.'],['😤','Nuevo poder de Adri','Escándalo público: la lía, vacila y se encara.']];
 function hasSave(){const s=load();return s&&!s.won&&!s.lost?s:null}
@@ -3078,7 +3202,7 @@ function newsFor(s){
 }
 function homeTab(t){$('hnews').hidden=t!=='eco';$('hpatch').hidden=t!=='nov';$('tabEco').classList.toggle('on',t==='eco');$('tabNov').classList.toggle('on',t==='nov')}
 function renderHome(){
-  const s=hasSave(),news=newsFor(s),R=mulberry(Math.floor(Date.now()/86400000));
+  const s=hasSave(),ms=s?missionSave():null,news=newsFor(s),R=mulberry(Math.floor(Date.now()/86400000));
   const fecha=new Date().toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
   const dec=CAMP_DECREES[Math.floor(R()*CAMP_DECREES.length)];
   const own=s?Object.values(s.zones).filter(z=>z.own==='p').length:0;
@@ -3088,7 +3212,7 @@ function renderHome(){
     <div class="hmain"><div class="eyebrow">DADDYS GAMES PRESENTA</div><h1 class="htitle">La Reconquista<br>de Orcasitas</h1>
       <p class="htag">Yuyu se ha hecho con el barrio. Monta la resistencia con tu escuadrón, libera Orcasitas zona a zona y échale de la estación de Renfe.</p>
       <div class="hmenu">
-        ${s?`<button class="red big" id="hcont">▶ Continuar<small>Turno ${s.day} · ${own} zona${own===1?'':'s'} liberada${own===1?'':'s'}</small></button>`:''}
+        ${ms?`<button class="red big" id="hcont">▶ Continuar la misión<small>${ms.title} · turno ${ms.S.turn} de la misión</small></button>`:s?`<button class="red big" id="hcont">▶ Continuar<small>Turno ${s.day} · ${own} zona${own===1?'':'s'} liberada${own===1?'':'s'}</small></button>`:''}
         <button class="${s?'alt':'red big'}" id="hnew">${s?'Nueva campaña':'▶ Empezar la campaña'}</button>
         <button class="alt" id="htut">🎓 Tutorial con Safu y Gorrón</button>
         <div class="hrow"><button class="alt" id="hsq">🧢 Conoce al escuadrón</button><button class="alt" id="hhow">📖 Cómo se juega</button><button class="alt" id="hmus">${MUS.on?'🔊':'🔇'}</button></div>
@@ -3103,7 +3227,7 @@ function renderHome(){
     <div class="ticker"><span class="tlabel">ÚLTIMA HORA</span><div class="tmove"><div class="ttrack">${[...news,...NEWS_POOL.slice(0,4)].map(n=>`<span>● ${n[0]}</span>`).join('')}${[...news,...NEWS_POOL.slice(0,4)].map(n=>`<span>● ${n[0]}</span>`).join('')}</div></div></div>`;
   bigPortrait($('yuyuBig'),LOOKS.yuyu,1.55);
   $('tabEco').onclick=()=>homeTab('eco');$('tabNov').onclick=()=>homeTab('nov');
-  if($('hcont'))$('hcont').onclick=()=>{C=load();C.allies=C.allies||[];C.xp=C.xp||{};C.upg={...UPG_DEF,...(C.upg||{})};C.cur=null;PICK_START=null;show('camp');renderCamp()};
+  if($('hcont'))$('hcont').onclick=()=>{if(ms){resumeMission(ms);return}C=load();C.allies=C.allies||[];C.xp=C.xp||{};C.upg={...UPG_DEF,...(C.upg||{})};C.cur=null;PICK_START=null;show('camp');renderCamp()};
   let arm=false;$('hnew').onclick=()=>{if(s&&!arm){arm=true;$('hnew').textContent='¿Seguro? Se borra la partida guardada';setTimeout(()=>{arm=false;if($('hnew'))$('hnew').textContent='Nueva campaña'},3500);return}startFlow()};
   $('htut').onclick=startTutorial;$('hsq').onclick=showSquadGallery;$('hhow').onclick=showHowTo;$('hmus').onclick=()=>{musToggle();$('hmus').textContent=MUS.on?'🔊':'🔇'};
 }
@@ -3131,6 +3255,7 @@ function showHowTo(){
 
 /* ---------- arranque ---------- */
 function startFlow(){
+  clearMissionSave();
   try{localStorage.removeItem(SAVE_KEY)}catch(e){}
   C={day:1,speed:0,res:{v:0,e:0,m:0},moral:3,zones:Object.fromEntries(ZONES.map(z=>[z.n,{own:'y',g:z.n===5?6:4,def:0}])),hosp:{},upg:{...UPG_DEF},xp:{},threats:[],log:[],stopV:0};
   PICK_START=0;show('camp');renderCamp();
