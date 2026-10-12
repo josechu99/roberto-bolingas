@@ -2178,6 +2178,8 @@ function newCampaign(start){
   ADJ[start].forEach(n=>{if(n!==5)zones[n].g=3});
   C={day:1,speed:0,sab:{},allies:[],res:{v:6,e:15,m:4},moral:3,zones,hosp:{},upg:{...UPG_DEF},xp:{},threats:[],nextThreat:3,nextDecree:5,stopV:0,log:[],start,missions:0,won:false,lost:false};
   clog(`La resistencia se reúne en ${ZN[start].name}.`);
+  if(start===3){C.allies.push('maetin');clog('Maetin deja la pala de pickleball y se une al grupo para siempre.')}
+  if(start===1){C.allies.push('safu');clog('Safu se despega de su ligue y se une al grupo para siempre.')}
   save();
 }
 
@@ -2304,7 +2306,7 @@ function renderCamp(){
   if(PICK_START!==null){
     const z=PICK_START?ZN[PICK_START]:null;
     P.innerHTML=`${zhead(z?'own':'neu','DÓNDE MONTAR EL CUARTEL',z?z.name:'Toca una zona del mapa',z?ZICO[z.n]:'⚑')}<div class="zbody">
-      ${z?call('g','🎁','Ventaja',z.bonus):'<p>Elige desde qué zona empezáis a reconquistar Orcasitas. Cada una da una ventaja distinta. La Casa de Yuyu no se puede elegir.</p>'}
+      ${z&&z.n===3?call('b','🎾','Aliado desde el principio','Maetin se une a tu escuadrón desde el primer turno.'):''}${z&&z.n===1?call('b','😏','Aliado desde el principio','Safu se une a tu escuadrón desde el primer turno.'):''}${z?call('g','🎁','Ventaja',z.bonus):'<p>Elige desde qué zona empezáis a reconquistar Orcasitas. Cada una da una ventaja distinta. La Casa de Yuyu no se puede elegir.</p>'}
       <div class="btns"><button class="red" id="cstart" ${z?'':'disabled'}>⚑ Empezar aquí</button></div></div>`;
     $('cstart').onclick=()=>{const st=PICK_START;PICK_START=null;newCampaign(st);C.sel=st;renderCamp()};
   }else if(C.sel==='renfe'){
