@@ -47,6 +47,28 @@
       d.style.cssText = 'justify-self:' + (matchMedia('(max-width:760px)').matches ? 'center' : 'start') + ';margin-bottom:14px;font-family:var(--body);font-weight:700;font-size:15px;color:var(--muted);text-decoration:underline;text-underline-offset:3px;padding:4px 2px';
       hmenu.appendChild(d);
     }
+    // ITV: icono junto al botón de sonido, arriba, y enlace en la pestaña Informe
+    var mute = document.getElementById('mute');
+    if (mute && document.getElementById('tapBtn') && !document.getElementById('dg-home-i')) {
+      var e = document.createElement('a');
+      e.id = 'dg-home-i';
+      e.href = HOME;
+      e.className = 'icon-btn';
+      e.textContent = '🕹️';
+      e.title = 'Volver a Daddys Games';
+      e.setAttribute('aria-label', 'Volver a Daddys Games');
+      e.style.cssText = 'text-decoration:none;font-size:18px';
+      mute.parentNode.insertBefore(e, mute);
+    }
+    var rbox = document.getElementById('resetBox');
+    if (rbox && !document.getElementById('dg-home-ir')) {
+      var f = document.createElement('a');
+      f.id = 'dg-home-ir';
+      f.href = HOME;
+      f.textContent = '🕹️ Volver a Daddys Games';
+      f.style.cssText = 'border:1px solid var(--junta);border-radius:8px;padding:6px 12px;font-family:var(--f-cond);font-weight:700;color:var(--tiza);text-decoration:none';
+      rbox.appendChild(f);
+    }
   }
   function start() {
     add();
