@@ -187,6 +187,70 @@ button:focus-visible{outline:2px solid var(--chaleco);outline-offset:2px}
   .twbody{flex-direction:row}
   .twbody .tdetail{width:330px;max-height:none;align-self:stretch;align-content:start}
 }
+/* Logros, cuñas y ajustes */
+.achpop{pointer-events:none;width:max-content;min-width:min(320px,calc(100% - 32px));position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 12px);transform:translateX(-50%);z-index:60;display:flex;gap:10px;align-items:center;background:var(--forro);border:2px solid var(--chaleco);border-radius:14px;padding:8px 16px 8px 10px;box-shadow:0 12px 30px rgba(0,0,0,.5);animation:drop .25s ease-out;max-width:calc(100% - 32px)}
+.achpop.out,.adban.out{opacity:0;transition:opacity .3s}
+.achpop .medal{width:36px;height:36px;flex:none}
+.achpop small{display:block;white-space:nowrap;font-family:var(--f-cond);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--chaleco)}
+.achpop b{display:block;font-size:16px}
+.adban{pointer-events:none;position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);transform:translateX(-50%);z-index:55;width:min(520px,calc(100% - 32px));background:#1f2a14;border:2px solid #0d120a;border-radius:12px;padding:8px 14px;color:#b8f05a;font-family:var(--f-cond);box-shadow:0 12px 30px rgba(0,0,0,.5),inset 0 0 14px rgba(184,240,90,.15);animation:drop .25s ease-out}
+.adban small{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+.adban span{display:block;font-size:17px;font-weight:600;line-height:1.2}
+.rlcd em{display:block;font-style:normal;font-size:13px;opacity:.85;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rtt{display:grid;min-width:0}
+.rtt small{font-family:var(--f-cond);font-size:12px;color:var(--gris);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.achlist{display:grid;gap:8px}
+.achh{margin:6px 0 0;font-family:var(--f-cond);font-size:20px;text-transform:uppercase;letter-spacing:.04em;display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.achh span{font-size:14px;color:var(--chaleco);letter-spacing:0;text-transform:none}
+.achgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:6px}
+.ach{display:grid;grid-template-columns:30px minmax(0,1fr);gap:8px;align-items:center;background:var(--forro);border:1px solid var(--junta);border-radius:10px;padding:6px 8px}
+.ach .medal{width:30px;height:30px;filter:grayscale(1) brightness(.5)}
+.ach.on .medal{filter:none}
+.ach b{display:block;font-size:13px;line-height:1.2}
+.ach small{display:block;font-size:12px;color:var(--gris);line-height:1.2}
+.ach:not(.on) b{color:var(--gris)}
+.setbox{display:flex;gap:12px;font-family:var(--f-cond);font-weight:600;font-size:15px}
+.setbox:empty{display:none}
+/* Pedidos */
+.order{display:grid;gap:3px;font-family:var(--f-cond);font-size:14px;color:var(--gris);min-width:0;background:var(--forro);border:1px solid var(--junta);border-left:4px solid var(--barrio);border-radius:8px;padding:5px 10px 7px}
+.order .row{display:flex;justify-content:space-between;gap:8px;min-width:0}
+.order .row>span:first-child{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.order b{color:var(--barrio);text-transform:uppercase;letter-spacing:.05em;font-size:12px}
+.order #oTxt{color:var(--tiza);font-weight:600}
+.order .bar{height:6px}.order .bar i{background:var(--barrio)}
+/* Nueva ITV, dificultad, taller y tutorial */
+#setup{z-index:52}
+.card.wide{max-width:720px}
+.card .sh{margin:4px 0 -4px;font-family:var(--f-cond);font-size:16px;letter-spacing:.06em;text-transform:uppercase;color:var(--gris);display:flex;align-items:center;gap:10px}
+.card .warn{color:var(--neg);font-weight:600}
+.bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.bcard{text-align:left;background:var(--forro2);border:2px solid var(--junta);border-radius:12px;padding:10px;display:grid;gap:4px;align-content:start}
+.bcard b{font-family:var(--f-disp);font-weight:400;font-size:20px;color:var(--tiza);text-transform:uppercase}
+.bcard small{font-size:13px;color:var(--gris);line-height:1.3}
+.bcard span{font-family:var(--f-cond);font-size:13px;color:var(--chaleco)}
+.bcard.on{border-color:var(--chaleco);box-shadow:0 0 0 3px rgba(244,196,48,.25)}
+.bcard:disabled{opacity:.45;cursor:default}
+.dseg{display:flex;gap:6px;flex-wrap:wrap}
+.dseg button{flex:1;min-width:90px;border:1px solid var(--junta);border-radius:10px;padding:8px;font-family:var(--f-cond);font-weight:700;font-size:16px;color:var(--gris)}
+.dseg button[aria-pressed="true"]{background:var(--tiza);color:var(--asfalto);border-color:var(--tiza)}
+.ddesc{color:var(--gris)!important;font-size:14px}
+.tuerca{width:20px;height:20px;vertical-align:-4px;margin-right:3px}
+.tbal{margin-left:auto;color:var(--chaleco);font-size:18px}
+.shop{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px}
+.sitem{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;background:var(--forro2);border:1px solid var(--junta);border-radius:12px;padding:10px}
+.sitem b{display:block;font-size:15px}.sitem small{display:block;font-size:13px;color:var(--gris);line-height:1.3}
+.sitem .pips{display:flex;gap:4px;margin-top:5px}.sitem .pips i{width:10px;height:10px;border-radius:50%;border:2px solid var(--chaleco)}.sitem .pips i.on{background:var(--chaleco)}
+.sitem .buy{min-width:74px;display:flex;align-items:center;justify-content:center}
+.tgain{display:flex;align-items:center;gap:6px;flex-wrap:wrap;color:var(--gris)!important}.tgain b{color:var(--chaleco)}
+.coach{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 16px);z-index:38;width:min(460px,calc(100% - 32px));background:var(--tiza);color:var(--asfalto);border-radius:14px;padding:12px 14px;display:grid;gap:8px;box-shadow:0 14px 40px rgba(0,0,0,.55);border-left:6px solid var(--chaleco);animation:drop .25s ease-out}
+.coach p{margin:0;font-weight:600;font-size:15px;line-height:1.35}
+.coach .cstep{font-family:var(--f-cond);font-weight:700;font-size:13px;color:#7a6a20;letter-spacing:.08em}
+.coach .cbtns{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.coach .cok{background:var(--asfalto);color:var(--chaleco);font-family:var(--f-cond);font-weight:700;font-size:15px;padding:7px 14px;border-radius:8px}
+.coach .cwait{font-family:var(--f-cond);font-weight:700;font-size:14px;color:#7a6a20}
+.coach .cskip{font-family:var(--f-cond);font-size:14px;text-decoration:underline;color:#4a5263}
+.coachHi{outline:3px solid var(--chaleco)!important;outline-offset:3px;animation:hi 1s ease-in-out infinite;position:relative;z-index:6}
+@keyframes hi{50%{outline-color:rgba(244,196,48,.25)}}
 /* Radio Pirata */
 .rwin{background:var(--asfalto);width:100%;height:100%;display:flex;flex-direction:column;gap:12px;padding:calc(env(safe-area-inset-top,0px) + 10px) 16px calc(env(safe-area-inset-bottom,0px) + 12px);overflow:auto;animation:drop .2s ease-out}
 @media (min-width:900px){.rwin{width:min(720px,calc(100% - 48px));height:min(780px,calc(100% - 48px));border:1px solid var(--junta);border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.6);padding:18px 20px}}
@@ -301,6 +365,10 @@ button:focus-visible{outline:2px solid var(--chaleco);outline-offset:2px}
       <div class="row"><span id="goalTxt">Objetivo</span><span class="num" id="goalPct">0%</span></div>
       <div class="bar"><i id="goalBar"></i></div>
     </div>
+    <div class="order" id="order" hidden>
+      <div class="row"><span><b>Pedido del día</b> <span id="oTxt"></span></span><span class="num" id="oProg"></span></div>
+      <div class="bar"><i id="oBar"></i></div>
+    </div>
     <div class="scene" id="scene">
       <canvas id="cv" aria-label="Toca para revisar el coche"></canvas>
       <div class="event" id="event" hidden></div>
@@ -335,9 +403,11 @@ button:focus-visible{outline:2px solid var(--chaleco);outline-offset:2px}
     </div>
     <div id="p-inf" role="tabpanel" hidden class="staff">
       <div class="informe">
-        <header><h3>Informe de inspección<br>técnica del turno</h3><small>ITV Orcasitas<br>Inspector: Puma</small></header>
+        <header><h3>Informe de inspección<br>técnica del turno</h3><small>Daddys Games<br>Inspector: Puma</small></header>
         <dl id="infList"></dl>
       </div>
+      <div class="achlist" id="achList"></div>
+      <div class="setbox" id="setBox"></div>
       <div class="reset" id="resetBox"><button id="resetBtn">Empezar partida nueva</button></div>
     </div>
   </section>
@@ -374,7 +444,7 @@ button:focus-visible{outline:2px solid var(--chaleco);outline-offset:2px}
     <div class="rnow">
       <div class="rcover" id="rCover"></div>
       <div class="rinfo">
-        <div class="rlcd"><span id="rState">EN EMISIÓN</span><b id="rName">—</b></div>
+        <div class="rlcd"><span id="rState">EN EMISIÓN</span><b id="rName">—</b><em id="rFx"></em></div>
         <div class="rprog"><span class="num" id="rT0">0:00</span><input type="range" id="rSeek" min="0" max="1000" value="0" aria-label="Posición de la canción"><span class="num" id="rT1">0:00</span></div>
         <div class="rctl">
           <button id="rPrev" aria-label="Canción anterior"></button>
@@ -395,6 +465,13 @@ button:focus-visible{outline:2px solid var(--chaleco);outline-offset:2px}
   </div>
 </div>
 
+<div class="achpop" id="achPop" hidden role="status"></div>
+<div class="adban" id="adBan" hidden role="status"></div>
+<div class="overlay" id="away" hidden><div class="card"></div></div>
+
+<div class="overlay" id="setup" hidden><div class="card wide" id="setupCard"></div></div>
+<div class="coach" id="coach" hidden role="status"></div>
+
 <div class="overlay" id="welcome" hidden>
   <div class="card">
     <div class="whead"><canvas id="wPuma" width="160" height="160" aria-hidden="true"></canvas><h2>ITV Incremental Simulator</h2></div>
@@ -406,6 +483,10 @@ button:focus-visible{outline:2px solid var(--chaleco);outline-offset:2px}
       <li>Abre el árbol con el botón de al lado de Revisar: seis ramas, combos, caminos que se excluyen y nodos secretos.</li>
       <li>Llega a <span id="goalWelcome">400 M €</span> y vendrá Yuyu con el Yuyomóvil a pasar la ITV.</li>
     </ul>
+    <h3 class="sh">Dificultad</h3>
+    <div class="dseg" id="wDiff"></div>
+    <p class="ddesc" id="wDiffDesc"></p>
+    <label class="rsw"><input type="checkbox" id="wTut" checked><span></span>Con tutorial</label>
     <button class="go" id="startBtn">Empezar el turno</button>
   </div>
 </div>
@@ -877,7 +958,7 @@ function chibiCap(x,px,hy,s,face){
 return {LOOKS,portrait,chibi};
 })();
 // ===== ITV Incremental Simulator: reglas del juego (sin interfaz) =====
-const GOAL = 4e8; // facturación total para que aparezca el Yuyomóvil
+const GOAL = 6e8; // facturación total para que aparezca el Yuyomóvil
 
 const VEH = [
   {id:'turismo', name:'Turismo', work:10, pay:40, w:10},
@@ -890,19 +971,23 @@ const VEH = [
 ];
 
 const GEN = [
-  {id:'roberto', name:'Roberto', role:'Frenómetro', base:480, rate:.5, col:'#c9473c',
+  {id:'roberto', name:'Roberto', role:'Frenómetro', base:740, rate:.5, col:'#c9473c',
    flavor:'Pisa el freno como pita las faltas.'},
-  {id:'pedorreta', name:'Pedorreta', role:'Analizador de gases', base:5600, rate:4, col:'#4f9a5a',
+  {id:'pedorreta', name:'Pedorreta', role:'Analizador de gases', base:8700, rate:4, col:'#4f9a5a',
    flavor:'El opacímetro le tiene miedo.'},
-  {id:'daniel', name:'Daniel', role:'Recepción y papeleo', base:64000, rate:30, col:'#7a8496',
+  {id:'daniel', name:'Daniel', role:'Recepción y papeleo', base:99000, rate:30, col:'#7a8496',
    flavor:'Explica el informe punto por punto. Todos los puntos.'},
-  {id:'jose', name:'Jose', role:'Regloscopio (luces)', base:720000, rate:200, col:'#3d3d48',
+  {id:'jose', name:'Jose', role:'Regloscopio (luces)', base:1.1e+06, rate:200, col:'#3d3d48',
    flavor:'Ajusta los faros entre nubes de vaper.'},
-  {id:'loko', name:'Loko', role:'Aparcacoches', base:8e+06, rate:1400, col:'#e07b2a',
+  {id:'maetin', name:'Maetin', role:'Control de bajos', base:4e+06, rate:620, col:'#f4f4f4',
+   flavor:'Revisa los bajos como si fueran pistas de pickleball.'},
+  {id:'loko', name:'Loko', role:'Aparcacoches', base:1.2e+07, rate:1400, col:'#e07b2a',
    flavor:'Aparca con la furgoneta del Mercadona. A empujones.'},
-  {id:'serio', name:'Serio', role:'Sala de espera', base:4e+07, rate:5000, col:'#7a4fb0',
+  {id:'serio', name:'Serio', role:'Sala de espera', base:6.2e+07, rate:5000, col:'#7a4fb0',
    flavor:'Pone tecno y nadie se queja de la espera.'},
-  {id:'adri', name:'Adri', role:'Caja', base:1.9e+08, rate:2.2e4, col:'#2f7fb8',
+  {id:'safu', name:'Safu', role:'Atención al cliente', base:1.4e+08, rate:1.05e4, col:'#c9946a',
+   flavor:'Liga con los clientes mientras esperan. Vuelven todos.'},
+  {id:'adri', name:'Adri', role:'Caja', base:2.9e+08, rate:2.2e4, col:'#2f7fb8',
    flavor:'Cobra rápido. Y se come los bocatas de los clientes.'},
 ];
 const GROWTH = 1.15;
@@ -911,86 +996,89 @@ const GROWTH = 1.15;
 // need = plantilla mínima, secret = aparece al cumplir una estadística
 const NODES = [
   // --- Equipos de inspección ---
-  {id:'linterna', b:'eq', tier:1, name:'Linterna LED', desc:'Cada toque revisa el doble.', cost:640, fx:{click:1}},
-  {id:'motos', b:'eq', tier:1, name:'Línea de motos', desc:'Empiezan a llegar motos.', cost:2400, fx:{veh:1}},
-  {id:'dedo', b:'eq', tier:1, name:'Dedo de acero', desc:'Toques ×2.', cost:24000, secret:{stat:'taps', n:1500, hint:'Toca. Toca mucho. Muchísimo.'}, fx:{clickX:2}},
-  {id:'tablet', b:'eq', tier:2, name:'Tablet de inspección', desc:'Toques ×2.', cost:12000, req:['linterna'], fx:{clickX:2}},
-  {id:'furgo', b:'eq', tier:2, name:'Báscula de ejes', desc:'Llegan furgonetas.', cost:24000, req:['motos'], fx:{veh:1}},
-  {id:'cazador', b:'eq', tier:2, name:'Cazador de correas', desc:'Un 5% más de toques críticos.', cost:64000, secret:{stat:'correas', n:5, hint:'Hay correas de distribución que chirrían…'}, fx:{critAdd:.05}},
-  {id:'foso', b:'eq', tier:3, name:'Foso con elevador', desc:'Toda la producción ×1,5.', cost:120000, req:['tablet'], fx:{prod:1.5}},
-  {id:'frenometro', b:'eq', tier:3, name:'Frenómetro de rodillos', desc:'Toques ×1,3 por nivel.', cost:48000, max:5, grow:4, req:['tablet'], fx:{clickX:1.3}},
-  {id:'caravana', b:'eq', tier:3, name:'Línea de caravanas', desc:'Llegan caravanas.', cost:320000, req:['furgo'], fx:{veh:1}},
-  {id:'rapida', b:'eq', tier:4, name:'Línea rápida', desc:'Producción ×1,4. Excluye la inspección minuciosa.', cost:480000, req:['foso'], excl:'minuciosa', fx:{prod:1.4}},
-  {id:'minuciosa', b:'eq', tier:4, name:'Inspección minuciosa', desc:'Cobras un 20% más y toques ×1,5. Excluye la línea rápida.', cost:480000, req:['foso'], excl:'rapida', fx:{pay:1.2, clickX:1.5}},
-  {id:'pesados', b:'eq', tier:4, name:'Línea de pesados', desc:'Llegan camiones.', cost:1.1e+06, req:['caravana'], fx:{veh:1}},
-  {id:'opacimetro', b:'eq', tier:5, name:'Opacímetro digital', desc:'Cobras un 25% más por coche.', cost:1.2e+06, req:['foso'], fx:{pay:1.25}},
-  {id:'bus', b:'eq', tier:5, name:'Línea de autobuses', desc:'Llegan autobuses.', cost:8e+06, req:['pesados'], fx:{veh:1}},
-  {id:'diagnosis', b:'eq', tier:6, name:'Máquina de diagnosis', desc:'Cada toque suma también el 3% de la producción por segundo.', cost:3.2e+06, req:['opacimetro'], fx:{diag:.03}},
-  {id:'automatica', b:'eq', tier:7, name:'Línea automática', desc:'Toda la producción ×2.', cost:2.7e+07, req:['diagnosis','bus'], fx:{prod:2}},
+  {id:'linterna', b:'eq', tier:1, name:'Linterna LED', desc:'Cada toque revisa el doble.', cost:990, fx:{click:1}},
+  {id:'motos', b:'eq', tier:1, name:'Línea de motos', desc:'Empiezan a llegar motos.', cost:3700, fx:{veh:1}},
+  {id:'dedo', b:'eq', tier:1, name:'Dedo de acero', desc:'Toques ×2.', cost:37000, secret:{stat:'taps', n:1500, hint:'Toca. Toca mucho. Muchísimo.'}, fx:{clickX:2}},
+  {id:'tablet', b:'eq', tier:2, name:'Tablet de inspección', desc:'Toques ×2.', cost:19000, req:['linterna'], fx:{clickX:2}},
+  {id:'furgo', b:'eq', tier:2, name:'Báscula de ejes', desc:'Llegan furgonetas.', cost:37000, req:['motos'], fx:{veh:1}},
+  {id:'cazador', b:'eq', tier:2, name:'Cazador de correas', desc:'Un 5% más de toques críticos.', cost:99000, secret:{stat:'correas', n:5, hint:'Hay correas de distribución que chirrían…'}, fx:{critAdd:.05}},
+  {id:'foso', b:'eq', tier:3, name:'Foso con elevador', desc:'Toda la producción ×1,5.', cost:190000, req:['tablet'], fx:{prod:1.5}},
+  {id:'frenometro', b:'eq', tier:3, name:'Frenómetro de rodillos', desc:'Toques ×1,3 por nivel.', cost:74000, max:5, grow:4, req:['tablet'], fx:{clickX:1.3}},
+  {id:'caravana', b:'eq', tier:3, name:'Línea de caravanas', desc:'Llegan caravanas.', cost:500000, req:['furgo'], fx:{veh:1}},
+  {id:'rapida', b:'eq', tier:4, name:'Línea rápida', desc:'Producción ×1,4. Excluye la inspección minuciosa.', cost:740000, req:['foso'], excl:'minuciosa', fx:{prod:1.4}},
+  {id:'minuciosa', b:'eq', tier:4, name:'Inspección minuciosa', desc:'Cobras un 20% más y toques ×1,5. Excluye la línea rápida.', cost:740000, req:['foso'], excl:'rapida', fx:{pay:1.2, clickX:1.5}},
+  {id:'pesados', b:'eq', tier:4, name:'Línea de pesados', desc:'Llegan camiones.', cost:1.7e+06, req:['caravana'], fx:{veh:1}},
+  {id:'opacimetro', b:'eq', tier:5, name:'Opacímetro digital', desc:'Cobras un 25% más por coche.', cost:1.9e+06, req:['foso'], fx:{pay:1.25}},
+  {id:'bus', b:'eq', tier:5, name:'Línea de autobuses', desc:'Llegan autobuses.', cost:1.2e+07, req:['pesados'], fx:{veh:1}},
+  {id:'diagnosis', b:'eq', tier:6, name:'Máquina de diagnosis', desc:'Cada toque suma también el 3% de la producción por segundo.', cost:5e+06, req:['opacimetro'], fx:{diag:.03}},
+  {id:'automatica', b:'eq', tier:7, name:'Línea automática', desc:'Toda la producción ×2.', cost:4.2e+07, req:['diagnosis','bus'], fx:{prod:2}},
 
   // --- El Puma ---
-  {id:'termo', b:'pu', tier:1, name:'Termo de casa', desc:'El sueño sube un 30% más despacio.', cost:1200, fx:{sleepRate:.7}},
-  {id:'lanzatuercas', b:'pu', tier:1, name:'Lanzatuercas', desc:'8% de toques críticos que valen ×5.', cost:4000, fx:{crit:[.08,5]}},
-  {id:'despertador', b:'pu', tier:2, name:'Despertador de llave inglesa', desc:'Se despierta con 3 toques en vez de 8.', cost:16000, req:['termo'], fx:{wake:3}},
-  {id:'monster', b:'pu', tier:2, name:'Monster', desc:'Tras la bebida, producción ×1,5 durante 30 s.', cost:40000, req:['termo'], fx:{drink:[1.5,30]}},
-  {id:'titanio', b:'pu', tier:2, name:'Tuercas de titanio', desc:'Los críticos valen 2 más por nivel.', cost:32000, max:3, grow:6, req:['lanzatuercas'], fx:{critMultAdd:2}},
-  {id:'siesta', b:'pu', tier:3, name:'Siesta productiva', desc:'Dormido, la plantilla ya no baja a la mitad.', cost:320000, req:['despertador'], fx:{siesta:1}},
-  {id:'redbull', b:'pu', tier:3, name:'Red Bull a granel', desc:'Bebidas a mitad de precio y efecto ×2 durante 60 s.', cost:640000, req:['monster'], fx:{drink:[2,60], drinkCost:.5}},
-  {id:'narcolepsia', b:'pu', tier:3, name:'Narcolepsia controlada', desc:'Dormido, producción ×1,5.', cost:96000, secret:{stat:'naps', n:8, hint:'Hace falta dormirse muchas veces para dominar el arte.'}, fx:{sleepProd:1.5}},
-  {id:'cafeina', b:'pu', tier:4, name:'Cafeína en vena', desc:'El sueño sube a la mitad de rápido. Excluye al siestero.', cost:1.4e+06, req:['siesta'], excl:'siestero', fx:{sleepRate:.5}},
-  {id:'siestero', b:'pu', tier:4, name:'Siestero profesional', desc:'Dormido, producción ×1,8. Excluye la cafeína.', cost:1.4e+06, req:['siesta'], excl:'cafeina', fx:{sleepProd:1.8}},
-  {id:'correa', b:'pu', tier:4, name:'Azote con correa de distribución', desc:'Habilidad: 15 s con toques ×10 y producción ×2. Recarga 2 min.', cost:1.9e+06, req:['lanzatuercas','siesta'], fx:{ability:1}},
-  {id:'sonambulo', b:'pu', tier:5, name:'Sonámbulo', desc:'Dormido trabaja mejor: producción ×1,5 mientras ronca.', cost:5.3e+06, req:['siesta'], fx:{sonambulo:1}},
-  {id:'buho', b:'pu', tier:5, name:'Ojos de búho', desc:'Críticos al 15% y valen ×10.', cost:1.3e+07, req:['correa'], fx:{crit:[.15,10]}},
+  {id:'termo', b:'pu', tier:1, name:'Termo de casa', desc:'El sueño sube un 30% más despacio.', cost:1900, fx:{sleepRate:.7}},
+  {id:'lanzatuercas', b:'pu', tier:1, name:'Lanzatuercas', desc:'8% de toques críticos que valen ×5.', cost:6200, fx:{crit:[.08,5]}},
+  {id:'despertador', b:'pu', tier:2, name:'Despertador de llave inglesa', desc:'Se despierta con 3 toques en vez de 8.', cost:25000, req:['termo'], fx:{wake:3}},
+  {id:'monster', b:'pu', tier:2, name:'Monster', desc:'Tras la bebida, producción ×1,5 durante 30 s.', cost:62000, req:['termo'], fx:{drink:[1.5,30]}},
+  {id:'titanio', b:'pu', tier:2, name:'Tuercas de titanio', desc:'Los críticos valen 2 más por nivel.', cost:50000, max:3, grow:6, req:['lanzatuercas'], fx:{critMultAdd:2}},
+  {id:'siesta', b:'pu', tier:3, name:'Siesta productiva', desc:'Dormido, la plantilla ya no baja a la mitad.', cost:500000, req:['despertador'], fx:{siesta:1}},
+  {id:'redbull', b:'pu', tier:3, name:'Red Bull a granel', desc:'Bebidas a mitad de precio y efecto ×2 durante 60 s.', cost:990000, req:['monster'], fx:{drink:[2,60], drinkCost:.5}},
+  {id:'narcolepsia', b:'pu', tier:3, name:'Narcolepsia controlada', desc:'Dormido, producción ×1,5.', cost:150000, secret:{stat:'naps', n:8, hint:'Hace falta dormirse muchas veces para dominar el arte.'}, fx:{sleepProd:1.5}},
+  {id:'cafeina', b:'pu', tier:4, name:'Cafeína en vena', desc:'El sueño sube a la mitad de rápido. Excluye al siestero.', cost:2.2e+06, req:['siesta'], excl:'siestero', fx:{sleepRate:.5}},
+  {id:'siestero', b:'pu', tier:4, name:'Siestero profesional', desc:'Dormido, producción ×1,8. Excluye la cafeína.', cost:2.2e+06, req:['siesta'], excl:'cafeina', fx:{sleepProd:1.8}},
+  {id:'correa', b:'pu', tier:4, name:'Azote con correa de distribución', desc:'Habilidad: 15 s con toques ×10 y producción ×2. Recarga 2 min.', cost:2.9e+06, req:['lanzatuercas','siesta'], fx:{ability:1}},
+  {id:'sonambulo', b:'pu', tier:5, name:'Sonámbulo', desc:'Dormido trabaja mejor: producción ×1,5 mientras ronca.', cost:8.2e+06, req:['siesta'], fx:{sonambulo:1}},
+  {id:'buho', b:'pu', tier:5, name:'Ojos de búho', desc:'Críticos al 15% y valen ×10.', cost:2e+07, req:['correa'], fx:{crit:[.15,10]}},
 
   // --- Plantilla ---
-  {id:'p_roberto', b:'pl', tier:1, name:'Tarjeta roja al freno', desc:'Roberto ×2.', cost:7200, need:['roberto',5], fx:{gen:['roberto',2]}},
-  {id:'duo', b:'pl', tier:1, name:'Dúo Puma y Roberto', desc:'Cada Roberto suma +0,5 a tus toques.', cost:24000, req:['p_roberto','linterna'], fx:{rbClick:.5}},
-  {id:'uniformes', b:'pl', tier:1, name:'Uniformes del escuadrón', desc:'Toda la plantilla ×1,15 por nivel.', cost:19000, max:5, grow:5, need:['roberto',1], fx:{allGen:1.15}},
-  {id:'p_pedorreta', b:'pl', tier:2, name:'Emisiones creativas', desc:'Pedorreta ×2.', cost:72000, need:['pedorreta',5], fx:{gen:['pedorreta',2]}},
-  {id:'p_daniel', b:'pl', tier:2, name:'Sermón al cliente', desc:'Daniel ×2.', cost:800000, need:['daniel',5], fx:{gen:['daniel',2]}},
-  {id:'p_jose', b:'pl', tier:3, name:'Nube de vaper en los faros', desc:'Jose ×2.', cost:2.9e+06, need:['jose',5], fx:{gen:['jose',2]}},
-  {id:'niebla', b:'pl', tier:3, name:'Combo: Niebla tóxica', desc:'Pedorreta y Jose juntos en el foso: los dos ×3.', cost:4.8e+06, need:[['pedorreta',15],['jose',5]], fx:{gens:[['pedorreta',3],['jose',3]]}},
-  {id:'p_loko', b:'pl', tier:3, name:'Aparcamiento agresivo', desc:'Loko ×2.', cost:3.2e+07, need:['loko',5], fx:{gen:['loko',2]}},
-  {id:'escuadron', b:'pl', tier:4, name:'El escuadrón de Orcasitas', desc:'Toda la plantilla ×1,5.', cost:1.1e+07, req:['p_pedorreta','p_daniel','p_jose'], fx:{allGen:1.5}},
-  {id:'atasco', b:'pl', tier:4, name:'Combo: Atasco con sermón', desc:'Loko bloquea la salida y Daniel explica el informe. Daniel ×3 y Loko ×2.', cost:4.8e+07, need:[['loko',3],['daniel',15]], fx:{gens:[['daniel',3],['loko',2]]}},
-  {id:'p_serio', b:'pl', tier:5, name:'Remix de la sala de espera', desc:'Serio ×2.', cost:3.7e+08, need:['serio',5], fx:{gen:['serio',2]}},
-  {id:'tecnogases', b:'pl', tier:5, name:'Combo: Tecno y gases', desc:'Serio pincha y Pedorreta pone el humo. Toda la plantilla ×1,25.', cost:1.6e+08, need:[['serio',1],['pedorreta',25]], fx:{allGen:1.25}},
-  {id:'amarilla', b:'pl', tier:5, name:'Combo: Amarilla al gorrón', desc:'Roberto le saca tarjeta a Adri por comerse los bocatas. Los dos ×3.', cost:6.4e+08, need:[['roberto',40],['adri',1]], fx:{gens:[['roberto',3],['adri',3]]}},
+  {id:'p_roberto', b:'pl', tier:1, name:'Tarjeta roja al freno', desc:'Roberto ×2.', cost:11000, need:['roberto',5], fx:{gen:['roberto',2]}},
+  {id:'duo', b:'pl', tier:1, name:'Dúo Puma y Roberto', desc:'Cada Roberto suma +0,5 a tus toques.', cost:37000, req:['p_roberto','linterna'], fx:{rbClick:.5}},
+  {id:'uniformes', b:'pl', tier:1, name:'Uniformes del escuadrón', desc:'Toda la plantilla ×1,15 por nivel.', cost:29000, max:5, grow:5, need:['roberto',1], fx:{allGen:1.15}},
+  {id:'p_pedorreta', b:'pl', tier:2, name:'Emisiones creativas', desc:'Pedorreta ×2.', cost:110000, need:['pedorreta',5], fx:{gen:['pedorreta',2]}},
+  {id:'p_daniel', b:'pl', tier:2, name:'Sermón al cliente', desc:'Daniel ×2.', cost:1.2e+06, need:['daniel',5], fx:{gen:['daniel',2]}},
+  {id:'p_jose', b:'pl', tier:3, name:'Nube de vaper en los faros', desc:'Jose ×2.', cost:4.5e+06, need:['jose',5], fx:{gen:['jose',2]}},
+  {id:'niebla', b:'pl', tier:3, name:'Combo: Niebla tóxica', desc:'Pedorreta y Jose juntos en el foso: los dos ×3.', cost:7.4e+06, need:[['pedorreta',15],['jose',5]], fx:{gens:[['pedorreta',3],['jose',3]]}},
+  {id:'p_loko', b:'pl', tier:3, name:'Aparcamiento agresivo', desc:'Loko ×2.', cost:5e+07, need:['loko',5], fx:{gen:['loko',2]}},
+  {id:'p_maetin', b:'pl', tier:3, name:'Pala reglamentaria', desc:'Maetin ×2.', cost:9.3e+06, need:['maetin',5], fx:{gen:['maetin',2]}},
+  {id:'escuadron', b:'pl', tier:4, name:'El escuadrón de Orcasitas', desc:'Toda la plantilla ×1,5.', cost:1.7e+07, req:['p_pedorreta','p_daniel','p_jose'], fx:{allGen:1.5}},
+  {id:'atasco', b:'pl', tier:4, name:'Combo: Atasco con sermón', desc:'Loko bloquea la salida y Daniel explica el informe. Daniel ×3 y Loko ×2.', cost:7.4e+07, need:[['loko',3],['daniel',15]], fx:{gens:[['daniel',3],['loko',2]]}},
+  {id:'p_serio', b:'pl', tier:5, name:'Remix de la sala de espera', desc:'Serio ×2.', cost:5.7e+08, need:['serio',5], fx:{gen:['serio',2]}},
+  {id:'tecnogases', b:'pl', tier:5, name:'Combo: Tecno y gases', desc:'Serio pincha y Pedorreta pone el humo. Toda la plantilla ×1,25.', cost:2.5e+08, need:[['serio',1],['pedorreta',25]], fx:{allGen:1.25}},
+  {id:'p_safu', b:'pl', tier:5, name:'Compadreo', desc:'Safu ×2.', cost:7.8e+08, need:['safu',5], fx:{gen:['safu',2]}},
+  {id:'mixto', b:'pl', tier:5, name:'Combo: Doble mixto', desc:'Safu liga en la grada y Maetin juega el partido. Los dos ×3.', cost:9.3e+08, need:[['safu',1],['maetin',10]], fx:{gens:[['safu',3],['maetin',3]]}},
+  {id:'amarilla', b:'pl', tier:5, name:'Combo: Amarilla al gorrón', desc:'Roberto le saca tarjeta a Adri por comerse los bocatas. Los dos ×3.', cost:9.9e+08, need:[['roberto',40],['adri',1]], fx:{gens:[['roberto',3],['adri',3]]}},
 
   // --- Chanchullos (o la ITV honrada) ---
-  {id:'propina', b:'ch', tier:1, name:'Aceptar propinas', desc:'Cobras un 20% más. La sospecha sube. Abre el camino del chanchullo.', cost:3200, excl:'incorruptible', fx:{pay:1.2, sus:.25}},
-  {id:'incorruptible', b:'ch', tier:1, name:'Inspector incorruptible', desc:'La sospecha nunca sube y cobras un 15% más. Ya no aceptas sobres. Abre el camino honrado.', cost:3200, excl:'propina', fx:{pay:1.15, noSus:1}},
-  {id:'contable', b:'ch', tier:2, name:'Contable creativo', desc:'La sospecha baja mucho más rápido.', cost:48000, req:['propina'], fx:{susDecay:.35}},
-  {id:'vistagorda', b:'ch', tier:2, name:'La vista gorda', desc:'Producción ×1,5 sin mirar tanto. Más sospecha.', cost:96000, req:['propina'], fx:{prod:1.5, sus:.4}},
-  {id:'calidad', b:'ch', tier:2, name:'Sello de calidad', desc:'Auditoría superada: cobras un 50% más.', cost:96000, req:['incorruptible'], fx:{pay:1.5}},
-  {id:'amigo', b:'ch', tier:3, name:'Amigo en Industria', desc:'Las multas son la mitad y el precinto dura menos.', cost:800000, req:['contable'], fx:{fine:.5}},
-  {id:'sello', b:'ch', tier:3, name:'Sello falso', desc:'Cobras el doble. Mucha más sospecha.', cost:2.9e+06, req:['vistagorda'], fx:{pay:2, sus:.8}},
-  {id:'premio', b:'ch', tier:3, name:'Premio a la ITV del barrio', desc:'Producción ×1,6. Los clientes vienen de otros barrios.', cost:2.4e+06, req:['calidad'], fx:{prod:1.6}},
-  {id:'pegatinas', b:'ch', tier:4, name:'Pegatinas al por mayor', desc:'Producción ×2. La sospecha se dispara.', cost:9.3e+06, req:['sello','amigo'], fx:{prod:2, sus:1.2}},
-  {id:'auditoria', b:'ch', tier:4, name:'Auditoría perfecta', desc:'Producción ×1,8. Industria te pone de ejemplo.', cost:1.1e+07, req:['premio'], fx:{prod:1.8}},
-  {id:'padrino', b:'ch', tier:5, name:'El Padrino de la ITV', desc:'Producción ×2. Industria ya no sabe ni por dónde empezar.', cost:4e+07, req:['pegatinas'], fx:{prod:2, sus:1.5}},
-  {id:'santo', b:'ch', tier:5, name:'San Puma de Orcasitas', desc:'Cobras un 25% más. El barrio entero confía en ti.', cost:64000, secret:{stat:'bribesR', n:5, hint:'Di que no. Varias veces.'}, fx:{pay:1.25}},
-  {id:'conocido', b:'ch', tier:5, name:'Viejo conocido de Industria', desc:'Multas y precintos a la mitad.', cost:160000, secret:{stat:'fines', n:3, hint:'De tanto venir, los de Industria acaban siendo de la familia.'}, fx:{fine:.5}},
+  {id:'propina', b:'ch', tier:1, name:'Aceptar propinas', desc:'Cobras un 20% más. La sospecha sube. Abre el camino del chanchullo.', cost:5000, excl:'incorruptible', fx:{pay:1.2, sus:.25}},
+  {id:'incorruptible', b:'ch', tier:1, name:'Inspector incorruptible', desc:'La sospecha nunca sube y cobras un 15% más. Ya no aceptas sobres. Abre el camino honrado.', cost:5000, excl:'propina', fx:{pay:1.15, noSus:1}},
+  {id:'contable', b:'ch', tier:2, name:'Contable creativo', desc:'La sospecha baja mucho más rápido.', cost:74000, req:['propina'], fx:{susDecay:.35}},
+  {id:'vistagorda', b:'ch', tier:2, name:'La vista gorda', desc:'Producción ×1,5 sin mirar tanto. Más sospecha.', cost:150000, req:['propina'], fx:{prod:1.5, sus:.4}},
+  {id:'calidad', b:'ch', tier:2, name:'Sello de calidad', desc:'Auditoría superada: cobras un 50% más.', cost:150000, req:['incorruptible'], fx:{pay:1.5}},
+  {id:'amigo', b:'ch', tier:3, name:'Amigo en Industria', desc:'Las multas son la mitad y el precinto dura menos.', cost:1.2e+06, req:['contable'], fx:{fine:.5}},
+  {id:'sello', b:'ch', tier:3, name:'Sello falso', desc:'Cobras el doble. Mucha más sospecha.', cost:4.5e+06, req:['vistagorda'], fx:{pay:2, sus:.8}},
+  {id:'premio', b:'ch', tier:3, name:'Premio a la ITV del barrio', desc:'Producción ×1,6. Los clientes vienen de otros barrios.', cost:3.7e+06, req:['calidad'], fx:{prod:1.6}},
+  {id:'pegatinas', b:'ch', tier:4, name:'Pegatinas al por mayor', desc:'Producción ×2. La sospecha se dispara.', cost:1.4e+07, req:['sello','amigo'], fx:{prod:2, sus:1.2}},
+  {id:'auditoria', b:'ch', tier:4, name:'Auditoría perfecta', desc:'Producción ×1,8. Industria te pone de ejemplo.', cost:1.7e+07, req:['premio'], fx:{prod:1.8}},
+  {id:'padrino', b:'ch', tier:5, name:'El Padrino de la ITV', desc:'Producción ×2. Industria ya no sabe ni por dónde empezar.', cost:6.2e+07, req:['pegatinas'], fx:{prod:2, sus:1.5}},
+  {id:'santo', b:'ch', tier:5, name:'San Puma de Orcasitas', desc:'Cobras un 25% más. El barrio entero confía en ti.', cost:99000, secret:{stat:'bribesR', n:5, hint:'Di que no. Varias veces.'}, fx:{pay:1.25}},
+  {id:'conocido', b:'ch', tier:5, name:'Viejo conocido de Industria', desc:'Multas y precintos a la mitad.', cost:250000, secret:{stat:'fines', n:3, hint:'De tanto venir, los de Industria acaban siendo de la familia.'}, fx:{fine:.5}},
 
   // --- Sala de espera ---
-  {id:'sillas', b:'sa', tier:1, name:'Sillas de plástico', desc:'Producción ×1,1 por nivel.', cost:1600, max:5, grow:4, fx:{prod:1.1}},
-  {id:'cafetera', b:'sa', tier:1, name:'Máquina de café', desc:'Las bebidas del Puma cuestan un 30% menos.', cost:1300, fx:{drinkCost:.7}},
-  {id:'tele', b:'sa', tier:2, name:'Tele con el Boletín de Yuyu', desc:'Los clientes esperan más: los avisos duran el doble.', cost:8000, req:['cafetera'], fx:{evDur:2}},
-  {id:'revistas', b:'sa', tier:2, name:'Revistas de 2009', desc:'Clientes entretenidos: cobras un 15% más.', cost:13000, req:['sillas'], fx:{pay:1.15}},
-  {id:'aire', b:'sa', tier:3, name:'Aire acondicionado', desc:'El sueño del Puma sube un 20% más despacio.', cost:40000, req:['cafetera'], fx:{sleepRate:.8}},
-  {id:'citaprevia', b:'sa', tier:3, name:'Cita previa por internet', desc:'Los avisos sin trampa se resuelven solos.', cost:96000, req:['tele'], fx:{autoEv:1}},
-  {id:'vip', b:'sa', tier:4, name:'Clientes VIP', desc:'Llegan limusinas que pagan 2.000 €.', cost:3.2e+06, req:['revistas'], fx:{veh:1}},
-  {id:'tecnosala', b:'sa', tier:4, name:'Sesión de tecno de Serio', desc:'Serio ×2 y producción ×1,2.', cost:8e+07, need:['serio',1], fx:{gen:['serio',2], prod:1.2}},
+  {id:'sillas', b:'sa', tier:1, name:'Sillas de plástico', desc:'Producción ×1,1 por nivel.', cost:2500, max:5, grow:4, fx:{prod:1.1}},
+  {id:'cafetera', b:'sa', tier:1, name:'Máquina de café', desc:'Las bebidas del Puma cuestan un 30% menos.', cost:2000, fx:{drinkCost:.7}},
+  {id:'tele', b:'sa', tier:2, name:'Tele con el Boletín de Yuyu', desc:'Los clientes esperan más: los avisos duran el doble.', cost:12000, req:['cafetera'], fx:{evDur:2}},
+  {id:'revistas', b:'sa', tier:2, name:'Revistas de 2009', desc:'Clientes entretenidos: cobras un 15% más.', cost:20000, req:['sillas'], fx:{pay:1.15}},
+  {id:'aire', b:'sa', tier:3, name:'Aire acondicionado', desc:'El sueño del Puma sube un 20% más despacio.', cost:62000, req:['cafetera'], fx:{sleepRate:.8}},
+  {id:'citaprevia', b:'sa', tier:3, name:'Cita previa por internet', desc:'Los avisos sin trampa se resuelven solos.', cost:150000, req:['tele'], fx:{autoEv:1}},
+  {id:'vip', b:'sa', tier:4, name:'Clientes VIP', desc:'Llegan limusinas que pagan 2.000 €.', cost:5e+06, req:['revistas'], fx:{veh:1}},
+  {id:'tecnosala', b:'sa', tier:4, name:'Sesión de tecno de Serio', desc:'Serio ×2 y producción ×1,2.', cost:1.2e+08, need:['serio',1], fx:{gen:['serio',2], prod:1.2}},
 
   // --- El barrio ---
-  {id:'boca', b:'ba', tier:1, name:'Boca a boca', desc:'Cobras un 8% más por nivel.', cost:960, max:5, grow:4, fx:{pay:1.08}},
-  {id:'taxis', b:'ba', tier:1, name:'Flota de taxis', desc:'Cada 40 s llega una tanda que paga 10 s de producción.', cost:4000, fx:{fleet:10}},
-  {id:'radio', b:'ba', tier:2, name:'Radio pirata de Orcasitas', desc:'Los avisos llegan el doble de seguido.', cost:19000, req:['boca'], fx:{evFreq:2}},
-  {id:'vecinos', b:'ba', tier:2, name:'Red de vecinos', desc:'La sospecha baja más rápido y te avisan cuando Industria se acerca.', cost:32000, req:['boca'], fx:{susDecay:.3, susWarn:1}},
-  {id:'mercadona', b:'ba', tier:3, name:'Flota del Mercadona', desc:'Loko consigue el contrato: las tandas pagan 25 s de producción.', cost:640000, req:['taxis'], need:['loko',1], fx:{fleet:25}},
-  {id:'emt', b:'ba', tier:3, name:'Convenio con la EMT', desc:'Producción ×1,3.', cost:1.6e+06, req:['radio'], fx:{prod:1.3}},
-  {id:'fiestas', b:'ba', tier:4, name:'Fiestas de Orcasitas', desc:'Producción ×1,3 y los avisos dan el doble de dinero.', cost:9.6e+06, req:['emt','mercadona'], fx:{prod:1.3, evGain:2}},
+  {id:'boca', b:'ba', tier:1, name:'Boca a boca', desc:'Cobras un 8% más por nivel.', cost:1500, max:5, grow:4, fx:{pay:1.08}},
+  {id:'taxis', b:'ba', tier:1, name:'Flota de taxis', desc:'Cada 40 s llega una tanda que paga 10 s de producción.', cost:6200, fx:{fleet:10}},
+  {id:'radio', b:'ba', tier:2, name:'Radio pirata de Orcasitas', desc:'Los avisos llegan el doble de seguido.', cost:29000, req:['boca'], fx:{evFreq:2}},
+  {id:'vecinos', b:'ba', tier:2, name:'Red de vecinos', desc:'La sospecha baja más rápido y te avisan cuando Industria se acerca.', cost:50000, req:['boca'], fx:{susDecay:.3, susWarn:1}},
+  {id:'mercadona', b:'ba', tier:3, name:'Flota del Mercadona', desc:'Loko consigue el contrato: las tandas pagan 25 s de producción.', cost:990000, req:['taxis'], need:['loko',1], fx:{fleet:25}},
+  {id:'emt', b:'ba', tier:3, name:'Convenio con la EMT', desc:'Producción ×1,3.', cost:2.5e+06, req:['radio'], fx:{prod:1.3}},
+  {id:'fiestas', b:'ba', tier:4, name:'Fiestas de Orcasitas', desc:'Producción ×1,3 y los avisos dan el doble de dinero.', cost:1.5e+07, req:['emt','mercadona'], fx:{prod:1.3, evGain:2}},
 ];
 const NODE = Object.fromEntries(NODES.map(n => [n.id, n]));
 const BRANCHES = [
@@ -1001,6 +1089,15 @@ const BRANCHES = [
   {id:'sa', name:'Sala de espera', hint:'Clientes contentos, avisos más largos'},
   {id:'ba', name:'El barrio', hint:'Flotas, radio pirata y vecinos'},
 ];
+// Efecto de cada canción mientras suena
+const SONG_FX = {
+  anime:  {clickX:1.1, txt:'Toques +10%: el Puma se concentra como viendo anime'},
+  letal:  {prod:1.1, txt:'Producción +10%: modo Puma letal'},
+  felino: {sleepRate:1.25, sleepProd:1.3, txt:'Sueño +25%, pero dormido rinde un 30% más'},
+  tinder: {pay:1.05, txt:'Cobras un 5% más: los clientes vienen a ligar'},
+  miau:   {critAdd:.03, txt:'Críticos +3%: reflejos felinos'},
+  pista6: {prod:1.05, txt:'Producción +5%'},
+};
 const needsOf = (n) => !n.need ? [] : typeof n.need[0] === 'string' ? [n.need] : n.need;
 const lvOf = (S, id) => +(S.nodes[id] || 0);
 
@@ -1017,6 +1114,16 @@ const EVENTS = [
    choices:[['Recibirlos','ok']]},
   {id:'daniel', w:2, need:'daniel', text:'Daniel lleva 20 minutos explicándole el informe a un señor que solo quería la pegatina.',
    choices:[['Rescatar al señor','ok']]},
+  {id:'hima', w:2, text:'¡Se ha escapado Hima, la perra de Yuyu, y corretea por el foso!',
+   choices:[['Atraparla','ok'],['Dejarla','rej']]},
+  {id:'safu', w:2, need:'safu', text:'Safu está ligando con todos los clientes de la sala de espera.',
+   choices:[['Dejarle','ok'],['¡A trabajar!','rej']]},
+  {id:'maetin', w:2, need:'maetin', text:'Maetin trae su coche lleno de palas de pickleball y quiere pasar la ITV ya.',
+   choices:[['Revisarlo rápido','ok']]},
+  {id:'boda', w:1, text:'Una boda quiere pasar la ITV con la limusina antes del convite.',
+   choices:[['Revisar a toda prisa','ok']]},
+  {id:'apagon', w:1, text:'¡Apagón en la nave! La línea se ha parado.',
+   choices:[['Encender el generador','ok'],['Esperar a oscuras','rej']]},
   {id:'yuyu', w:2, text:'Yuyu aparece con un coche sin ITV desde 2009 y te guiña un ojo.',
    choices:[['Desfavorable','rej'],['Aprobarlo','acc']]},
 ];
@@ -1034,12 +1141,55 @@ function fmt(n){
   return (neg ? '-' : '') + s;
 }
 
-function newState(){
+// ----- Barrios, dificultad y taller de tuercas doradas (mejoras permanentes) -----
+const BARRIOS = [
+  {id:'orcasitas', name:'Orcasitas', goal:6e8, wins:0, twist:'La ITV de siempre.'},
+  {id:'usera', name:'Usera', goal:1.5e9, cost:1.6, wins:1, twist:'Bazares y restaurantes: cobras un 20% más y llegan más avisos.'},
+  {id:'villaverde', name:'Villaverde', goal:4e9, cost:2.2, wins:2, twist:'Polígono industrial: camiones desde el primer día y producción +10%.'},
+  {id:'carabanchel', name:'Carabanchel', goal:1e10, cost:3, wins:3, twist:'Barrio vigilado: la sospecha sube sola, pero cobras un 50% más.'},
+];
+const BARRIO = Object.fromEntries(BARRIOS.map(b => [b.id, b]));
+const DIFFS = [
+  {id:'facil', name:'Fácil', desc:'El Puma duerme menos, todo cuesta un 25% menos y la sospecha sube más despacio.'},
+  {id:'normal', name:'Normal', desc:'Como está pensado el juego.'},
+  {id:'noche', name:'Turno de noche', desc:'El Puma se duerme el doble de rápido y cuesta más despertarle. +2 tuercas al ganar.'},
+];
+const SHOP = [
+  {id:'exp', name:'Experiencia del Puma', desc:'Producción +25% por nivel.', costs:[1,2,3,4]},
+  {id:'contactos', name:'Contactos en el barrio', desc:'Empiezas con 2.000 €, 20.000 € o 200.000 €.', costs:[1,1,2]},
+  {id:'termo', name:'Termo heredado', desc:'El sueño sube un 15% más despacio por nivel.', costs:[1,1,2]},
+  {id:'plantilla', name:'Plantilla fiel', desc:'Empiezas con 5 Robertos y 3 Pedorretas.', costs:[2]},
+  {id:'arbol', name:'Árbol aprendido', desc:'Las mejoras del árbol cuestan un 10% menos por nivel.', costs:[2,2,3]},
+  {id:'antena', name:'Antena reforzada', desc:'El efecto de las canciones de la radio se duplica.', costs:[2]},
+];
+const goalOf = (S) => (BARRIO[S.barrio] || BARRIOS[0]).goal;
+const metaLv = (S, id) => (S.meta && S.meta[id]) || 0;
+function costMult(S, isNode){
+  let m = S.diff === 'facil' ? .75 : S.diff === 'noche' ? 1.15 : 1;
+  m *= (BARRIO[S.barrio] && BARRIO[S.barrio].cost) || 1;
+  if (isNode) m *= 1 - .1 * metaLv(S, 'arbol');
+  return m;
+}
+function tuercasFor(S, firstWinHere){
+  let t = 3 + (S.bribesA === 0 ? 1 : 0) + (S.endT < 1800 ? 1 : 0) + (S.diff === 'noche' ? 2 : S.diff === 'facil' ? -1 : 0) + (firstWinHere ? 2 : 0);
+  return Math.max(1, t);
+}
+
+function newState(opts){
+  opts = opts || {};
+  const S = newStateBase();
+  S.barrio = opts.barrio || 'orcasitas'; S.diff = opts.diff || 'normal'; S.meta = Object.assign({}, opts.meta || {});
+  const c = metaLv(S, 'contactos'); if (c) S.money = 2000 * Math.pow(10, c - 1);
+  if (metaLv(S, 'plantilla')){ S.gens.roberto = 5; S.gens.pedorreta = 3; }
+  return S;
+}
+function newStateBase(){
   return {v:1, money:0, life:0, t:0, gens:{}, nodes:{}, car:null, prog:0,
     sleep:0, asleep:false, wakeTaps:0, sus:0, seal:0,
     taps:0, cars:0, naps:0, drinks:0, bribesA:0, bribesR:0, fines:0, fined:0, crits:0,
     drinkT:0, eventBuff:0, abT:0, abCd:0, evT:45, ev:null, evLeft:0,
-    boss:null, ended:0, endT:0, yuyuSeen:false, won:false, correas:0, secrets:{}, fleetT:40, susWarned:false, started:Date.now(), last:Date.now()};
+    boss:null, ended:0, endT:0, yuyuSeen:false, won:false, correas:0, secrets:{}, fleetT:40, susWarned:false, ach:{}, heard:{}, whips:0, sleptT:0, song:null,
+    payBuff:0, defect:null, defects:0, order:null, orderT:25, ordersDone:0, started:Date.now(), last:Date.now()};
 }
 
 function has(S, id){ return !!S.nodes[id]; }
@@ -1086,6 +1236,24 @@ function derived(S){
   }
   d.crit = [d.crit[0] + d.critAdd, (d.crit[1] > 1 ? d.crit[1] : 5) + d.critMultAdd];
   if (d.noSus) d.sus = 0;
+  if (S.payBuff > 0) d.pay *= 1.5;
+  // logros: +1% de producción cada uno
+  const nAch = S.ach ? Object.keys(S.ach).length : 0;
+  d.prod *= 1 + .01 * nAch; d.achBonus = nAch;
+  // la canción que suena en la Radio Pirata
+  const SE = SONG_FX[S.song], amp = metaLv(S, 'antena') ? 2 : 1, A = (v) => 1 + (v - 1) * amp;
+  if (SE){ if (SE.prod) d.prod *= A(SE.prod); if (SE.clickX) d.clickX *= A(SE.clickX); if (SE.sleepRate) d.sleepRate *= A(SE.sleepRate);
+    if (SE.sleepProd) d.sleepProd *= A(SE.sleepProd); if (SE.pay) d.pay *= A(SE.pay); if (SE.critAdd) d.crit = [d.crit[0] + SE.critAdd * amp, d.crit[1]]; }
+  // dificultad
+  if (S.diff === 'facil'){ d.sleepRate *= .7; d.sus *= .7; }
+  if (S.diff === 'noche'){ d.sleepRate *= 2; d.wake += 3; }
+  // mejoras permanentes
+  d.prod *= 1 + .25 * metaLv(S, 'exp');
+  d.sleepRate *= Math.pow(.85, metaLv(S, 'termo'));
+  // el barrio
+  if (S.barrio === 'usera'){ d.pay *= 1.2; d.evFreq *= 1.3; }
+  if (S.barrio === 'villaverde'){ d.veh.pesados = 1; d.prod *= 1.1; }
+  if (S.barrio === 'carabanchel'){ d.pay *= 1.5; if (!d.noSus) d.sus += .2; }
   d.vehicles = VEH.filter(v => !v.req || d.veh[v.req]);
   let sw = 0, sp = 0;
   for (const v of d.vehicles){ sw += v.w * v.work; sp += v.w * v.pay; }
@@ -1127,7 +1295,7 @@ function genCost(S, g, k){
   k = k || 1;
   const n = owned(S, g.id);
   // suma geométrica de k compras
-  return g.base * Math.pow(GROWTH, n) * (Math.pow(GROWTH, k) - 1) / (GROWTH - 1);
+  return g.base * costMult(S) * Math.pow(GROWTH, n) * (Math.pow(GROWTH, k) - 1) / (GROWTH - 1);
 }
 function genUnlocked(S, i){
   if (i === 0) return true;
@@ -1141,7 +1309,7 @@ function buyGen(S, id, k){
   S.money -= c; S.gens[id] = owned(S, id) + (k || 1); return true;
 }
 
-function nodeCost(S, n){ return n.cost * Math.pow(n.grow || 1, lvOf(S, n.id)); }
+function nodeCost(S, n){ return n.cost * costMult(S, true) * Math.pow(n.grow || 1, lvOf(S, n.id)); }
 function secretOpen(S, n){ return !n.secret || (S.secrets && S.secrets[n.id]) || (S[n.secret.stat] || 0) >= n.secret.n; }
 function nodeState(S, n){
   const lv = lvOf(S, n.id);
@@ -1202,7 +1370,7 @@ function tap(S, out){
   if (S.seal > 0 && !S.boss) return {sealed:true};
   let w = clickWork(S, d), crit = false;
   if (Math.random() < d.crit[0]){ w *= d.crit[1]; crit = true; S.crits++; }
-  if (S.boss){ S.boss.prog += w; return {w, crit, boss:true}; }
+  if (S.boss){ if (S.boss.blindT > 0) w *= .3; S.boss.prog += w; return {w, crit, boss:true}; }
   addWork(S, w, d, out);
   return {w, crit, money:w * d.payPerWork};
 }
@@ -1222,7 +1390,7 @@ function drink(S){
 function useAbility(S){
   const d = derived(S);
   if (!d.ability || S.abCd > 0) return false;
-  S.abT = 15; S.abCd = 120; return true;
+  S.abT = 15; S.abCd = 120; S.whips = (S.whips || 0) + 1; return true;
 }
 
 function startEvent(S){
@@ -1247,6 +1415,20 @@ function eventChoice(S, choice){
   else if (ev === 'pedorreta'){ S.eventBuff = 20; msg = 'Foso ventilado. ¡Producción ×2 durante 20 s!'; }
   else if (ev === 'loko'){ gain = 8 * d.vehicles[d.vehicles.length-1].pay * d.pay + inc*20; msg = 'Ocho coches de golpe. Uno sin puertas, pero bueno.'; }
   else if (ev === 'daniel'){ gain = Math.max(80, inc*25); msg = 'Señor rescatado. Te paga la ITV del cuñado también.'; }
+  else if (ev === 'hima'){
+    if (choice === 'ok'){ gain = Math.max(120, inc*30); msg = 'Hima atrapada. Yuyu paga la multa por perro suelto.'; }
+    else { S.seal = Math.max(S.seal, 6); msg = 'Hima muerde un cable: línea parada 6 s.'; }
+  }
+  else if (ev === 'safu'){
+    if (choice === 'ok'){ S.payBuff = 30; msg = 'Los clientes vuelven solo por verle: cobras un 50% más durante 30 s.'; }
+    else { gain = Math.max(100, inc*20); msg = 'Safu vuelve al mostrador. Con el número de tres clientas.'; }
+  }
+  else if (ev === 'maetin'){ gain = Math.max(150, inc*35); msg = 'Aprobado. Maetin te invita a un partido de pickleball.'; }
+  else if (ev === 'boda'){ gain = Math.max(1000, inc*60); msg = 'Los novios te dejan propina y un trozo de tarta.'; }
+  else if (ev === 'apagon'){
+    if (choice === 'ok'){ const c = Math.min(S.money, inc*8); S.money -= c; msg = 'Generador en marcha por ' + fmt(c) + ' € de gasoil. La línea sigue.'; }
+    else { S.seal = Math.max(S.seal, 10); msg = 'Diez segundos a oscuras. El Puma aprovecha para dormir.'; }
+  }
   else if (ev === 'yuyu'){
     if (choice === 'acc'){ gain = Math.max(500, inc*120); S.sus = Math.min(100, S.sus + 40); S.bribesA++; msg = 'Aprobado. Yuyu se va riéndose. Industria también se ríe, pero menos.'; }
     else { gain = Math.max(60, inc*20); S.bribesR++; msg = 'DESFAVORABLE. Yuyu paga la tasa refunfuñando.'; }
@@ -1257,17 +1439,63 @@ function eventChoice(S, choice){
   return {msg, gain};
 }
 
+// Defectos visibles: se tocan en el coche antes de que se vaya
+const DEFECT_KINDS = [
+  {id:'faro', name:'Faro roto'}, {id:'rueda', name:'Neumático liso'},
+  {id:'escape', name:'Escape humeante'}, {id:'retro', name:'Retrovisor colgando'},
+];
+function defectHit(S){
+  if (!S.defect || !S.car) return null;
+  const d = derived(S), kind = S.defect.kind;
+  const gain = Math.max(S.car.pay * d.pay * 8, moneyPerSec(S, d) * 10);
+  S.money += gain; S.life += gain; S.cars++; S.defects = (S.defects || 0) + 1;
+  S.defect = null; S.car = pickCar(S, d); S.prog = 0;
+  return {gain, kind};
+}
+
+// Pedidos del día
+const ORDERS = ['cars', 'taps', 'money', 'defects', 'awake'];
+function orderStat(S, id){ return id === 'cars' ? S.cars : id === 'taps' ? S.taps : id === 'money' ? S.life : id === 'defects' ? (S.defects || 0) : 0; }
+function newOrder(S){
+  const d = derived(S), mps = moneyPerSec(S, d), wps = workPerSec(S, d);
+  let sw = 0, sc = 0; for (const v of d.vehicles){ sw += v.w * v.work; sc += v.w; }
+  const cps = wps / (sw / sc);
+  const opts = ORDERS.filter(o => o !== 'awake' || (!S.asleep && S.sleep < 40));
+  const id = opts[Math.floor(Math.random() * opts.length)];
+  let target, dur;
+  if (id === 'cars'){ dur = 120; target = Math.max(15, Math.round((cps * 120 * 1.25 + 12) / 5) * 5); }
+  else if (id === 'taps'){ dur = 60; target = 150; }
+  else if (id === 'money'){ dur = 120; target = Math.max(1500, mps * 120 * 1.4 + 1000); }
+  else if (id === 'defects'){ dur = 150; target = 2; }
+  else { dur = 90; target = 90; }
+  S.order = {id, target, start: orderStat(S, id), left: dur, dur};
+}
+function orderProgress(S){
+  const O = S.order; if (!O) return 0;
+  return O.id === 'awake' ? O.dur - O.left : orderStat(S, O.id) - O.start;
+}
+
 // Final: el Yuyomóvil
 function startBoss(S){
   const d = derived(S);
   const need = Math.max(5000, workPerSec(S, d) * 150);
-  S.boss = {need, prog:0, t:0, offer:0, nextOffer:14, nextSermon:22, offers:0};
-  S.ev = null;
+  S.boss = {need, prog:0, t:0, offer:0, nextOffer:14, nextSermon:22, offers:0, phase:1, hima:null, nextHima:3, blindT:0, nextBlind:4};
+  S.ev = null; S.defect = null; S.order = null;
 }
 function bossOffer(S){ return S.boss && S.boss.offer > 0; }
 function acceptBossBribe(S){
   if (!S.boss) return;
   S.bribesA++; S.ended = 2; S.endT = S.t; S.boss = null;
+}
+function bossHitHima(S){
+  const B = S.boss; if (!B || !B.hima) return null;
+  B.hima.hits++;
+  if (B.hima.hits >= 3){ B.hima = null; B.nextHima = 16; return 'calm'; }
+  return 'hit';
+}
+function bossHitMonitor(S){
+  const B = S.boss; if (!B || B.blindT <= 0) return false;
+  B.blindT = 0; return true;
 }
 function rejectBossBribe(S){ if (S.boss){ S.boss.offer = 0; S.bribesR++; } }
 
@@ -1278,6 +1506,7 @@ function tick(S, dt, out){
   S.t += dt;
   if (S.ended) return ev;
   // sueño
+  if (S.asleep) S.sleptT = (S.sleptT || 0) + dt;
   if (!S.asleep){
     S.sleep += 1.1 * d.sleepRate * dt * (S.drinkT > 0 ? .5 : 1);
     if (S.sleep >= 100){ S.sleep = 100; S.asleep = true; S.wakeTaps = 0; S.naps++; ev.push({type:'asleep'}); }
@@ -1287,6 +1516,7 @@ function tick(S, dt, out){
   S.eventBuff = Math.max(0, S.eventBuff - dt);
   S.abT = Math.max(0, S.abT - dt);
   S.abCd = Math.max(0, S.abCd - dt);
+  S.payBuff = Math.max(0, (S.payBuff || 0) - dt);
   if (S.seal > 0){ S.seal = Math.max(0, S.seal - dt); if (S.seal === 0) ev.push({type:'unseal'}); }
   // sospecha
   if (!S.boss){
@@ -1301,7 +1531,14 @@ function tick(S, dt, out){
   const w = workPerSec(S, d) * dt;
   if (S.boss){
     const B = S.boss;
-    B.prog += w; B.t += dt;
+    let mult = 1;
+    if (B.hima) mult *= .4;
+    if (B.blindT > 0){ mult = 0; B.blindT = Math.max(0, B.blindT - dt); }
+    B.prog += w * mult; B.t += dt;
+    const ph = B.prog < B.need / 3 ? 1 : B.prog < B.need * 2 / 3 ? 2 : 3;
+    if (ph > (B.phase || 1)){ B.phase = ph; ev.push({type:'phase', phase:ph}); }
+    if (B.phase >= 2 && !B.hima){ B.nextHima -= dt; if (B.nextHima <= 0){ B.hima = {hits:0}; ev.push({type:'hima'}); } }
+    if (B.phase >= 3 && B.blindT <= 0){ B.nextBlind -= dt; if (B.nextBlind <= 0){ B.blindT = 6; B.nextBlind = 14; ev.push({type:'blind'}); } }
     if (B.offer > 0){ B.offer -= dt; if (B.offer <= 0){ B.offer = 0; } }
     B.nextOffer -= dt; B.nextSermon -= dt;
     if (B.nextOffer <= 0 && B.offer <= 0){ B.offers++; B.offer = 8; B.nextOffer = 16; ev.push({type:'bossOffer', amount:Math.pow(10, 6 + B.offers)}); }
@@ -1310,6 +1547,22 @@ function tick(S, dt, out){
     return ev;
   }
   if (w > 0) addWork(S, w, d, out);
+  // defectos visibles
+  if (S.defect){ S.defect.left -= dt; if (S.defect.left <= 0){ S.defect = null; ev.push({type:'defectMiss'}); } }
+  else if (!S.asleep && S.seal <= 0 && S.car && Math.random() < dt / 22){
+    S.defect = {kind: DEFECT_KINDS[Math.floor(Math.random() * DEFECT_KINDS.length)].id, left: 5, x: .15 + Math.random() * .7};
+    ev.push({type:'defect'});
+  }
+  // pedidos del día
+  if (S.order){
+    const O = S.order; O.left -= dt;
+    if (O.id === 'awake' && S.asleep){ S.order = null; S.orderT = 30; ev.push({type:'orderFail'}); }
+    else if (orderProgress(S) >= O.target){
+      const gain = Math.max(400, moneyPerSec(S, d) * 50);
+      S.money += gain; S.life += gain; S.ordersDone = (S.ordersDone || 0) + 1;
+      S.order = null; S.orderT = 25; ev.push({type:'orderDone', gain});
+    } else if (O.left <= 0){ S.order = null; S.orderT = 25; ev.push({type:'orderFail'}); }
+  } else { S.orderT -= dt; if (S.orderT <= 0) newOrder(S); }
   // eventos
   if (S.ev){
     S.evLeft -= dt;
@@ -1337,7 +1590,7 @@ function tick(S, dt, out){
   for (const n of NODES){
     if (n.secret && !S.secrets[n.id] && (S[n.secret.stat] || 0) >= n.secret.n){ S.secrets[n.id] = 1; ev.push({type:'secret', id:n.id}); }
   }
-  if (!S.yuyuSeen && S.life >= GOAL){ S.yuyuSeen = true; ev.push({type:'goal'}); }
+  if (!S.yuyuSeen && S.life >= goalOf(S)){ S.yuyuSeen = true; ev.push({type:'goal'}); }
   return ev;
 }
 
@@ -1395,6 +1648,7 @@ const SFX = {
   buy(){ tone(660, .06, 'triangle', .08); tone(990, .09, 'triangle', .08, null, .05); },
   whip(){ noise(.18, .5, 2500); tone(1800, .15, 'sawtooth', .04, 300); },
   bad(){ tone(220, .3, 'sawtooth', .07, 110); },
+  jingle(){ [784,988,1175,988,1568].forEach((f,i) => tone(f, .14, 'triangle', .07, null, i*.11)); },
   win(){ [523,659,784,1046].forEach((f,i) => tone(f, .25, 'triangle', .1, null, i*.13)); },
 };
 
@@ -1432,7 +1686,7 @@ function nextTrackId(dir){
 function musicSetup(){
   if (!musicEl){
     musicEl = new Audio(); musicEl.preload = 'auto'; musicEl.preservesPitch = false; musicEl.mozPreservesPitch = false;
-    musicEl.addEventListener('ended', () => { if (R().repeat){ musicEl.currentTime = 0; musicEl.play().catch(() => {}); } else musicPlay(nextTrackId(1), true); });
+    musicEl.addEventListener('ended', () => { if (R().repeat){ musicEl.currentTime = 0; musicEl.play().catch(() => {}); } else maybeAd(() => musicPlay(nextTrackId(1), true)); });
   }
   if (!musicWired && audio()){
     try {
@@ -1448,7 +1702,7 @@ function musicPlay(id, announce){
   if (!id){ musicEl.pause(); musicCur = null; renderRadio(true); return; }
   if (musicCur !== id){
     musicCur = id; musicEl.src = TRACK[id].src; musicHist.push(id); if (musicHist.length > 30) musicHist.shift();
-    if (announce && radioWin.hidden) toast('♪ Radio Pirata: ' + TRACK[id].name, 2400);
+    if (announce && radioWin.hidden) toast('♪ ' + TRACK[id].name + (SONG_FX[id] ? ' · ' + SONG_FX[id].txt.split(':')[0] : ''), 3200);
   }
   musicVolume(); renderRadio(true);
 }
@@ -1459,6 +1713,9 @@ function musicVolume(){
   if (!on) musicEl.pause(); else if (musicEl.paused && musicEl.src) musicEl.play().catch(() => {});
 }
 function musicTick(){
+  const playingNow = musicEl && !musicEl.paused && R().on && !prefs.mute && musicCur && !adActive;
+  S.song = playingNow ? musicCur : null;
+  if (playingNow){ if (!S.heard) S.heard = {}; S.heard[musicCur] = 1; }
   if (!AC) return;
   const want = musicWant();
   if (want !== musicCtx){
@@ -1578,7 +1835,7 @@ function drawVehicle(type, x, gy, s, col, stk){
 }
 
 // Personajes con las skins de La Reconquista de Orcasitas
-const SKIN = {roberto:'rob', pedorreta:'pedo', daniel:'dani', jose:'jose', loko:'loko', serio:'serio', adri:'adri'};
+const SKIN = {roberto:'rob', pedorreta:'pedo', daniel:'dani', jose:'jose', maetin:'maetin', loko:'loko', serio:'serio', safu:'safu', adri:'adri'};
 function countTag(x, topY, n, s){
   ctx.font = `700 ${Math.round(9*s + 5)}px "Barlow Condensed", sans-serif`; ctx.textAlign = 'center';
   const txt = '×' + n, tw = ctx.measureText(txt).width + 8, th = 9*s + 7;
@@ -1652,7 +1909,7 @@ function drawScene(t, dt){
   ctx.fillStyle = '#f4c430'; ctx.font = `${Math.round(17*s)}px "Saira Stencil One", Impact, sans-serif`; ctx.textAlign = 'left';
   ctx.fillText('ITV', sx + 8*s, sy + 22*s);
   ctx.fillStyle = '#eaeef4'; ctx.font = `700 ${Math.round(12*s)}px "Barlow Condensed", sans-serif`;
-  ctx.fillText('ORCASITAS · LÍNEA 1', sx + 44*s, sy + 20*s);
+  ctx.fillText(barrioName().toUpperCase() + ' · LÍNEA 1', sx + 44*s, sy + 20*s);
   // suelo
   g = ctx.createLinearGradient(0, gy - 6*s, 0, H); g.addColorStop(0, '#3a4253'); g.addColorStop(1, '#262c38');
   ctx.fillStyle = g; ctx.fillRect(0, gy - 6*s, W, H - gy + 6*s);
@@ -1663,10 +1920,9 @@ function drawScene(t, dt){
   for (let x = px0 - 10*s; x < px0 + pw + 12*s; x += 8*s){ ctx.fillStyle = '#f4c430'; ctx.beginPath(); ctx.moveTo(x, gy - 1*s); ctx.lineTo(x + 4*s, gy - 4*s); ctx.lineTo(x + 8*s, gy - 4*s); ctx.lineTo(x + 4*s, gy - 1*s); ctx.fill(); }
   ctx.restore();
   // plantilla al fondo
-  const slots = {daniel:.05, loko:.15, roberto:.25, pedorreta:.63, jose:.74, serio:.86, adri:.95};
   for (const gdef of GEN){
     const n = owned(S, gdef.id); if (!n) continue;
-    const x = W * slots[gdef.id], y = gy - 30*s;
+    const x = W * SLOTS[gdef.id], y = gy - 30*s;
     ORC.chibi(ctx, x, y, .95*s, ORC.LOOKS[SKIN[gdef.id]], t, x < cx ? 1 : -1);
     countTag(x, y - 50*s, n, s);
     if (gdef.id === 'pedorreta' && (t/900) % 3 < 1.4){ ctx.fillStyle = 'rgba(140,190,90,.35)'; ctx.beginPath(); ctx.arc(x - 8*s, y - 6*s, 10*s, 0, 7); ctx.arc(x - 16*s, y - 12*s, 7*s, 0, 7); ctx.fill(); }
@@ -1687,6 +1943,7 @@ function drawScene(t, dt){
       ctx.fillStyle = '#141922'; lines.forEach((l, i) => ctx.fillText(l, bxx + 7, Math.max(4, byy) + 16*s + i * (13*s + 3)));
     }
     const B = S.boss, pct = Math.min(1, B.prog / B.need);
+    drawBossExtras(s, gy, cx, t);
     ctx.fillStyle = 'rgba(0,0,0,.5)'; rr(cx - 60*s, gy - 150*s, 120*s, 8*s, 4*s); ctx.fill();
     ctx.fillStyle = '#f05252'; rr(cx - 60*s, gy - 150*s, 120*s * pct, 8*s, 4*s); ctx.fill();
   } else {
@@ -1696,6 +1953,7 @@ function drawScene(t, dt){
       carX += (cx - carX) * Math.min(1, dt * 9);
       const c = S.car;
       drawVehicle(c.id, carX, gy, s, CAR_COLS[c.col], false);
+      drawDefect(c, carX, gy, s, t);
       // barra de progreso de la inspección
       const pct = Math.min(1, S.prog / c.work), bw = 86*s, by = gy - 96*s;
       ctx.fillStyle = 'rgba(10,13,19,.7)'; rr(carX - bw/2, by, bw, 7*s, 3*s); ctx.fill();
@@ -1728,6 +1986,8 @@ function drawScene(t, dt){
     ctx.fillText(f.txt, f.x, f.y - f.t * 40 * s);
   }
   ctx.globalAlpha = 1; floats = floats.filter(f => f.t < 1.1);
+  drawNight();
+  drawBubbles(s, gy, cx, dt);
   // precinto de Industria
   if (S.seal > 0){
     ctx.save(); ctx.translate(W/2, H/2); ctx.rotate(-.18);
@@ -2034,6 +2294,10 @@ function clock(sec){ sec = Math.floor(sec); const h = Math.floor(sec/3600), m = 
 function fmtTime(sec){ sec = Math.floor(sec); const h = Math.floor(sec/3600), m = Math.floor(sec/60) % 60, s2 = sec % 60; return (h ? h + ' h ' : '') + m + ' min ' + (h ? '' : s2 + ' s'); }
 function updateInforme(d){
   const rows = [
+    ['Barrio', barrioName()],
+    ['Dificultad', diffName()],
+    ['Tuercas doradas', fmt(META.tuercas)],
+    null,
     ['Tiempo de turno', fmtTime(S.t)],
     ['Vehículos inspeccionados', fmt(S.cars)],
     ['Facturación total', fmt(S.life) + ' €'],
@@ -2048,16 +2312,10 @@ function updateInforme(d){
     ['Visitas de Industria', fmt(S.fines)],
     ['Total en multas', fmt(S.fined) + ' €'],
   ];
+  updateAchList();
   $('#infList').innerHTML = rows.map(r => r ? `<dt>${r[0]}</dt><dd>${r[1]}</dd>` : '<div class="sep"></div>').join('');
 }
-let resetArmed = false;
-$('#resetBox').addEventListener('click', (e) => {
-  const b = e.target.closest('button'); if (!b) return;
-  if (b.id === 'resetBtn'){ resetArmed = true; }
-  else if (b.id === 'resetYes'){ S = newState(); curCarKey = null; leaving = []; resetArmed = false; store(); buildTree(); refreshUI(true); toast('Partida nueva. El Puma ficha a las 7:00.'); }
-  else resetArmed = false;
-  $('#resetBox').innerHTML = resetArmed ? 'Se borra todo el progreso. <button class="danger" id="resetYes">Sí, empezar de cero</button><button id="resetNo">Cancelar</button>' : '<button id="resetBtn">Empezar partida nueva</button>';
-});
+$('#resetBox').addEventListener('click', (e) => { if (e.target.closest('#resetBtn')) openSetup(); });
 
 // Pestañas
 function setTab(t){
@@ -2108,7 +2366,7 @@ function buildRadio(){
   $('#rShuf').innerHTML = IC.shuf + '<span>Aleatorio</span>'; $('#rRep').innerHTML = IC.rep + '<span>Repetir</span>';
   $('#rList').innerHTML = TRACKS.map((t, i) => `<div class="rrow" data-t="${t.id}">
       <label class="rchk" title="Incluir en la radio"><input type="checkbox" data-chk="${t.id}"><span></span></label>
-      <button class="rpick" data-play="${t.id}">${coverHTML(t, 'rthumb')}<span class="rnum num">${String(i + 1).padStart(2, '0')}</span><b>${t.name}</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span class="rdur num">${mmss(t.dur)}</span></button>
+      <button class="rpick" data-play="${t.id}">${coverHTML(t, 'rthumb')}<span class="rnum num">${String(i + 1).padStart(2, '0')}</span><span class="rtt"><b>${t.name}</b>${SONG_FX[t.id] ? `<small>${SONG_FX[t.id].txt}</small>` : ''}</span><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span class="rdur num">${mmss(t.dur)}</span></button>
     </div>`).join('');
   renderRadio(true);
 }
@@ -2116,12 +2374,13 @@ let radioKey = '';
 function renderRadio(force){
   if (radioWin.hidden && !force) return;
   const r = R(), t = musicCur ? TRACK[musicCur] : null, playing = musicEl && !musicEl.paused && r.on && !prefs.mute;
-  const key = [musicCur, playing, r.shuffle, r.repeat, r.on, r.situ, r.off.join(), prefs.mute].join('|');
+  const key = [musicCur, playing, r.shuffle, r.repeat, r.on, r.situ, r.off.join(), prefs.mute, adActive].join('|');
   if (key !== radioKey || force){
     radioKey = key;
     $('#rCover').innerHTML = t ? coverHTML(t, 'rbig') : '<span class="rbig nocover">♪</span>';
-    $('#rName').textContent = t ? t.name : 'Sin emisión';
-    $('#rState').textContent = !r.on ? 'RADIO APAGADA' : prefs.mute ? 'SONIDO SILENCIADO' : playing ? 'EN EMISIÓN' : 'EN PAUSA';
+    $('#rName').textContent = adActive ? adActive : t ? t.name : 'Sin emisión';
+    $('#rState').textContent = adActive ? 'CUÑA PUBLICITARIA' : !r.on ? 'RADIO APAGADA' : prefs.mute ? 'SONIDO SILENCIADO' : playing ? 'EN EMISIÓN' : 'EN PAUSA';
+    $('#rFx').textContent = adActive ? '' : t && SONG_FX[t.id] ? (playing ? 'Efecto activo: ' : 'Efecto al sonar: ') + SONG_FX[t.id].txt : '';
     $('#rPlay').innerHTML = playing ? IC.pause : IC.play; $('#rPlay').setAttribute('aria-label', playing ? 'Pausa' : 'Reproducir');
     $('#rShuf').setAttribute('aria-pressed', r.shuffle); $('#rRep').setAttribute('aria-pressed', r.repeat);
     $('#rOn').checked = r.on; $('#rSitu').checked = r.situ; $('#rVol').value = r.vol;
@@ -2177,6 +2436,7 @@ $('#rList').addEventListener('change', (e) => {
 function doTap(clientX, clientY){
   audio();
   if (S.ended) return;
+  if (clientX !== undefined && tapTargets(clientX, clientY)) return;
   const out = [];
   const r = tap(S, out);
   const s = H / 220;
@@ -2185,6 +2445,7 @@ function doTap(clientX, clientY){
   else if (r.sealed){ SFX.bad(); }
   else {
     pumaBump = .15;
+    buzz(r.crit ? 30 : 6);
     if (r.crit){ SFX.crit(); shake = .5; addFloat(W*.44 + (Math.random()-.5)*60*s, H*.84 - 70*s, '¡CRÍTICO!', '#ee6b2d', true); }
     else SFX.tap();
     carsDone(out);
@@ -2226,7 +2487,7 @@ function updateGoal(){
     g.dataset.m = 'goal';
     g.innerHTML = `<div class="row"><span id="goalTxt"></span><span class="num" id="goalPct">0%</span></div><div class="bar"><i id="goalBar"></i></div>`;
   }
-  const pct = Math.min(1, S.life / GOAL);
+  const GOAL = goalOf(S), pct = Math.min(1, S.life / GOAL);
   $('#goalTxt').textContent = S.won ? 'El Yuyomóvil ya sale en grúa. Sigue revisando lo que quieras.' : `Objetivo: ${fmt(GOAL)} € para que venga el Yuyomóvil`;
   $('#goalPct').textContent = S.won ? '' : Math.floor(pct * 100) + '%';
   $('#goalBar').style.width = (S.won ? 100 : pct * 100) + '%';
@@ -2258,10 +2519,12 @@ function showEnding(){
   const el = $('#ending'), c = $('#endCard');
   const stats = `<div class="endstats"><div><b class="num">${clock(S.endT)}</b><span>tiempo</span></div><div><b class="num">${fmt(S.cars)}</b><span>vehículos</span></div><div><b class="num">${fmt(S.naps)}</b><span>siestas</span></div><div><b class="num">${fmt(S.drinks)}</b><span>bebidas</span></div><div><b class="num">${fmt(S.bribesR)}</b><span>sobornos rechazados</span></div><div><b class="num">${fmt(S.fines)}</b><span>visitas de Industria</span></div></div>`;
   if (S.ended === 1){
+    awardWin();
     c.innerHTML = `<span class="stamp neg">Negativa</span><h2>El Yuyomóvil sale en grúa</h2>
-      <p>47 defectos muy graves. El vehículo no puede circular y Yuyu vuelve a casa andando. Orcasitas respira.</p>
+      <p>47 defectos muy graves. El vehículo no puede circular y Yuyu vuelve a casa andando. ${barrioName()} respira.</p>
+      <p class="tgain">${TUERCA}<b>+${S.tuercasGiven} tuercas doradas</b> <span>para mejoras permanentes. Tienes ${META.tuercas}.</span></p>
       <div class="defects"><b>Algunos defectos del informe</b><ol>${DEFECTS.map(x => `<li>${x}</li>`).join('')}</ol></div>
-      ${stats}<button class="go" id="endGo">Seguir revisando</button><button class="go2" id="endNew">Empezar partida nueva</button>`;
+      ${stats}<button class="go" id="endNew">Abrir otra ITV</button><button class="go2" id="endGo">Seguir revisando aquí</button>`;
   } else {
     c.innerHTML = `<span class="stamp fav">Favorable</span><h2>Pegatina verde para el tanque</h2>
       <p>Aceptaste el sobre. El Yuyomóvil circula con la ITV en regla y Yuyu sigue mandando en Orcasitas. Industria no se entera. Nadie se entera. Salvo tu conciencia.</p>
@@ -2270,7 +2533,7 @@ function showEnding(){
   el.hidden = false;
   const go = $('#endGo'); if (go) go.onclick = () => { S.ended = 0; el.hidden = true; store(); refreshUI(true); };
   const rt = $('#endRetry'); if (rt) rt.onclick = () => { S.ended = 0; el.hidden = true; store(); refreshUI(true); };
-  $('#endNew').onclick = () => { S = newState(); curCarKey = null; leaving = []; el.hidden = true; store(); buildTree(); refreshUI(true); };
+  $('#endNew').onclick = () => { openSetup(); };
 }
 
 // Actualizar la interfaz
@@ -2295,6 +2558,7 @@ function refreshUI(force){
   if (d.ability){ ab.disabled = S.abCd > 0; ab.firstChild.textContent = S.abT > 0 ? '¡A tope! ' + Math.ceil(S.abT) + ' s' : S.abCd > 0 ? 'Correa en ' + Math.ceil(S.abCd) + ' s' : 'Azote con correa'; $('#abBar').style.width = S.abCd > 0 ? (100 - S.abCd / 120 * 100) + '%' : '0'; }
   refreshTapBtn();
   updateGoal();
+  updateOrder();
   if (prefs.tab === 'staff') updateStaff(d);
   if (!treeWin.hidden){ updateTree(); $('#twMoney').textContent = fmt(S.money) + ' €'; }
   if (prefs.tab === 'inf') updateInforme(d);
@@ -2310,15 +2574,24 @@ function frame(now){
   const evs = tick(S, dt, out);
   if (out.length) carsDone(out);
   for (const e of evs){
-    if (e.type === 'asleep'){ SFX.snore(); toast('El Puma se ha quedado frito. Tócale o dale una bebida.'); }
+    if (e.type === 'asleep'){ SFX.snore(); buzz([80, 60, 80]); toast('El Puma se ha quedado frito. Tócale o dale una bebida.'); }
     else if (e.type === 'event'){ SFX.alert(); }
-    else if (e.type === 'inspector'){ SFX.bad(); shake = 1; showNotice(`Inspección de Industria. Multa de ${fmt(e.fine)} € y línea precintada ${Math.round(e.seal)} s.`, true, 6); }
+    else if (e.type === 'inspector'){ SFX.bad(); buzz(250); shake = 1; showNotice(`Inspección de Industria. Multa de ${fmt(e.fine)} € y línea precintada ${Math.round(e.seal)} s.`, true, 6); }
     else if (e.type === 'auto'){ SFX.car(); toast('Cita previa: ' + e.msg + (e.gain ? '  +' + fmt(e.gain) + ' €' : ''), 3000); }
     else if (e.type === 'fleet'){ SFX.car(); toast((e.big ? 'Llega la flota del Mercadona' : 'Llega una tanda de taxis') + '  +' + fmt(e.gain) + ' €', 2600); addFloat(W*.5, H*.4, '+' + fmt(e.gain) + ' €', '#5fd4c4', true); }
     else if (e.type === 'susWarn'){ SFX.alert(); showNotice('Los vecinos avisan: Industria viene de camino. La sospecha está al 80%.', true, 5); }
     else if (e.type === 'secret'){ SFX.win(); showNotice('¡Nodo secreto desbloqueado en el árbol: ' + NODE[e.id].name + '!', false, 5); }
     else if (e.type === 'unseal'){ toast('Industria se ha ido. A seguir revisando.'); }
     else if (e.type === 'goal'){ SFX.alert(); showNotice('¡Yuyu ha llegado con el Yuyomóvil! Pulsa arriba para inspeccionarlo cuando quieras.', false, 7); }
+    else if (e.type === 'defect'){ SFX.alert(); buzz(20); }
+    else if (e.type === 'defectMiss'){ toast('Se te ha escapado el defecto. Ese coche sale a la calle tal cual.', 2200); }
+    else if (e.type === 'orderDone'){ SFX.win(); buzz([20, 40, 20]); toast('Pedido cumplido  +' + fmt(e.gain) + ' €', 3000); addFloat(W*.5, H*.35, '+' + fmt(e.gain) + ' €', '#5fd4c4', true); }
+    else if (e.type === 'orderFail'){ toast('Pedido fallado. En un rato llega otro.', 2400); }
+    else if (e.type === 'phase'){ SFX.alert(); shake = 1; buzz(200);
+      if (e.phase === 2){ bossSay('¡Hima, a por ellos!'); showNotice('Fase 2: Yuyu suelta a Hima y muerde los cables. Tócala 3 veces.', true, 4); }
+      else { bossSay('¡240 hercios de pura dictadura!'); showNotice('Fase 3: el monitor OLED os ciega. Toca el monitor del tanque.', true, 4); } }
+    else if (e.type === 'hima'){ SFX.alert(); bossSay('¡Hima, defiende a papá!'); }
+    else if (e.type === 'blind'){ SFX.whip(); buzz([50, 30, 50]); }
     else if (e.type === 'bossOffer'){ SFX.alert(); bossSay('Venga, hombre, que nos conocemos. Toma, para un café.'); }
     else if (e.type === 'sermon'){ SFX.snore(); bossSay('Os voy a explicar por qué estáis equivocados. Punto uno…'); showNotice('Yuyu suelta un sermón moralista y el Puma se duerme.', true, 4); }
     else if (e.type === 'win'){ SFX.win(); setTimeout(showEnding, 600); }
@@ -2328,12 +2601,445 @@ function frame(now){
   if (S.boss){ bossLineT -= dt; if (bossLineT <= 0){ bossSay(BOSS_LINES[Math.floor(Math.random() * BOSS_LINES.length)]); } }
   renderEvent();
   musicTick();
+  extrasTick(dt); tutTick();
   if (!radioWin.hidden){ radioAcc += dt; if (radioAcc > .25){ radioAcc = 0; renderRadio(); } }
   if (W > 0) drawScene(now, dt);
   uiAcc += dt; if (uiAcc > .2){ uiAcc = 0; refreshUI(); }
   saveAcc += dt; if (saveAcc > 5){ saveAcc = 0; store(); }
   requestAnimationFrame(frame);
 }
+
+// ===== Tanda 1: vibración, logros, bocadillos, cuñas de radio y regreso =====
+
+// ---------- Vibración ----------
+const CAN_VIB = typeof navigator !== 'undefined' && 'vibrate' in navigator;
+function buzz(p){ if (!CAN_VIB || prefs.vib === false) return; try { navigator.vibrate(p); } catch(e){} }
+
+// ---------- Logros (+1% de producción cada uno) ----------
+const nodesBought = () => Object.keys(S.nodes).filter(id => lvOf(S, id) > 0).length;
+const ACH = [
+  {id:'c1',     name:'Bienvenido a la ITV',        desc:'Aprueba tu primer coche.',                  test:() => S.cars >= 1},
+  {id:'c1k',    name:'Mil pegatinas',              desc:'Revisa 1.000 vehículos.',                   test:() => S.cars >= 1000},
+  {id:'c100k',  name:'La ITV que nunca duerme',    desc:'Revisa 100.000 vehículos.',                 test:() => S.cars >= 1e5},
+  {id:'t1k',    name:'Dedo inquieto',              desc:'Toca 1.000 veces.',                         test:() => S.taps >= 1000},
+  {id:'t10k',   name:'Tendinitis',                 desc:'Toca 10.000 veces.',                        test:() => S.taps >= 10000},
+  {id:'crit',   name:'Lanzatuercas certero',       desc:'Consigue 100 críticos.',                    test:() => S.crits >= 100},
+  {id:'nap1',   name:'Primera cabezadita',         desc:'Que el Puma se duerma una vez.',            test:() => S.naps >= 1},
+  {id:'nap25',  name:'Felino y siestas',           desc:'Que el Puma se duerma 25 veces.',           test:() => S.naps >= 25},
+  {id:'slept',  name:'Funcionario ejemplar',       desc:'5 minutos dormido en total.',               test:() => (S.sleptT || 0) >= 300},
+  {id:'dr10',   name:'Adicto al café',             desc:'Tómate 10 bebidas.',                        test:() => S.drinks >= 10},
+  {id:'dr50',   name:'Corazón de Red Bull',        desc:'Tómate 50 bebidas.',                        test:() => S.drinks >= 50},
+  {id:'m1',     name:'Millonario de Orcasitas',    desc:'Factura 1 M €.',                            test:() => S.life >= 1e6},
+  {id:'m100',   name:'Cien kilos',                 desc:'Factura 100 M €.',                          test:() => S.life >= 1e8},
+  {id:'rob50',  name:'Ejército de Robertos',       desc:'Ten 50 Robertos.',                          test:() => owned(S, 'roberto') >= 50},
+  {id:'squad',  name:'El escuadrón al completo',   desc:'Contrata al menos uno de cada.',            test:() => GEN.every(g => owned(S, g.id) > 0)},
+  {id:'tree20', name:'Medio árbol',                desc:'Compra 30 mejoras.',                        test:() => nodesBought() >= 30},
+  {id:'tree55', name:'Jardinero del árbol',        desc:'Compra 55 mejoras.',                        test:() => nodesBought() >= 55},
+  {id:'secret', name:'Cazador de secretos',        desc:'Descubre los 5 nodos secretos.',            test:() => NODES.filter(n => n.secret).every(n => S.secrets && S.secrets[n.id])},
+  {id:'clean',  name:'Manos limpias',              desc:'Rechaza 5 sobres.',                         test:() => S.bribesR >= 5},
+  {id:'dirty',  name:'Bolsillo agradecido',        desc:'Acepta 5 sobres.',                          test:() => S.bribesA >= 5},
+  {id:'fine1',  name:'Visita de Industria',        desc:'Que Industria te multe.',                   test:() => S.fines >= 1},
+  {id:'incor',  name:'Incorruptible',              desc:'Elige el camino honrado.',                  test:() => lvOf(S, 'incorruptible') > 0},
+  {id:'padri',  name:'El Padrino',                 desc:'Compra El Padrino de la ITV.',              test:() => lvOf(S, 'padrino') > 0},
+  {id:'whip',   name:'Azote fácil',                desc:'Usa la correa de distribución 10 veces.',   test:() => (S.whips || 0) >= 10},
+  {id:'radio',  name:'Oyente de la Radio Pirata',  desc:'Escucha todas las canciones.',              test:() => TRACKS.every(t => S.heard && S.heard[t.id])},
+  {id:'lince',  name:'Ojo de lince',               desc:'Encuentra 25 defectos.',                    test:() => (S.defects || 0) >= 25},
+  {id:'orders', name:'Pedido entregado',           desc:'Completa 10 pedidos.',                      test:() => (S.ordersDone || 0) >= 10},
+  {id:'himas',  name:'Hima, ¡sienta!',             desc:'Calma a Hima en el Yuyomóvil.',             test:() => (S.himaCalm || 0) >= 1},
+  {id:'noct',   name:'Turno de noche superado',    desc:'Gana en dificultad Turno de noche.',       test:() => S.won && S.diff === 'noche'},
+  {id:'sur',    name:'Rey del sur',                desc:'Gana en los cuatro barrios.',               test:() => BARRIOS.every(b => META.wins[b.id])},
+  {id:'win',    name:'El Yuyomóvil en grúa',       desc:'Gana la partida.',                          test:() => S.won},
+  {id:'nobrib', name:'Ni un sobre',                desc:'Gana sin aceptar ningún sobre.',            test:() => S.won && S.bribesA === 0},
+  {id:'fast',   name:'Turno exprés',               desc:'Gana en menos de 30 minutos.',              test:() => S.won && S.endT < 1800},
+  {id:'bad',    name:'Pegatina verde para el tanque', desc:'Acepta el sobre de Yuyu.',              test:() => S.ended === 2},
+];
+let achQueue = [], achShowing = false;
+function checkAch(){
+  if (!S.ach) S.ach = {};
+  for (const a of ACH){
+    if (S.ach[a.id]) continue;
+    let ok = false; try { ok = a.test(); } catch(e){}
+    if (ok){ S.ach[a.id] = Date.now(); achQueue.push(a); }
+  }
+  showNextAch();
+}
+function showNextAch(){
+  if (achShowing || !achQueue.length) return;
+  const a = achQueue.shift(), el = $('#achPop');
+  achShowing = true;
+  el.innerHTML = `${MEDAL}<div><small>Logro desbloqueado · +1% producción</small><b>${a.name}</b></div>`;
+  el.hidden = false; el.classList.remove('out');
+  SFX.win(); buzz([20, 40, 20]);
+  setTimeout(() => { el.classList.add('out'); setTimeout(() => { el.hidden = true; achShowing = false; showNextAch(); }, 300); }, 3200);
+}
+const MEDAL = '<svg class="medal" viewBox="0 0 32 32" aria-hidden="true"><path d="M10 2h5l3 9h-5zM22 2h-5l-3 9h5z" fill="var(--cuello)"/><circle cx="16" cy="20" r="10" fill="var(--chaleco)" stroke="#a9850f" stroke-width="2"/><path d="M16 14l1.8 3.7 4 .6-2.9 2.8.7 4L16 23.2l-3.6 1.9.7-4-2.9-2.8 4-.6z" fill="#a9850f"/></svg>';
+function achHTML(){
+  const n = ACH.filter(a => S.ach && S.ach[a.id]).length;
+  return `<h3 class="achh">Logros <span class="num">${n}/${ACH.length} · +${n}% de producción</span></h3>
+    <div class="achgrid">${ACH.map(a => { const on = S.ach && S.ach[a.id];
+      return `<div class="ach ${on ? 'on' : ''}">${MEDAL}<div><b>${a.name}</b><small>${a.desc}</small></div></div>`; }).join('')}</div>`;
+}
+let achKey = '';
+function updateAchList(){
+  const key = Object.keys(S.ach || {}).length + '';
+  if (key === achKey) return; achKey = key;
+  $('#achList').innerHTML = achHTML();
+}
+
+// ---------- Bocadillos de la plantilla ----------
+const SLOTS = {daniel:.04, loko:.12, roberto:.2, maetin:.28, pedorreta:.6, jose:.69, serio:.78, safu:.87, adri:.96};
+const LINES = {
+  roberto:['Esto frena como mi abuela.','¡Tarjeta amarilla a ese tubo de escape!','Pito falta al neumático trasero.','¿Eso es una rueda o un donut?','¡Fuera de juego, caballero!'],
+  pedorreta:['El opacímetro dice que soy yo.','Huele a catalizador… o a mí.','¿Quién ha abierto la ventana?','Mis gases están homologados.','Ventilad, que vengo.'],
+  daniel:['Punto uno: los frenos. Punto dos…','Le explico el informe, solo son 40 páginas.','¿Le hago una foto al cliente?','Esto en mis tiempos se hacía mejor.','Firme aquí, aquí, aquí y aquí.'],
+  jose:['Los faros se ven mejor con vaper.','¿Luces de cruce o niebla de vaper?','Este coche tiene más luces que una discoteca.','Un momento, que ajusto el regloscopio.'],
+  loko:['¡APARCO DONDE ME DA LA GANA!','Lo he aparcado en el techo, ¿pasa algo?','¡La furgoneta del Mercadona no falla!','¡Siguienteeee!'],
+  serio:['Subo el tecno, que la sala está muy muerta.','Esto pide un remix.','Bum, bum, bum, ITV.','¿Alguien pide temazo?'],
+  adri:['¿Alguien se va a comer este bocata?','Cobro yo, que tengo hambre.','Ese tique lleva mi propina, ¿no?','Me debes un bocata, Puma.'],
+  maetin:['Estos bajos están para jugar un partido.','¿Alguien se apunta a pickleball luego?','Saque, voleo y pegatina.','Este chasis pide revancha.'],
+  safu:['¿Y tú vienes mucho por la ITV?','Te apruebo el coche si me das tu Instagram.','Yo aquí atendiendo… a quien haga falta.','Aquí se liga más que en Tinder.'],
+  puma:['Ñam… cinco minutitos más.','Ese coche no pasa. Bueno, igual sí.','¿Qué hora es? ¿Ya es la hora del bocata?','Se va a revisar el coche de Yuyu su abuela.','Un Monster y lo reviso todo.'],
+};
+const CTX_LINES = {
+  asleep:['¡Puma, despierta!','Está frito otra vez.','Que alguien le traiga un café.','Shhh, que ronca.'],
+  pumaAsleep:['Zzz… correa… zzz…','Zzz… pegatina verde… zzz…','Zzz… mamá, cinco minutos…'],
+  seal:['Ya está aquí Industria…','Yo no he sido, ¿eh?','Escondedme los sobres.'],
+  boss:['¡Ese tanque no pasa ni de broma!','¿Eso es un monitor OLED en el capó?','¡Yuyu, eso no es un vehículo histórico!','¡Que no le pongan la pegatina!'],
+  sus:['Huele a inspección…','Cuidado con los sobres, que vigilan.'],
+};
+let bubbles = [], bubbleT = 5;
+const pick = (a) => a[Math.floor(Math.random() * a.length)];
+function sayBubble(){
+  const staff = GEN.filter(g => owned(S, g.id) > 0).map(g => g.id);
+  let who = 'puma', text;
+  if (S.boss){ who = staff.length ? pick(staff) : 'puma'; text = pick(CTX_LINES.boss); }
+  else if (S.asleep){ if (staff.length && Math.random() < .6){ who = pick(staff); text = pick(CTX_LINES.asleep); } else text = pick(CTX_LINES.pumaAsleep); }
+  else if (S.seal > 0){ who = staff.length ? pick(staff) : 'puma'; text = pick(CTX_LINES.seal); }
+  else if (S.sus > 70 && Math.random() < .5){ who = staff.length ? pick(staff) : 'puma'; text = pick(CTX_LINES.sus); }
+  else { who = staff.length && Math.random() < .7 ? pick(staff) : 'puma'; text = pick(LINES[who]); }
+  bubbles = bubbles.filter(b => b.who !== who);
+  bubbles.push({who, text, t:0});
+  if (bubbles.length > 2) bubbles.shift();
+}
+function drawBubbles(s, gy, cx, dt){
+  for (const b of bubbles){
+    b.t += dt;
+    const a = b.t < .2 ? b.t / .2 : b.t > 3.6 ? Math.max(0, (4 - b.t) / .4) : 1;
+    if (a <= 0) continue;
+    let x, y;
+    if (b.who === 'puma'){ x = Math.min(W - 26*s, cx + 128*s); y = gy - 96*s; }
+    else { x = W * SLOTS[b.who]; y = gy - 30*s - 58*s; }
+    ctx.font = `600 ${Math.round(9*s + 4)}px Barlow, sans-serif`;
+    const lines = wrap(b.text, Math.max(90, 120*s));
+    const lh = 9*s + 6, bw = Math.max(...lines.map(l => ctx.measureText(l).width)) + 14, bh = lines.length * lh + 8;
+    let bx = Math.max(4, Math.min(W - bw - 4, x - bw/2)), by = Math.max(4, y - bh - 8);
+    ctx.globalAlpha = a;
+    ctx.fillStyle = '#eaeef4'; rr(bx, by, bw, bh, 8); ctx.fill();
+    ctx.beginPath(); const tx = Math.max(bx + 10, Math.min(bx + bw - 10, x)); ctx.moveTo(tx - 5, by + bh); ctx.lineTo(tx, by + bh + 7); ctx.lineTo(tx + 5, by + bh); ctx.fill();
+    ctx.fillStyle = '#141922'; ctx.textAlign = 'left';
+    lines.forEach((l, i) => ctx.fillText(l, bx + 7, by + 4 + (i + 1) * lh - 3));
+    ctx.globalAlpha = 1;
+  }
+  bubbles = bubbles.filter(b => b.t < 4);
+}
+
+// ---------- Cuñas de la Radio Pirata ----------
+const ADS = [
+  'Bocatas Adri: te los comes tú… o se los come él.',
+  'Autoescuela Loko: aprende a aparcar en cualquier sitio. En cualquiera.',
+  'Ópticas Jose: vea a través del vaper como nunca.',
+  'Gimnasio Roberto: si no corres, tarjeta amarilla.',
+  'Pedorreta Ambientadores: para cuando ya es tarde.',
+  'Academia Daniel: cursos de 40 horas para explicar un formulario.',
+  'Serio Records: tecno para salas de espera desde 2009.',
+  'Monster: el combustible oficial del Puma.',
+  'Café de máquina de la ITV: sabe a moneda, pero despierta.',
+  'Boletín Oficial de Yuyu: todo está bien, no mire por la ventana.',
+  'Taxis Orcasitas: le llevamos a la ITV y le esperamos fuera.',
+  'Pickleball de Maetin: hoy pista libre, mañana también.',
+  'Talleres Correa Rota: cambiamos la correa… cuando chirría.',
+  '¿Su coche no pasa la ITV? Pruebe a no traerlo.',
+];
+let adActive = null;
+function maybeAd(next){
+  if (Math.random() < .55 && R().on && !prefs.mute){
+    adActive = pick(ADS);
+    SFX.jingle(); buzz(15);
+    showAdBanner(adActive);
+    setTimeout(() => { adActive = null; renderRadio(true); next(); }, 4200);
+    renderRadio(true);
+  } else next();
+}
+function showAdBanner(text){
+  const el = $('#adBan');
+  el.innerHTML = `<small>Cuña publicitaria · Radio Pirata 88.5 FM</small><span>${text}</span>`;
+  el.hidden = false; el.classList.remove('out');
+  clearTimeout(showAdBanner.t);
+  showAdBanner.t = setTimeout(() => { el.classList.add('out'); setTimeout(() => { el.hidden = true; }, 300); }, 4200);
+}
+
+// ---------- Pantalla de regreso ----------
+const DREAMS = [
+  'El Puma soñó que el Yuyomóvil pasaba la ITV a la primera. Fue una pesadilla.',
+  'El Puma soñó con una correa de distribución que le perseguía.',
+  'El Puma soñó con un Monster del tamaño de un camión.',
+  'El Puma soñó que Pedorreta aprobaba el opacímetro.',
+  'El Puma soñó que Adri invitaba a un bocata. Ahí supo que era un sueño.',
+  'El Puma soñó con una ITV sin colas. Se despertó llorando.',
+];
+function showAway(sec, gain, d){
+  let sw = 0, sp = 0; for (const v of d.vehicles){ sw += v.w; sp += v.w * v.pay; }
+  const avgCar = sp / sw * d.pay, cars = gain > 0 ? Math.round(gain / avgCar) : 0;
+  const el = $('#away');
+  el.querySelector('.card').innerHTML = `<span class="stamp neg" style="color:var(--sueno)">Ausente</span>
+    <h2>Mientras no estabas</h2>
+    <p>${pick(DREAMS)}</p>
+    <div class="endstats">
+      <div><b class="num">${fmtTime(sec)}</b><span>fuera</span></div>
+      <div><b class="num">${fmt(gain)} €</b><span>facturado</span></div>
+      <div><b class="num">${fmt(cars)}</b><span>coches revisados</span></div>
+      <div><b class="num">${fmt(Math.round(sec / 2.4))}</b><span>ronquidos</span></div>
+      <div><b class="num">${fmt(S.money)} €</b><span>en caja</span></div>
+      <div><b class="num">${Object.keys(S.ach || {}).length}/${ACH.length}</b><span>logros</span></div>
+    </div>
+    <p style="color:var(--gris)">El Puma sigue frito. Tócale para despertarle.</p>
+    <button class="go" id="awayGo">A trabajar</button>`;
+  el.hidden = false;
+  $('#awayGo').onclick = () => { audio(); el.hidden = true; };
+}
+
+// ---------- Ajustes en el Informe ----------
+function buildSettings(){
+  const box = $('#setBox');
+  box.innerHTML = CAN_VIB ? `<label class="rsw"><input type="checkbox" id="vibChk"><span></span>Vibración al tocar</label>` : '';
+  const c = $('#vibChk');
+  if (c){ c.checked = prefs.vib !== false; c.onchange = () => { prefs.vib = c.checked; if (c.checked) buzz(30); store(); }; }
+}
+
+// ---------- Bucle de los extras ----------
+let achAcc = 0;
+function extrasTick(dt){
+  achAcc += dt; if (achAcc > 1){ achAcc = 0; checkAch(); }
+  if (!S.ended && $('#welcome').hidden){ bubbleT -= dt; if (bubbleT <= 0){ bubbleT = 6 + Math.random() * 7; sayBubble(); } }
+}
+
+
+// ===== Tanda 2: defectos, pedidos, Hima y el monitor OLED =====
+const VLEN = {turismo:100, moto:60, furgo:112, caravana:124, camion:152, bus:172, limusina:160};
+const VHGT = {turismo:30, moto:28, furgo:40, caravana:44, camion:48, bus:44, limusina:30};
+let hit = {defect:null, hima:null, mon:null};
+function drawDefect(c, x, gy, s, t){
+  hit.defect = null;
+  const D = S.defect; if (!D || Math.abs(x - W * .44) > 30) return;
+  const k = DEFECT_KINDS.find(k => k.id === D.kind);
+  const L = VLEN[c.id] || 100, dx = (D.x - .5) * L * s, px = x + dx, py = gy - (VHGT[c.id] || 30) * s;
+  const pulse = 1 + Math.sin(t / 120) * .12, r = 13 * s * pulse;
+  ctx.fillStyle = 'rgba(240,82,82,.25)'; ctx.beginPath(); ctx.arc(px, py, r * 1.8, 0, 7); ctx.fill();
+  ctx.fillStyle = '#f05252'; ctx.beginPath(); ctx.arc(px, py, r, 0, 7); ctx.fill();
+  ctx.strokeStyle = '#fff'; ctx.lineWidth = 2.5 * s; ctx.beginPath(); ctx.arc(px, py, r + 3*s, -Math.PI/2, -Math.PI/2 + Math.PI * 2 * D.left / 5); ctx.stroke();
+  ctx.fillStyle = '#fff'; ctx.font = `800 ${Math.round(16*s)}px "Barlow Condensed", sans-serif`; ctx.textAlign = 'center'; ctx.fillText('!', px, py + 6*s);
+  ctx.font = `700 ${Math.round(9*s + 4)}px "Barlow Condensed", sans-serif`;
+  const lbl = k.name + ' · ¡tócalo!', tw = ctx.measureText(lbl).width + 10;
+  ctx.fillStyle = 'rgba(240,82,82,.95)'; rr(px - tw/2, py - r - 22*s, tw, 9*s + 8, 5); ctx.fill();
+  ctx.fillStyle = '#fff'; ctx.fillText(lbl, px, py - r - 22*s + 9*s + 3);
+  hit.defect = {x:px, y:py, r: Math.max(26, r * 2.2)};
+}
+function drawDog(x, y, s, face, t, run){
+  ctx.save(); ctx.translate(x, y); ctx.scale(face * s, s);
+  const leg = run ? Math.sin(t / 60) * 4 : 0;
+  ctx.fillStyle = 'rgba(0,0,0,.3)'; ctx.beginPath(); ctx.ellipse(0, 0, 18, 3.5, 0, 0, 7); ctx.fill();
+  ctx.fillStyle = '#b97a3e';
+  ctx.fillRect(-12 + leg, -12, 4, 12); ctx.fillRect(8 - leg, -12, 4, 12); ctx.fillRect(-7 - leg, -12, 4, 12); ctx.fillRect(4 + leg, -12, 4, 12);
+  ctx.beginPath(); ctx.ellipse(0, -15, 15, 7, 0, 0, 7); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(-14, -17); ctx.quadraticCurveTo(-24, -26 + Math.sin(t/80)*3, -22, -30); ctx.lineWidth = 3; ctx.strokeStyle = '#b97a3e'; ctx.stroke();
+  ctx.beginPath(); ctx.ellipse(15, -23, 7, 6, 0, 0, 7); ctx.fill();
+  ctx.beginPath(); ctx.ellipse(22, -21, 5, 3.5, 0, 0, 7); ctx.fill();
+  ctx.fillStyle = '#8c5a2c'; ctx.beginPath(); ctx.ellipse(12, -28, 3, 5, -.4, 0, 7); ctx.fill();
+  ctx.fillStyle = '#1a120d'; ctx.beginPath(); ctx.arc(26, -22, 1.6, 0, 7); ctx.fill(); ctx.beginPath(); ctx.arc(17, -25, 1.3, 0, 7); ctx.fill();
+  ctx.fillStyle = '#c8302c'; ctx.fillRect(9, -20, 3, 6);
+  ctx.restore();
+}
+function drawBossExtras(s, gy, cx, t){
+  const B = S.boss; hit.hima = null; hit.mon = null;
+  if (B.hima){
+    const ph = t / 900, x = W * .5 + Math.sin(ph) * W * .38, face = Math.cos(ph) >= 0 ? 1 : -1;
+    drawDog(x, gy + 4*s, 1.1*s, face, t, true);
+    for (let i = 0; i < 3; i++){ ctx.fillStyle = i < B.hima.hits ? '#58c47c' : 'rgba(255,255,255,.35)'; ctx.beginPath(); ctx.arc(x - 10*s + i * 10*s, gy - 42*s, 3.5*s, 0, 7); ctx.fill(); }
+    hit.hima = {x, y: gy - 16*s, r: Math.max(34, 30*s)};
+  }
+  if (B.blindT > 0){
+    const mx = cx - 43*s, my = gy - 37*s;
+    ctx.fillStyle = `hsla(${(t/3) % 360},100%,85%,${.35 + Math.sin(t/40) * .2})`; ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 3*s; ctx.beginPath(); ctx.arc(mx, my, 22*s + Math.sin(t/90) * 4*s, 0, 7); ctx.stroke();
+    ctx.font = `800 ${Math.round(11*s + 5)}px "Barlow Condensed", sans-serif`; ctx.textAlign = 'center';
+    const lbl = '¡240 Hz! Toca el monitor para apagarlo', tw = ctx.measureText(lbl).width + 14;
+    ctx.fillStyle = '#141922'; rr(W/2 - tw/2, 8*s, tw, 11*s + 12, 6); ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.fillText(lbl, W/2, 8*s + 11*s + 5);
+    hit.mon = {x: mx, y: my, r: Math.max(34, 30*s)};
+  }
+}
+function tapTargets(clientX, clientY){
+  const rc = cv.getBoundingClientRect(), x = clientX - rc.left, y = clientY - rc.top, s = H / 220;
+  const inside = (h) => h && Math.hypot(x - h.x, y - h.y) <= h.r;
+  if (S.boss && inside(hit.mon)){
+    if (bossHitMonitor(S)){ SFX.stamp(); buzz(40); shake = .6; addFloat(hit.mon.x, hit.mon.y - 20*s, 'Monitor apagado', '#58c47c', true); bossSay('¡Mi monitor! ¡Eso es un ataque a la libertad de expresión!'); }
+    return true;
+  }
+  if (S.boss && inside(hit.hima)){
+    const r = bossHitHima(S); SFX.tap(); buzz(20);
+    if (r === 'calm'){ S.himaCalm = (S.himaCalm || 0) + 1; SFX.win(); addFloat(hit.hima.x, hit.hima.y - 30*s, 'Hima, ¡sienta!', '#58c47c', true); bossSay('¡Hima! ¿Desde cuándo obedeces a la ITV?'); }
+    else addFloat(hit.hima.x, hit.hima.y - 30*s, '¡Quieta!', '#f4c430');
+    return true;
+  }
+  if (!S.boss && S.defect && inside(hit.defect)){
+    const r = defectHit(S);
+    if (r){
+      const k = DEFECT_KINDS.find(k => k.id === r.kind);
+      SFX.stamp(); SFX.car(); buzz([30, 30, 30]); shake = .5;
+      addFloat(hit.defect.x, hit.defect.y - 26*s, k.name + ' · +' + fmt(r.gain) + ' €', '#f05252', true);
+      leaving.push({id:S.car.id, col:S.car.col, x:carX, v:60, t:0});
+    }
+    return true;
+  }
+  return false;
+}
+// Pedidos: tira debajo del objetivo
+function orderText(O){
+  if (O.id === 'cars') return `Revisa ${fmt(O.target)} vehículos`;
+  if (O.id === 'taps') return `Haz ${O.target} toques`;
+  if (O.id === 'money') return `Factura ${fmt(O.target)} €`;
+  if (O.id === 'defects') return `Encuentra ${O.target} defectos`;
+  return 'Que el Puma no se duerma';
+}
+function updateOrder(){
+  const el = $('#order'), O = S.order;
+  if (!O || S.boss || S.ended){ el.hidden = true; return; }
+  el.hidden = false;
+  const p = Math.min(O.target, Math.max(0, orderProgress(S)));
+  const prog = O.id === 'awake' ? `${Math.floor(p)}/${O.target} s` : O.id === 'money' ? `${fmt(p)} / ${fmt(O.target)} €` : `${fmt(p)}/${fmt(O.target)}`;
+  $('#oTxt').textContent = orderText(O);
+  $('#oProg').textContent = prog + ' · ' + mmss(O.left);
+  $('#oBar').style.width = (p / O.target * 100) + '%';
+}
+
+// ===== Tanda 3: barrios, dificultad, tuercas doradas y tutorial =====
+const META_KEY = 'itv-puma-meta';
+let META = (() => { try { return Object.assign({tuercas:0, lv:{}, wins:{}, totalWins:0}, JSON.parse(localStorage.getItem(META_KEY) || '{}')); } catch(e){ return {tuercas:0, lv:{}, wins:{}, totalWins:0}; } })();
+function saveMeta(){ try { localStorage.setItem(META_KEY, JSON.stringify(META)); } catch(e){} }
+const barrioName = () => (BARRIO[S.barrio] || BARRIOS[0]).name;
+const diffName = () => (DIFFS.find(d => d.id === S.diff) || DIFFS[1]).name;
+
+// Premio al ganar (una vez por partida)
+function awardWin(){
+  if (S.ended !== 1 || S.tuercasGiven) return 0;
+  const first = !META.wins[S.barrio];
+  const t = tuercasFor(S, first);
+  META.tuercas += t; META.totalWins++;
+  const prev = META.wins[S.barrio];
+  META.wins[S.barrio] = {best: prev ? Math.min(prev.best, S.endT) : S.endT, diff: S.diff};
+  if (S.diff === 'noche') META.night = true;
+  S.tuercasGiven = t; saveMeta(); store();
+  return t;
+}
+
+// Ventana para abrir una ITV nueva
+let setupSel = {barrio:'orcasitas', diff:'normal', tut:false};
+function openSetup(){
+  const unlockedB = BARRIOS.filter(b => META.totalWins >= b.wins);
+  setupSel = {barrio: (unlockedB.find(b => !META.wins[b.id]) || unlockedB[unlockedB.length - 1]).id, diff: S.diff || 'normal', tut:false};
+  renderSetup(); $('#setup').hidden = false;
+}
+const TUERCA = '<svg class="tuerca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7z" fill="var(--chaleco)" stroke="#a9850f" stroke-width="1.5"/><circle cx="12" cy="12" r="4" fill="var(--forro)" stroke="#a9850f" stroke-width="1.5"/></svg>';
+function renderSetup(){
+  const card = $('#setupCard');
+  const inGame = S.taps > 0 && !S.won && S.ended !== 1;
+  card.innerHTML = `<h2>Abrir una ITV</h2>
+    ${inGame ? `<p class="warn">Se perderá la partida actual en ${barrioName()}. Los logros y las tuercas doradas se quedan.</p>` : ''}
+    <h3 class="sh">Barrio</h3>
+    <div class="bgrid">${BARRIOS.map(b => {
+      const lock = META.totalWins < b.wins, w = META.wins[b.id];
+      return `<button class="bcard ${setupSel.barrio === b.id ? 'on' : ''}" data-barrio="${b.id}" ${lock ? 'disabled' : ''}>
+        <b>${b.name}</b><small>${lock ? `Gana ${b.wins} ${b.wins > 1 ? 'partidas' : 'partida'} para abrirla` : b.twist}</small>
+        <span class="num">${lock ? 'Cerrada' : 'Objetivo: ' + fmt(b.goal) + ' €'}${w ? ' · Ganada en ' + clock(w.best) : ''}</span></button>`; }).join('')}</div>
+    <h3 class="sh">Dificultad</h3>
+    <div class="dseg">${DIFFS.map(d => `<button data-diff="${d.id}" aria-pressed="${setupSel.diff === d.id}">${d.name}</button>`).join('')}</div>
+    <p class="ddesc">${DIFFS.find(d => d.id === setupSel.diff).desc}</p>
+    <h3 class="sh">Taller de tuercas doradas <span class="tbal num">${TUERCA}${META.tuercas}</span></h3>
+    <p class="ddesc">Mejoras permanentes para todas las partidas. Se ganan tuercas al vencer al Yuyomóvil.</p>
+    <div class="shop">${SHOP.map(it => {
+      const lv = META.lv[it.id] || 0, max = it.costs.length, cost = it.costs[lv];
+      return `<div class="sitem"><div><b>${it.name}</b><small>${it.desc}</small>
+        <div class="pips">${it.costs.map((_, i) => `<i class="${i < lv ? 'on' : ''}"></i>`).join('')}</div></div>
+        <button class="buy" data-shop="${it.id}" ${lv >= max || META.tuercas < cost ? 'disabled' : ''}>${lv >= max ? 'Al máximo' : `${TUERCA}${cost}`}</button></div>`; }).join('')}</div>
+    <label class="rsw"><input type="checkbox" id="setTut" ${setupSel.tut ? 'checked' : ''}><span></span>Con tutorial</label>
+    <button class="go" id="setupGo">Abrir la ITV de ${BARRIO[setupSel.barrio].name}</button>
+    <button class="go2" id="setupNo">Cancelar</button>`;
+}
+$('#setup').addEventListener('click', (e) => {
+  const t = e.target;
+  const b = t.closest('[data-barrio]'); if (b && !b.disabled){ setupSel.barrio = b.dataset.barrio; renderSetup(); return; }
+  const d = t.closest('[data-diff]'); if (d){ setupSel.diff = d.dataset.diff; renderSetup(); return; }
+  const sh = t.closest('[data-shop]');
+  if (sh && !sh.disabled){
+    const it = SHOP.find(x => x.id === sh.dataset.shop), lv = META.lv[it.id] || 0;
+    if (META.tuercas >= it.costs[lv]){ META.tuercas -= it.costs[lv]; META.lv[it.id] = lv + 1; saveMeta(); SFX.buy(); renderSetup(); }
+    return;
+  }
+  if (t.closest('#setupNo') || t === $('#setup')){ $('#setup').hidden = true; return; }
+  if (t.closest('#setupGo')){
+    audio();
+    S = newState({barrio: setupSel.barrio, diff: setupSel.diff, meta: META.lv});
+    curCarKey = null; leaving = []; bubbles = [];
+    $('#setup').hidden = true; $('#ending').hidden = true; $('#welcome').hidden = true;
+    store(); buildTree(); refreshUI(true); SFX.car();
+    toast(`Nueva ITV en ${barrioName()} · ${diffName()}. El Puma ficha a las 7:00.`, 3200);
+    if (setupSel.tut) startTutorial();
+  }
+});
+$('#setup').addEventListener('change', (e) => { if (e.target.id === 'setTut') setupSel.tut = e.target.checked; });
+
+// Dificultad en la bienvenida (primera partida)
+let welcomeDiff = 'normal';
+function renderWelcomeDiff(){
+  $('#wDiff').innerHTML = DIFFS.map(d => `<button data-wdiff="${d.id}" aria-pressed="${welcomeDiff === d.id}">${d.name}</button>`).join('');
+  $('#wDiffDesc').textContent = DIFFS.find(d => d.id === welcomeDiff).desc;
+}
+$('#wDiff').addEventListener('click', (e) => { const b = e.target.closest('[data-wdiff]'); if (b){ welcomeDiff = b.dataset.wdiff; renderWelcomeDiff(); } });
+
+// ---------- Tutorial ----------
+const TUT = [
+  {target:'#tapBtn', text:'Toca REVISAR, o directamente la línea, para inspeccionar el coche. Cada coche aprobado da dinero.', done:() => S.cars >= 3},
+  {target:'#staffList .buy', text:'Con el dinero contrata a Roberto: revisará coches él solo aunque no toques.', done:() => owned(S, 'roberto') >= 1},
+  {target:'#sleepM', text:'Ojo con la barra de sueño. Si se llena, el Puma se duerme: tócale varias veces para despertarle o dale un café.', ok:true},
+  {target:'#treeBtn', text:'Abre el Árbol y compra tu primera mejora. El punto amarillo avisa cuando puedes comprar algo.', done:() => Object.keys(S.nodes).length >= 1},
+  {target:'#scene', text:'Si aparece un círculo rojo sobre el coche es un defecto: tócalo rápido y cobras mucho más.', ok:true},
+  {target:'#musBtn', text:'En la Radio Pirata eliges la música. Cada canción da una pequeña ventaja mientras suena.', ok:true},
+];
+let tutStep = -1, tutEl = null;
+function startTutorial(){ tutStep = 0; showTut(); }
+function endTutorial(){ tutStep = -1; prefs.tutDone = true; store(); $('#coach').hidden = true; if (tutEl) tutEl.classList.remove('coachHi'); tutEl = null; }
+function showTut(){
+  if (tutStep < 0) return;
+  if (tutStep >= TUT.length){ endTutorial(); toast('Tutorial terminado. ¡A por el Yuyomóvil!'); return; }
+  const st = TUT[tutStep], el = $('#coach');
+  if (tutEl) tutEl.classList.remove('coachHi');
+  tutEl = document.querySelector(st.target); if (tutEl) tutEl.classList.add('coachHi');
+  el.innerHTML = `<span class="cstep num">${tutStep + 1}/${TUT.length}</span><p>${st.text}</p>
+    <div class="cbtns">${st.ok ? '<button class="cok" id="tutOk">Entendido</button>' : '<span class="cwait">Hazlo y sigo</span>'}<button class="cskip" id="tutSkip">Saltar tutorial</button></div>`;
+  el.hidden = false;
+}
+$('#coach').addEventListener('click', (e) => {
+  if (e.target.closest('#tutSkip')) endTutorial();
+  else if (e.target.closest('#tutOk')){ tutStep++; showTut(); }
+});
+function tutTick(){
+  if (tutStep < 0) return;
+  const st = TUT[tutStep];
+  if (st && st.done && st.done()){ SFX.buy(); tutStep++; showTut(); }
+}
+
+// Noche: escena más oscura
+function drawNight(){ if (S.diff !== 'noche') return; ctx.fillStyle = 'rgba(10,16,48,.32)'; ctx.fillRect(0, 0, W, H); }
 
 // Mientras no estabas: el Puma se duerme y la plantilla sigue a medio gas
 function catchUp(sec){
@@ -2342,8 +3048,8 @@ function catchUp(sec){
   S.asleep = true; S.sleep = 100; S.wakeTaps = 0;
   S.seal = Math.max(0, S.seal - sec); S.drinkT = 0; S.abT = 0; S.abCd = Math.max(0, S.abCd - sec); S.ev = null;
   const d = derived(S), gain = moneyPerSec(S, d) * sec;
-  if (gain > 0){ S.money += gain; S.life += gain; S.t += sec; if (!S.yuyuSeen && S.life >= GOAL) S.yuyuSeen = true; }
-  setTimeout(() => toast(gain > 0 ? `Mientras no estabas, el Puma se quedó frito y la plantilla facturó ${fmt(gain)} €.` : 'Mientras no estabas, el Puma se quedó frito.', 4500), 400);
+  if (gain > 0){ S.money += gain; S.life += gain; S.t += sec; if (!S.yuyuSeen && S.life >= goalOf(S)) S.yuyuSeen = true; }
+  if (S.taps > 0 && sec >= 30) setTimeout(() => showAway(sec, gain, d), 300);
 }
 document.addEventListener('visibilitychange', () => {
   if (document.hidden){ store(); }
@@ -2354,16 +3060,20 @@ function start(hot){
   const saved = hot && hot.S ? Object.assign(newState(), hot.S) : loadSaved();
   if (hot && hot.prefs) Object.assign(prefs, hot.prefs);
   if (saved){ S = saved; if (!hot || !hot.S) catchUp((Date.now() - S.last) / 1000); }
-  buildStaff(); buildBranches(); buildTree(); paintMute(); paintMusic(); buildRadio();
+  buildStaff(); buildBranches(); buildTree(); paintMute(); paintMusic(); buildRadio(); buildSettings();
   setQty(prefs.qty === 10 ? 10 : 1); setTab(prefs.tab || 'staff');
   resize(); requestAnimationFrame(frame);
-  if (!saved || S.taps === 0) $('#welcome').hidden = false;
+  if (!saved || S.taps === 0){ $('#welcome').hidden = false; renderWelcomeDiff(); $('#wTut').checked = !prefs.tutDone; }
   if (S.ended) showEnding();
   try { window.claude?.hot?.snapshot?.(() => ({S, prefs})); } catch(e){}
 }
 try { drawAvatar($('#wPuma'), 'puma'); } catch(e){}
-$('#goalWelcome').textContent = fmt(GOAL) + ' €';
-$('#startBtn').onclick = () => { audio(); $('#welcome').hidden = true; SFX.car(); };
+$('#goalWelcome').textContent = fmt(goalOf(S)) + ' €';
+$('#startBtn').onclick = () => {
+  audio(); $('#welcome').hidden = true; SFX.car();
+  if (S.taps === 0 && S.cars === 0){ S.diff = welcomeDiff; store(); }
+  if ($('#wTut').checked) startTutorial();
+};
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { resize(); });
 window.claude?.hot?.ready ? window.claude.hot.ready(start) : start(window.claude?.hot?.data ?? {});
 
