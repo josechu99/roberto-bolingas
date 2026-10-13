@@ -161,6 +161,32 @@ button:focus-visible{outline:2px solid var(--chaleco);outline-offset:2px}
 .endstats div{background:var(--forro2);border-radius:10px;padding:8px;text-align:center;font-family:var(--f-cond)}
 .endstats b{display:block;font-size:20px}
 .endstats span{font-size:13px;color:var(--gris)}
+/* ventana del árbol */
+.treebtn{position:relative;width:84px;border-radius:12px;background:var(--forro2);border:2px solid var(--junta);color:var(--tiza);font-family:var(--f-cond);font-weight:700;font-size:15px;display:grid;place-items:center;align-content:center;gap:2px;padding:6px}
+.treebtn svg{width:24px;height:24px;color:var(--chaleco)}
+.treebtn .dot{position:absolute;top:6px;right:8px;width:10px;height:10px;border-radius:50%;background:var(--chaleco);box-shadow:0 0 0 2px var(--asfalto)}
+.treewin{position:fixed;inset:0;z-index:40;background:rgba(8,11,16,.8);display:flex;align-items:center;justify-content:center}
+.twin,.twbody,.twleft,.twbody .branches{min-width:0}
+.twin{background:var(--asfalto);width:100%;max-width:100%;height:100%;display:flex;flex-direction:column;gap:10px;padding:calc(env(safe-area-inset-top,0px) + 10px) 16px calc(env(safe-area-inset-bottom,0px) + 12px);animation:drop .2s ease-out}
+.twhead{display:flex;align-items:center;gap:12px}
+.twhead h2{margin:0;font-family:var(--f-disp);font-weight:400;font-size:24px;color:var(--chaleco);text-transform:uppercase;line-height:1}
+.twmoney{margin-left:auto;font-family:var(--f-cond);font-weight:700;font-size:20px;white-space:nowrap}
+@media (max-width:899px){.twhead h2{font-size:19px;white-space:nowrap}}
+.twbody{flex:1;min-height:0;display:flex;flex-direction:column;gap:10px}
+.twleft{flex:1;min-height:0;display:flex;flex-direction:column;gap:8px}
+.twleft .tview{flex:1;height:auto;min-height:220px}
+.twbody .tdetail{max-height:40vh;overflow:auto;flex:none;padding-bottom:0}
+.twbody .tdetail .row{position:sticky;bottom:0;background:var(--forro);padding-block:8px 12px;margin-top:2px}
+.twbody .branches{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-top:5px}
+.twbody .branches::-webkit-scrollbar{display:none}
+.twbody .branches button{flex:none;padding:6px 12px;display:flex;gap:6px;align-items:baseline}
+.twbody .branches button small{display:inline}
+.twbody .bhint{font-size:13px;margin:0}
+@media (min-width:900px){
+  .twin{width:min(1180px,calc(100% - 48px));height:min(820px,calc(100% - 48px));border:1px solid var(--junta);border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.6);padding:18px 20px}
+  .twbody{flex-direction:row}
+  .twbody .tdetail{width:330px;max-height:none;align-self:stretch;align-content:start}
+}
 /* árbol con zoom */
 .tview{position:relative;height:clamp(300px,48vh,540px);overflow:hidden;border:1px solid var(--junta);border-radius:14px;touch-action:none;cursor:grab;
   background-color:var(--forro);background-image:radial-gradient(var(--junta) 1px,transparent 1.2px);background-size:22px 22px}
@@ -214,6 +240,7 @@ button:focus-visible{outline:2px solid var(--chaleco);outline-offset:2px}
     <div class="top">
       <div class="brand"><b>ITV</b>Incremental Simulator</div>
       <div class="money"><b class="num" id="money">0 €</b><span class="num" id="mps">0 €/s</span></div>
+      <button class="icon-btn" id="musBtn" aria-label="Quitar la música" title="Música"></button>
       <button class="icon-btn" id="mute" aria-label="Quitar el sonido" title="Sonido"></button>
     </div>
     <div class="goal" id="goal">
@@ -238,6 +265,7 @@ button:focus-visible{outline:2px solid var(--chaleco);outline-offset:2px}
     </div>
     <div class="actions">
       <button class="tap" id="tapBtn"><span id="tapTxt">Revisar</span><small class="num" id="tapSub">+4 € por toque</small></button>
+      <button class="treebtn" id="treeBtn" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="2.5"/><circle cx="5" cy="19.5" r="2.5"/><circle cx="19" cy="19.5" r="2.5"/><path d="M12 7v5M12 12l-6 5M12 12l6 5"/></svg>Árbol<span class="dot" id="dTree" hidden></span></button>
       <button class="ability" id="abBtn" hidden>Azote con correa<i id="abBar"></i></button>
     </div>
   </section>
@@ -245,23 +273,11 @@ button:focus-visible{outline:2px solid var(--chaleco);outline-offset:2px}
   <section class="manage" aria-label="Gestión de la ITV">
     <div class="tabs" role="tablist">
       <button role="tab" id="t-staff" aria-selected="true" aria-controls="p-staff">Plantilla<span class="dot" id="dStaff" hidden></span></button>
-      <button role="tab" id="t-tree" aria-selected="false" aria-controls="p-tree">Mejoras<span class="dot" id="dTree" hidden></span></button>
       <button role="tab" id="t-inf" aria-selected="false" aria-controls="p-inf">Informe</button>
     </div>
     <div id="p-staff" role="tabpanel" class="staff">
       <div class="qty">Contratar <button id="q1" aria-pressed="true">×1</button><button id="q10" aria-pressed="false">×10</button></div>
       <div id="staffList" class="staff"></div>
-    </div>
-    <div id="p-tree" role="tabpanel" hidden>
-      <div class="staff">
-        <div class="branches" id="branches" role="tablist"></div>
-        <p class="bhint" id="bhint"></p>
-        <div class="tview" id="tview" aria-label="Árbol de mejoras: arrastra para moverte y pellizca para hacer zoom">
-          <div class="tworld" id="tworld"><svg id="tlines" aria-hidden="true"></svg></div>
-          <div class="tzoom"><button id="zIn" aria-label="Acercar">+</button><button id="zOut" aria-label="Alejar">−</button><button id="zFit">Encajar</button></div>
-        </div>
-        <div class="tdetail" id="tdetail"></div>
-      </div>
     </div>
     <div id="p-inf" role="tabpanel" hidden class="staff">
       <div class="informe">
@@ -273,6 +289,27 @@ button:focus-visible{outline:2px solid var(--chaleco);outline-offset:2px}
   </section>
 </div>
 
+<div class="treewin" id="treeWin" hidden role="dialog" aria-modal="true" aria-labelledby="twTitle">
+  <div class="twin">
+    <header class="twhead">
+      <h2 id="twTitle">Árbol de mejoras</h2>
+      <span class="twmoney num" id="twMoney">0 €</span>
+      <button class="icon-btn" id="twClose" aria-label="Cerrar el árbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </header>
+    <div class="twbody">
+      <div class="twleft">
+        <div class="branches" id="branches" role="tablist"></div>
+        <p class="bhint" id="bhint"></p>
+        <div class="tview" id="tview" aria-label="Árbol de mejoras: arrastra para moverte y pellizca para hacer zoom">
+          <div class="tworld" id="tworld"><svg id="tlines" aria-hidden="true"></svg></div>
+          <div class="tzoom"><button id="zIn" aria-label="Acercar">+</button><button id="zOut" aria-label="Alejar">−</button><button id="zFit">Encajar</button></div>
+        </div>
+      </div>
+      <div class="tdetail" id="tdetail"></div>
+    </div>
+  </div>
+</div>
+
 <div class="overlay" id="welcome" hidden>
   <div class="card">
     <div class="whead"><canvas id="wPuma" width="160" height="160" aria-hidden="true"></canvas><h2>ITV Incremental Simulator</h2></div>
@@ -281,7 +318,7 @@ button:focus-visible{outline:2px solid var(--chaleco);outline-offset:2px}
       <li>Toca la línea o el botón amarillo para revisar.</li>
       <li>Contrata a los de Orcasitas para que revisen solos.</li>
       <li>Vigila la barra de sueño: si se llena, el Puma se queda frito.</li>
-      <li>Mejora la estación en el árbol: seis ramas, combos, caminos que se excluyen y nodos secretos.</li>
+      <li>Abre el árbol con el botón de al lado de Revisar: seis ramas, combos, caminos que se excluyen y nodos secretos.</li>
       <li>Llega a <span id="goalWelcome">400 M €</span> y vendrá Yuyu con el Yuyomóvil a pasar la ITV.</li>
     </ul>
     <button class="go" id="startBtn">Empezar el turno</button>
@@ -1276,6 +1313,60 @@ const SFX = {
   win(){ [523,659,784,1046].forEach((f,i) => tone(f, .25, 'triangle', .1, null, i*.13)); },
 };
 
+// ---------- música (canciones del grupo) ----------
+const TRACKS = {
+  anime:{src:'music/anime.mp3', name:'Estoy viendo anime', vol:.8},
+  letal:{src:'music/letal.mp3', name:'Puma letal', vol:.9},
+  felino:{src:'music/felino.mp3', name:'Felino y siestas', vol:1},
+};
+const PLAYLIST = ['anime', 'letal', 'felino'];
+let musicEl = null, musicCur = null, musicCtx = '', musicIdx = 0, musicFilt = null, musicGain = null, musicWired = false;
+function musicWant(){
+  if (!$('#welcome').hidden || !$('#ending').hidden) return 'menu';
+  if (S.boss) return 'boss';
+  return 'play';
+}
+function musicPlay(id, announce){
+  if (!musicEl){
+    musicEl = new Audio(); musicEl.preload = 'auto'; musicEl.preservesPitch = false; musicEl.mozPreservesPitch = false;
+    musicEl.addEventListener('ended', () => {
+      if (musicCtx === 'play'){ musicIdx = (musicIdx + 1) % PLAYLIST.length; musicPlay(PLAYLIST[musicIdx], true); }
+      else { musicEl.currentTime = 0; musicEl.play().catch(() => {}); }
+    });
+  }
+  if (!musicWired && audio()){
+    try {
+      const src = AC.createMediaElementSource(musicEl);
+      musicFilt = AC.createBiquadFilter(); musicFilt.type = 'lowpass'; musicFilt.frequency.value = 20000;
+      musicGain = AC.createGain(); src.connect(musicFilt); musicFilt.connect(musicGain); musicGain.connect(AC.destination);
+    } catch(e){ musicFilt = musicGain = null; }
+    musicWired = true;
+  }
+  const T = TRACKS[id];
+  if (musicCur !== id){ musicCur = id; musicEl.src = T.src; if (announce) toast('♪ Suena: ' + T.name, 2400); }
+  musicVolume();
+}
+function musicVolume(){
+  if (!musicEl) return;
+  const on = prefs.music !== false && !prefs.mute, v = on ? .55 * TRACKS[musicCur || 'anime'].vol : 0;
+  if (musicGain){ musicGain.gain.value = v; musicEl.volume = 1; } else musicEl.volume = v;
+  if (!on) musicEl.pause(); else if (musicEl.paused && musicEl.src) musicEl.play().catch(() => {});
+}
+function musicTick(){
+  if (!AC) return;
+  const want = musicWant();
+  if (want !== musicCtx){
+    musicCtx = want;
+    musicPlay(want === 'menu' ? 'felino' : want === 'boss' ? 'letal' : PLAYLIST[musicIdx], want !== 'menu');
+  }
+  // con el Puma frito la música suena tapada y a cámara lenta
+  if (musicEl){
+    const asleep = S.asleep && !S.ended;
+    if (musicFilt){ const f = asleep ? 650 : 20000; if (Math.abs(musicFilt.frequency.value - f) > 1) musicFilt.frequency.setTargetAtTime(f, AC.currentTime, .25); }
+    const rate = asleep ? .86 : 1; if (musicEl.playbackRate !== rate) musicEl.playbackRate = rate;
+  }
+}
+
 // ---------- dibujo ----------
 const cv = $('#cv'), ctx = cv.getContext('2d');
 let W = 0, H = 0, DPR = 1;
@@ -1649,6 +1740,7 @@ $('#staffList').addEventListener('click', (e) => {
 function setQty(q){ prefs.qty = q; $('#q1').setAttribute('aria-pressed', q === 1); $('#q10').setAttribute('aria-pressed', q === 10); refreshUI(true); }
 $('#q1').onclick = () => setQty(1); $('#q10').onclick = () => setQty(10);
 
+const treeWin = $('#treeWin');
 // Árbol de mejoras: nodos unidos con líneas, arrastrar y pellizcar para moverse
 const TCOL = {eq:'var(--chaleco)', pu:'var(--sueno)', pl:'var(--ok)', ch:'var(--cuello)', sa:'var(--sala)', ba:'var(--barrio)'};
 Object.assign(BCOL, TCOL);
@@ -1761,7 +1853,7 @@ function zoomAt(f, cx, cy){
   $('#zIn').onclick = () => zoomAt(1.25, vp.clientWidth / 2, vp.clientHeight / 2);
   $('#zOut').onclick = () => zoomAt(1 / 1.25, vp.clientWidth / 2, vp.clientHeight / 2);
   $('#zFit').onclick = fitTree;
-  window.addEventListener('resize', () => { if (!$('#p-tree').hidden) fitTree(); });
+  window.addEventListener('resize', () => { if (!treeWin.hidden) fitTree(); });
 })();
 function selectNode(id){ selNode = id; detailKey = ''; SFX.tap(); updateTree(); }
 function needTxt(g, k){ const G = GEN.find(x => x.id === g); return `${k} × ${G.name} (tienes ${owned(S, g)})`; }
@@ -1860,20 +1952,36 @@ $('#resetBox').addEventListener('click', (e) => {
 
 // Pestañas
 function setTab(t){
-  const wasTree = prefs.tab === 'tree';
+  if (t !== 'inf') t = 'staff';
   prefs.tab = t;
-  for (const [k, id] of [['staff','t-staff'],['tree','t-tree'],['inf','t-inf']]){ $('#' + id).setAttribute('aria-selected', k === t); }
-  $('#p-staff').hidden = t !== 'staff'; $('#p-tree').hidden = t !== 'tree'; $('#p-inf').hidden = t !== 'inf';
-  if (t === 'tree') requestAnimationFrame(fitTree);
+  for (const [k, id] of [['staff','t-staff'],['inf','t-inf']]){ $('#' + id).setAttribute('aria-selected', k === t); }
+  $('#p-staff').hidden = t !== 'staff'; $('#p-inf').hidden = t !== 'inf';
   refreshUI(true);
 }
-$('#t-staff').onclick = () => setTab('staff'); $('#t-tree').onclick = () => setTab('tree'); $('#t-inf').onclick = () => setTab('inf');
+$('#t-staff').onclick = () => setTab('staff'); $('#t-inf').onclick = () => setTab('inf');
+
+// Ventana del árbol
+let treeOpener = null;
+function openTree(){
+  audio(); treeOpener = document.activeElement;
+  treeWin.hidden = false; buildTree(); refreshUI(true);
+  requestAnimationFrame(fitTree); $('#twClose').focus();
+}
+function closeTree(){ treeWin.hidden = true; if (treeOpener && treeOpener.focus) treeOpener.focus(); }
+$('#treeBtn').onclick = openTree;
+$('#twClose').onclick = closeTree;
+treeWin.addEventListener('click', (e) => { if (e.target === treeWin) closeTree(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !treeWin.hidden) closeTree(); });
 
 // Botón de sonido
 const ICON_ON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>';
 const ICON_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 9l5 6M22 9l-5 6"/></svg>';
 function paintMute(){ const b = $('#mute'); b.innerHTML = prefs.mute ? ICON_OFF : ICON_ON; b.setAttribute('aria-label', prefs.mute ? 'Poner el sonido' : 'Quitar el sonido'); if (master) master.gain.value = prefs.mute ? 0 : .5; }
-$('#mute').onclick = () => { audio(); prefs.mute = !prefs.mute; paintMute(); store(); };
+$('#mute').onclick = () => { audio(); prefs.mute = !prefs.mute; paintMute(); musicVolume(); store(); };
+const ICON_MUS_ON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>';
+const ICON_MUS_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/><path d="M3 3l18 18"/></svg>';
+function paintMusic(){ const b = $('#musBtn'), on = prefs.music !== false; b.innerHTML = on ? ICON_MUS_ON : ICON_MUS_OFF; b.setAttribute('aria-label', on ? 'Quitar la música' : 'Poner la música'); }
+$('#musBtn').onclick = () => { audio(); prefs.music = prefs.music === false; paintMusic(); musicTick(); musicVolume(); toast(prefs.music ? '♪ Música activada' : 'Música desactivada', 1600); store(); };
 
 // Toques
 function doTap(clientX, clientY){
@@ -1998,10 +2106,10 @@ function refreshUI(force){
   refreshTapBtn();
   updateGoal();
   if (prefs.tab === 'staff') updateStaff(d);
-  if (prefs.tab === 'tree') updateTree();
+  if (!treeWin.hidden){ updateTree(); $('#twMoney').textContent = fmt(S.money) + ' €'; }
   if (prefs.tab === 'inf') updateInforme(d);
   $('#dStaff').hidden = prefs.tab === 'staff' || !GEN.some((g, i) => genUnlocked(S, i) && S.money >= genCost(S, g, 1));
-  $('#dTree').hidden = prefs.tab === 'tree' || !NODES.some(n => nodeState(S, n) === 'buy');
+  $('#dTree').hidden = !NODES.some(n => nodeState(S, n) === 'buy');
 }
 
 // Bucle principal
@@ -2029,6 +2137,7 @@ function frame(now){
   if (notice){ notice.left -= dt; if (notice.left <= 0) notice = null; }
   if (S.boss){ bossLineT -= dt; if (bossLineT <= 0){ bossSay(BOSS_LINES[Math.floor(Math.random() * BOSS_LINES.length)]); } }
   renderEvent();
+  musicTick();
   if (W > 0) drawScene(now, dt);
   uiAcc += dt; if (uiAcc > .2){ uiAcc = 0; refreshUI(); }
   saveAcc += dt; if (saveAcc > 5){ saveAcc = 0; store(); }
@@ -2054,7 +2163,7 @@ function start(hot){
   const saved = hot && hot.S ? Object.assign(newState(), hot.S) : loadSaved();
   if (hot && hot.prefs) Object.assign(prefs, hot.prefs);
   if (saved){ S = saved; if (!hot || !hot.S) catchUp((Date.now() - S.last) / 1000); }
-  buildStaff(); buildBranches(); buildTree(); paintMute();
+  buildStaff(); buildBranches(); buildTree(); paintMute(); paintMusic();
   setQty(prefs.qty === 10 ? 10 : 1); setTab(prefs.tab || 'staff');
   resize(); requestAnimationFrame(frame);
   if (!saved || S.taps === 0) $('#welcome').hidden = false;
