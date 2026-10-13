@@ -45,7 +45,7 @@ button:focus-visible{outline:2px solid var(--chaleco);outline-offset:2px}
 @keyframes pulse{50%{transform:scale(1.03)}}
 
 .scene{position:relative;border-radius:14px;overflow:hidden;background:#0d1118;touch-action:manipulation;user-select:none;-webkit-user-select:none}
-.scene canvas{display:block;width:100%;height:clamp(150px,34vw,300px);cursor:pointer}
+.scene canvas{display:block;width:100%;height:clamp(172px,44vw,300px);cursor:pointer}
 @media (min-width:900px){.scene canvas{height:300px}}
 .event{position:absolute;inset:8px 8px auto 8px;background:var(--tiza);color:#141922;border-radius:10px;padding:10px 12px 12px;display:grid;gap:8px;box-shadow:0 8px 24px rgba(0,0,0,.45);border-left:6px solid var(--chaleco);animation:drop .25s ease-out}
 .event.danger{border-left-color:var(--neg)}
@@ -349,7 +349,34 @@ button:focus-visible{outline:2px solid var(--chaleco);outline-offset:2px}
   .tap{font-size:21px;padding:9px}.tap small{font-size:13px}
   .event{padding:8px 10px 10px;gap:6px}.event p{font-size:13px}.event .choices button{font-size:15px;padding:6px 12px}
   .tabs button{font-size:16px;padding:9px 10px}
+  .toast span{font-size:13px;padding:4px 10px;line-height:1.25}
 }
+/* Revisión manual: coches especiales y Yuyomóvil */
+.insp{background:var(--forro);border:1px solid var(--junta);border-left:4px solid var(--chaleco);border-radius:10px;padding:7px 10px 9px;display:grid;gap:6px;font-family:var(--f-cond);min-width:0;animation:drop .2s ease-out}
+.insp.boss{border-left-color:var(--neg)}
+.insp .ih{display:flex;justify-content:space-between;gap:8px;align-items:baseline;font-size:15px;min-width:0}
+.insp .ih>span{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--tiza);font-weight:700}
+.insp .ih b{color:var(--chaleco);text-transform:uppercase;letter-spacing:.05em;font-size:12px;margin-right:6px}
+.insp.boss .ih b{color:var(--neg)}
+.insp .ih small{color:var(--gris);font-size:14px;white-space:nowrap}
+.ipts{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+.insp.boss .ipts{grid-template-columns:repeat(7,minmax(0,1fr))}
+.ipt{border:1px solid var(--junta);border-radius:7px;padding:3px 2px;font-size:13px;font-weight:700;color:var(--gris);text-align:center;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.ipt small{display:block;font-weight:600;font-size:12px}
+.ipt.cur{border-color:var(--chaleco);color:var(--tiza);box-shadow:inset 0 0 0 1px var(--chaleco)}
+.ipt.ok{background:rgba(88,196,124,.16);border-color:var(--ok);color:var(--ok)}
+.ipt.bad{background:rgba(240,82,82,.2);border-color:var(--neg);color:#ff8a8a}
+button.ipt:disabled{cursor:default}
+.iobs{font-family:var(--f-body);font-size:14px;font-weight:600;color:var(--tiza);line-height:1.3;min-height:1.3em;text-wrap:pretty}
+.iobs.bad{color:#ff8a8a}.iobs.dim{color:var(--gris);font-weight:500}
+.ibtns{display:flex;gap:6px}
+.ibtns button{flex:1;min-width:0;border-radius:8px;padding:7px 8px;font-weight:700;font-size:16px;background:var(--forro2);border:1px solid var(--junta)}
+.ibtns .iok{background:var(--ok);color:#0e2a17;border-color:var(--ok)}
+.ibtns .ibad{background:var(--neg);color:#fff;border-color:var(--neg)}
+.ibtns .igo{background:var(--chaleco);color:var(--chaleco-osc);border-color:var(--chaleco)}
+.insp .bar{height:4px}
+@media (max-width:899px){.ipt{font-size:12px}.ipt small{font-size:11px}.iobs{font-size:13px}.ibtns button{font-size:15px;padding:6px}}
+@media (max-width:420px){.insp.boss .ipt{font-size:11px;letter-spacing:-.02em}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 
@@ -374,6 +401,7 @@ button:focus-visible{outline:2px solid var(--chaleco);outline-offset:2px}
       <div class="event" id="event" hidden></div>
       <div class="toast" id="toast"></div>
     </div>
+    <div class="insp" id="insp" hidden></div>
     <div class="meters">
       <div class="meter sleep" id="sleepM">
         <div class="lbl"><span id="sleepLbl">Sueño del Puma</span><span class="num" id="sleepPct">0%</span></div>
@@ -481,6 +509,7 @@ button:focus-visible{outline:2px solid var(--chaleco);outline-offset:2px}
       <li>Contrata a los de Orcasitas para que revisen solos.</li>
       <li>Vigila la barra de sueño: si se llena, el Puma se queda frito.</li>
       <li>Abre el árbol con el botón de al lado de Revisar: seis ramas, combos, caminos que se excluyen y nodos secretos.</li>
+      <li>De vez en cuando llega un coche especial: revísalo punto por punto. Paga mucho más.</li>
       <li>Llega a <span id="goalWelcome">400 M €</span> y vendrá Yuyu con el Yuyomóvil a pasar la ITV.</li>
     </ul>
     <h3 class="sh">Dificultad</h3>
@@ -1189,7 +1218,15 @@ function newStateBase(){
     taps:0, cars:0, naps:0, drinks:0, bribesA:0, bribesR:0, fines:0, fined:0, crits:0,
     drinkT:0, eventBuff:0, abT:0, abCd:0, evT:45, ev:null, evLeft:0,
     boss:null, ended:0, endT:0, yuyuSeen:false, won:false, correas:0, secrets:{}, fleetT:40, susWarned:false, ach:{}, heard:{}, whips:0, sleptT:0, song:null,
-    payBuff:0, defect:null, defects:0, order:null, orderT:25, ordersDone:0, started:Date.now(), last:Date.now()};
+    payBuff:0, defect:null, defects:0, order:null, orderT:25, ordersDone:0, started:Date.now(), last:Date.now(),
+    special:null, spT:45, specials:0, superv:false, crewAcc:0};
+}
+// Partidas guardadas con versiones anteriores
+function fixState(S){
+  S.defect = null;
+  if (S.spT == null) S.spT = 45;
+  if (S.boss && !S.boss.zones) startBoss(S);
+  return S;
 }
 
 function has(S, id){ return !!S.nodes[id]; }
@@ -1273,7 +1310,7 @@ function buffMult(S, d){
 
 function workPerSec(S, d){
   d = d || derived(S);
-  if (S.seal > 0) return 0;
+  if (S.seal > 0 || S.boss) return 0; // con el Yuyomóvil la ITV entera se para
   let w = 0;
   for (const g of GEN) w += owned(S, g.id) * genRate(S, g, d);
   w *= d.prod * buffMult(S, d);
@@ -1334,7 +1371,25 @@ function pickCar(S, d){
   const v = vs[0]; return {id:v.id, work:v.work, pay:v.pay, col:0};
 }
 
-// Añade trabajo a la línea. Devuelve los coches terminados (máx. unos pocos para la animación)
+// Trabajo medio por coche con los vehículos que llegan ahora
+function avgWork(d){ let sw = 0, sc = 0; for (const v of d.vehicles){ sw += v.w * v.work; sc += v.w; } return sw / sc; }
+// La plantilla trabaja en su propia cinta: cobra por la media y cuenta coches, sin tocar el foso del Puma
+function crewWork(S, w, d){
+  const pay = w * d.payPerWork;
+  S.money += pay; S.life += pay;
+  S.crewAcc = (S.crewAcc || 0) + w;
+  const aw = avgWork(d);
+  if (S.crewAcc >= aw){ const n = Math.floor(S.crewAcc / aw); S.cars += n; S.crewAcc -= n * aw; }
+}
+// Cuántos toques por segundo hace la plantilla en comparación con un toque del Puma (sin bebidas ni correa)
+function supRatio(S, d){
+  let crew = 0; for (const g of GEN) crew += owned(S, g.id) * genRate(S, g, d);
+  crew *= d.prod;
+  const click = (d.click + d.rbClick * owned(S, 'roberto')) * d.clickX + d.diag * crew;
+  return crew / Math.max(1e-9, click);
+}
+
+// Toques del Puma sobre el coche del foso. Devuelve los coches terminados (máx. unos pocos para la animación)
 function addWork(S, w, d, out){
   d = d || derived(S);
   if (!S.car) S.car = pickCar(S, d);
@@ -1370,7 +1425,9 @@ function tap(S, out){
   if (S.seal > 0 && !S.boss) return {sealed:true};
   let w = clickWork(S, d), crit = false;
   if (Math.random() < d.crit[0]){ w *= d.crit[1]; crit = true; S.crits++; }
-  if (S.boss){ if (S.boss.blindT > 0) w *= .3; S.boss.prog += w; return {w, crit, boss:true}; }
+  if (S.boss) return bossTap(S, crit);
+  if (S.special && S.special.phase === 'insp') return specialTap(S, crit);
+  if (S.superv){ crewWork(S, w, d); return {w, crit, money:w * d.payPerWork, superv:true}; }
   addWork(S, w, d, out);
   return {w, crit, money:w * d.payPerWork};
 }
@@ -1439,18 +1496,132 @@ function eventChoice(S, choice){
   return {msg, gain};
 }
 
-// Defectos visibles: se tocan en el coche antes de que se vaya
-const DEFECT_KINDS = [
-  {id:'faro', name:'Faro roto'}, {id:'rueda', name:'Neumático liso'},
-  {id:'escape', name:'Escape humeante'}, {id:'retro', name:'Retrovisor colgando'},
+// ----- Coches especiales: revisión manual punto por punto -----
+const rpick = (a) => a[Math.floor(Math.random() * a.length)];
+const SPOINTS = [
+  {id:'luces', name:'Luces y lunas', short:'Luces'},
+  {id:'frenos', name:'Frenos', short:'Frenos'},
+  {id:'ruedas', name:'Ruedas', short:'Ruedas'},
+  {id:'humos', name:'Humos', short:'Humos'},
+  {id:'bajos', name:'Bajos', short:'Bajos'},
 ];
-function defectHit(S){
-  if (!S.defect || !S.car) return null;
-  const d = derived(S), kind = S.defect.kind;
-  const gain = Math.max(S.car.pay * d.pay * 8, moneyPerSec(S, d) * 10);
-  S.money += gain; S.life += gain; S.cars++; S.defects = (S.defects || 0) + 1;
-  S.defect = null; S.car = pickCar(S, d); S.prog = 0;
-  return {gain, kind};
+const SP_TAPS = 3; // toques para revisar cada punto
+const SP_OK = {
+  luces:['Faros bien reglados.', 'Intermitentes y luces de freno: todo enciende.', 'Lunas limpias y sin una grieta.'],
+  frenos:['Frenada recta y potente.', 'Pastillas a media vida. Correcto.', 'El freno de mano aguanta en la cuesta.'],
+  ruedas:['Dibujo de sobra en los cuatro neumáticos.', 'Presión correcta y llantas sin golpes.', 'Lleva rueda de repuesto. Y hasta inflada.'],
+  humos:['El opacímetro ni se inmuta.', 'Emisiones dentro del límite.', 'El escape suena a escape, no a tractor.'],
+  bajos:['Bajos sin óxido ni fugas.', 'Ni una gota de aceite en el foso.', 'Silentblocks en su sitio.'],
+};
+const SP_FAULTS = { // fallos que pueden aparecer en cualquier coche
+  luces:['Un faro apunta a las estrellas.', 'La luz de freno solo se enciende al pitar.'],
+  frenos:['El pedal de freno llega hasta el suelo.', 'Frena tirando a la izquierda. Mucho.'],
+  ruedas:['Neumático liso como un plato.', 'Faltan dos tornillos en la rueda delantera.'],
+  humos:['Echa más humo que un asador de pollos.', 'Huele a aceite quemado desde la sala de espera.'],
+  bajos:['Fuga de aceite: deja un rastro como un caracol.', 'El tubo de escape va sujeto con una brida.'],
+};
+const SPECIALS = [
+  {id:'vip', name:'Limusina VIP', veh:'limusina', col:'#16181c', pay:3, bribe:.7, w:1.2, deco:'vip',
+   fault:['luces', 'Lunas tintadas al 99 %: el chófer conduce por intuición.'], bt:'El chófer baja la ventanilla y te pasa un sobre'},
+  {id:'loko', name:'La furgoneta de Loko', veh:'furgo', col:'#e07b2a', need:'loko', pay:2.4, bribe:0, deco:'tow',
+   fault:['frenos', 'Remolca 8 coches con los frenos de una bici.']},
+  {id:'yuyu', name:'El coche de Yuyu', veh:'turismo', col:'#5c6a39', pay:2.5, bribe:1, w:.8, deco:'flag', bt:'Yuyu te guiña un ojo y saca un sobre de la guantera',
+   all:{luces:'Faros cambiados por dos monitores OLED de 240 Hz.', frenos:'Frenos «homologados» por el Boletín Oficial de Yuyu.',
+        ruedas:'Ruedas de tanque. En un turismo.', humos:'El escape suelta panfletos de «Vota Yuyu».', bajos:'Debajo viaja Hima, echándose la siesta.'}},
+  {id:'boda', name:'El coche de la boda', veh:'limusina', col:'#e6e2d8', pay:2.4, bribe:.35, deco:'cans',
+   fault:['bajos', 'Lleva 40 latas atadas arrastrando por el asfalto.'], bt:'El padrino te mete un sobre en el bolsillo del forro'},
+  {id:'pedo', name:'El coche de Pedorreta', veh:'turismo', col:'#3f8f5a', need:'pedorreta', pay:2, bribe:.2, deco:'gas',
+   fault:['humos', 'El opacímetro marca 9,9 y luego se apaga solo.'], bt:'Pedorreta te ofrece un sobre. Huele raro'},
+  {id:'maetin', name:'El coche de Maetin', veh:'turismo', col:'#f4f4f4', need:'maetin', pay:2, bribe:.2,
+   fault:['ruedas', 'Ha cambiado la rueda de repuesto por una pala de pickleball.'], bt:'Maetin te ofrece un sobre y un partido'},
+  {id:'safu', name:'El coche de Safu', veh:'turismo', col:'#c8423b', need:'safu', pay:2, bribe:.4,
+   fault:['luces', 'Neones rosas por dentro y ni una luz por fuera.'], bt:'Safu te guiña un ojo y te desliza un sobre'},
+  {id:'taxi', name:'Taxi de Orcasitas', veh:'turismo', col:'#e6e2d8', pay:1.8, bribe:.3,
+   fault:['frenos', '900.000 km y unas pastillas de freno de cartón.'], bt:'El taxista te ofrece un sobre «por las molestias»'},
+  {id:'emt', name:'Autobús de la EMT', veh:'bus', col:'#c8423b', pay:3, bribe:.1, w:.7,
+   fault:['frenos', 'El freno lo hace el conductor sacando el pie.']},
+  {id:'abuelo', name:'La caravana del abuelo', veh:'caravana', col:'#2f6fb5', pay:2.2, bribe:.3,
+   fault:['luces', 'El intermitente es una linterna de pilas pegada con celo.'], bt:'El abuelo te ofrece un sobre con billetes en pesetas… y en euros'},
+  {id:'mudanza', name:'Camión de mudanzas', veh:'camion', col:'#d9a62c', pay:2.6, bribe:.4, w:.8,
+   fault:['bajos', 'Lleva un sofá atado debajo del chasis.'], bt:'El de la mudanza te ofrece un sobre'},
+  {id:'moto', name:'La moto del repartidor', veh:'moto', col:'#c8423b', pay:1.5, bribe:.2,
+   fault:['ruedas', 'La rueda trasera va en las últimas: se ve la lona.'], bt:'El repartidor te ofrece un sobre y una pizza fría'},
+  {id:'abuela', name:'El coche de la abuela', veh:'turismo', col:'#8a8f99', pay:1.6, bribe:0, clean:true},
+];
+const SPEC = Object.fromEntries(SPECIALS.map(k => [k.id, k]));
+function spBase(S, d){ return Math.max(250, moneyPerSec(S, d) * 20, d.payPerWork * avgWork(d) * 10); }
+function nextSpT(S){
+  const k = S.diff === 'noche' ? .8 : 1;
+  return ((S.specials || 0) < 3 ? 35 + Math.random() * 40 : 60 + Math.random() * 60) * k;
+}
+function spawnSpecial(S, d){
+  const opts = SPECIALS.filter(k => (!k.need || owned(S, k.need) > 0) && (k.id !== 'yuyu' || (!S.yuyuSeen && S.t > 240)));
+  let tot = 0; for (const k of opts) tot += k.w || 1;
+  let r = Math.random() * tot, K = opts[0];
+  for (const k of opts){ r -= k.w || 1; if (r <= 0){ K = k; break; } }
+  const pts = SPOINTS.map(p => {
+    let f = false, txt = '';
+    if (K.all){ f = true; txt = K.all[p.id]; }
+    else if (K.fault && K.fault[0] === p.id){ f = true; txt = K.fault[1]; }
+    else if (!K.clean && Math.random() < .14){ f = true; txt = rpick(SP_FAULTS[p.id]); }
+    if (!f) txt = rpick(SP_OK[p.id]);
+    return {f, txt, seen:false, mark:null};
+  });
+  const base = spBase(S, d) * (K.pay || 2);
+  const bribe = pts.some(p => p.f) && Math.random() < (K.bribe || 0) ? Math.round(base * (K.id === 'yuyu' ? 2.5 : 1.6)) : 0;
+  S.special = {kind:K.id, phase:'wait', left:35, pts, cur:0, tp:0, base, bribe, bribeAt:1 + Math.floor(Math.random() * 3), offer:0, offered:false};
+  S.spT = nextSpT(S);
+}
+function specialStart(S){
+  const SP = S.special; if (!SP || SP.phase !== 'wait' || S.boss) return false;
+  SP.phase = 'insp'; return true;
+}
+function specialTap(S, crit){
+  const SP = S.special;
+  if (SP.offer > 0 || SP.cur >= SPOINTS.length) return {spWait:true};
+  const P = SP.pts[SP.cur]; if (P.seen) return {spWait:true};
+  SP.tp += (crit ? 2 : 1) * (S.abT > 0 ? 2 : 1);
+  if (SP.tp >= SP_TAPS){ P.seen = true; SP.tp = 0; return {spSeen:true, crit, f:P.f}; }
+  return {spTap:true, crit};
+}
+// El jugador marca el punto revisado: true = tiene fallo
+function specialMark(S, bad){
+  const SP = S.special; if (!SP || SP.phase !== 'insp' || SP.offer > 0) return null;
+  const P = SP.pts[SP.cur]; if (!P || !P.seen || P.mark !== null) return null;
+  P.mark = !!bad; SP.cur++;
+  if (SP.bribe && !SP.offered && SP.cur === SP.bribeAt){ SP.offered = true; SP.offer = 12; }
+  return {offer: SP.offer > 0};
+}
+function specialEnd(S){ S.special = null; S.specials = (S.specials || 0) + 1; S.cars++; S.spT = nextSpT(S); }
+function specialVerdict(S, fav){
+  const SP = S.special; if (!SP || SP.cur < SPOINTS.length || SP.offer > 0) return null;
+  const d = derived(S), K = SPEC[SP.kind];
+  const faults = SP.pts.filter(p => p.f).length, caught = SP.pts.filter(p => p.f && p.mark).length, falseA = SP.pts.filter(p => !p.f && p.mark).length;
+  let gain = SP.base + caught * SP.base * .35 - falseA * SP.base * .15, sus = 0, tip = false;
+  if (fav && faults > 0){
+    if (!d.noSus){ sus = 12 * faults; S.sus = Math.min(100, S.sus + sus); }
+    if (has(S, 'propina')){ gain *= 1.3; tip = true; }
+  }
+  if (!fav && faults === 0) gain *= .5;
+  gain = Math.max(0, gain);
+  S.money += gain; S.life += gain; S.defects = (S.defects || 0) + caught;
+  specialEnd(S);
+  return {fav, faults, caught, falseA, gain, sus, tip, name:K.name, correct: fav ? faults === 0 : faults > 0};
+}
+function specialBribe(S, acc){
+  const SP = S.special; if (!SP || !(SP.offer > 0)) return null;
+  const d = derived(S), K = SPEC[SP.kind];
+  SP.offer = 0;
+  if (acc){
+    if (d.noSus) return null;
+    const gain = SP.bribe + SP.base;
+    S.bribesA++; S.sus = Math.min(100, S.sus + 25);
+    S.money += gain; S.life += gain;
+    specialEnd(S);
+    return {acc:true, gain, name:K.name};
+  }
+  S.bribesR++; S.sleep = Math.max(0, S.sleep - 40);
+  return {acc:false, name:K.name};
 }
 
 // Pedidos del día
@@ -1458,15 +1629,14 @@ const ORDERS = ['cars', 'taps', 'money', 'defects', 'awake'];
 function orderStat(S, id){ return id === 'cars' ? S.cars : id === 'taps' ? S.taps : id === 'money' ? S.life : id === 'defects' ? (S.defects || 0) : 0; }
 function newOrder(S){
   const d = derived(S), mps = moneyPerSec(S, d), wps = workPerSec(S, d);
-  let sw = 0, sc = 0; for (const v of d.vehicles){ sw += v.w * v.work; sc += v.w; }
-  const cps = wps / (sw / sc);
+  const cps = wps / avgWork(d);
   const opts = ORDERS.filter(o => o !== 'awake' || (!S.asleep && S.sleep < 40));
   const id = opts[Math.floor(Math.random() * opts.length)];
   let target, dur;
   if (id === 'cars'){ dur = 120; target = Math.max(15, Math.round((cps * 120 * 1.25 + 12) / 5) * 5); }
   else if (id === 'taps'){ dur = 60; target = 150; }
   else if (id === 'money'){ dur = 120; target = Math.max(1500, mps * 120 * 1.4 + 1000); }
-  else if (id === 'defects'){ dur = 150; target = 2; }
+  else if (id === 'defects'){ dur = 300; target = 2; }
   else { dur = 90; target = 90; }
   S.order = {id, target, start: orderStat(S, id), left: dur, dur};
 }
@@ -1475,22 +1645,89 @@ function orderProgress(S){
   return O.id === 'awake' ? O.dur - O.left : orderStat(S, O.id) - O.start;
 }
 
-// Final: el Yuyomóvil
+// ----- Final: el Yuyomóvil, revisión por zonas -----
+// Cada zona esconde parte de los 47 defectos; help = quién de la plantilla echa una mano ahí
+const BOSS_ZONES = [
+  {id:'luces', name:'Luces', help:['jose']},
+  {id:'frenos', name:'Frenos', help:['roberto']},
+  {id:'ruedas', name:'Ruedas', help:['loko']},
+  {id:'bajos', name:'Bajos', help:['maetin']},
+  {id:'motor', name:'Motor', help:['adri']},
+  {id:'humos', name:'Humos', help:['pedorreta']},
+  {id:'interior', name:'Interior', help:['daniel', 'safu', 'serio']},
+];
+const YUYO_DEFECTS = {
+  luces:['Las luces de posición son un monitor OLED de 240 Hz.', 'Los faros proyectan la cara de Yuyu en la carretera.',
+    'Intermitente izquierdo: no existe. Yuyu nunca gira a la izquierda.', 'Luz de marcha atrás: «Yuyu no retrocede jamás».',
+    'Antiniebla cambiados por bengalas de feria.', 'Matrícula «YUYU 1» con neones. No existe en la DGT.', 'Las lunas son de cartón pintado de azul.'],
+  frenos:['Freno de mano: una piedra atada con una cuerda.', 'En el pedal del freno pone «Sugerencia».', 'Líquido de frenos: Monster caducado.',
+    'Discos de freno hechos con vinilos de Camela.', 'Solo frena cuando Yuyu grita «¡Alto!».', 'ABS: «A Base de Sermones».',
+    'Las pastillas de freno son pastillas de verdad. De las de dormir.'],
+  ruedas:['Neumáticos: orugas. Sin dibujo, sin vergüenza.', 'Una oruga es de tanque y la otra de excavadora.', 'Presión de los neumáticos: «la que diga yo».',
+    'Tuercas cambiadas por chapas de cerveza.', 'Rueda de repuesto: un donut de la panadería.', 'Pinchos en los tapacubos, estilo cuadriga.'],
+  bajos:['El chasis está soldado con chicle.', 'Debajo del tanque hay un trastero. Alquilado.', 'La fuga de aceite dibuja la bandera de Orcasitas en el suelo.',
+    'El escape sale por debajo apuntando a los vecinos.', 'Bajos forrados con carteles de «Vota Yuyu».', 'En los bajos vive un gato que no paga alquiler.',
+    'Los amortiguadores son muelles de un colchón de 1987.'],
+  motor:['El motor funciona con discursos y gasóleo de calefacción.', 'Correa de distribución sujeta con una goma del pelo.',
+    'Junto al cárter hay un hámster corriendo en una rueda.', 'Filtro del aire: un calcetín usado.', 'La batería es la del coche de Adri. Robada.',
+    'El cuentarrevoluciones marca «muchas».', 'Aceite más viejo que el Boletín Oficial de Yuyu.'],
+  humos:['El escape expulsa discursos de 45 minutos.', 'El opacímetro se sale de la escala y pide perdón.', 'Humo negro con forma de bigote.',
+    'El catalizador es un macetero con geranios.', 'Emisiones de CO₂: «patrióticas».', 'Al acelerar suena el himno de Orcasitas con flauta.'],
+  interior:['Cañón sin homologar apuntando a la sala de espera.', 'Hima viaja suelta en el asiento de atrás. Sin cinturón, porque es libre.',
+    'Última ITV: 2009. Firmada por el propio Yuyu.', 'El volante es un mando de consola.', 'Los cinturones de seguridad son medallas colgadas.',
+    'El asiento del copiloto es un trono con cojín de terciopelo.', 'En la guantera hay 300 sobres preparados para la ITV.'],
+};
+const BOSS_TOTAL = Object.values(YUYO_DEFECTS).reduce((a, l) => a + l.length, 0); // 47
+const BOSS_TPD = 4; // toques por defecto
+const zoneTotal = (z) => YUYO_DEFECTS[z].length;
+const bossFound = (B) => BOSS_ZONES.reduce((a, Z) => a + (B.found[Z.id] || 0), 0);
 function startBoss(S){
-  const d = derived(S);
-  const need = Math.max(5000, workPerSec(S, d) * 150);
-  S.boss = {need, prog:0, t:0, offer:0, nextOffer:14, nextSermon:22, offers:0, phase:1, hima:null, nextHima:3, blindT:0, nextBlind:4};
-  S.ev = null; S.defect = null; S.order = null;
+  const found = {}, pz = {};
+  for (const Z of BOSS_ZONES){ found[Z.id] = 0; pz[Z.id] = 0; }
+  S.boss = {zones:true, z:'luces', found, pz, last:null, t:0, offer:0, nextOffer:14, nextSermon:24, offers:0, phase:1,
+    hima:null, nextHima:4, blindT:0, nextBlind:5};
+  S.ev = null; S.defect = null; S.order = null; S.special = null;
+}
+function bossSetZone(S, z){ const B = S.boss; if (!B || !YUYO_DEFECTS[z] || B.found[z] >= zoneTotal(z)) return false; B.z = z; return true; }
+// Suma progreso a una zona y destapa defectos. by = quién lo ha encontrado (si no es el Puma)
+function bossAdd(S, z, p, evs, by){
+  const B = S.boss, tot = zoneTotal(z);
+  if (B.found[z] >= tot) return 0;
+  B.pz[z] = (B.pz[z] || 0) + p;
+  let n = 0;
+  while (B.pz[z] >= BOSS_TPD && B.found[z] < tot){
+    B.pz[z] -= BOSS_TPD; B.found[z]++; n++;
+    B.last = {z, i:B.found[z] - 1};
+    evs.push({type:'bossDef', z, i:B.found[z] - 1, by});
+  }
+  if (B.found[z] >= tot){
+    B.pz[z] = 0;
+    if (B.z === z){ const nx = BOSS_ZONES.find(Z => B.found[Z.id] < zoneTotal(Z.id)); if (nx) B.z = nx.id; }
+    evs.push({type:'zoneDone', z});
+  }
+  return n;
+}
+function bossTap(S, crit){
+  const B = S.boss;
+  let p = crit ? 3 : 1;
+  if (S.abT > 0) p *= 2;
+  if (B.blindT > 0) p *= .3;
+  if (B.hima) p *= .4;
+  if (B.z === 'humos' && !owned(S, 'pedorreta')) p *= .5; // humo negro: no se ve nada
+  const bev = [];
+  bossAdd(S, B.z, p, bev);
+  return {boss:true, crit, w:p, bev};
 }
 function bossOffer(S){ return S.boss && S.boss.offer > 0; }
 function acceptBossBribe(S){
   if (!S.boss) return;
   S.bribesA++; S.ended = 2; S.endT = S.t; S.boss = null;
 }
+function himaNeed(S){ return owned(S, 'adri') ? 1 : 3; } // Adri la calma con su bocata
 function bossHitHima(S){
   const B = S.boss; if (!B || !B.hima) return null;
   B.hima.hits++;
-  if (B.hima.hits >= 3){ B.hima = null; B.nextHima = 16; return 'calm'; }
+  if (B.hima.hits >= himaNeed(S)){ B.hima = null; B.nextHima = owned(S, 'serio') ? 26 : 16; return 'calm'; }
   return 'hit';
 }
 function bossHitMonitor(S){
@@ -1525,33 +1762,53 @@ function tick(S, dt, out){
       const fine = S.money * .3 * d.fine;
       S.money -= fine; S.fines++; S.fined += fine; S.sus = 0; S.seal = 20 * d.fine;
       ev.push({type:'inspector', fine, seal:S.seal});
+      if (S.special){ ev.push({type:'spGone', name:SPEC[S.special.kind].name, seal:true}); S.special = null; S.spT = nextSpT(S); }
     }
   }
-  // producción
-  const w = workPerSec(S, d) * dt;
+  // el Yuyomóvil: la ITV entera parada, revisión por zonas
   if (S.boss){
-    const B = S.boss;
-    let mult = 1;
-    if (B.hima) mult *= .4;
-    if (B.blindT > 0){ mult = 0; B.blindT = Math.max(0, B.blindT - dt); }
-    B.prog += w * mult; B.t += dt;
-    const ph = B.prog < B.need / 3 ? 1 : B.prog < B.need * 2 / 3 ? 2 : 3;
+    const B = S.boss; B.t += dt;
+    if (B.blindT > 0) B.blindT = Math.max(0, B.blindT - dt);
+    // la plantilla ayuda cada uno en su zona
+    if (B.blindT <= 0){
+      for (const Z of BOSS_ZONES){
+        let r = 0, by = null;
+        for (const h of Z.help) if (owned(S, h)){ r += .2; by = by || h; }
+        if (Z.id === 'humos' && owned(S, 'pedorreta')) r += .2;
+        if (r) bossAdd(S, Z.id, r * dt, ev, by);
+      }
+    }
+    const F = bossFound(B);
+    const ph = F < 12 ? 1 : F < 28 ? 2 : 3;
     if (ph > (B.phase || 1)){ B.phase = ph; ev.push({type:'phase', phase:ph}); }
     if (B.phase >= 2 && !B.hima){ B.nextHima -= dt; if (B.nextHima <= 0){ B.hima = {hits:0}; ev.push({type:'hima'}); } }
-    if (B.phase >= 3 && B.blindT <= 0){ B.nextBlind -= dt; if (B.nextBlind <= 0){ B.blindT = 6; B.nextBlind = 14; ev.push({type:'blind'}); } }
+    if (B.phase >= 3 && B.blindT <= 0){ B.nextBlind -= dt; if (B.nextBlind <= 0){ B.blindT = 6; B.nextBlind = 15; ev.push({type:'blind'}); } }
     if (B.offer > 0){ B.offer -= dt; if (B.offer <= 0){ B.offer = 0; } }
     B.nextOffer -= dt; B.nextSermon -= dt;
-    if (B.nextOffer <= 0 && B.offer <= 0){ B.offers++; B.offer = 8; B.nextOffer = 16; ev.push({type:'bossOffer', amount:Math.pow(10, 6 + B.offers)}); }
-    if (B.nextSermon <= 0){ B.nextSermon = 25; if (!S.asleep){ S.asleep = true; S.sleep = 100; S.wakeTaps = 0; S.naps++; } ev.push({type:'sermon'}); }
-    if (B.prog >= B.need){ S.ended = 1; S.won = true; S.endT = S.t; S.boss = null; ev.push({type:'win'}); }
+    if (B.nextOffer <= 0 && B.offer <= 0){ B.offers++; B.offer = 8; B.nextOffer = owned(S, 'safu') ? 26 : 16; ev.push({type:'bossOffer', amount:Math.pow(10, 6 + B.offers)}); }
+    if (B.nextSermon <= 0){
+      B.nextSermon = 25;
+      if (owned(S, 'daniel') && Math.random() < .65) ev.push({type:'sermonBlock'});
+      else { if (!S.asleep){ S.asleep = true; S.sleep = 100; S.wakeTaps = 0; S.naps++; } ev.push({type:'sermon'}); }
+    }
+    if (F >= BOSS_TOTAL){ S.ended = 1; S.won = true; S.endT = S.t; S.boss = null; ev.push({type:'win'}); }
     return ev;
   }
-  if (w > 0) addWork(S, w, d, out);
-  // defectos visibles
-  if (S.defect){ S.defect.left -= dt; if (S.defect.left <= 0){ S.defect = null; ev.push({type:'defectMiss'}); } }
-  else if (!S.asleep && S.seal <= 0 && S.car && Math.random() < dt / 22){
-    S.defect = {kind: DEFECT_KINDS[Math.floor(Math.random() * DEFECT_KINDS.length)].id, left: 5, x: .15 + Math.random() * .7};
-    ev.push({type:'defect'});
+  // la plantilla trabaja en su cinta
+  const w = workPerSec(S, d) * dt;
+  if (w > 0) crewWork(S, w, d);
+  // si la plantilla va sobrada, el Puma supervisa y el foso queda para los especiales
+  const ratio = supRatio(S, d);
+  if (!S.superv && ratio > 20){ S.superv = true; S.car = null; S.prog = 0; ev.push({type:'superv'}); }
+  else if (S.superv && ratio < 12){ S.superv = false; }
+  // coches especiales
+  if (S.special){
+    const SP = S.special;
+    if (SP.phase === 'wait'){ SP.left -= dt; if (SP.left <= 0){ ev.push({type:'spGone', name:SPEC[SP.kind].name}); S.special = null; S.spT = nextSpT(S); } }
+    else if (SP.offer > 0){ SP.offer -= dt; if (SP.offer <= 0){ SP.offer = 0; ev.push({type:'spOfferGone'}); } }
+  } else if (S.seal <= 0){
+    S.spT -= dt;
+    if (S.spT <= 0){ spawnSpecial(S, d); ev.push({type:'spArrive', name:SPEC[S.special.kind].name, kind:S.special.kind}); }
   }
   // pedidos del día
   if (S.order){
@@ -1563,11 +1820,11 @@ function tick(S, dt, out){
       S.order = null; S.orderT = 25; ev.push({type:'orderDone', gain});
     } else if (O.left <= 0){ S.order = null; S.orderT = 25; ev.push({type:'orderFail'}); }
   } else { S.orderT -= dt; if (S.orderT <= 0) newOrder(S); }
-  // eventos
+  // eventos (no llegan avisos nuevos mientras se revisa un especial)
   if (S.ev){
     S.evLeft -= dt;
     if (S.evLeft <= 0){ S.ev = null; ev.push({type:'evExpire'}); }
-  } else {
+  } else if (!S.special || S.special.phase === 'wait'){
     S.evT -= dt;
     if (S.evT <= 0){
       startEvent(S); S.evT = (50 + Math.random()*40) / d.evFreq;
@@ -1609,7 +1866,7 @@ let prefs = {mute:false, qty:1, tab:'staff', branch:'eq'};
 function store(){ try { S.last = Date.now(); localStorage.setItem(SAVE_KEY, JSON.stringify(S)); localStorage.setItem(PREF_KEY, JSON.stringify(prefs)); } catch(e){} }
 function loadSaved(){
   try { const p = JSON.parse(localStorage.getItem(PREF_KEY) || 'null'); if (p) Object.assign(prefs, p); } catch(e){}
-  try { const s = JSON.parse(localStorage.getItem(SAVE_KEY) || 'null'); if (s && s.v === 1) return Object.assign(newState(), s); } catch(e){}
+  try { const s = JSON.parse(localStorage.getItem(SAVE_KEY) || 'null'); if (s && s.v === 1) return fixState(Object.assign(newState(), s)); } catch(e){}
   return null;
 }
 
@@ -1919,6 +2176,8 @@ function drawScene(t, dt){
   ctx.save(); ctx.beginPath(); ctx.rect(px0 - 6*s, gy - 4*s, pw + 12*s, 3*s); ctx.clip();
   for (let x = px0 - 10*s; x < px0 + pw + 12*s; x += 8*s){ ctx.fillStyle = '#f4c430'; ctx.beginPath(); ctx.moveTo(x, gy - 1*s); ctx.lineTo(x + 4*s, gy - 4*s); ctx.lineTo(x + 8*s, gy - 4*s); ctx.lineTo(x + 4*s, gy - 1*s); ctx.fill(); }
   ctx.restore();
+  // cinta de la plantilla, al fondo
+  drawBelt(s, gy, t, dt);
   // plantilla al fondo
   for (const gdef of GEN){
     const n = owned(S, gdef.id); if (!n) continue;
@@ -1930,51 +2189,24 @@ function drawScene(t, dt){
     if (gdef.id === 'serio'){ ctx.fillStyle = '#c9c9c9'; ctx.font = `${Math.round(12*s)}px sans-serif`; ctx.fillText('♪', x + 10*s, y - 44*s - Math.sin(t/200)*3*s); }
   }
   // vehículo actual
-  if (S.boss){
-    const bx = cx;
-    drawVehicle('yuyo', bx, gy, s * .9, '#5c6a39', false);
-    ORC.chibi(ctx, bx - 120*s, gy, 1.5*s, ORC.LOOKS.yuyu, t, 1);
-    if (bossLine){
-      ctx.font = `600 ${Math.round(11*s + 2)}px Barlow, sans-serif`; ctx.textAlign = 'left';
-      const lines = wrap(bossLine, Math.min(W * .55, 220*s));
-      const bw = Math.max(...lines.map(l => ctx.measureText(l).width)) + 14, bh = lines.length * (13*s + 3) + 10;
-      const bxx = Math.max(6, bx - 140*s), byy = gy - 120*s - bh;
-      ctx.fillStyle = '#eaeef4'; rr(bxx, Math.max(4, byy), bw, bh, 8); ctx.fill();
-      ctx.fillStyle = '#141922'; lines.forEach((l, i) => ctx.fillText(l, bxx + 7, Math.max(4, byy) + 16*s + i * (13*s + 3)));
-    }
-    const B = S.boss, pct = Math.min(1, B.prog / B.need);
-    drawBossExtras(s, gy, cx, t);
-    ctx.fillStyle = 'rgba(0,0,0,.5)'; rr(cx - 60*s, gy - 150*s, 120*s, 8*s, 4*s); ctx.fill();
-    ctx.fillStyle = '#f05252'; rr(cx - 60*s, gy - 150*s, 120*s * pct, 8*s, 4*s); ctx.fill();
-  } else {
-    if (S.car){
-      const key = S.cars;
-      if (curCarKey !== key){ curCarKey = key; if (carX > cx - 5) carX = -120*s; }
-      carX += (cx - carX) * Math.min(1, dt * 9);
-      const c = S.car;
-      drawVehicle(c.id, carX, gy, s, CAR_COLS[c.col], false);
-      drawDefect(c, carX, gy, s, t);
-      // barra de progreso de la inspección
-      const pct = Math.min(1, S.prog / c.work), bw = 86*s, by = gy - 96*s;
-      ctx.fillStyle = 'rgba(10,13,19,.7)'; rr(carX - bw/2, by, bw, 7*s, 3*s); ctx.fill();
-      ctx.fillStyle = '#58c47c'; rr(carX - bw/2, by, bw * pct, 7*s, 3*s); ctx.fill();
-      ctx.fillStyle = '#eaeef4'; ctx.font = `600 ${Math.round(10*s + 2)}px "Barlow Condensed", sans-serif`; ctx.textAlign = 'center';
-      if (carX > cx - 40*s) ctx.fillText(VEH_NAME[c.id] + ' · ' + fmt(c.pay * derived(S).pay) + ' €', carX, by - 4*s);
-    }
-  }
-  // coches que salen con la pegatina
+  if (S.boss) drawBossScene(s, gy, cx, t, dt);
+  else if (tow > 0) drawTow(s, gy, cx, t, dt);
+  else drawPit(s, gy, cx, t, dt);
+  // coches que salen del foso: uno cada vez, con su sello
   for (const L of leaving){
     L.v += 900 * s * dt; L.x += L.v * dt; L.t += dt;
-    drawVehicle(L.id, L.x, gy, s, CAR_COLS[L.col], true);
-    if (L.t < .55){
-      ctx.save(); ctx.translate(L.x, gy - 50*s); ctx.rotate(-.12); ctx.globalAlpha = 1 - L.t / .55;
-      ctx.strokeStyle = '#58c47c'; ctx.fillStyle = '#58c47c'; ctx.lineWidth = 2.5*s;
+    drawVehicle(L.id, L.x, gy, s, L.col, L.stamp === 'FAVORABLE');
+    if (L.kind) drawSpecialDeco(L.kind, L.x, gy, s, t);
+    if (L.stamp && L.t < .75){
+      const good = L.stamp === 'FAVORABLE', c = good ? '#58c47c' : '#f05252';
+      ctx.save(); ctx.translate(Math.min(L.x, W - 70*s), gy - 58*s); ctx.rotate(-.12); ctx.globalAlpha = Math.min(1, 1.6 - L.t / .75 * 1.6);
+      ctx.strokeStyle = c; ctx.fillStyle = c; ctx.lineWidth = 2.5*s;
       ctx.font = `${Math.round(14*s + 2)}px "Saira Stencil One", Impact, sans-serif`; ctx.textAlign = 'center';
-      const tw = ctx.measureText('FAVORABLE').width + 12*s; ctx.strokeRect(-tw/2, -14*s, tw, 20*s); ctx.fillText('FAVORABLE', 0, 1*s);
+      const tw = ctx.measureText(L.stamp).width + 12*s; ctx.strokeRect(-tw/2, -14*s, tw, 20*s); ctx.fillText(L.stamp, 0, 1*s);
       ctx.restore();
     }
   }
-  leaving = leaving.filter(L => L.x < W + 200*s);
+  leaving = leaving.filter(L => L.x < W + 220*s);
   // el Puma
   drawPuma(Math.min(W - 26*s, cx + 128*s), gy + 2*s, s * .95, t);
   pumaBump = Math.max(0, pumaBump - dt);
@@ -2006,19 +2238,228 @@ function wrap(text, maxW){
   if (cur) lines.push(cur); return lines;
 }
 
-function carsDone(list){
-  if (!list.length) return;
-  const now = performance.now();
-  if (now - lastCarAnim > 450){
-    lastCarAnim = now;
-    const c = list[0];
-    leaving.push({id:c.id, col:c.col, x:carX, v:60, t:0});
-    if (leaving.length > 5) leaving.shift();
-    carX = -120 * (H / 220);
-    SFX.car();
+// ---------- Foso del Puma: un coche cada vez ----------
+let vis = null, waitX = -9999, tow = 0;
+function pitTarget(){
+  const SP = S.special;
+  if (SP && SP.phase === 'insp'){ const K = SPEC[SP.kind]; return {kind:SP.kind, id:K.veh, col:K.col}; }
+  if (S.superv || !S.car) return null;
+  return {kind:null, id:S.car.id, col:CAR_COLS[S.car.col]};
+}
+const pitBusy = (s, cx) => leaving.some(L => L.x < cx + 170*s);
+function pill(x, y, txt, bg, fg, size, s){
+  ctx.font = `800 ${Math.round(size)}px "Barlow Condensed", sans-serif`; ctx.textAlign = 'center';
+  const tw = ctx.measureText(txt).width + 12, th = size + 6, bx = Math.max(tw/2 + 4, Math.min(W - tw/2 - 4, x));
+  ctx.fillStyle = bg; rr(bx - tw/2, y - th, tw, th, 5); ctx.fill();
+  ctx.fillStyle = fg; ctx.fillText(txt, bx, y - 4);
+  return {x:bx, w:tw, h:th};
+}
+function drawPit(s, gy, cx, t, dt){
+  const T = pitTarget();
+  // si cambia lo que toca revisar (llega un especial, o el Puma pasa a supervisar), el coche se aparta sin sello
+  if (vis && (!T || (vis.kind || null) !== (T.kind || null))){
+    leaving.push({id:vis.id, col:vis.col, kind:vis.kind, x:vis.x, v:160, t:0, stamp:null}); vis = null;
   }
+  if (!vis && T && !pitBusy(s, cx)) vis = {id:T.id, col:T.col, kind:T.kind, x:-150*s};
+  if (vis){
+    vis.x += (cx - vis.x) * Math.min(1, dt * 7);
+    drawVehicle(vis.id, vis.x, gy, s, vis.col, false);
+    if (vis.kind) drawSpecialDeco(vis.kind, vis.x, gy, s, t);
+    const here = vis.x > cx - 30*s;
+    if (vis.kind && here) drawSpecialPoints(vis, gy, s, t);
+    else if (!vis.kind && S.car && here){
+      const pct = Math.min(1, S.prog / S.car.work), bw = 86*s, by = gy - 96*s;
+      ctx.fillStyle = 'rgba(10,13,19,.7)'; rr(vis.x - bw/2, by, bw, 7*s, 3*s); ctx.fill();
+      ctx.fillStyle = '#58c47c'; rr(vis.x - bw/2, by, bw * pct, 7*s, 3*s); ctx.fill();
+      ctx.fillStyle = '#eaeef4'; ctx.font = `600 ${Math.round(10*s + 2)}px "Barlow Condensed", sans-serif`; ctx.textAlign = 'center';
+      ctx.fillText(VEH_NAME[S.car.id] + ' · ' + fmt(S.car.pay * derived(S).pay) + ' €', vis.x, by - 4*s);
+    }
+  } else if (S.superv && !T && !pitBusy(s, cx)){
+    ctx.fillStyle = 'rgba(234,238,244,.3)'; ctx.font = `700 ${Math.round(9*s + 4)}px "Barlow Condensed", sans-serif`; ctx.textAlign = 'center';
+    ctx.fillText('FOSO LIBRE PARA ESPECIALES', cx, gy + 20*s);
+  }
+  // especial esperando a la entrada
+  const SP = S.special; hit.spWait = null;
+  if (SP && SP.phase === 'wait'){
+    const K = SPEC[SP.kind], sc = s * .78, half = (VLEN[K.veh] || 100) / 2 * sc;
+    const park = Math.max(half - 18*s, cx - 64*s - half);
+    if (waitX < -half - 300*s) waitX = -half - 30*s;
+    waitX += (park - waitX) * Math.min(1, dt * 3);
+    drawVehicle(K.veh, waitX, gy, sc, K.col, false);
+    drawSpecialDeco(SP.kind, waitX, gy, sc, t);
+    const topY = gy - (VHGT[K.veh] || 30) * sc - 14*s - Math.abs(Math.sin(t / 220)) * 4*s;
+    const p = pill(waitX, topY, '★ ESPECIAL · TÓCALO', '#f4c430', '#2a2207', 10*s + 5, s);
+    ctx.fillStyle = 'rgba(10,13,19,.6)'; ctx.fillRect(p.x - p.w/2, topY + 2*s, p.w, 3*s);
+    ctx.fillStyle = '#f4c430'; ctx.fillRect(p.x - p.w/2, topY + 2*s, p.w * Math.max(0, SP.left / 35), 3*s);
+    hit.spWait = {x:waitX, y:gy - 24*s, r:Math.max(44, half * .9)};
+  } else waitX = -9999;
+}
+// Dónde está cada punto de revisión en el dibujo del vehículo (miran a la derecha)
+function spPos(id, x, gy, s, pt){
+  const L = (VLEN[id] || 100) * s, h = (VHGT[id] || 30) * s;
+  return pt === 'luces' ? [x + L * .44, gy - h * .78] : pt === 'frenos' ? [x + L * .3, gy - 9*s] : pt === 'ruedas' ? [x - L * .3, gy - 9*s]
+    : pt === 'humos' ? [x - L * .5, gy - 11*s] : [x, gy + 1*s];
+}
+function drawSpecialPoints(v, gy, s, t){
+  const SP = S.special; if (!SP) return;
+  const K = SPEC[SP.kind];
+  pill(v.x, gy - (VHGT[v.id] || 30) * s - 30*s, '★ ' + K.name, '#f4c430', '#2a2207', 9*s + 5, s);
+  SPOINTS.forEach((P, i) => {
+    const st = SP.pts[i], [px, py] = spPos(v.id, v.x, gy, s, P.id), r = 9*s;
+    if (st.mark !== null){
+      ctx.fillStyle = st.mark ? '#f05252' : '#58c47c'; ctx.beginPath(); ctx.arc(px, py, r * .9, 0, 7); ctx.fill();
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 2*s; ctx.beginPath();
+      if (st.mark){ ctx.moveTo(px - 3.5*s, py - 3.5*s); ctx.lineTo(px + 3.5*s, py + 3.5*s); ctx.moveTo(px + 3.5*s, py - 3.5*s); ctx.lineTo(px - 3.5*s, py + 3.5*s); }
+      else { ctx.moveTo(px - 4*s, py); ctx.lineTo(px - 1*s, py + 3*s); ctx.lineTo(px + 4*s, py - 3*s); }
+      ctx.stroke();
+    } else if (i === SP.cur && SP.offer <= 0){
+      const pulse = 1 + Math.sin(t / 130) * .12;
+      ctx.fillStyle = 'rgba(244,196,48,.22)'; ctx.beginPath(); ctx.arc(px, py, r * 1.9 * pulse, 0, 7); ctx.fill();
+      ctx.strokeStyle = '#f4c430'; ctx.lineWidth = 2.5*s; ctx.beginPath(); ctx.arc(px, py, r * 1.3 * pulse, 0, 7); ctx.stroke();
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 3*s; ctx.beginPath();
+      ctx.arc(px, py, r * 1.3 * pulse + 3*s, -Math.PI/2, -Math.PI/2 + Math.PI * 2 * (st.seen ? 1 : SP.tp / SP_TAPS)); ctx.stroke();
+      if (st.seen){ ctx.fillStyle = '#f4c430'; ctx.font = `800 ${Math.round(13*s + 3)}px "Barlow Condensed", sans-serif`; ctx.textAlign = 'center'; ctx.fillText('?', px, py + 5*s); }
+    }
+  });
+}
+// Detalles de cada coche especial
+function drawSpecialDeco(kind, x, gy, s, t){
+  const K = SPEC[kind]; if (!K || !K.deco) return;
+  const L = (VLEN[K.veh] || 100) * s;
+  if (K.deco === 'vip'){
+    ctx.fillStyle = '#b02a3e'; ctx.fillRect(x - L * .2, gy + 1*s, L * .4, 3*s);
+    ctx.fillStyle = '#f4c430'; ctx.beginPath();
+    for (let i = 0; i < 10; i++){ const a = -Math.PI/2 + i * Math.PI / 5, rad = i % 2 ? 3*s : 7*s; ctx.lineTo(x + 14*s + Math.cos(a) * rad, gy - 50*s + Math.sin(a) * rad); }
+    ctx.fill();
+  } else if (K.deco === 'tow'){
+    ctx.strokeStyle = '#2a2d34'; ctx.lineWidth = 1.5*s;
+    let prev = x - L/2;
+    for (let i = 0; i < 3; i++){
+      const cx2 = x - L/2 - 24*s - i * 38*s;
+      ctx.beginPath(); ctx.moveTo(prev, gy - 10*s); ctx.lineTo(cx2 + 16*s, gy - 6*s); ctx.stroke();
+      drawVehicle('turismo', cx2, gy, s * .32, CAR_COLS[(i * 3 + 1) % 8], false);
+      prev = cx2 - 16*s;
+    }
+    ctx.fillStyle = '#f4c430'; ctx.font = `800 ${Math.round(11*s + 3)}px "Barlow Condensed", sans-serif`; ctx.textAlign = 'center';
+    ctx.fillText('+5 más', x - L/2 - 24*s - 2 * 38*s, gy - 22*s);
+  } else if (K.deco === 'flag'){
+    ctx.strokeStyle = '#2a2a2a'; ctx.lineWidth = 1.5*s; ctx.beginPath(); ctx.moveTo(x - 4*s, gy - 44*s); ctx.lineTo(x - 4*s, gy - 70*s); ctx.stroke();
+    ctx.fillStyle = '#c8302c'; ctx.beginPath(); ctx.moveTo(x - 4*s, gy - 70*s); ctx.lineTo(x + 22*s + Math.sin(t / 150) * 2*s, gy - 65*s); ctx.lineTo(x - 4*s, gy - 58*s); ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.font = `700 ${Math.round(6*s + 2)}px Barlow, sans-serif`; ctx.textAlign = 'center'; ctx.fillText('YUYU', x + 6*s, gy - 62*s);
+  } else if (K.deco === 'cans'){
+    ctx.strokeStyle = '#c9ccd1'; ctx.lineWidth = 1*s;
+    for (let i = 0; i < 4; i++){
+      const cx2 = x - L/2 - 10*s - i * 9*s, cy2 = gy - 3*s + Math.sin(t / 60 + i) * 1.5*s;
+      ctx.beginPath(); ctx.moveTo(x - L/2, gy - 14*s); ctx.lineTo(cx2, cy2 - 3*s); ctx.stroke();
+      ctx.fillStyle = i % 2 ? '#d9dce2' : '#c8423b'; ctx.fillRect(cx2 - 3*s, cy2 - 4*s, 6*s, 7*s);
+    }
+    ctx.fillStyle = '#c8302c'; ctx.font = `700 ${Math.round(6*s + 3)}px Barlow, sans-serif`; ctx.textAlign = 'center';
+    ctx.fillText('RECIÉN CASADOS', x - L * .15, gy - 17*s);
+  } else if (K.deco === 'gas'){
+    ctx.fillStyle = 'rgba(140,190,90,.4)';
+    for (let i = 0; i < 3; i++){ const k = ((t / 900) + i / 3) % 1; ctx.beginPath(); ctx.arc(x - L/2 - 6*s - k * 30*s, gy - 12*s - k * 10*s, (5 + k * 10)*s, 0, 7); ctx.fill(); }
+  }
+}
+
+// ---------- Cinta de la plantilla, al fondo ----------
+let belt = [], beltOff = 0;
+function beltCar(x, d){ const c = pickCar(S, d); return {x, id:c.id, col:CAR_COLS[c.col]}; }
+function drawBelt(s, gy, t, dt){
+  const by = gy - 78*s, d = derived(S);
+  const crew = GEN.some(g => owned(S, g.id) > 0);
+  const wps = workPerSec(S, d), cps = wps / avgWork(d);
+  const v = crew && wps > 0 ? Math.min(78*s, 14*s + Math.sqrt(cps) * 20*s) : 0; // crece con la producción, con tope
+  ctx.fillStyle = '#1b2232'; ctx.fillRect(0, by, W, 5*s);
+  beltOff = (beltOff + v * dt) % (16*s);
+  ctx.fillStyle = '#34405a';
+  for (let x = beltOff - 16*s; x < W; x += 16*s) ctx.fillRect(x, by + 1.5*s, 8*s, 2*s);
+  const sp = 54*s, sc = .32*s;
+  for (const c of belt) c.x += v * dt;
+  belt = belt.filter(c => c.x < W + 50*s);
+  if (crew){
+    if (!belt.length) for (let x = W * .92; x > -30*s; x -= sp) belt.push(beltCar(x, d));
+    let min = Math.min(...belt.map(c => c.x));
+    while (min >= -30*s + sp){ min -= sp; belt.push(beltCar(min, d)); }
+  }
+  for (const c of belt) drawVehicle(c.id, c.x, by, sc, c.col, c.x > W * .5);
+  // un solo contador
+  let txt = '', bg = 'rgba(18,22,30,.82)', fg = '#eaeef4';
+  if (S.boss){ txt = 'ITV PARADA · LÍNEA EXCLUSIVA PARA YUYU'; bg = '#f05252'; fg = '#fff'; }
+  else if (!crew) return;
+  else if (S.seal > 0) txt = 'PLANTILLA PARADA POR INDUSTRIA';
+  else {
+    const cpm = cps * 60, n = cpm < 10 ? cpm.toFixed(1).replace('.', ',') : fmt(cpm);
+    txt = `Plantilla: ${n} coches/min · +${fmt(wps * d.payPerWork)} €/s`;
+  }
+  const signX = W - Math.min(W * .42, 170*s + 40) - 10*s, maxW = signX - 16*s;
+  let size = 9*s + 5;
+  ctx.font = `700 ${Math.round(size)}px "Barlow Condensed", sans-serif`;
+  while (size > 9 && ctx.measureText(txt).width + 12 > maxW){ size -= .5; ctx.font = `700 ${Math.round(size)}px "Barlow Condensed", sans-serif`; }
+  const tw = Math.min(maxW, ctx.measureText(txt).width + 12), th = size + 7, x0 = 8*s, y0 = 12*s;
+  ctx.fillStyle = bg; rr(x0, y0, tw, th, 5); ctx.fill();
+  ctx.save(); ctx.beginPath(); ctx.rect(x0, y0, tw, th); ctx.clip();
+  ctx.fillStyle = fg; ctx.textAlign = 'left'; ctx.fillText(txt, x0 + 6, y0 + size + 1);
+  ctx.restore();
+}
+
+// ---------- El Yuyomóvil ----------
+const ZONE_POS = {luces:[-48,-41], frenos:[62,-14], ruedas:[-62,-14], bajos:[0,-2], motor:[46,-42], humos:[-98,-30], interior:[-5,-66]};
+function drawBossScene(s, gy, cx, t, dt){
+  const B = S.boss, k = s * .9;
+  drawVehicle('yuyo', cx, gy, k, '#5c6a39', false);
+  const zp = ZONE_POS[B.z], zx = cx + zp[0] * k, zy = gy + zp[1] * k;
+  if (B.z === 'humos'){
+    const pedo = owned(S, 'pedorreta') > 0;
+    ctx.fillStyle = pedo ? 'rgba(140,190,90,.35)' : 'rgba(20,20,24,.72)';
+    for (let i = 0; i < 5; i++){ const q = ((t / 1100) + i / 5) % 1; ctx.beginPath(); ctx.arc(zx - q * 40*s, zy - q * 30*s, (10 + q * 16) * s, 0, 7); ctx.fill(); }
+  }
+  ORC.chibi(ctx, cx - 120*s, gy, 1.5*s, ORC.LOOKS.yuyu, t, 1);
+  const pulse = 1 + Math.sin(t / 130) * .1, r = 13*s * pulse;
+  ctx.fillStyle = 'rgba(244,196,48,.18)'; ctx.beginPath(); ctx.arc(zx, zy, r * 1.7, 0, 7); ctx.fill();
+  ctx.strokeStyle = '#f4c430'; ctx.lineWidth = 2.5*s; ctx.beginPath(); ctx.arc(zx, zy, r, 0, 7); ctx.stroke();
+  ctx.strokeStyle = '#fff'; ctx.lineWidth = 3*s; ctx.beginPath(); ctx.arc(zx, zy, r + 3*s, -Math.PI/2, -Math.PI/2 + Math.PI * 2 * Math.min(1, (B.pz[B.z] || 0) / BOSS_TPD)); ctx.stroke();
+  const Z = BOSS_ZONES.find(z => z.id === B.z);
+  pill(zx, zy - r - 8*s, Z.name.toUpperCase() + ' ' + B.found[B.z] + '/' + zoneTotal(B.z), '#f4c430', '#2a2207', 8*s + 5, s);
+  if (bossLine){
+    ctx.font = `600 ${Math.round(11*s + 2)}px Barlow, sans-serif`; ctx.textAlign = 'left';
+    const lines = wrap(bossLine, Math.min(W * .55, 220*s));
+    const bw = Math.max(...lines.map(l => ctx.measureText(l).width)) + 14, bh = lines.length * (13*s + 3) + 10;
+    const bxx = Math.max(6, cx - 140*s), byy = Math.max(4, gy - 120*s - bh);
+    ctx.fillStyle = '#eaeef4'; rr(bxx, byy, bw, bh, 8); ctx.fill();
+    ctx.fillStyle = '#141922'; lines.forEach((l, i) => ctx.fillText(l, bxx + 7, byy + 16*s + i * (13*s + 3)));
+  }
+  drawBossExtras(s, gy, cx, t);
+}
+// Final bueno: el Yuyomóvil sale en grúa y Yuyu se va andando
+function drawTow(s, gy, cx, t, dt){
+  tow = Math.max(0, tow - dt);
+  const k = 1 - tow / 2.6, e = k * k, x = cx + e * (W + 320*s), lead = x + 180*s;
+  const loko = owned(S, 'loko') > 0;
+  ctx.strokeStyle = '#2a2d34'; ctx.lineWidth = 2.5*s; ctx.beginPath(); ctx.moveTo(x + 86*s, gy - 16*s); ctx.lineTo(lead - 56*s, gy - 16*s); ctx.stroke();
+  drawVehicle('yuyo', x, gy, s * .9, '#5c6a39', false);
+  drawVehicle('furgo', lead, gy, s, loko ? '#e07b2a' : '#d9dce2', false);
+  ctx.fillStyle = '#12161e'; ctx.font = `800 ${Math.round(7*s + 3)}px "Barlow Condensed", sans-serif`; ctx.textAlign = 'center';
+  ctx.fillText(loko ? 'GRÚAS LOKO' : 'GRÚA MUNICIPAL', lead - 10*s, gy - 30*s);
+  ORC.chibi(ctx, cx - 120*s - k * 220*s, gy, 1.5*s, ORC.LOOKS.yuyu, t, -1, true);
+}
+
+// Coche del foso terminado: sale con su sello, y el siguiente no entra hasta que se aparta
+function pitDone(list){
+  if (!list.length) return;
+  const s = H / 220, cx = W * .44;
   let sum = 0; for (const c of list) sum += c.pay;
-  addFloat(W * .44, H * .84 - 108 * (H / 220), '+' + fmt(sum) + ' €', '#58c47c');
+  if (vis && !vis.kind && vis.x > cx - 30*s && !pitBusy(s, cx)){
+    leaving.push({id:vis.id, col:vis.col, x:vis.x, v:60, t:0, stamp:'FAVORABLE'});
+    vis = null; SFX.car();
+  }
+  pitFloat(sum, cx, H * .84 - 108*s);
+}
+// Un solo texto de dinero a la vez: si ya hay uno reciente, se suma a ese
+function pitFloat(sum, x, y){
+  const f = floats.find(f => f.pit && f.t < .8);
+  if (f){ f.sum += sum; f.txt = '+' + fmt(f.sum) + ' €'; f.t = Math.min(f.t, .25); return; }
+  addFloat(x, y, '+' + fmt(sum) + ' €', '#58c47c');
+  const g = floats[floats.length - 1]; g.pit = true; g.sum = sum;
 }
 
 // ---------- interfaz ----------
@@ -2037,6 +2478,10 @@ function renderEvent(force){
     const amt = Math.pow(10, 6 + S.boss.offers);
     key = 'boss' + S.boss.offers; danger = true; pct = S.boss.offer / 8;
     html = `<p>Yuyu te ofrece un sobre con ${fmt(amt)} € para que le pongas la pegatina.</p><div class="choices"><button data-c="rejBoss">Rechazar</button><button class="alt" data-c="accBoss">Aceptar el sobre</button></div>`;
+  } else if (S.special && S.special.offer > 0){
+    const SP = S.special, K = SPEC[SP.kind], honest = derived(S).noSus;
+    key = 'sp' + SP.kind + SP.cur; danger = true; pct = SP.offer / 12;
+    html = `<p>${K.bt || 'El cliente te desliza un sobre'}: ${fmt(SP.bribe)} €. «Pon favorable y aquí no ha pasado nada».${honest ? ' <i>(Eres incorruptible.)</i>' : ''}</p><div class="choices"><button data-c="spRej">Rechazar</button>${honest ? '' : '<button class="alt" data-c="spAcc">Aceptar el sobre</button>'}</div>`;
   } else if (notice){
     key = 'n' + notice.text; danger = notice.danger; pct = notice.left / notice.total;
     html = `<p>${notice.text}</p>`;
@@ -2059,6 +2504,15 @@ evEl.addEventListener('click', (e) => {
   const c = b.dataset.c;
   if (c === 'accBoss'){ acceptBossBribe(S); SFX.bad(); showEnding(); store(); return; }
   if (c === 'rejBoss'){ rejectBossBribe(S); bossSay('¿Que no? ¡Esto es una persecución!'); SFX.stamp(); renderEvent(true); return; }
+  if (c === 'spAcc' || c === 'spRej'){
+    const r = specialBribe(S, c === 'spAcc'); if (!r) return;
+    if (r.acc){
+      specialExit('FAVORABLE'); SFX.jingle();
+      toast(`Sobre al bolsillo. ${r.name} sale con la pegatina verde. Industria toma nota.  +${fmt(r.gain)} €`, 3600);
+      addFloat(W * .44, H * .84 - 110 * (H / 220), '+' + fmt(r.gain) + ' €', '#f4c430', true);
+    } else { SFX.stamp(); toast('¡Qué indignación! Al Puma se le quita el sueño. A seguir revisando.', 2800); }
+    renderEvent(true); renderInsp(true); refreshUI(true); return;
+  }
   const r = eventChoice(S, c);
   if (r){ toast(r.msg + (r.gain ? '  +' + fmt(r.gain) + ' €' : ''), 3200); SFX.car(); if (r.gain) addFloat(W*.5, H*.5, '+' + fmt(r.gain) + ' €', '#f4c430', true); }
   renderEvent(true);
@@ -2303,6 +2757,8 @@ function updateInforme(d){
     ['Facturación total', fmt(S.life) + ' €'],
     ['Toques', fmt(S.taps)],
     ['Críticos con el lanzatuercas', fmt(S.crits)],
+    ['Coches especiales revisados', fmt(S.specials || 0)],
+    ['Fallos pillados', fmt(S.defects || 0)],
     null,
     ['Siestas del Puma', fmt(S.naps)],
     ['Bebidas energéticas', fmt(S.drinks)],
@@ -2448,7 +2904,11 @@ function doTap(clientX, clientY){
     buzz(r.crit ? 30 : 6);
     if (r.crit){ SFX.crit(); shake = .5; addFloat(W*.44 + (Math.random()-.5)*60*s, H*.84 - 70*s, '¡CRÍTICO!', '#ee6b2d', true); }
     else SFX.tap();
-    carsDone(out);
+    if (r.boss) bossEvents(r.bev);
+    else if (r.spSeen){ SFX.stamp(); renderInsp(true); }
+    else if (r.spWait) renderInsp(true);
+    else if (r.superv) pitFloat(r.money, Math.min(W - 40*s, W*.44 + 128*s), H*.84 - 118*s);
+    else pitDone(out);
   }
   refreshTapBtn();
 }
@@ -2467,16 +2927,127 @@ function refreshTapBtn(){
   b.classList.toggle('sleep', S.asleep); b.classList.toggle('sealed', S.seal > 0 && !S.asleep && !S.boss);
   if (S.asleep){ $('#tapTxt').textContent = '¡Despierta, Puma!'; $('#tapSub').textContent = `Faltan ${d.wake - S.wakeTaps} toques`; }
   else if (S.seal > 0 && !S.boss){ $('#tapTxt').textContent = 'Línea precintada'; $('#tapSub').textContent = `Industria se va en ${Math.ceil(S.seal)} s`; }
-  else if (S.boss){ $('#tapTxt').textContent = 'Buscar defectos'; $('#tapSub').textContent = 'Cada toque cuenta'; }
+  else if (S.boss){
+    const B = S.boss, Z = BOSS_ZONES.find(z => z.id === B.z), left = zoneTotal(B.z) - B.found[B.z];
+    $('#tapTxt').textContent = 'Revisar ' + Z.name.toLowerCase();
+    $('#tapSub').textContent = left > 0 ? `Quedan ${left} defectos en esta zona` : 'Zona revisada';
+  }
+  else if (S.special && S.special.phase === 'insp'){
+    const SP = S.special, P = SPOINTS[SP.cur], st = SP.pts[SP.cur];
+    if (SP.offer > 0){ $('#tapTxt').textContent = 'Decide el sobre'; $('#tapSub').textContent = 'Aceptar o rechazar, arriba'; }
+    else if (!P){ $('#tapTxt').textContent = 'Da el veredicto'; $('#tapSub').textContent = 'Favorable o desfavorable'; }
+    else if (st.seen){ $('#tapTxt').textContent = 'Marca el resultado'; $('#tapSub').textContent = '¿Está bien o tiene fallo?'; }
+    else { $('#tapTxt').textContent = 'Revisar ' + P.short.toLowerCase(); $('#tapSub').textContent = `${SP_TAPS - SP.tp} ${SP_TAPS - SP.tp === 1 ? 'toque' : 'toques'} más`; }
+  }
+  else if (S.superv){ $('#tapTxt').textContent = 'Supervisar'; $('#tapSub').textContent = '+' + fmt(clickWork(S, d) * d.payPerWork) + ' € por toque'; }
   else { $('#tapTxt').textContent = 'Revisar'; $('#tapSub').textContent = '+' + fmt(clickWork(S, d) * d.payPerWork) + ' € por toque'; }
+}
+
+// ---------- Panel de revisión manual (especiales y Yuyomóvil) ----------
+const inspEl = $('#insp');
+let inspKey = '';
+function renderInsp(force){
+  const SP = S.special, B = S.boss;
+  let key = '', html = '', cls = 'insp';
+  if (B){
+    const F = bossFound(B);
+    cls += ' boss';
+    key = 'b' + B.z + JSON.stringify(B.found) + (B.last ? B.last.z + B.last.i : '');
+    const lastTxt = B.last ? YUYO_DEFECTS[B.last.z][B.last.i] : '';
+    html = `<div class="ih"><span><b>Yuyomóvil</b>Revisión por zonas</span><small class="num">${F}/${BOSS_TOTAL} defectos</small></div>
+      <div class="ipts">${BOSS_ZONES.map(Z => { const n = B.found[Z.id], tot = zoneTotal(Z.id), done = n >= tot;
+        return `<button class="ipt ${done ? 'bad' : Z.id === B.z ? 'cur' : ''}" data-z="${Z.id}" ${done ? 'disabled' : ''}>${Z.name}<small class="num">${n}/${tot}</small></button>`; }).join('')}</div>
+      <div class="iobs ${lastTxt ? 'bad' : 'dim'}">${lastTxt ? '✖ ' + lastTxt : 'Toca para revisar la zona marcada. Puedes cambiar de zona cuando quieras.'}</div>`;
+  } else if (SP){
+    const K = SPEC[SP.kind];
+    if (SP.phase === 'wait'){
+      key = 'w' + SP.kind;
+      html = `<div class="ih"><span><b>Coche especial</b>${K.name}</span><small class="num">paga ~${fmt(SP.base)} €</small></div>
+        <div class="iobs dim">Revísalo punto por punto y da el veredicto. Si no le haces caso, se va.</div>
+        <div class="ibtns"><button class="igo" data-i="start">Revisar ahora</button></div>
+        <div class="bar"><i id="iBar"></i></div>`;
+    } else {
+      const P = SPOINTS[SP.cur], st = SP.pts[SP.cur];
+      key = 'i' + SP.kind + SP.cur + (st ? st.seen : '') + (SP.offer > 0);
+      const chips = SPOINTS.map((p, i) => { const s2 = SP.pts[i];
+        const c = s2.mark === true ? 'bad' : s2.mark === false ? 'ok' : i === SP.cur ? 'cur' : '';
+        return `<div class="ipt ${c}">${s2.mark === true ? '✖ ' : s2.mark === false ? '✔ ' : ''}${p.short}</div>`; }).join('');
+      let body;
+      if (SP.offer > 0) body = `<div class="iobs dim">El cliente te está ofreciendo algo…</div>`;
+      else if (!P) body = `<div class="iobs">${SP.pts.some(p => p.mark) ? 'Has marcado fallos. ¿Qué pegatina le pones?' : 'Todo marcado como correcto. ¿Qué pegatina le pones?'}</div>
+        <div class="ibtns"><button class="iok" data-i="fav">Favorable</button><button class="ibad" data-i="desf">Desfavorable</button></div>`;
+      else if (st.seen) body = `<div class="iobs">${P.name}: ${st.txt}</div>
+        <div class="ibtns"><button class="iok" data-i="ok">✔ Está bien</button><button class="ibad" data-i="bad">✖ Fallo</button></div>`;
+      else body = `<div class="iobs dim">${P.name}: toca REVISAR para inspeccionar este punto.</div>`;
+      html = `<div class="ih"><span><b>Especial</b>${K.name}</span><small class="num">${Math.min(SP.cur, 5)}/5</small></div><div class="ipts">${chips}</div>${body}`;
+    }
+  }
+  if (!key){ if (!inspEl.hidden){ inspEl.hidden = true; inspKey = ''; } return; }
+  if (key !== inspKey || force){
+    inspKey = key; inspEl.className = cls; inspEl.hidden = false; inspEl.innerHTML = html;
+  }
+  const bar = $('#iBar'); if (bar && SP) bar.style.width = Math.max(0, SP.left / 35 * 100) + '%';
+}
+inspEl.addEventListener('click', (e) => {
+  audio();
+  const z = e.target.closest('[data-z]');
+  if (z && !z.disabled){ if (bossSetZone(S, z.dataset.z)){ SFX.tap(); renderInsp(true); refreshTapBtn(); } return; }
+  const b = e.target.closest('[data-i]'); if (!b) return;
+  const a = b.dataset.i;
+  if (a === 'start') beginSpecial();
+  else if (a === 'ok' || a === 'bad'){
+    const r = specialMark(S, a === 'bad'); if (!r) return;
+    if (a === 'bad'){ SFX.stamp(); buzz(25); } else SFX.tap();
+    if (r.offer){ SFX.alert(); renderEvent(true); }
+  }
+  else if (a === 'fav' || a === 'desf') finishSpecial(a === 'fav');
+  renderInsp(true); refreshTapBtn();
+});
+function beginSpecial(){
+  if (!specialStart(S)) return;
+  SFX.car(); toast(SPEC[S.special.kind].name + ' al foso. Revisa punto por punto.', 2400);
+  renderInsp(true); refreshTapBtn();
+}
+function specialExit(stamp){
+  if (vis){ leaving.push({id:vis.id, col:vis.col, kind:vis.kind, x:vis.x, v:40, t:0, stamp}); vis = null; }
+}
+function finishSpecial(fav){
+  const r = specialVerdict(S, fav); if (!r) return;
+  specialExit(fav ? 'FAVORABLE' : 'DESFAVORABLE');
+  let msg;
+  if (fav && r.faults > 0) msg = `${r.name}: aprobado con ${r.faults} ${r.faults > 1 ? 'fallos' : 'fallo'}.` + (r.tip ? ' Te deja propina.' : '') + (r.sus ? ' Industria toma nota.' : '');
+  else if (!fav && r.faults === 0) msg = `${r.name}: no tenía nada. El cliente se va indignado y paga la mitad.`;
+  else if (fav) msg = `${r.name}: impecable. Pegatina verde merecida.`;
+  else msg = `${r.name}: desfavorable. ${r.caught ? `${r.caught} ${r.caught > 1 ? 'fallos pillados' : 'fallo pillado'}` : 'Bien visto'}${r.falseA ? `, aunque marcaste ${r.falseA} de más` : ''}.`;
+  toast(msg + '  +' + fmt(r.gain) + ' €', 3600);
+  if (r.correct){ SFX.win(); buzz([20, 40, 20]); } else SFX.bad();
+  addFloat(W * .44, H * .84 - 110 * (H / 220), '+' + fmt(r.gain) + ' €', r.correct ? '#f4c430' : '#ee6b2d', true);
+  if (r.faults > 0 && r.caught === r.faults && !fav) staffSayAny(['¡Ojo de lince, Puma!', 'Ni uno se te escapa.', 'Eso es una ITV como Dios manda.']);
+  renderInsp(true); refreshUI(true);
+}
+function bossEvents(list){
+  const s = H / 220;
+  for (const e of list){
+    if (e.type === 'bossDef'){
+      if (!e.by){ SFX.stamp(); buzz(15); }
+      const zp = ZONE_POS[e.z];
+      if (!e.by) addFloat(W * .44 + zp[0] * s * .9, H * .84 + zp[1] * s * .9 - 30*s, 'defecto ' + bossFound(S.boss || {found:{}}) + '/' + BOSS_TOTAL, '#f05252', true);
+      if (e.by && Math.random() < .2) staffSay(e.by, YUYO_DEFECTS[e.z][e.i]);
+    } else if (e.type === 'zoneDone'){
+      SFX.win(); const Z = BOSS_ZONES.find(z => z.id === e.z);
+      addFloat(W * .5, H * .3, Z.name + ': zona revisada', '#f4c430', true);
+      if (S.boss) bossSay(pick(['¡Eso son detalles estéticos!', '¿Y qué? ¡Así venía de fábrica!', 'Lo pone en mi Boletín: es legal.']));
+    }
+  }
+  if (list.length) renderInsp(true);
 }
 
 // Objetivo y final
 function updateGoal(){
   const g = $('#goal');
   if (S.boss){
-    const B = S.boss, n = Math.floor(47 * Math.min(1, B.prog / B.need));
-    g.innerHTML = `<div class="row"><span>Yuyomóvil · defectos muy graves encontrados</span><span class="num">${n} / 47</span></div><div class="bar"><i style="width:${Math.min(100, B.prog / B.need * 100)}%;background:var(--neg)"></i></div>`;
+    const n = bossFound(S.boss);
+    g.innerHTML = `<div class="row"><span>Yuyomóvil · defectos muy graves encontrados</span><span class="num">${n} / ${BOSS_TOTAL}</span></div><div class="bar"><i style="width:${n / BOSS_TOTAL * 100}%;background:var(--neg)"></i></div>`;
     g.dataset.m = 'boss'; return;
   }
   if (S.yuyuSeen && !S.won){
@@ -2499,31 +3070,42 @@ const BOSS_LINES = [
   '¡240 hercios de pura dictadura!',
   'Hima va en el asiento de atrás. Sin cinturón, porque es libre.',
   'En Orcasitas la ITV la paso yo a quien yo diga.',
+  '¡Estoy de Rodríguez! Mi mujer no se entera de nada.',
+  '¡Estoy de Rodríguez, Puma! Esta noche invito yo… si me pones la verde.',
+  'He pedido línea exclusiva porque yo lo valgo.',
+  'Esto es una persecución política.',
+  'Hima, ¡muérdele la tablet!',
 ];
 function bossSay(txt){ bossLine = txt; bossLineT = 5; }
+// Lo que dice cada uno de la plantilla al empezar la revisión del Yuyomóvil
+const BOSS_HELP = {
+  daniel:'Si Yuyu suelta un sermón, le contesto con otro de 40 páginas.',
+  pedorreta:'La zona de humos es mía. Ahí no ve nadie más que yo.',
+  loko:'Cuando acabéis, traigo la grúa. ¡Aparco donde me da la gana!',
+  roberto:'Yo me encargo de los frenos. Tarjeta roja al tanque.',
+  jose:'Las luces las ajusto yo, entre vaper y vaper.',
+  maetin:'Los bajos, como una pista de pickleball.',
+  adri:'Si sale Hima, le doy mi bocata. Bueno, la mitad.',
+  safu:'Yo entretengo a Yuyu para que no saque tantos sobres.',
+  serio:'Le pongo tecno a Hima, que se pone a bailar y no molesta.',
+};
 function beginBoss(){
   audio(); startBoss(S); SFX.alert(); bossSay('¿Pegatina? Ponme la verde y aquí no ha pasado nada.');
-  showNotice('El Yuyomóvil entra en la línea. Encuentra todos los defectos y no aceptes nada de Yuyu.', true, 5);
-  refreshUI(true);
+  showNotice('Yuyu ha pedido línea exclusiva: la ITV entera se para. Revisa el Yuyomóvil zona por zona, encuentra los 47 defectos y no aceptes nada.', true, 6);
+  const helpers = Object.keys(BOSS_HELP).filter(id => owned(S, id) > 0);
+  helpers.slice(0, 2).forEach((id, i) => setTimeout(() => { if (S.boss) staffSay(id, BOSS_HELP[id]); }, 1500 + i * 2600));
+  refreshUI(true); renderInsp(true);
 }
-const DEFECTS = [
-  'Cañón sin homologar apuntando a la sala de espera.',
-  'Las luces de posición son un monitor OLED de 240 Hz.',
-  'Matrícula «YUYU 1». No existe en la DGT.',
-  'Hima viaja suelta en el asiento de atrás.',
-  'El escape expulsa discursos de 45 minutos.',
-  'Neumáticos: orugas. Sin dibujo, sin vergüenza.',
-  'Última ITV: 2009. Firmada por el propio Yuyu.',
-];
+const DEFECTS = Object.values(YUYO_DEFECTS).flat();
 function showEnding(){
   const el = $('#ending'), c = $('#endCard');
   const stats = `<div class="endstats"><div><b class="num">${clock(S.endT)}</b><span>tiempo</span></div><div><b class="num">${fmt(S.cars)}</b><span>vehículos</span></div><div><b class="num">${fmt(S.naps)}</b><span>siestas</span></div><div><b class="num">${fmt(S.drinks)}</b><span>bebidas</span></div><div><b class="num">${fmt(S.bribesR)}</b><span>sobornos rechazados</span></div><div><b class="num">${fmt(S.fines)}</b><span>visitas de Industria</span></div></div>`;
   if (S.ended === 1){
     awardWin();
     c.innerHTML = `<span class="stamp neg">Negativa</span><h2>El Yuyomóvil sale en grúa</h2>
-      <p>47 defectos muy graves. El vehículo no puede circular y Yuyu vuelve a casa andando. ${barrioName()} respira.</p>
+      <p>47 defectos muy graves. El vehículo no puede circular: ${owned(S, 'loko') ? 'Loko se lo lleva con la grúa' : 'se lo lleva la grúa municipal'} y Yuyu vuelve a casa andando. ${barrioName()} respira.</p>
       <p class="tgain">${TUERCA}<b>+${S.tuercasGiven} tuercas doradas</b> <span>para mejoras permanentes. Tienes ${META.tuercas}.</span></p>
-      <div class="defects"><b>Algunos defectos del informe</b><ol>${DEFECTS.map(x => `<li>${x}</li>`).join('')}</ol></div>
+      <div class="defects"><b>Algunos defectos del informe</b><ol>${[...DEFECTS].sort(() => Math.random() - .5).slice(0, 7).map(x => `<li>${x}</li>`).join('')}</ol></div>
       ${stats}<button class="go" id="endNew">Abrir otra ITV</button><button class="go2" id="endGo">Seguir revisando aquí</button>`;
   } else {
     c.innerHTML = `<span class="stamp fav">Favorable</span><h2>Pegatina verde para el tanque</h2>
@@ -2558,6 +3140,7 @@ function refreshUI(force){
   if (d.ability){ ab.disabled = S.abCd > 0; ab.firstChild.textContent = S.abT > 0 ? '¡A tope! ' + Math.ceil(S.abT) + ' s' : S.abCd > 0 ? 'Correa en ' + Math.ceil(S.abCd) + ' s' : 'Azote con correa'; $('#abBar').style.width = S.abCd > 0 ? (100 - S.abCd / 120 * 100) + '%' : '0'; }
   refreshTapBtn();
   updateGoal();
+  renderInsp();
   updateOrder();
   if (prefs.tab === 'staff') updateStaff(d);
   if (!treeWin.hidden){ updateTree(); $('#twMoney').textContent = fmt(S.money) + ' €'; }
@@ -2572,7 +3155,7 @@ function frame(now){
   const dt = Math.min(.25, (now - lastT) / 1000); lastT = now;
   const out = [];
   const evs = tick(S, dt, out);
-  if (out.length) carsDone(out);
+  bossEvents(evs.filter(e => e.type === 'bossDef' || e.type === 'zoneDone'));
   for (const e of evs){
     if (e.type === 'asleep'){ SFX.snore(); buzz([80, 60, 80]); toast('El Puma se ha quedado frito. Tócale o dale una bebida.'); }
     else if (e.type === 'event'){ SFX.alert(); }
@@ -2583,18 +3166,26 @@ function frame(now){
     else if (e.type === 'secret'){ SFX.win(); showNotice('¡Nodo secreto desbloqueado en el árbol: ' + NODE[e.id].name + '!', false, 5); }
     else if (e.type === 'unseal'){ toast('Industria se ha ido. A seguir revisando.'); }
     else if (e.type === 'goal'){ SFX.alert(); showNotice('¡Yuyu ha llegado con el Yuyomóvil! Pulsa arriba para inspeccionarlo cuando quieras.', false, 7); }
-    else if (e.type === 'defect'){ SFX.alert(); buzz(20); }
-    else if (e.type === 'defectMiss'){ toast('Se te ha escapado el defecto. Ese coche sale a la calle tal cual.', 2200); }
+    else if (e.type === 'spArrive'){ SFX.alert(); buzz([30, 40, 30]); toast(`Coche especial: ${e.name}. Tócalo para revisarlo.`, 3200); renderInsp(true); }
+    else if (e.type === 'spGone'){ if (e.seal){ specialExit(null); toast(`Con Industria aquí, ${e.name} se marcha.`, 2600); } else toast(`${e.name} se ha cansado de esperar y se va a otra ITV.`, 2800); renderInsp(true); }
+    else if (e.type === 'spOfferGone'){ toast('El cliente se guarda el sobre. Sigue revisando.', 2400); renderInsp(true); }
+    else if (e.type === 'superv'){ SFX.win(); showNotice('La plantilla ya va sola: el Puma pasa a supervisar y el foso queda para los coches especiales.', false, 6); }
+    else if (e.type === 'sermonBlock'){ SFX.stamp(); bossSay('Os voy a explicar por qué estáis equivocados. Punto uno…'); staffSay('daniel', 'Punto uno: no. Punto dos: tampoco. Punto tres…'); showNotice('Yuyu empieza un sermón, pero Daniel le contesta con uno más largo. Yuyu se calla.', false, 4); }
     else if (e.type === 'orderDone'){ SFX.win(); buzz([20, 40, 20]); toast('Pedido cumplido  +' + fmt(e.gain) + ' €', 3000); addFloat(W*.5, H*.35, '+' + fmt(e.gain) + ' €', '#5fd4c4', true); }
     else if (e.type === 'orderFail'){ toast('Pedido fallado. En un rato llega otro.', 2400); }
     else if (e.type === 'phase'){ SFX.alert(); shake = 1; buzz(200);
-      if (e.phase === 2){ bossSay('¡Hima, a por ellos!'); showNotice('Fase 2: Yuyu suelta a Hima y muerde los cables. Tócala 3 veces.', true, 4); }
-      else { bossSay('¡240 hercios de pura dictadura!'); showNotice('Fase 3: el monitor OLED os ciega. Toca el monitor del tanque.', true, 4); } }
-    else if (e.type === 'hima'){ SFX.alert(); bossSay('¡Hima, defiende a papá!'); }
+      if (e.phase === 2){ bossSay('¡Hima, a por ellos!'); showNotice(owned(S, 'adri') ? 'Yuyu suelta a Hima en el foso. Adri tiene su bocata: tócala una vez y se sienta.' : 'Yuyu suelta a Hima en el foso y no os deja trabajar. Tócala 3 veces.', true, 4); }
+      else { bossSay('¡240 hercios de pura dictadura!'); showNotice('El monitor OLED os ciega. Toca el monitor del tanque para apagarlo.', true, 4); } }
+    else if (e.type === 'hima'){ SFX.alert(); bossSay('¡Hima, defiende a papá!'); if (owned(S, 'adri')) staffSay('adri', '¡Hima! ¡Mira, bocata!'); }
     else if (e.type === 'blind'){ SFX.whip(); buzz([50, 30, 50]); }
     else if (e.type === 'bossOffer'){ SFX.alert(); bossSay('Venga, hombre, que nos conocemos. Toma, para un café.'); }
     else if (e.type === 'sermon'){ SFX.snore(); bossSay('Os voy a explicar por qué estáis equivocados. Punto uno…'); showNotice('Yuyu suelta un sermón moralista y el Puma se duerme.', true, 4); }
-    else if (e.type === 'win'){ SFX.win(); setTimeout(showEnding, 600); }
+    else if (e.type === 'win'){
+      SFX.win(); tow = 2.6; bossLine = '';
+      if (owned(S, 'loko')) staffSay('loko', '¡Grúa del Mercadona! ¡Abran paso!');
+      showNotice('¡47 de 47! El Yuyomóvil sale en grúa.', false, 3);
+      setTimeout(showEnding, 2800);
+    }
   }
   if (S.asleep && !S.ended){ snoreAcc += dt; if (snoreAcc > 2.4){ snoreAcc = 0; SFX.snore(); } }
   if (notice){ notice.left -= dt; if (notice.left <= 0) notice = null; }
@@ -2643,7 +3234,8 @@ const ACH = [
   {id:'padri',  name:'El Padrino',                 desc:'Compra El Padrino de la ITV.',              test:() => lvOf(S, 'padrino') > 0},
   {id:'whip',   name:'Azote fácil',                desc:'Usa la correa de distribución 10 veces.',   test:() => (S.whips || 0) >= 10},
   {id:'radio',  name:'Oyente de la Radio Pirata',  desc:'Escucha todas las canciones.',              test:() => TRACKS.every(t => S.heard && S.heard[t.id])},
-  {id:'lince',  name:'Ojo de lince',               desc:'Encuentra 25 defectos.',                    test:() => (S.defects || 0) >= 25},
+  {id:'lince',  name:'Ojo de lince',               desc:'Pilla 25 fallos en coches especiales.',     test:() => (S.defects || 0) >= 25},
+  {id:'esp10',  name:'Atención personalizada',     desc:'Revisa 10 coches especiales.',              test:() => (S.specials || 0) >= 10},
   {id:'orders', name:'Pedido entregado',           desc:'Completa 10 pedidos.',                      test:() => (S.ordersDone || 0) >= 10},
   {id:'himas',  name:'Hima, ¡sienta!',             desc:'Calma a Hima en el Yuyomóvil.',             test:() => (S.himaCalm || 0) >= 1},
   {id:'noct',   name:'Turno de noche superado',    desc:'Gana en dificultad Turno de noche.',       test:() => S.won && S.diff === 'noche'},
@@ -2721,6 +3313,15 @@ function sayBubble(){
   bubbles.push({who, text, t:0});
   if (bubbles.length > 2) bubbles.shift();
 }
+// Un bocadillo concreto de alguien de la plantilla (o del Puma)
+function staffSay(who, text){
+  if (who !== 'puma' && !owned(S, who)) return;
+  bubbles = bubbles.filter(b => b.who !== who);
+  bubbles.push({who, text, t:0});
+  if (bubbles.length > 2) bubbles.shift();
+  bubbleT = Math.max(bubbleT, 5);
+}
+function staffSayAny(lines){ const staff = GEN.filter(g => owned(S, g.id) > 0).map(g => g.id); staffSay(staff.length ? pick(staff) : 'puma', pick(lines)); }
 function drawBubbles(s, gy, cx, dt){
   for (const b of bubbles){
     b.t += dt;
@@ -2827,23 +3428,7 @@ function extrasTick(dt){
 // ===== Tanda 2: defectos, pedidos, Hima y el monitor OLED =====
 const VLEN = {turismo:100, moto:60, furgo:112, caravana:124, camion:152, bus:172, limusina:160};
 const VHGT = {turismo:30, moto:28, furgo:40, caravana:44, camion:48, bus:44, limusina:30};
-let hit = {defect:null, hima:null, mon:null};
-function drawDefect(c, x, gy, s, t){
-  hit.defect = null;
-  const D = S.defect; if (!D || Math.abs(x - W * .44) > 30) return;
-  const k = DEFECT_KINDS.find(k => k.id === D.kind);
-  const L = VLEN[c.id] || 100, dx = (D.x - .5) * L * s, px = x + dx, py = gy - (VHGT[c.id] || 30) * s;
-  const pulse = 1 + Math.sin(t / 120) * .12, r = 13 * s * pulse;
-  ctx.fillStyle = 'rgba(240,82,82,.25)'; ctx.beginPath(); ctx.arc(px, py, r * 1.8, 0, 7); ctx.fill();
-  ctx.fillStyle = '#f05252'; ctx.beginPath(); ctx.arc(px, py, r, 0, 7); ctx.fill();
-  ctx.strokeStyle = '#fff'; ctx.lineWidth = 2.5 * s; ctx.beginPath(); ctx.arc(px, py, r + 3*s, -Math.PI/2, -Math.PI/2 + Math.PI * 2 * D.left / 5); ctx.stroke();
-  ctx.fillStyle = '#fff'; ctx.font = `800 ${Math.round(16*s)}px "Barlow Condensed", sans-serif`; ctx.textAlign = 'center'; ctx.fillText('!', px, py + 6*s);
-  ctx.font = `700 ${Math.round(9*s + 4)}px "Barlow Condensed", sans-serif`;
-  const lbl = k.name + ' · ¡tócalo!', tw = ctx.measureText(lbl).width + 10;
-  ctx.fillStyle = 'rgba(240,82,82,.95)'; rr(px - tw/2, py - r - 22*s, tw, 9*s + 8, 5); ctx.fill();
-  ctx.fillStyle = '#fff'; ctx.fillText(lbl, px, py - r - 22*s + 9*s + 3);
-  hit.defect = {x:px, y:py, r: Math.max(26, r * 2.2)};
-}
+let hit = {spWait:null, hima:null, mon:null};
 function drawDog(x, y, s, face, t, run){
   ctx.save(); ctx.translate(x, y); ctx.scale(face * s, s);
   const leg = run ? Math.sin(t / 60) * 4 : 0;
@@ -2864,7 +3449,8 @@ function drawBossExtras(s, gy, cx, t){
   if (B.hima){
     const ph = t / 900, x = W * .5 + Math.sin(ph) * W * .38, face = Math.cos(ph) >= 0 ? 1 : -1;
     drawDog(x, gy + 4*s, 1.1*s, face, t, true);
-    for (let i = 0; i < 3; i++){ ctx.fillStyle = i < B.hima.hits ? '#58c47c' : 'rgba(255,255,255,.35)'; ctx.beginPath(); ctx.arc(x - 10*s + i * 10*s, gy - 42*s, 3.5*s, 0, 7); ctx.fill(); }
+    const need = himaNeed(S);
+    for (let i = 0; i < need; i++){ ctx.fillStyle = i < B.hima.hits ? '#58c47c' : 'rgba(255,255,255,.35)'; ctx.beginPath(); ctx.arc(x - (need - 1) * 5*s + i * 10*s, gy - 42*s, 3.5*s, 0, 7); ctx.fill(); }
     hit.hima = {x, y: gy - 16*s, r: Math.max(34, 30*s)};
   }
   if (B.blindT > 0){
@@ -2891,16 +3477,7 @@ function tapTargets(clientX, clientY){
     else addFloat(hit.hima.x, hit.hima.y - 30*s, '¡Quieta!', '#f4c430');
     return true;
   }
-  if (!S.boss && S.defect && inside(hit.defect)){
-    const r = defectHit(S);
-    if (r){
-      const k = DEFECT_KINDS.find(k => k.id === r.kind);
-      SFX.stamp(); SFX.car(); buzz([30, 30, 30]); shake = .5;
-      addFloat(hit.defect.x, hit.defect.y - 26*s, k.name + ' · +' + fmt(r.gain) + ' €', '#f05252', true);
-      leaving.push({id:S.car.id, col:S.car.col, x:carX, v:60, t:0});
-    }
-    return true;
-  }
+  if (!S.boss && S.special && S.special.phase === 'wait' && inside(hit.spWait)){ beginSpecial(); return true; }
   return false;
 }
 // Pedidos: tira debajo del objetivo
@@ -2908,12 +3485,12 @@ function orderText(O){
   if (O.id === 'cars') return `Revisa ${fmt(O.target)} vehículos`;
   if (O.id === 'taps') return `Haz ${O.target} toques`;
   if (O.id === 'money') return `Factura ${fmt(O.target)} €`;
-  if (O.id === 'defects') return `Encuentra ${O.target} defectos`;
+  if (O.id === 'defects') return `Pilla ${O.target} fallos en coches especiales`;
   return 'Que el Puma no se duerma';
 }
 function updateOrder(){
   const el = $('#order'), O = S.order;
-  if (!O || S.boss || S.ended){ el.hidden = true; return; }
+  if (!O || S.boss || S.ended || !inspEl.hidden){ el.hidden = true; return; }
   el.hidden = false;
   const p = Math.min(O.target, Math.max(0, orderProgress(S)));
   const prog = O.id === 'awake' ? `${Math.floor(p)}/${O.target} s` : O.id === 'money' ? `${fmt(p)} / ${fmt(O.target)} €` : `${fmt(p)}/${fmt(O.target)}`;
@@ -2989,7 +3566,7 @@ $('#setup').addEventListener('click', (e) => {
   if (t.closest('#setupGo')){
     audio();
     S = newState({barrio: setupSel.barrio, diff: setupSel.diff, meta: META.lv});
-    curCarKey = null; leaving = []; bubbles = [];
+    vis = null; leaving = []; bubbles = []; belt = []; tow = 0; waitX = -9999;
     $('#setup').hidden = true; $('#ending').hidden = true; $('#welcome').hidden = true;
     store(); buildTree(); refreshUI(true); SFX.car();
     toast(`Nueva ITV en ${barrioName()} · ${diffName()}. El Puma ficha a las 7:00.`, 3200);
@@ -3012,7 +3589,7 @@ const TUT = [
   {target:'#staffList .buy', text:'Con el dinero contrata a Roberto: revisará coches él solo aunque no toques.', done:() => owned(S, 'roberto') >= 1},
   {target:'#sleepM', text:'Ojo con la barra de sueño. Si se llena, el Puma se duerme: tócale varias veces para despertarle o dale un café.', ok:true},
   {target:'#treeBtn', text:'Abre el Árbol y compra tu primera mejora. El punto amarillo avisa cuando puedes comprar algo.', done:() => Object.keys(S.nodes).length >= 1},
-  {target:'#scene', text:'Si aparece un círculo rojo sobre el coche es un defecto: tócalo rápido y cobras mucho más.', ok:true},
+  {target:'#scene', text:'De vez en cuando llega un coche especial a la entrada. Tócalo, revísalo punto por punto, marca los fallos y da el veredicto: paga mucho más.', ok:true},
   {target:'#musBtn', text:'En la Radio Pirata eliges la música. Cada canción da una pequeña ventaja mientras suena.', ok:true},
 ];
 let tutStep = -1, tutEl = null;
@@ -3047,6 +3624,7 @@ function catchUp(sec){
   sec = Math.min(sec, 2 * 3600);
   S.asleep = true; S.sleep = 100; S.wakeTaps = 0;
   S.seal = Math.max(0, S.seal - sec); S.drinkT = 0; S.abT = 0; S.abCd = Math.max(0, S.abCd - sec); S.ev = null;
+  if (S.special){ S.special = null; S.spT = nextSpT(S); }
   const d = derived(S), gain = moneyPerSec(S, d) * sec;
   if (gain > 0){ S.money += gain; S.life += gain; S.t += sec; if (!S.yuyuSeen && S.life >= goalOf(S)) S.yuyuSeen = true; }
   if (S.taps > 0 && sec >= 30) setTimeout(() => showAway(sec, gain, d), 300);
@@ -3057,7 +3635,7 @@ document.addEventListener('visibilitychange', () => {
 });
 
 function start(hot){
-  const saved = hot && hot.S ? Object.assign(newState(), hot.S) : loadSaved();
+  const saved = hot && hot.S ? fixState(Object.assign(newState(), hot.S)) : loadSaved();
   if (hot && hot.prefs) Object.assign(prefs, hot.prefs);
   if (saved){ S = saved; if (!hot || !hot.S) catchUp((Date.now() - S.last) / 1000); }
   buildStaff(); buildBranches(); buildTree(); paintMute(); paintMusic(); buildRadio(); buildSettings();
