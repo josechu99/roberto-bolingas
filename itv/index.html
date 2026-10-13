@@ -187,6 +187,60 @@ button:focus-visible{outline:2px solid var(--chaleco);outline-offset:2px}
   .twbody{flex-direction:row}
   .twbody .tdetail{width:330px;max-height:none;align-self:stretch;align-content:start}
 }
+/* Radio Pirata */
+.rwin{background:var(--asfalto);width:100%;height:100%;display:flex;flex-direction:column;gap:12px;padding:calc(env(safe-area-inset-top,0px) + 10px) 16px calc(env(safe-area-inset-bottom,0px) + 12px);overflow:auto;animation:drop .2s ease-out}
+@media (min-width:900px){.rwin{width:min(720px,calc(100% - 48px));height:min(780px,calc(100% - 48px));border:1px solid var(--junta);border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.6);padding:18px 20px}}
+.rfm{margin-left:auto;font-family:var(--f-cond);font-weight:700;font-size:14px;color:var(--gris);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.rnow{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:center;background:var(--forro);border:1px solid var(--junta);border-radius:14px;padding:12px}
+.rcover .rbig{display:grid;place-items:center;width:clamp(96px,26vw,150px);aspect-ratio:1;border-radius:10px;object-fit:cover;box-shadow:0 8px 20px rgba(0,0,0,.45)}
+.nocover{background:linear-gradient(135deg,var(--cuello),#7a2c8a);color:#fff;font-size:34px;display:grid;place-items:center}
+.rinfo{display:grid;gap:10px;min-width:0}
+.rlcd{background:#1f2a14;border:2px solid #0d120a;border-radius:8px;padding:6px 10px;color:#b8f05a;font-family:var(--f-cond);box-shadow:inset 0 0 12px rgba(184,240,90,.18);min-width:0}
+.rlcd span{display:block;font-size:12px;letter-spacing:.14em;opacity:.8}
+.rlcd b{display:block;font-size:22px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.radiowin.off .rlcd{color:#4d6332;box-shadow:none}
+.rprog{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px;align-items:center;font-family:var(--f-cond);font-size:14px;color:var(--gris)}
+.rwin input[type=range]{width:100%;accent-color:var(--chaleco)}
+.rctl{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.rctl button{width:42px;height:42px;border-radius:50%;border:1px solid var(--junta);display:grid;place-items:center;color:var(--tiza)}
+.rctl button svg{width:18px;height:18px}
+.rctl .rbigbtn{width:52px;height:52px;background:var(--chaleco);color:var(--chaleco-osc);border:0}
+.rctl .rbigbtn svg{width:22px;height:22px}
+.rctl .rtog{width:auto;border-radius:999px;padding:0 12px;display:flex;gap:6px;font-family:var(--f-cond);font-weight:700;font-size:14px;color:var(--gris)}
+.rctl .rtog[aria-pressed="true"]{color:var(--asfalto);background:var(--barrio);border-color:var(--barrio)}
+.ropts{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-family:var(--f-cond);font-weight:600;font-size:15px}
+.rvol{display:flex;gap:8px;align-items:center;flex:1;min-width:160px}
+.rsw{display:flex;gap:8px;align-items:center;cursor:pointer}
+.rsw input{position:absolute;opacity:0}
+.rsw span{width:38px;height:22px;border-radius:999px;background:var(--forro2);border:1px solid var(--junta);position:relative;transition:background .15s}
+.rsw span::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:var(--gris);transition:transform .15s}
+.rsw input:checked+span{background:var(--ok);border-color:var(--ok)}
+.rsw input:checked+span::after{transform:translateX(16px);background:#fff}
+.rsw input:focus-visible+span{outline:2px solid var(--chaleco);outline-offset:2px}
+.rhint{margin:0;color:var(--gris);font-size:13px}
+.rlist{display:grid;gap:6px}
+.rrow{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px;align-items:center}
+.rchk{display:grid;place-items:center;width:34px;height:34px;cursor:pointer}
+.rchk input{position:absolute;opacity:0}
+.rchk span{width:22px;height:22px;border-radius:6px;border:2px solid var(--junta);display:grid;place-items:center}
+.rchk input:checked+span{background:var(--chaleco);border-color:var(--chaleco)}
+.rchk input:checked+span::after{content:"";width:6px;height:11px;border:solid var(--chaleco-osc);border-width:0 3px 3px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.rchk input:focus-visible+span{outline:2px solid var(--tiza);outline-offset:2px}
+.rpick{display:grid;grid-template-columns:44px auto minmax(0,1fr) auto auto;gap:10px;align-items:center;text-align:left;background:var(--forro);border:1px solid var(--junta);border-radius:12px;padding:6px 10px 6px 6px;min-width:0}
+.rpick .rthumb{width:44px;height:44px;border-radius:8px;object-fit:cover}
+.rpick .nocover.rthumb{font-size:20px}
+.rpick b{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rnum{font-family:var(--f-cond);color:var(--gris);font-size:14px}
+.rdur{font-family:var(--f-cond);color:var(--gris);font-size:14px}
+.rrow.cur .rpick{border-color:var(--chaleco);background:var(--forro2)}
+.rrow.cur b{color:var(--chaleco)}
+.rrow.skip .rpick{opacity:.45}
+.eq{display:flex;gap:2px;align-items:flex-end;height:14px;visibility:hidden}
+.eq i{width:3px;background:var(--chaleco);height:30%;animation:eq .8s ease-in-out infinite}
+.eq i:nth-child(2){animation-delay:-.3s}.eq i:nth-child(3){animation-delay:-.55s}
+.rrow.playing .eq{visibility:visible}
+@keyframes eq{50%{height:100%}}
+@media (max-width:899px){.rctl{gap:5px}.rlcd b{font-size:19px}.rctl button{width:38px;height:38px}.rctl .rbigbtn{width:48px;height:48px}.rctl .rtog span{display:none}.rctl .rtog{padding:0;width:38px;justify-content:center}}
 /* árbol con zoom */
 .tview{position:relative;height:clamp(300px,48vh,540px);overflow:hidden;border:1px solid var(--junta);border-radius:14px;touch-action:none;cursor:grab;
   background-color:var(--forro);background-image:radial-gradient(var(--junta) 1px,transparent 1.2px);background-size:22px 22px}
@@ -240,7 +294,7 @@ button:focus-visible{outline:2px solid var(--chaleco);outline-offset:2px}
     <div class="top">
       <div class="brand"><b>ITV</b>Incremental Simulator</div>
       <div class="money"><b class="num" id="money">0 €</b><span class="num" id="mps">0 €/s</span></div>
-      <button class="icon-btn" id="musBtn" aria-label="Quitar la música" title="Música"></button>
+      <button class="icon-btn" id="musBtn" aria-label="Abrir la Radio Pirata" title="Radio Pirata" aria-haspopup="dialog"></button>
       <button class="icon-btn" id="mute" aria-label="Quitar el sonido" title="Sonido"></button>
     </div>
     <div class="goal" id="goal">
@@ -307,6 +361,37 @@ button:focus-visible{outline:2px solid var(--chaleco);outline-offset:2px}
       </div>
       <div class="tdetail" id="tdetail"></div>
     </div>
+  </div>
+</div>
+
+<div class="treewin" id="radioWin" hidden role="dialog" aria-modal="true" aria-labelledby="rTitle">
+  <div class="rwin">
+    <header class="twhead">
+      <h2 id="rTitle">Radio Pirata</h2>
+      <span class="rfm">Orcasitas · 88.5 FM</span>
+      <button class="icon-btn" id="rClose" aria-label="Cerrar la radio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </header>
+    <div class="rnow">
+      <div class="rcover" id="rCover"></div>
+      <div class="rinfo">
+        <div class="rlcd"><span id="rState">EN EMISIÓN</span><b id="rName">—</b></div>
+        <div class="rprog"><span class="num" id="rT0">0:00</span><input type="range" id="rSeek" min="0" max="1000" value="0" aria-label="Posición de la canción"><span class="num" id="rT1">0:00</span></div>
+        <div class="rctl">
+          <button id="rPrev" aria-label="Canción anterior"></button>
+          <button id="rPlay" class="rbigbtn" aria-label="Reproducir"></button>
+          <button id="rNext" aria-label="Canción siguiente"></button>
+          <button id="rShuf" class="rtog" aria-pressed="false"></button>
+          <button id="rRep" class="rtog" aria-pressed="false"></button>
+        </div>
+      </div>
+    </div>
+    <div class="ropts">
+      <label class="rsw"><input type="checkbox" id="rOn"><span></span>Radio encendida</label>
+      <label class="rvol">Volumen <input type="range" id="rVol" min="0" max="100" value="70"></label>
+      <label class="rsw"><input type="checkbox" id="rSitu"><span></span>Música según la situación</label>
+    </div>
+    <p class="rhint">Marca las canciones que quieres que suenen. Toca una para ponerla ya.</p>
+    <div class="rlist" id="rList"></div>
   </div>
 </div>
 
@@ -1313,26 +1398,41 @@ const SFX = {
   win(){ [523,659,784,1046].forEach((f,i) => tone(f, .25, 'triangle', .1, null, i*.13)); },
 };
 
-// ---------- música (canciones del grupo) ----------
-const TRACKS = {
-  anime:{src:'music/anime.mp3', name:'Estoy viendo anime', vol:.8},
-  letal:{src:'music/letal.mp3', name:'Puma letal', vol:.9},
-  felino:{src:'music/felino.mp3', name:'Felino y siestas', vol:1},
-};
-const PLAYLIST = ['anime', 'letal', 'felino'];
-let musicEl = null, musicCur = null, musicCtx = '', musicIdx = 0, musicFilt = null, musicGain = null, musicWired = false;
+// ---------- Radio Pirata de Orcasitas: canciones del grupo ----------
+// Para añadir una canción: su mp3 en music/, su portada (si tiene) en covers/ y una línea aquí.
+const TRACKS = [
+  {id:'anime',  name:'Estoy viendo anime', src:'music/anime.mp3',  cover:'covers/anime.jpg',  dur:150, vol:.8},
+  {id:'letal',  name:'Puma letal',         src:'music/letal.mp3',  cover:'covers/letal.jpg',  dur:226, vol:.9},
+  {id:'felino', name:'Felino y siestas',   src:'music/felino.mp3', cover:'covers/felino.jpg', dur:75,  vol:1},
+  {id:'tinder', name:'Tinder tenis',       src:'music/tinder.mp3', cover:'covers/tinder.jpg', dur:188, vol:.75},
+  {id:'miau',   name:'Miauuuuuuuu',        src:'music/miau.mp3',   cover:'covers/miau.jpg',   dur:141, vol:.8},
+  {id:'pista6', name:'Pista sin título',   src:'music/pista6.mp3', cover:'',                  dur:63,  vol:.8},
+];
+const TRACK = Object.fromEntries(TRACKS.map(t => [t.id, t]));
+const R = () => prefs.radio || (prefs.radio = {on: prefs.music !== false, off:[], shuffle:false, repeat:false, vol:70, situ:true});
+let musicEl = null, musicCur = null, musicCtx = '', musicFilt = null, musicGain = null, musicWired = false, musicHist = [];
 function musicWant(){
-  if (!$('#welcome').hidden || !$('#ending').hidden) return 'menu';
+  if (!$('#welcome').hidden) return 'menu';
+  if (!$('#ending').hidden) return 'end';
   if (S.boss) return 'boss';
   return 'play';
 }
-function musicPlay(id, announce){
+const enabledTracks = () => TRACKS.filter(t => !R().off.includes(t.id));
+function nextTrackId(dir){
+  const list = enabledTracks(); if (!list.length) return null;
+  if (dir < 0 && musicHist.length > 1){ musicHist.pop(); return musicHist.pop(); }
+  if (R().shuffle && list.length > 1){ let t; do { t = list[Math.floor(Math.random() * list.length)].id; } while (t === musicCur); return t; }
+  const i = TRACKS.findIndex(t => t.id === musicCur);
+  for (let k = 1; k <= TRACKS.length; k++){
+    const c = TRACKS[(i + dir * k + TRACKS.length * 2) % TRACKS.length];
+    if (!R().off.includes(c.id)) return c.id;
+  }
+  return list[0].id;
+}
+function musicSetup(){
   if (!musicEl){
     musicEl = new Audio(); musicEl.preload = 'auto'; musicEl.preservesPitch = false; musicEl.mozPreservesPitch = false;
-    musicEl.addEventListener('ended', () => {
-      if (musicCtx === 'play'){ musicIdx = (musicIdx + 1) % PLAYLIST.length; musicPlay(PLAYLIST[musicIdx], true); }
-      else { musicEl.currentTime = 0; musicEl.play().catch(() => {}); }
-    });
+    musicEl.addEventListener('ended', () => { if (R().repeat){ musicEl.currentTime = 0; musicEl.play().catch(() => {}); } else musicPlay(nextTrackId(1), true); });
   }
   if (!musicWired && audio()){
     try {
@@ -1342,22 +1442,31 @@ function musicPlay(id, announce){
     } catch(e){ musicFilt = musicGain = null; }
     musicWired = true;
   }
-  const T = TRACKS[id];
-  if (musicCur !== id){ musicCur = id; musicEl.src = T.src; if (announce) toast('♪ Suena: ' + T.name, 2400); }
-  musicVolume();
+}
+function musicPlay(id, announce){
+  musicSetup();
+  if (!id){ musicEl.pause(); musicCur = null; renderRadio(true); return; }
+  if (musicCur !== id){
+    musicCur = id; musicEl.src = TRACK[id].src; musicHist.push(id); if (musicHist.length > 30) musicHist.shift();
+    if (announce && radioWin.hidden) toast('♪ Radio Pirata: ' + TRACK[id].name, 2400);
+  }
+  musicVolume(); renderRadio(true);
 }
 function musicVolume(){
   if (!musicEl) return;
-  const on = prefs.music !== false && !prefs.mute, v = on ? .55 * TRACKS[musicCur || 'anime'].vol : 0;
-  if (musicGain){ musicGain.gain.value = v; musicEl.volume = 1; } else musicEl.volume = v;
+  const on = R().on && !prefs.mute && musicCur, v = on ? (R().vol / 100) * .8 * TRACK[musicCur].vol : 0;
+  if (musicGain){ musicGain.gain.value = v; musicEl.volume = 1; } else musicEl.volume = Math.min(1, v);
   if (!on) musicEl.pause(); else if (musicEl.paused && musicEl.src) musicEl.play().catch(() => {});
 }
 function musicTick(){
   if (!AC) return;
   const want = musicWant();
   if (want !== musicCtx){
-    musicCtx = want;
-    musicPlay(want === 'menu' ? 'felino' : want === 'boss' ? 'letal' : PLAYLIST[musicIdx], want !== 'menu');
+    const prev = musicCtx; musicCtx = want;
+    const situ = R().situ;
+    if (want === 'boss' && situ && !R().off.includes('letal')) musicPlay('letal', true);
+    else if (want === 'end' && situ && !R().off.includes('felino')) musicPlay('felino', false);
+    else if (!musicCur || (prev === 'boss' && situ) || (R().off.includes(musicCur))) musicPlay(nextTrackId(1), want === 'play');
   }
   // con el Puma frito la música suena tapada y a cámara lenta
   if (musicEl){
@@ -1977,11 +2086,92 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !treeWin
 const ICON_ON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>';
 const ICON_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 9l5 6M22 9l-5 6"/></svg>';
 function paintMute(){ const b = $('#mute'); b.innerHTML = prefs.mute ? ICON_OFF : ICON_ON; b.setAttribute('aria-label', prefs.mute ? 'Poner el sonido' : 'Quitar el sonido'); if (master) master.gain.value = prefs.mute ? 0 : .5; }
-$('#mute').onclick = () => { audio(); prefs.mute = !prefs.mute; paintMute(); musicVolume(); store(); };
+$('#mute').onclick = () => { audio(); prefs.mute = !prefs.mute; paintMute(); musicVolume(); renderRadio(); store(); };
 const ICON_MUS_ON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>';
 const ICON_MUS_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/><path d="M3 3l18 18"/></svg>';
-function paintMusic(){ const b = $('#musBtn'), on = prefs.music !== false; b.innerHTML = on ? ICON_MUS_ON : ICON_MUS_OFF; b.setAttribute('aria-label', on ? 'Quitar la música' : 'Poner la música'); }
-$('#musBtn').onclick = () => { audio(); prefs.music = prefs.music === false; paintMusic(); musicTick(); musicVolume(); toast(prefs.music ? '♪ Música activada' : 'Música desactivada', 1600); store(); };
+function paintMusic(){ const b = $('#musBtn'), on = R().on; b.innerHTML = on ? ICON_MUS_ON : ICON_MUS_OFF; b.setAttribute('aria-label', 'Abrir la Radio Pirata'); }
+
+// ----- Ventana de la radio -----
+const radioWin = $('#radioWin');
+const IC = {
+  prev:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg>',
+  next:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg>',
+  play:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg>',
+  pause:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>',
+  shuf:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>',
+  rep:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg>',
+};
+const mmss = (t) => { t = Math.max(0, Math.floor(t || 0)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); };
+function coverHTML(t, cls){ return t.cover ? `<img class="${cls}" src="${t.cover}" alt="">` : `<span class="${cls} nocover" aria-hidden="true">♪</span>`; }
+function buildRadio(){
+  $('#rPrev').innerHTML = IC.prev; $('#rNext').innerHTML = IC.next;
+  $('#rShuf').innerHTML = IC.shuf + '<span>Aleatorio</span>'; $('#rRep').innerHTML = IC.rep + '<span>Repetir</span>';
+  $('#rList').innerHTML = TRACKS.map((t, i) => `<div class="rrow" data-t="${t.id}">
+      <label class="rchk" title="Incluir en la radio"><input type="checkbox" data-chk="${t.id}"><span></span></label>
+      <button class="rpick" data-play="${t.id}">${coverHTML(t, 'rthumb')}<span class="rnum num">${String(i + 1).padStart(2, '0')}</span><b>${t.name}</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span class="rdur num">${mmss(t.dur)}</span></button>
+    </div>`).join('');
+  renderRadio(true);
+}
+let radioKey = '';
+function renderRadio(force){
+  if (radioWin.hidden && !force) return;
+  const r = R(), t = musicCur ? TRACK[musicCur] : null, playing = musicEl && !musicEl.paused && r.on && !prefs.mute;
+  const key = [musicCur, playing, r.shuffle, r.repeat, r.on, r.situ, r.off.join(), prefs.mute].join('|');
+  if (key !== radioKey || force){
+    radioKey = key;
+    $('#rCover').innerHTML = t ? coverHTML(t, 'rbig') : '<span class="rbig nocover">♪</span>';
+    $('#rName').textContent = t ? t.name : 'Sin emisión';
+    $('#rState').textContent = !r.on ? 'RADIO APAGADA' : prefs.mute ? 'SONIDO SILENCIADO' : playing ? 'EN EMISIÓN' : 'EN PAUSA';
+    $('#rPlay').innerHTML = playing ? IC.pause : IC.play; $('#rPlay').setAttribute('aria-label', playing ? 'Pausa' : 'Reproducir');
+    $('#rShuf').setAttribute('aria-pressed', r.shuffle); $('#rRep').setAttribute('aria-pressed', r.repeat);
+    $('#rOn').checked = r.on; $('#rSitu').checked = r.situ; $('#rVol').value = r.vol;
+    $('#radioWin').classList.toggle('off', !r.on);
+    for (const row of $('#rList').children){
+      const id = row.dataset.t; row.classList.toggle('cur', id === musicCur); row.classList.toggle('playing', id === musicCur && playing);
+      row.classList.toggle('skip', r.off.includes(id)); row.querySelector('input').checked = !r.off.includes(id);
+    }
+  }
+  const dur = musicEl && isFinite(musicEl.duration) ? musicEl.duration : (t ? t.dur : 0), cur = musicEl ? musicEl.currentTime : 0;
+  $('#rT0').textContent = mmss(cur); $('#rT1').textContent = mmss(dur);
+  if (!seeking) $('#rSeek').value = dur ? Math.round(cur / dur * 1000) : 0;
+}
+let seeking = false;
+function openRadio(){ audio(); musicSetup(); radioWin.hidden = false; renderRadio(true); $('#rClose').focus(); }
+function closeRadio(){ radioWin.hidden = true; $('#musBtn').focus(); }
+$('#musBtn').onclick = openRadio;
+$('#rClose').onclick = closeRadio;
+radioWin.addEventListener('click', (e) => { if (e.target === radioWin) closeRadio(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !radioWin.hidden) closeRadio(); });
+$('#rPlay').onclick = () => {
+  const r = R();
+  if (!r.on || prefs.mute){ r.on = true; prefs.mute = false; paintMute(); paintMusic(); if (!musicCur) musicPlay(nextTrackId(1)); musicVolume(); }
+  else if (!musicCur) musicPlay(nextTrackId(1));
+  else if (musicEl.paused) musicEl.play().catch(() => {});
+  else musicEl.pause();
+  store(); renderRadio(true);
+};
+$('#rNext').onclick = () => { musicPlay(nextTrackId(1)); };
+$('#rPrev').onclick = () => { if (musicEl && musicEl.currentTime > 4){ musicEl.currentTime = 0; return; } musicPlay(nextTrackId(-1)); };
+$('#rShuf').onclick = () => { R().shuffle = !R().shuffle; store(); renderRadio(true); };
+$('#rRep').onclick = () => { R().repeat = !R().repeat; store(); renderRadio(true); };
+$('#rOn').onchange = (e) => { R().on = e.target.checked; if (R().on && !musicCur) musicPlay(nextTrackId(1)); musicVolume(); paintMusic(); store(); renderRadio(true); };
+$('#rSitu').onchange = (e) => { R().situ = e.target.checked; store(); };
+$('#rVol').oninput = (e) => { R().vol = +e.target.value; musicVolume(); };
+$('#rVol').onchange = () => store();
+$('#rSeek').addEventListener('pointerdown', () => { seeking = true; });
+$('#rSeek').addEventListener('change', (e) => { seeking = false; if (musicEl && isFinite(musicEl.duration)) musicEl.currentTime = e.target.value / 1000 * musicEl.duration; });
+$('#rList').addEventListener('click', (e) => {
+  const p = e.target.closest('[data-play]');
+  if (p){ const id = p.dataset.play; const r = R(); r.off = r.off.filter(x => x !== id); r.on = true; prefs.mute = false; paintMute(); paintMusic(); musicPlay(id); musicVolume(); store(); }
+});
+$('#rList').addEventListener('change', (e) => {
+  const c = e.target.closest('[data-chk]'); if (!c) return;
+  const r = R(), id = c.dataset.chk;
+  r.off = c.checked ? r.off.filter(x => x !== id) : [...new Set([...r.off, id])];
+  if (!c.checked && id === musicCur) musicPlay(nextTrackId(1));
+  store(); renderRadio(true);
+});
+
 
 // Toques
 function doTap(clientX, clientY){
@@ -2113,7 +2303,7 @@ function refreshUI(force){
 }
 
 // Bucle principal
-let lastT = performance.now(), saveAcc = 0, snoreAcc = 0;
+let lastT = performance.now(), saveAcc = 0, snoreAcc = 0, radioAcc = 0;
 function frame(now){
   const dt = Math.min(.25, (now - lastT) / 1000); lastT = now;
   const out = [];
@@ -2138,6 +2328,7 @@ function frame(now){
   if (S.boss){ bossLineT -= dt; if (bossLineT <= 0){ bossSay(BOSS_LINES[Math.floor(Math.random() * BOSS_LINES.length)]); } }
   renderEvent();
   musicTick();
+  if (!radioWin.hidden){ radioAcc += dt; if (radioAcc > .25){ radioAcc = 0; renderRadio(); } }
   if (W > 0) drawScene(now, dt);
   uiAcc += dt; if (uiAcc > .2){ uiAcc = 0; refreshUI(); }
   saveAcc += dt; if (saveAcc > 5){ saveAcc = 0; store(); }
@@ -2163,7 +2354,7 @@ function start(hot){
   const saved = hot && hot.S ? Object.assign(newState(), hot.S) : loadSaved();
   if (hot && hot.prefs) Object.assign(prefs, hot.prefs);
   if (saved){ S = saved; if (!hot || !hot.S) catchUp((Date.now() - S.last) / 1000); }
-  buildStaff(); buildBranches(); buildTree(); paintMute(); paintMusic();
+  buildStaff(); buildBranches(); buildTree(); paintMute(); paintMusic(); buildRadio();
   setQty(prefs.qty === 10 ? 10 : 1); setTab(prefs.tab || 'staff');
   resize(); requestAnimationFrame(frame);
   if (!saved || S.taps === 0) $('#welcome').hidden = false;
