@@ -58,6 +58,10 @@
       e.title = 'Volver a Daddys Games';
       e.setAttribute('aria-label', 'Volver a Daddys Games');
       e.style.cssText = 'text-decoration:none;font-size:18px';
+      // en el móvil la fila de arriba va justa: icono algo más pequeño y el dinero en una sola línea
+      if (matchMedia('(max-width:420px)').matches) e.style.cssText += ';width:34px;height:34px;font-size:16px;flex:none';
+      var money = document.getElementById('money');
+      if (money) money.style.whiteSpace = 'nowrap';
       mute.parentNode.insertBefore(e, mute);
     }
     var rbox = document.getElementById('resetBox');
