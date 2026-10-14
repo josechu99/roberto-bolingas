@@ -1168,6 +1168,7 @@ const SONG_FX = {
   tinder: {pay:1.05, txt:'Cobras un 5% más: los clientes vienen a ligar'},
   miau:   {critAdd:.03, txt:'Críticos +3%: reflejos felinos'},
   pista6: {prod:1.05, txt:'Producción +5%'},
+  noduerme: {sleepRate:.6, txt:'Sueño −40%: el Puma no duerme'},
 };
 const needsOf = (n) => !n.need ? [] : typeof n.need[0] === 'string' ? [n.need] : n.need;
 const lvOf = (S, id) => +(S.nodes[id] || 0);
@@ -1960,6 +1961,7 @@ const TRACKS = [
   {id:'tinder', name:'Tinder tenis',       src:'music/tinder.mp3', cover:'covers/tinder.jpg', dur:188, vol:.75},
   {id:'miau',   name:'Miauuuuuuuu',        src:'music/miau.mp3',   cover:'covers/miau.jpg',   dur:141, vol:.8},
   {id:'pista6', name:'Pista sin título',   src:'music/pista6.mp3', cover:'',                  dur:63,  vol:.8},
+  {id:'noduerme', name:'El Puma no duerme', src:'music/noduerme.mp3', cover:'covers/noduerme.jpg', dur:216, vol:.65},
 ];
 const TRACK = Object.fromEntries(TRACKS.map(t => [t.id, t]));
 const R = () => prefs.radio || (prefs.radio = {on: prefs.music !== false, off:[], shuffle:false, repeat:false, vol:70, situ:true});
